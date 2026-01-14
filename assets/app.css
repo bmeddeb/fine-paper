@@ -794,8 +794,10 @@ img {
 }
 .sidebar .nav {
   list-style: none;
-  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 0;
   padding: 0;
+  display: block;
 }
 .sidebar .nav li {
   position: relative;
@@ -811,21 +813,27 @@ img {
   padding: 10px 8px;
   line-height: 30px;
   opacity: 0.7;
-  border-radius: 12px;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  transition: all 300ms ease 0s;
 }
 .sidebar .nav li > a i {
-  font-size: 18px;
+  font-size: 24px;
   float: left;
   margin-right: 12px;
   line-height: 30px;
   width: 34px;
   text-align: center;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.5);
 }
-.sidebar .nav li.active > a, .sidebar .nav li > a:hover {
+.sidebar .nav li.active > a, .sidebar .nav li.active > a i {
   opacity: 1;
-  background: rgba(255, 255, 255, 0.16);
+}
+.sidebar .nav li:hover:not(.active) > a, .sidebar .nav li:focus:not(.active) > a {
+  opacity: 1;
+}
+.sidebar[data-active-color="danger"] .nav li.active > a, .sidebar[data-active-color="danger"] .nav li.active > a i, .sidebar[data-active-color="danger"] .nav li.active > a p {
+  color: #ef8157;
+  opacity: 1;
 }
 .sidebar .nav p {
   margin: 0;
@@ -840,29 +848,68 @@ img {
   top: 14px;
   position: absolute;
   right: 10px;
+  transition: all 150ms ease 0s;
+}
+.sidebar .nav a[aria-expanded="true"] .caret, .sidebar .nav a.expanded .caret, .sidebar .nav li.open > a .caret {
+  transform: rotate(180deg);
+}
+.sidebar .collapse {
+  visibility: visible !important;
+}
+.sidebar .collapse:not([x-show]) {
+  display: none !important;
+}
+.sidebar .collapse.show:not([x-show]) {
+  display: block !important;
+}
+.collapsing {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.35s ease;
+}
+[x-cloak] {
+  display: none !important;
 }
 .sidebar .nav .nav {
   margin-top: 0;
 }
 .sidebar .nav .nav li > a {
-  margin: 0 15px 0;
+  margin: 5px 15px 0;
   padding: 5px 8px;
   text-transform: none;
+  font-size: 12px;
+  opacity: 0.7;
+}
+.sidebar .nav .nav li > a:hover, .sidebar .nav .nav li.active > a {
+  opacity: 1;
 }
 .sidebar .sidebar-mini-icon {
   text-transform: uppercase;
   width: 34px;
   margin-right: 10px;
+  margin-left: 0;
   font-size: 12px;
   text-align: center;
   line-height: 20px;
+  position: relative;
   float: left;
   color: rgba(255, 255, 255, 0.5);
+  transition: all 300ms ease 0s;
 }
 .sidebar .sidebar-normal {
   text-transform: capitalize;
   display: block;
   line-height: 20px;
+  margin: 0;
+  position: relative;
+  transform: translateX(0);
+  opacity: 1;
+  white-space: nowrap;
+  transition: all 300ms ease 0s;
+}
+.sidebar[data-active-color="danger"] .nav li.active > a .sidebar-mini-icon, .sidebar[data-active-color="danger"] .nav li.active > a .sidebar-normal {
+  color: #ef8157;
+  opacity: 1;
 }
 .sidebar-overlay {
   position: fixed;
@@ -1408,10 +1455,17 @@ hr {
 }
 .sidebar-mini .sidebar .nav li > a {
   text-align: center;
+  overflow: hidden;
 }
 .sidebar-mini .sidebar .nav li > a i {
   float: none;
   margin: 0 auto;
+}
+.sidebar-mini .sidebar .nav li > a p {
+  display: inline-block;
+  overflow: hidden;
+  width: 0;
+  height: 0;
 }
 .sidebar-mini .sidebar .sidebar-mini-icon {
   display: inline-block;
@@ -1424,6 +1478,42 @@ hr {
 }
 .sidebar-mini .visible-on-sidebar-mini {
   display: inline-block !important;
+}
+.sidebar-mini .sidebar:hover {
+  width: 260px;
+}
+.sidebar-mini .sidebar:hover .sidebar-wrapper {
+  width: 260px;
+}
+.sidebar-mini .sidebar:hover .logo-normal {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.sidebar-mini .sidebar:hover .sidebar-normal {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.sidebar-mini .sidebar:hover .user .info > a > span {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.sidebar-mini .sidebar:hover .nav p {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.sidebar-mini .sidebar:hover .nav li > a {
+  text-align: left;
+  overflow: visible;
+}
+.sidebar-mini .sidebar:hover .nav li > a i {
+  float: left;
+  margin-right: 12px;
+}
+.sidebar-mini .sidebar:hover .nav li > a p {
+  display: block;
+  overflow: visible;
+  width: auto;
+  height: auto;
 }
 .spin {
   animation: spin 2s linear infinite;

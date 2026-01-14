@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paper Dashboard | Register</title>
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/app.css">
+  <link rel="stylesheet" href="../../assets/nucleo.css">
+  <script defer src="../../assets/app.js"></script>
+  <script defer src="../../assets/alpine.js"></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!window.Alpine) {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js';
+      document.head.appendChild(script);
+    }
+  });
+</script>
+</head>
+<body data-page="register" x-data="layout()" class="text-[var(--paper-text)] antialiased">
+  <div class="min-h-screen bg-[radial-gradient(circle_at_top,#ffffff_0%,#f6f1ea_45%,#f1eae0_100%)]">
+    <header class="px-6 py-5">
+      <div class="mx-auto flex w-full max-w-6xl items-center justify-between">
+        <a href="../dashboard.html" class="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em]">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white/80 shadow">
+            <img src="../../assets/img/logo-small.png" alt="Paper Dashboard" class="h-6 w-6">
+          </span>
+          Paper Dashboard
+        </a>
+        <div class="hidden items-center gap-3 md:flex">
+          <a href="../dashboard.html" class="paper-btn paper-btn-outline">Dashboard</a>
+          <a href="register.html" class="paper-btn paper-btn-primary">Create account</a>
+        </div>
+      </div>
+    </header>
+    <main class="mx-auto flex w-full max-w-6xl items-center px-6 pb-12">
+      
+<div class="grid w-full gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+  <div class="flex flex-col justify-center gap-4">
+    <p class="paper-label">Get started</p>
+    <h1 class="text-3xl font-semibold">Create your Paper account</h1>
+    <p class="text-sm text-[var(--paper-muted)]">Start organizing your team metrics and craft reports in minutes.</p>
+    <div class="flex flex-wrap gap-3">
+      <span class="paper-pill"><i class="nc-icon nc-check-2"></i>No credit card</span>
+      <span class="paper-pill"><i class="nc-icon nc-check-2"></i>14-day trial</span>
+      <span class="paper-pill"><i class="nc-icon nc-check-2"></i>Cancel anytime</span>
+    </div>
+  </div>
+  <div class="paper-card p-6 shadow-[var(--paper-soft-shadow)]">
+    <h2 class="text-xl font-semibold">Register</h2>
+    <form class="mt-6 space-y-4">
+      <div>
+        <label class="paper-label">Full name</label>
+        <input class="paper-input" type="text" placeholder="Chet Faker">
+      </div>
+      <div>
+        <label class="paper-label">Email address</label>
+        <input class="paper-input" type="email" placeholder="chet@example.com">
+      </div>
+      <div>
+        <label class="paper-label">Password</label>
+        <input class="paper-input" type="password" placeholder="Create password">
+      </div>
+      <label class="flex items-center gap-2 text-sm">
+        <input type="checkbox" class="h-4 w-4 rounded border-gray-300">
+        I agree to the terms and conditions
+      </label>
+      <button class="paper-btn paper-btn-primary w-full" type="button">Create account</button>
+    </form>
+  </div>
+</div>
+
+    </main>
+  </div>
+</body>
+</html>

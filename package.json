@@ -1,0 +1,19 @@
+{
+  "name": "tailwind-paper",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Tailwind tooling for the Paper Dashboard refresh",
+  "devDependencies": {
+    "alpinejs": "^3.13.5",
+    "@tailwindcss/cli": "^4.1.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "postcss-import": "^16.1.0",
+    "tailwindcss": "^4.1.0"
+  },
+  "scripts": {
+    "build": "tailwindcss -c tailwind.config.js -i src/app.css -o assets/app.css",
+    "watch": "tailwindcss -c tailwind.config.js -i src/app.css -o assets/app.css --watch",
+    "vendor": "node scripts/copy-alpine.js"
+  }
+}

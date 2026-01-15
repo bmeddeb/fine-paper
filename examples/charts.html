@@ -1,17 +1,20 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Dashboard | Charts</title>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/app.css">
-  <link rel="stylesheet" href="../assets/nucleo.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>Charts | Paper Dashboard</title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/app.css" />
+  <link rel="stylesheet" href="../assets/nucleo.css" />
   <script defer src="../assets/app.js"></script>
   <script defer src="../assets/alpine.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
   <script>
   window.addEventListener('DOMContentLoaded', () => {
     if (!window.Alpine) {
@@ -20,272 +23,937 @@
       script.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js';
       document.head.appendChild(script);
     }
+    initCharts();
   });
-</script>
+
+  function initCharts() {
+    if (typeof Chart === 'undefined') return;
+
+    // Chart.js default settings
+    Chart.defaults.font.family = "'Montserrat', 'Helvetica Neue', Arial, sans-serif";
+    Chart.defaults.color = '#9a9a9a';
+
+    // 1. LINE CHART - Monthly Revenue
+    const lineCtx = document.getElementById('lineChart');
+    if (lineCtx) {
+      new Chart(lineCtx.getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          datasets: [{
+            label: 'Revenue',
+            data: [65, 59, 80, 81, 56, 55, 72, 88, 92, 78, 95, 110],
+            borderColor: '#51bcda',
+            backgroundColor: 'rgba(81, 188, 218, 0.1)',
+            fill: true,
+            tension: 0.4,
+            borderWidth: 3,
+            pointRadius: 4,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: '#51bcda',
+            pointBorderWidth: 2,
+            pointHoverRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            x: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // 2. BAR CHART - Weekly Sales
+    const barCtx = document.getElementById('barChart');
+    if (barCtx) {
+      new Chart(barCtx.getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          datasets: [{
+            label: 'Sales',
+            data: [12, 19, 8, 15, 22, 30, 25],
+            backgroundColor: [
+              'rgba(239, 129, 87, 0.8)',
+              'rgba(251, 198, 88, 0.8)',
+              'rgba(107, 208, 152, 0.8)',
+              'rgba(81, 188, 218, 0.8)',
+              'rgba(81, 203, 206, 0.8)',
+              'rgba(239, 129, 87, 0.8)',
+              'rgba(251, 198, 88, 0.8)'
+            ],
+            borderRadius: 8,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            x: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // 3. HORIZONTAL BAR CHART - Department Performance
+    const hBarCtx = document.getElementById('horizontalBarChart');
+    if (hBarCtx) {
+      new Chart(hBarCtx.getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Engineering', 'Marketing', 'Sales', 'Support', 'Design'],
+          datasets: [{
+            label: 'Performance',
+            data: [92, 78, 85, 70, 88],
+            backgroundColor: 'rgba(107, 208, 152, 0.8)',
+            borderRadius: 6,
+            borderSkipped: false
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            y: {
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // 4. PIE CHART - Market Share
+    const pieCtx = document.getElementById('pieChart');
+    if (pieCtx) {
+      new Chart(pieCtx.getContext('2d'), {
+        type: 'pie',
+        data: {
+          labels: ['Chrome', 'Safari', 'Firefox', 'Edge', 'Other'],
+          datasets: [{
+            data: [45, 25, 15, 10, 5],
+            backgroundColor: [
+              '#51bcda',
+              '#6bd098',
+              '#fbc658',
+              '#ef8157',
+              '#66615b'
+            ],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 20, usePointStyle: true }
+            }
+          }
+        }
+      });
+    }
+
+    // 5. DOUGHNUT CHART - Budget Allocation
+    const doughnutCtx = document.getElementById('doughnutChart');
+    if (doughnutCtx) {
+      new Chart(doughnutCtx.getContext('2d'), {
+        type: 'doughnut',
+        data: {
+          labels: ['Development', 'Marketing', 'Operations', 'HR'],
+          datasets: [{
+            data: [40, 25, 20, 15],
+            backgroundColor: [
+              '#51cbce',
+              '#ef8157',
+              '#fbc658',
+              '#6bd098'
+            ],
+            borderWidth: 0,
+            cutout: '70%'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 20, usePointStyle: true }
+            }
+          }
+        }
+      });
+    }
+
+    // 6. POLAR AREA CHART - Skills Assessment
+    const polarCtx = document.getElementById('polarAreaChart');
+    if (polarCtx) {
+      new Chart(polarCtx.getContext('2d'), {
+        type: 'polarArea',
+        data: {
+          labels: ['JavaScript', 'Python', 'Go', 'Rust', 'TypeScript'],
+          datasets: [{
+            data: [85, 70, 55, 40, 80],
+            backgroundColor: [
+              'rgba(251, 198, 88, 0.7)',
+              'rgba(81, 188, 218, 0.7)',
+              'rgba(107, 208, 152, 0.7)',
+              'rgba(239, 129, 87, 0.7)',
+              'rgba(81, 203, 206, 0.7)'
+            ],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'right',
+              labels: { padding: 15, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              grid: { color: 'rgba(0,0,0,0.05)' },
+              ticks: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // 7. RADAR CHART - Product Comparison
+    const radarCtx = document.getElementById('radarChart');
+    if (radarCtx) {
+      new Chart(radarCtx.getContext('2d'), {
+        type: 'radar',
+        data: {
+          labels: ['Speed', 'Reliability', 'Comfort', 'Safety', 'Efficiency', 'Price'],
+          datasets: [{
+            label: 'Model A',
+            data: [85, 90, 70, 95, 80, 65],
+            backgroundColor: 'rgba(81, 188, 218, 0.2)',
+            borderColor: '#51bcda',
+            borderWidth: 2,
+            pointBackgroundColor: '#51bcda'
+          }, {
+            label: 'Model B',
+            data: [70, 75, 90, 80, 85, 90],
+            backgroundColor: 'rgba(239, 129, 87, 0.2)',
+            borderColor: '#ef8157',
+            borderWidth: 2,
+            pointBackgroundColor: '#ef8157'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 20, usePointStyle: true }
+            }
+          },
+          scales: {
+            r: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: 'rgba(0,0,0,0.05)' },
+              angleLines: { color: 'rgba(0,0,0,0.05)' },
+              ticks: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // 8. SCATTER CHART - Correlation Data
+    const scatterCtx = document.getElementById('scatterChart');
+    if (scatterCtx) {
+      new Chart(scatterCtx.getContext('2d'), {
+        type: 'scatter',
+        data: {
+          datasets: [{
+            label: 'Dataset A',
+            data: [
+              {x: 10, y: 20}, {x: 15, y: 35}, {x: 20, y: 30},
+              {x: 25, y: 45}, {x: 30, y: 40}, {x: 35, y: 55},
+              {x: 40, y: 50}, {x: 45, y: 60}, {x: 50, y: 65}
+            ],
+            backgroundColor: 'rgba(81, 203, 206, 0.7)',
+            pointRadius: 8,
+            pointHoverRadius: 10
+          }, {
+            label: 'Dataset B',
+            data: [
+              {x: 12, y: 15}, {x: 18, y: 25}, {x: 22, y: 35},
+              {x: 28, y: 30}, {x: 32, y: 50}, {x: 38, y: 45},
+              {x: 42, y: 55}, {x: 48, y: 70}, {x: 52, y: 75}
+            ],
+            backgroundColor: 'rgba(251, 198, 88, 0.7)',
+            pointRadius: 8,
+            pointHoverRadius: 10
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 20, usePointStyle: true }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(0,0,0,0.05)' }
+            }
+          }
+        }
+      });
+    }
+
+    // 9. BUBBLE CHART - Market Analysis
+    const bubbleCtx = document.getElementById('bubbleChart');
+    if (bubbleCtx) {
+      new Chart(bubbleCtx.getContext('2d'), {
+        type: 'bubble',
+        data: {
+          datasets: [{
+            label: 'Tech',
+            data: [
+              {x: 20, y: 30, r: 15},
+              {x: 40, y: 10, r: 10},
+              {x: 30, y: 50, r: 20}
+            ],
+            backgroundColor: 'rgba(81, 188, 218, 0.6)',
+            borderColor: '#51bcda'
+          }, {
+            label: 'Finance',
+            data: [
+              {x: 15, y: 45, r: 12},
+              {x: 50, y: 35, r: 18},
+              {x: 35, y: 25, r: 8}
+            ],
+            backgroundColor: 'rgba(107, 208, 152, 0.6)',
+            borderColor: '#6bd098'
+          }, {
+            label: 'Healthcare',
+            data: [
+              {x: 45, y: 55, r: 14},
+              {x: 25, y: 15, r: 16},
+              {x: 55, y: 45, r: 10}
+            ],
+            backgroundColor: 'rgba(239, 129, 87, 0.6)',
+            borderColor: '#ef8157'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 20, usePointStyle: true }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(0,0,0,0.05)' }
+            }
+          }
+        }
+      });
+    }
+
+    // 10. AREA CHART (Stacked) - Traffic Sources
+    const areaCtx = document.getElementById('areaChart');
+    if (areaCtx) {
+      new Chart(areaCtx.getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
+          datasets: [{
+            label: 'Direct',
+            data: [30, 35, 40, 38, 45, 50],
+            backgroundColor: 'rgba(81, 203, 206, 0.6)',
+            borderColor: '#51cbce',
+            fill: true,
+            tension: 0.4
+          }, {
+            label: 'Organic',
+            data: [20, 25, 30, 35, 32, 40],
+            backgroundColor: 'rgba(107, 208, 152, 0.6)',
+            borderColor: '#6bd098',
+            fill: true,
+            tension: 0.4
+          }, {
+            label: 'Referral',
+            data: [10, 15, 12, 18, 20, 25],
+            backgroundColor: 'rgba(251, 198, 88, 0.6)',
+            borderColor: '#fbc658',
+            fill: true,
+            tension: 0.4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 20, usePointStyle: true }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false }
+            },
+            y: {
+              stacked: true,
+              beginAtZero: true,
+              grid: { color: 'rgba(0,0,0,0.05)' }
+            }
+          }
+        }
+      });
+    }
+
+    // 11. MIXED CHART - Revenue vs Expenses
+    const mixedCtx = document.getElementById('mixedChart');
+    if (mixedCtx) {
+      new Chart(mixedCtx.getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+          datasets: [{
+            type: 'bar',
+            label: 'Revenue',
+            data: [120, 150, 180, 200],
+            backgroundColor: 'rgba(107, 208, 152, 0.8)',
+            borderRadius: 6,
+            order: 2
+          }, {
+            type: 'bar',
+            label: 'Expenses',
+            data: [80, 90, 100, 110],
+            backgroundColor: 'rgba(239, 129, 87, 0.8)',
+            borderRadius: 6,
+            order: 3
+          }, {
+            type: 'line',
+            label: 'Profit Margin',
+            data: [40, 60, 80, 90],
+            borderColor: '#51bcda',
+            backgroundColor: 'transparent',
+            borderWidth: 3,
+            pointRadius: 5,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: '#51bcda',
+            pointBorderWidth: 2,
+            tension: 0.4,
+            yAxisID: 'y1',
+            order: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 20, usePointStyle: true }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false }
+            },
+            y: {
+              beginAtZero: true,
+              position: 'left',
+              grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            y1: {
+              beginAtZero: true,
+              position: 'right',
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // 12. MULTI-AXIS LINE CHART - Temperature & Humidity
+    const multiAxisCtx = document.getElementById('multiAxisChart');
+    if (multiAxisCtx) {
+      new Chart(multiAxisCtx.getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: ['6am', '9am', '12pm', '3pm', '6pm', '9pm'],
+          datasets: [{
+            label: 'Temperature (°C)',
+            data: [18, 22, 28, 32, 27, 21],
+            borderColor: '#ef8157',
+            backgroundColor: 'rgba(239, 129, 87, 0.1)',
+            fill: true,
+            tension: 0.4,
+            yAxisID: 'y'
+          }, {
+            label: 'Humidity (%)',
+            data: [65, 55, 40, 35, 45, 60],
+            borderColor: '#51bcda',
+            backgroundColor: 'rgba(81, 188, 218, 0.1)',
+            fill: true,
+            tension: 0.4,
+            yAxisID: 'y1'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { padding: 20, usePointStyle: true }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              title: { display: true, text: 'Temperature (°C)' },
+              grid: { color: 'rgba(0,0,0,0.05)' }
+            },
+            y1: {
+              type: 'linear',
+              position: 'right',
+              title: { display: true, text: 'Humidity (%)' },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+  }
+  </script>
 </head>
-<body data-page="charts" x-data="layout()" class="text-[var(--paper-text)] antialiased">
+
+<body class="text-[var(--paper-text)] antialiased" data-page="charts" x-data="layout()">
   <div class="flex min-h-screen">
-    <div class="fixed inset-0 bg-black/40 lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
-    <aside class="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full bg-[var(--paper-sidebar)] text-white transition-transform duration-300 lg:static lg:translate-x-0 lg:flex lg:flex-col" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
+    <!-- Mobile overlay -->
+    <div class="fixed inset-0 bg-black/40 lg:hidden z-30" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar-modern fixed inset-y-0 left-0 z-40 w-64 -translate-x-full bg-[var(--paper-sidebar)] text-white transition-all duration-300 lg:static lg:translate-x-0 lg:flex lg:flex-col" :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen, 'sidebar-mini': sidebarMini}">
+      <!-- Logo -->
       <div class="px-6 py-6">
         <div class="flex items-center gap-3">
-          <div class="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10">
             <img src="../assets/img/logo-small.png" alt="Paper Dashboard logo" class="h-7 w-7">
           </div>
-          <div>
+          <div class="sidebar-text overflow-hidden whitespace-nowrap transition-all duration-300">
             <p class="text-sm font-semibold uppercase tracking-[0.2em]">Paper</p>
             <p class="text-xs text-white/60">Tailwind 4.1</p>
           </div>
         </div>
       </div>
-      <div class="px-6 pb-4">
-        <div class="rounded-2xl bg-white/10 p-3">
-          <div class="flex items-center gap-3">
-            <img src="../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Chet Faker" class="h-10 w-10 rounded-full object-cover">
-            <div class="flex-1">
-              <button type="button" class="flex w-full items-center justify-between text-left text-sm font-semibold" @click="sidebarUserOpen = !sidebarUserOpen">
-                Chet Faker
-                <i class="nc-icon nc-minimal-down text-xs transition-transform" :class="sidebarUserOpen ? 'rotate-180' : ''"></i>
-              </button>
-              <div class="mt-2 space-y-1 text-xs text-white/70" x-show="sidebarUserOpen" x-transition>
-                <a href="#" class="block hover:text-white">My profile</a>
-                <a href="#" class="block hover:text-white">Edit settings</a>
-                <a href="#" class="block hover:text-white">Log out</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <!-- Navigation -->
       <nav class="flex-1 overflow-y-auto px-3 pb-6">
-        <a class="sidebar-link nav-dashboard" href="dashboard.html">
-          <i class="nc-icon nc-bank"></i>
-          <span>Dashboard</span>
-        </a>
-        <a class="sidebar-link nav-charts" href="charts.html">
-          <i class="nc-icon nc-chart-bar-32"></i>
-          <span>Charts</span>
-        </a>
-        <a class="sidebar-link nav-calendar" href="calendar.html">
-          <i class="nc-icon nc-calendar-60"></i>
-          <span>Calendar</span>
-        </a>
-        <a class="sidebar-link nav-widgets" href="widgets.html">
-          <i class="nc-icon nc-box"></i>
-          <span>Widgets</span>
+        <a class="sidebar-link" href="dashboard.html">
+          <i class="nc-icon nc-bank shrink-0"></i>
+          <span class="sidebar-text">Dashboard</span>
         </a>
 
-        <div class="sidebar-section">Examples</div>
-        <div x-data="collapse(true)" class="mt-2">
-          <button class="sidebar-link" type="button" @click="toggle()">
-            <i class="nc-icon nc-book-bookmark"></i>
-            <span>Pages</span>
-            <i class="nc-icon nc-minimal-down text-xs transition-transform" :class="open ? 'rotate-180' : ''"></i>
-          </button>
-          <div class="mt-2 space-y-1" x-show="open" x-transition>
-            <a class="sidebar-sublink nav-login" href="pages/login.html">Login</a>
-            <a class="sidebar-sublink nav-register" href="pages/register.html">Register</a>
-            <a class="sidebar-sublink nav-lock" href="pages/lock.html">Lock</a>
-            <a class="sidebar-sublink nav-user" href="pages/user.html">User</a>
-            <a class="sidebar-sublink nav-timeline" href="pages/timeline.html">Timeline</a>
-          </div>
-        </div>
-        <div x-data="collapse(true)" class="mt-2">
-          <button class="sidebar-link" type="button" @click="toggle()">
-            <i class="nc-icon nc-layout-11"></i>
-            <span>Components</span>
-            <i class="nc-icon nc-minimal-down text-xs transition-transform" :class="open ? 'rotate-180' : ''"></i>
-          </button>
-          <div class="mt-2 space-y-1" x-show="open" x-transition>
-            <a class="sidebar-sublink nav-buttons" href="components/buttons.html">Buttons</a>
-            <a class="sidebar-sublink nav-grid" href="components/grid.html">Grid</a>
-            <a class="sidebar-sublink nav-panels" href="components/panels.html">Panels</a>
-            <a class="sidebar-sublink nav-notifications" href="components/notifications.html">Notifications</a>
-            <a class="sidebar-sublink nav-icons" href="components/icons.html">Icons</a>
-            <a class="sidebar-sublink nav-typography" href="components/typography.html">Typography</a>
-          </div>
-        </div>
         <div x-data="collapse(false)" class="mt-2">
           <button class="sidebar-link" type="button" @click="toggle()">
-            <i class="nc-icon nc-ruler-pencil"></i>
-            <span>Forms</span>
-            <i class="nc-icon nc-minimal-down text-xs transition-transform" :class="open ? 'rotate-180' : ''"></i>
+            <i class="nc-icon nc-book-bookmark shrink-0"></i>
+            <span class="sidebar-text">Pages</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
-          <div class="mt-2 space-y-1" x-show="open" x-transition>
-            <a class="sidebar-sublink nav-forms-regular" href="forms/regular.html">Regular</a>
-            <a class="sidebar-sublink nav-forms-extended" href="forms/extended.html">Extended</a>
-            <a class="sidebar-sublink nav-forms-validation" href="forms/validation.html">Validation</a>
-            <a class="sidebar-sublink nav-forms-wizard" href="forms/wizard.html">Wizard</a>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" href="pages/timeline.html">Timeline</a>
+            <a class="sidebar-sublink" href="pages/login.html">Login</a>
+            <a class="sidebar-sublink" href="pages/register.html">Register</a>
+            <a class="sidebar-sublink" href="pages/lock.html">Lock Screen</a>
+            <a class="sidebar-sublink" href="pages/user.html">User Profile</a>
           </div>
         </div>
+
         <div x-data="collapse(false)" class="mt-2">
           <button class="sidebar-link" type="button" @click="toggle()">
-            <i class="nc-icon nc-single-copy-04"></i>
-            <span>Tables</span>
-            <i class="nc-icon nc-minimal-down text-xs transition-transform" :class="open ? 'rotate-180' : ''"></i>
+            <i class="nc-icon nc-layout-11 shrink-0"></i>
+            <span class="sidebar-text">Components</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
-          <div class="mt-2 space-y-1" x-show="open" x-transition>
-            <a class="sidebar-sublink nav-tables-regular" href="tables/regular.html">Regular</a>
-            <a class="sidebar-sublink nav-tables-extended" href="tables/extended.html">Extended</a>
-            <a class="sidebar-sublink nav-tables-datatables" href="tables/datatables.html">DataTables</a>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" href="components/buttons.html">Buttons</a>
+            <a class="sidebar-sublink" href="components/grid.html">Grid System</a>
+            <a class="sidebar-sublink" href="components/panels.html">Panels</a>
+            <a class="sidebar-sublink" href="components/notifications.html">Notifications</a>
+            <a class="sidebar-sublink" href="components/icons.html">Icons</a>
+            <a class="sidebar-sublink" href="components/typography.html">Typography</a>
           </div>
         </div>
+
         <div x-data="collapse(false)" class="mt-2">
           <button class="sidebar-link" type="button" @click="toggle()">
-            <i class="nc-icon nc-pin-3"></i>
-            <span>Maps</span>
-            <i class="nc-icon nc-minimal-down text-xs transition-transform" :class="open ? 'rotate-180' : ''"></i>
+            <i class="nc-icon nc-ruler-pencil shrink-0"></i>
+            <span class="sidebar-text">Forms</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
-          <div class="mt-2 space-y-1" x-show="open" x-transition>
-            <a class="sidebar-sublink nav-maps-google" href="maps/google.html">Google</a>
-            <a class="sidebar-sublink nav-maps-vector" href="maps/vector.html">Vector</a>
-            <a class="sidebar-sublink nav-maps-fullscreen" href="maps/fullscreen.html">Fullscreen</a>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" href="forms/regular.html">Regular Forms</a>
+            <a class="sidebar-sublink" href="forms/extended.html">Extended Forms</a>
+            <a class="sidebar-sublink" href="forms/validation.html">Validation</a>
+            <a class="sidebar-sublink" href="forms/wizard.html">Wizard</a>
           </div>
         </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-single-copy-04 shrink-0"></i>
+            <span class="sidebar-text">Tables</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" href="tables/regular.html">Regular Tables</a>
+            <a class="sidebar-sublink" href="tables/extended.html">Extended Tables</a>
+            <a class="sidebar-sublink" href="tables/datatables.html">DataTables</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-pin-3 shrink-0"></i>
+            <span class="sidebar-text">Maps</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" href="maps/google.html">Google Maps</a>
+            <a class="sidebar-sublink" href="maps/fullscreen.html">Full Screen Map</a>
+            <a class="sidebar-sublink" href="maps/vector.html">Vector Map</a>
+          </div>
+        </div>
+
+        <a class="sidebar-link mt-2" href="widgets.html">
+          <i class="nc-icon nc-box shrink-0"></i>
+          <span class="sidebar-text">Widgets</span>
+        </a>
+        <a class="sidebar-link active" href="charts.html">
+          <i class="nc-icon nc-chart-bar-32 shrink-0"></i>
+          <span class="sidebar-text">Charts</span>
+        </a>
+        <a class="sidebar-link" href="calendar.html">
+          <i class="nc-icon nc-calendar-60 shrink-0"></i>
+          <span class="sidebar-text">Calendar</span>
+        </a>
       </nav>
-      <div class="px-6 pb-6">
+
+      <!-- Help card -->
+      <div class="sidebar-help px-6 pb-6">
         <div class="rounded-2xl bg-white/10 p-4 text-sm">
           <p class="text-xs uppercase tracking-[0.2em] text-white/60">Need help?</p>
-          <p class="mt-2 text-white/80">Explore the docs or reach out to the support crew.</p>
-          <button class="paper-btn paper-btn-primary mt-3 w-full" type="button">View docs</button>
+          <p class="mt-2 text-white/80">Explore the docs or reach out to support.</p>
+          <button class="mt-3 w-full rounded-full bg-[var(--paper-primary)] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[var(--paper-primary)]/80" type="button">View docs</button>
         </div>
       </div>
     </aside>
+
+    <!-- Main content -->
     <div class="flex min-h-screen flex-1 flex-col">
-      <header class="sticky top-0 z-30 bg-[var(--paper-bg)]/90 backdrop-blur">
+      <!-- Header -->
+      <header class="sticky top-0 z-20 bg-[var(--paper-bg)]/90 backdrop-blur">
         <div class="flex items-center justify-between px-6 py-4">
           <div class="flex items-center gap-3">
-            <button class="flex h-10 w-10 flex-col items-center justify-center gap-1 rounded-full bg-white/70 text-[var(--paper-text)] shadow lg:hidden" type="button" @click="toggleSidebar" aria-label="Toggle navigation">
+            <!-- Mobile menu toggle -->
+            <button class="flex h-10 w-10 flex-col items-center justify-center gap-1 rounded-full bg-white/70 text-[var(--paper-text)] shadow lg:hidden" type="button" @click="sidebarOpen = !sidebarOpen" aria-label="Toggle navigation">
               <span class="h-0.5 w-5 rounded-full bg-[var(--paper-text)]"></span>
               <span class="h-0.5 w-5 rounded-full bg-[var(--paper-text)]"></span>
               <span class="h-0.5 w-5 rounded-full bg-[var(--paper-text)]"></span>
             </button>
+            <!-- Sidebar minimize toggle (desktop only) -->
+            <button class="hidden lg:flex h-10 w-10 items-center justify-center rounded-full bg-white shadow transition hover:shadow-md" type="button" @click="sidebarMini = !sidebarMini" aria-label="Toggle sidebar">
+              <i class="nc-icon nc-minimal-left text-[var(--paper-text)] transition-transform duration-300" :class="sidebarMini ? 'rotate-180' : ''"></i>
+            </button>
+            <!-- Search -->
             <div class="relative hidden md:block">
               <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-              <input class="paper-input w-64 pl-9" type="text" placeholder="Search">
+              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search...">
             </div>
             <div class="md:hidden">
-              <p class="text-sm font-semibold">Paper Dashboard</p>
-              <p class="text-xs text-[var(--paper-muted)]">Overview</p>
+              <p class="text-sm font-semibold">Charts</p>
+              <p class="text-xs text-[var(--paper-muted)]">Data visualization</p>
             </div>
           </div>
+
           <div class="flex items-center gap-3">
             <div class="relative" @click.outside="notificationsOpen = false">
-              <button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/70 text-[var(--paper-text)] shadow" type="button" @click="notificationsOpen = !notificationsOpen" aria-label="Notifications">
-                <i class="nc-icon nc-bell-55"></i>
+              <button class="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow transition hover:shadow-md" type="button" @click="notificationsOpen = !notificationsOpen" aria-label="Notifications">
+                <i class="nc-icon nc-bell-55 text-[var(--paper-text)]"></i>
               </button>
-              <span class="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-[var(--paper-danger)]"></span>
-              <div class="absolute right-0 mt-3 w-72 paper-card p-4 text-sm shadow-lg" x-show="notificationsOpen" x-transition>
-                <p class="paper-label">Notifications</p>
+              <span class="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[var(--paper-danger)] text-[10px] font-bold text-white">3</span>
+              <div class="absolute right-0 mt-3 w-80 rounded-xl bg-white p-4 shadow-lg" x-show="notificationsOpen" x-transition x-cloak>
+                <p class="text-xs font-semibold uppercase tracking-wider text-[var(--paper-muted)]">Notifications</p>
                 <div class="mt-3 space-y-3">
                   <div class="flex items-start gap-3">
-                    <div class="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(239,129,87,0.2)] text-[var(--paper-danger)]">
+                    <div class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--paper-danger)]/10 text-[var(--paper-danger)]">
                       <i class="nc-icon nc-alert-circle-i text-sm"></i>
                     </div>
                     <div>
-                      <p class="font-semibold">Server update</p>
+                      <p class="text-sm font-semibold">Server update</p>
                       <p class="text-xs text-[var(--paper-muted)]">New patches deployed 2m ago.</p>
-                    </div>
-                  </div>
-                  <div class="flex items-start gap-3">
-                    <div class="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(81,188,218,0.2)] text-[var(--paper-info)]">
-                      <i class="nc-icon nc-email-85 text-sm"></i>
-                    </div>
-                    <div>
-                      <p class="font-semibold">Inbox cleared</p>
-                      <p class="text-xs text-[var(--paper-muted)]">4 new messages archived.</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="relative" @click.outside="profileMenuOpen = false">
-              <button class="flex items-center gap-3 rounded-full bg-white/70 px-2 py-1 shadow" type="button" @click="profileMenuOpen = !profileMenuOpen">
+              <button class="flex items-center gap-2 rounded-full bg-white py-1 pl-1 pr-3 shadow transition hover:shadow-md" type="button" @click="profileMenuOpen = !profileMenuOpen">
                 <img src="../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Chet Faker" class="h-8 w-8 rounded-full object-cover">
                 <span class="hidden text-sm font-semibold md:inline">Chet Faker</span>
                 <i class="nc-icon nc-minimal-down text-xs text-[var(--paper-muted)]"></i>
               </button>
-              <div class="absolute right-0 mt-3 w-44 paper-card p-3 text-sm shadow-lg" x-show="profileMenuOpen" x-transition>
-                <a href="#" class="block rounded-lg px-2 py-1 hover:bg-[rgba(0,0,0,0.04)]">Profile</a>
-                <a href="#" class="block rounded-lg px-2 py-1 hover:bg-[rgba(0,0,0,0.04)]">Settings</a>
-                <a href="#" class="block rounded-lg px-2 py-1 hover:bg-[rgba(0,0,0,0.04)]">Logout</a>
+              <div class="absolute right-0 mt-3 w-48 rounded-xl bg-white p-2 shadow-lg" x-show="profileMenuOpen" x-transition x-cloak>
+                <a href="#" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition hover:bg-[var(--paper-bg)]">
+                  <i class="nc-icon nc-single-02 text-[var(--paper-muted)]"></i>
+                  Profile
+                </a>
+                <a href="#" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition hover:bg-[var(--paper-bg)]">
+                  <i class="nc-icon nc-settings-gear-65 text-[var(--paper-muted)]"></i>
+                  Settings
+                </a>
+                <hr class="my-2 border-[var(--paper-border)]">
+                <a href="#" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-[var(--paper-danger)] transition hover:bg-[var(--paper-danger)]/10">
+                  <i class="nc-icon nc-button-power"></i>
+                  Log out
+                </a>
               </div>
             </div>
           </div>
         </div>
       </header>
-      <main class="flex-1 px-6 pb-12">
-        
-<section class="pt-6">
-  <div class="flex items-center justify-between">
-    <div>
-      <h1 class="text-2xl font-semibold">Charts</h1>
-      <p class="paper-muted text-sm">Data visualizations with a paper touch</p>
-    </div>
-    <button class="paper-btn paper-btn-outline" type="button">Download</button>
-  </div>
-  <div class="mt-6 grid gap-6 lg:grid-cols-3">
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <p class="paper-label">Line</p>
-        <h2 class="text-lg font-semibold">Active users</h2>
-      </div>
-      <div class="paper-card-body">
-        <div class="h-48 rounded-2xl bg-[linear-gradient(160deg,rgba(81,188,218,0.12),rgba(107,208,152,0.12))] p-4">
-          <svg viewBox="0 0 200 100" class="h-full w-full" preserveAspectRatio="none">
-            <polyline fill="none" stroke="rgba(81,188,218,0.8)" stroke-width="3" points="0,80 30,60 60,65 90,40 120,55 150,30 180,35 200,25" />
-          </svg>
-        </div>
-      </div>
-    </div>
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <p class="paper-label">Bar</p>
-        <h2 class="text-lg font-semibold">Weekly sales</h2>
-      </div>
-      <div class="paper-card-body">
-        <div class="flex h-48 items-end gap-3 rounded-2xl bg-[linear-gradient(160deg,rgba(239,129,87,0.12),rgba(251,198,88,0.12))] p-4">
-          <div class="w-full rounded-xl bg-[rgba(239,129,87,0.55)]" style="height: 45%"></div>
-          <div class="w-full rounded-xl bg-[rgba(239,129,87,0.75)]" style="height: 70%"></div>
-          <div class="w-full rounded-xl bg-[rgba(239,129,87,0.4)]" style="height: 35%"></div>
-          <div class="w-full rounded-xl bg-[rgba(239,129,87,0.8)]" style="height: 85%"></div>
-          <div class="w-full rounded-xl bg-[rgba(239,129,87,0.6)]" style="height: 55%"></div>
-        </div>
-      </div>
-    </div>
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <p class="paper-label">Donut</p>
-        <h2 class="text-lg font-semibold">Traffic split</h2>
-      </div>
-      <div class="paper-card-body flex flex-col items-center">
-        <svg viewBox="0 0 120 120" class="h-40 w-40">
-          <circle cx="60" cy="60" r="45" stroke="rgba(81,203,206,0.25)" stroke-width="12" fill="none" />
-          <circle cx="60" cy="60" r="45" stroke="rgba(81,203,206,0.65)" stroke-width="12" fill="none" stroke-dasharray="150 110" stroke-linecap="round" transform="rotate(-90 60 60)" />
-          <circle cx="60" cy="60" r="30" stroke="rgba(107,208,152,0.7)" stroke-width="10" fill="none" stroke-dasharray="90 100" stroke-linecap="round" transform="rotate(-90 60 60)" />
-        </svg>
-        <div class="mt-4 w-full text-sm">
-          <div class="flex items-center justify-between">
-            <span>Organic</span>
-            <span class="font-semibold">52%</span>
-          </div>
-          <div class="flex items-center justify-between">
-            <span>Referral</span>
-            <span class="font-semibold">31%</span>
-          </div>
-          <div class="flex items-center justify-between">
-            <span>Paid</span>
-            <span class="font-semibold">17%</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
+      <!-- Main content area -->
+      <main class="flex-1 p-6">
+        <!-- Page header -->
+        <div class="mb-8">
+          <h1 class="text-2xl font-semibold">Charts</h1>
+          <p class="text-[var(--paper-muted)]">All Chart.js chart types showcase</p>
+        </div>
+
+        <!-- Row 1: Line and Bar (Large) -->
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Line Chart</h5>
+              <p class="card-category">Monthly Revenue Trend</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 300px;">
+                <canvas id="lineChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Bar Chart</h5>
+              <p class="card-category">Weekly Sales Performance</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 300px;">
+                <canvas id="barChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Area and Horizontal Bar (Large) -->
+        <div class="mt-6 grid gap-6 lg:grid-cols-2">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Stacked Area Chart</h5>
+              <p class="card-category">Traffic Sources Over Time</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 300px;">
+                <canvas id="areaChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Horizontal Bar Chart</h5>
+              <p class="card-category">Department Performance Score</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 300px;">
+                <canvas id="horizontalBarChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3: Pie, Doughnut, Polar Area (Medium) -->
+        <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Pie Chart</h5>
+              <p class="card-category">Browser Market Share</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 280px;">
+                <canvas id="pieChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Doughnut Chart</h5>
+              <p class="card-category">Budget Allocation</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 280px;">
+                <canvas id="doughnutChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Polar Area Chart</h5>
+              <p class="card-category">Programming Skills</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 280px;">
+                <canvas id="polarAreaChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 4: Radar and Scatter (Medium-Large) -->
+        <div class="mt-6 grid gap-6 lg:grid-cols-2">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Radar Chart</h5>
+              <p class="card-category">Product Comparison Analysis</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 350px;">
+                <canvas id="radarChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Scatter Chart</h5>
+              <p class="card-category">Correlation Data Points</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 350px;">
+                <canvas id="scatterChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 5: Bubble and Mixed (Large) -->
+        <div class="mt-6 grid gap-6 lg:grid-cols-2">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Bubble Chart</h5>
+              <p class="card-category">Market Sector Analysis (X: Growth, Y: Revenue, Size: Market Cap)</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 350px;">
+                <canvas id="bubbleChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Mixed Chart</h5>
+              <p class="card-category">Revenue, Expenses & Profit Margin</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 350px;">
+                <canvas id="mixedChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 6: Multi-Axis (Full Width) -->
+        <div class="mt-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Multi-Axis Line Chart</h5>
+              <p class="card-category">Temperature & Humidity Throughout the Day</p>
+            </div>
+            <div class="card-body">
+              <div style="height: 300px;">
+                <canvas id="multiAxisChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
+
+      <!-- Footer -->
       <footer class="px-6 py-6 text-xs text-[var(--paper-muted)]">
         <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <p>Paper Dashboard 2 Tailwind build. All rights reserved.</p>
+          <p>&copy; 2024 Paper Dashboard Tailwind. All rights reserved.</p>
           <div class="flex gap-4">
             <a href="#" class="hover:text-[var(--paper-text)]">About</a>
             <a href="#" class="hover:text-[var(--paper-text)]">Documentation</a>
@@ -296,4 +964,5 @@
     </div>
   </div>
 </body>
+
 </html>

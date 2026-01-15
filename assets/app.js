@@ -5,7 +5,6 @@ window.layout = function () {
     navbarOpen: false,
     notificationsOpen: false,
     profileMenuOpen: false,
-    sidebarUserOpen: false,
     toggleSidebar() {
       this.sidebarOpen = !this.sidebarOpen;
     },
@@ -14,10 +13,6 @@ window.layout = function () {
     },
     toggleNavbar() {
       this.navbarOpen = !this.navbarOpen;
-    },
-    closeMenus() {
-      this.notificationsOpen = false;
-      this.profileMenuOpen = false;
     },
   };
 };
@@ -31,19 +26,6 @@ window.collapse = function (open = false) {
   };
 };
 
-// Helper function to convert hex to RGB
-function hexToRGB(hex, alpha) {
-  var r = parseInt(hex.slice(1, 3), 16),
-    g = parseInt(hex.slice(3, 5), 16),
-    b = parseInt(hex.slice(5, 7), 16);
-
-  if (alpha) {
-    return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
-  } else {
-    return "rgb(" + r + ", " + g + ", " + b + ")";
-  }
-}
-
 // Vector map initialization
 window.initVectorMap = function () {
   var mapElement = document.getElementById('worldMap');
@@ -51,7 +33,6 @@ window.initVectorMap = function () {
 
   // Check if jsVectorMap is available
   if (typeof window.jsVectorMap === 'undefined') {
-    console.warn('jsVectorMap not loaded');
     return;
   }
 
@@ -110,15 +91,13 @@ window.initVectorMap = function () {
       }
     });
   } catch (e) {
-    console.error('Error initializing vector map:', e);
+    // Vector map initialization failed silently
   }
 };
 
 // Dashboard charts initialization
 window.initDashboardCharts = function () {
   if (typeof Chart === 'undefined') return;
-
-  var chartColor = "#FFFFFF";
 
   // Register plugin for center text in donut charts
   Chart.register({

@@ -138,7 +138,7 @@
         <div class="rounded-2xl bg-white/10 p-4 text-sm">
           <p class="text-xs uppercase tracking-[0.2em] text-white/60">Need help?</p>
           <p class="mt-2 text-white/80">Explore the docs or reach out to support.</p>
-          <button class="mt-3 w-full rounded-full bg-[var(--paper-primary)] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[var(--paper-primary)]/80" type="button">View docs</button>
+          <a href="../docs/index.html" class="mt-3 block w-full rounded-full bg-[var(--paper-primary)] px-4 py-2 text-center text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[var(--paper-primary)]/80">View docs</a>
         </div>
       </div>
     </aside>
@@ -210,38 +210,547 @@
         </div>
       </header>
       <main class="flex-1 px-6 pb-12">
-        
-<section class="pt-6">
-  <div>
-    <h1 class="text-2xl font-semibold">Buttons</h1>
-    <p class="paper-muted text-sm">Primary, soft, and outline styles</p>
+
+<!-- Page Header -->
+<section class="pt-6 pb-4">
+  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+    <div>
+      <p class="paper-label">Components</p>
+      <h1 class="text-2xl font-semibold">Buttons</h1>
+      <p class="text-[var(--paper-muted)] mt-1">Versatile button components for actions and navigation</p>
+    </div>
+    <div class="flex gap-2">
+      <a href="#examples" class="paper-btn paper-btn-soft btn-sm">Examples</a>
+      <a href="#documentation" class="paper-btn paper-btn-primary btn-sm">Documentation</a>
+    </div>
   </div>
-  <div class="mt-6 space-y-6">
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <p class="paper-label">Solid</p>
-        <h2 class="text-lg font-semibold">Emphasis buttons</h2>
+</section>
+
+<!-- Quick Reference Bar -->
+<section class="mb-6">
+  <div class="paper-card bg-gradient-to-r from-[var(--paper-primary)]/10 to-[var(--paper-info)]/10 border-none">
+    <div class="paper-card-body py-4">
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <span class="text-xs font-semibold text-[var(--paper-muted)] uppercase tracking-wider">Quick:</span>
+        <code class="paper-code text-xs">paper-btn</code>
+        <span class="text-[var(--paper-muted)]">+</span>
+        <code class="paper-code text-xs">paper-btn-primary</code>
+        <span class="text-[var(--paper-muted)]">or</span>
+        <code class="paper-code text-xs">paper-btn-info</code>
+        <span class="text-[var(--paper-muted)]">or</span>
+        <code class="paper-code text-xs">paper-btn-success</code>
+        <span class="text-[var(--paper-muted)]">...</span>
       </div>
-      <div class="paper-card-body flex flex-wrap gap-3">
+    </div>
+  </div>
+</section>
+
+<!-- Examples Section -->
+<section id="examples">
+
+  <!-- Row 1: Colors (full width) -->
+  <div class="paper-card mb-4" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-8 w-8 rounded-lg bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-danger)] flex items-center justify-center">
+          <i class="nc-icon nc-palette text-white text-sm"></i>
+        </div>
+        <div>
+          <h2 class="font-semibold">Color Variants</h2>
+          <p class="text-xs text-[var(--paper-muted)]">5 semantic colors for different contexts</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="flex flex-wrap gap-3 mb-4">
         <button class="paper-btn paper-btn-primary" type="button">Primary</button>
         <button class="paper-btn paper-btn-info" type="button">Info</button>
         <button class="paper-btn paper-btn-success" type="button">Success</button>
         <button class="paper-btn paper-btn-warning" type="button">Warning</button>
         <button class="paper-btn paper-btn-danger" type="button">Danger</button>
       </div>
-    </div>
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <p class="paper-label">Alternate</p>
-        <h2 class="text-lg font-semibold">Outline and ghost</h2>
-      </div>
-      <div class="paper-card-body flex flex-wrap gap-3">
-        <button class="paper-btn paper-btn-outline" type="button">Outline</button>
-        <button class="paper-btn paper-btn-ghost" type="button">Ghost</button>
-        <button class="paper-btn paper-btn-soft" type="button">Soft</button>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;button class="paper-btn paper-btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="paper-btn paper-btn-info"&gt;Info&lt;/button&gt;
+&lt;button class="paper-btn paper-btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="paper-btn paper-btn-warning"&gt;Warning&lt;/button&gt;
+&lt;button class="paper-btn paper-btn-danger"&gt;Danger&lt;/button&gt;</pre>
       </div>
     </div>
   </div>
+
+  <!-- Row 2: Styles & Sizes (2 columns) -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+    <!-- Styles -->
+    <div class="paper-card h-full" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-lg bg-[var(--paper-info)]/20 flex items-center justify-center">
+            <i class="nc-icon nc-ruler-pencil text-[var(--paper-info)] text-sm"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold">Style Variants</h2>
+            <p class="text-xs text-[var(--paper-muted)]">Different visual styles</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide' : 'Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <button class="paper-btn paper-btn-primary" type="button">Default</button>
+          <button class="paper-btn paper-btn-outline" type="button">Outline</button>
+          <button class="paper-btn paper-btn-soft" type="button">Soft</button>
+          <button class="paper-btn paper-btn-ghost" type="button">Ghost</button>
+          <button class="paper-btn paper-btn-primary btn-round" type="button">Round</button>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- Default filled --&gt;
+&lt;button class="paper-btn paper-btn-primary"&gt;Default&lt;/button&gt;
+
+&lt;!-- Outline style --&gt;
+&lt;button class="paper-btn paper-btn-outline"&gt;Outline&lt;/button&gt;
+
+&lt;!-- Soft background --&gt;
+&lt;button class="paper-btn paper-btn-soft"&gt;Soft&lt;/button&gt;
+
+&lt;!-- Ghost style --&gt;
+&lt;button class="paper-btn paper-btn-ghost"&gt;Ghost&lt;/button&gt;
+
+&lt;!-- Rounded pill --&gt;
+&lt;button class="paper-btn paper-btn-primary btn-round"&gt;Round&lt;/button&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <div class="paper-card h-full" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-lg bg-[var(--paper-success)]/20 flex items-center justify-center">
+            <i class="nc-icon nc-zoom-split text-[var(--paper-success)] text-sm"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold">Size Variants</h2>
+            <p class="text-xs text-[var(--paper-muted)]">Small, regular, and large</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide' : 'Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <button class="paper-btn paper-btn-info btn-sm" type="button">Small</button>
+          <button class="paper-btn paper-btn-info" type="button">Regular</button>
+          <button class="paper-btn paper-btn-info text-base px-6 py-3" type="button">Large</button>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- Small --&gt;
+&lt;button class="paper-btn paper-btn-info btn-sm"&gt;Small&lt;/button&gt;
+
+&lt;!-- Regular (default) --&gt;
+&lt;button class="paper-btn paper-btn-info"&gt;Regular&lt;/button&gt;
+
+&lt;!-- Large (use Tailwind utilities) --&gt;
+&lt;button class="paper-btn paper-btn-info text-base px-6 py-3"&gt;Large&lt;/button&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3: Icons, Groups, Social (3 columns) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
+
+    <!-- Icon Buttons -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-lg bg-[var(--paper-warning)]/20 flex items-center justify-center">
+            <i class="nc-icon nc-tap-01 text-[var(--paper-warning)] text-sm"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold">With Icons</h2>
+            <p class="text-xs text-[var(--paper-muted)]">Text + icon combinations</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide' : 'Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="flex flex-wrap gap-2 mb-3">
+          <button class="paper-btn paper-btn-info" type="button">
+            <i class="nc-icon nc-settings-gear-65 mr-1"></i> Settings
+          </button>
+          <button class="paper-btn paper-btn-success" type="button">
+            <i class="nc-icon nc-check-2 mr-1"></i> Confirm
+          </button>
+        </div>
+        <div class="flex justify-start gap-2 mb-4">
+          <button class="btn-icon btn-round paper-btn-primary" type="button">
+            <i class="nc-icon nc-favourite-28"></i>
+          </button>
+          <button class="btn-icon btn-round paper-btn-info" type="button">
+            <i class="nc-icon nc-settings-gear-65"></i>
+          </button>
+          <button class="btn-icon btn-round paper-btn-danger" type="button">
+            <i class="nc-icon nc-simple-remove"></i>
+          </button>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- Button with icon and text --&gt;
+&lt;button class="paper-btn paper-btn-info"&gt;
+  &lt;i class="nc-icon nc-settings-gear-65 mr-2"&gt;&lt;/i&gt;
+  Settings
+&lt;/button&gt;
+
+&lt;!-- Icon-only button --&gt;
+&lt;button class="btn-icon btn-round paper-btn-primary"&gt;
+  &lt;i class="nc-icon nc-favourite-28"&gt;&lt;/i&gt;
+&lt;/button&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button Groups -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-lg bg-[var(--paper-danger)]/20 flex items-center justify-center">
+            <i class="nc-icon nc-tile-56 text-[var(--paper-danger)] text-sm"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold">Button Groups</h2>
+            <p class="text-xs text-[var(--paper-muted)]">Grouped actions</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide' : 'Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="space-y-3 mb-4">
+          <div class="inline-flex rounded-lg overflow-hidden border border-[var(--paper-border)]">
+            <button class="px-3 py-2 bg-white hover:bg-[var(--paper-bg)] border-r border-[var(--paper-border)] text-sm" type="button">Left</button>
+            <button class="px-3 py-2 bg-white hover:bg-[var(--paper-bg)] border-r border-[var(--paper-border)] text-sm" type="button">Mid</button>
+            <button class="px-3 py-2 bg-white hover:bg-[var(--paper-bg)] text-sm" type="button">Right</button>
+          </div>
+          <div class="inline-flex rounded-full overflow-hidden">
+            <button class="paper-btn paper-btn-info rounded-none rounded-l-full text-sm py-2 px-4" type="button">1</button>
+            <button class="paper-btn paper-btn-info rounded-none border-l border-white/20 text-sm py-2 px-4" type="button">2</button>
+            <button class="paper-btn paper-btn-info rounded-none rounded-r-full border-l border-white/20 text-sm py-2 px-4" type="button">3</button>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- Segmented group --&gt;
+&lt;div class="inline-flex rounded-lg overflow-hidden border"&gt;
+  &lt;button class="px-3 py-2 bg-white border-r"&gt;Left&lt;/button&gt;
+  &lt;button class="px-3 py-2 bg-white border-r"&gt;Mid&lt;/button&gt;
+  &lt;button class="px-3 py-2 bg-white"&gt;Right&lt;/button&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Buttons -->
+    <div class="paper-card md:col-span-2 xl:col-span-1" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-lg bg-[var(--paper-primary)]/20 flex items-center justify-center">
+            <i class="nc-icon nc-share-66 text-[var(--paper-primary)] text-sm"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold">Social Buttons</h2>
+            <p class="text-xs text-[var(--paper-muted)]">Brand color buttons</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide' : 'Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <button class="paper-btn bg-[#1877f2] text-white hover:bg-[#1877f2]/90 text-sm" type="button">Facebook</button>
+          <button class="paper-btn bg-[#1da1f2] text-white hover:bg-[#1da1f2]/90 text-sm" type="button">Twitter</button>
+          <button class="paper-btn bg-[#333] text-white hover:bg-[#333]/90 text-sm" type="button">GitHub</button>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- Facebook --&gt;
+&lt;button class="paper-btn bg-[#1877f2] text-white"&gt;
+  Facebook
+&lt;/button&gt;
+
+&lt;!-- Twitter --&gt;
+&lt;button class="paper-btn bg-[#1da1f2] text-white"&gt;
+  Twitter
+&lt;/button&gt;
+
+&lt;!-- GitHub --&gt;
+&lt;button class="paper-btn bg-[#333] text-white"&gt;
+  GitHub
+&lt;/button&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 4: States & Full Width (2 columns) -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+
+    <!-- Loading States -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-lg bg-[var(--paper-info)]/20 flex items-center justify-center">
+            <i class="nc-icon nc-refresh-69 text-[var(--paper-info)] text-sm"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold">States</h2>
+            <p class="text-xs text-[var(--paper-muted)]">Loading and disabled states</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide' : 'Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="flex flex-wrap gap-3 mb-4">
+          <button class="paper-btn paper-btn-primary" type="button">Normal</button>
+          <button class="paper-btn paper-btn-primary opacity-70 cursor-wait" type="button">
+            <i class="nc-icon nc-refresh-69 animate-spin mr-2"></i> Loading
+          </button>
+          <button class="paper-btn paper-btn-primary opacity-50 cursor-not-allowed" type="button" disabled>Disabled</button>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- Normal --&gt;
+&lt;button class="paper-btn paper-btn-primary"&gt;Normal&lt;/button&gt;
+
+&lt;!-- Loading state --&gt;
+&lt;button class="paper-btn paper-btn-primary opacity-70 cursor-wait"&gt;
+  &lt;i class="nc-icon nc-refresh-69 animate-spin mr-2"&gt;&lt;/i&gt;
+  Loading
+&lt;/button&gt;
+
+&lt;!-- Disabled --&gt;
+&lt;button class="paper-btn paper-btn-primary opacity-50 cursor-not-allowed" disabled&gt;
+  Disabled
+&lt;/button&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Width -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-lg bg-[var(--paper-success)]/20 flex items-center justify-center">
+            <i class="nc-icon nc-layout-11 text-[var(--paper-success)] text-sm"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold">Full Width</h2>
+            <p class="text-xs text-[var(--paper-muted)]">Block-level buttons</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide' : 'Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="space-y-2 mb-4">
+          <button class="paper-btn paper-btn-primary w-full" type="button">Full Width Primary</button>
+          <button class="paper-btn paper-btn-outline w-full" type="button">Full Width Outline</button>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- Add w-full class for full width --&gt;
+&lt;button class="paper-btn paper-btn-primary w-full"&gt;
+  Full Width Primary
+&lt;/button&gt;
+
+&lt;button class="paper-btn paper-btn-outline w-full"&gt;
+  Full Width Outline
+&lt;/button&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Documentation Section -->
+<section id="documentation" class="mt-8 pt-6 border-t border-[var(--paper-border)]">
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold">Documentation</h2>
+    <p class="text-[var(--paper-muted)] text-sm">Complete class reference and usage examples</p>
+  </div>
+
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+
+    <!-- Color Classes Table -->
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="font-semibold">Color Classes</h3>
+      </div>
+      <div class="paper-card-body">
+        <table class="paper-table text-sm">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Preview</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="paper-code">paper-btn-primary</code></td>
+              <td><button class="paper-btn paper-btn-primary btn-sm">Primary</button></td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">paper-btn-info</code></td>
+              <td><button class="paper-btn paper-btn-info btn-sm">Info</button></td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">paper-btn-success</code></td>
+              <td><button class="paper-btn paper-btn-success btn-sm">Success</button></td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">paper-btn-warning</code></td>
+              <td><button class="paper-btn paper-btn-warning btn-sm">Warning</button></td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">paper-btn-danger</code></td>
+              <td><button class="paper-btn paper-btn-danger btn-sm">Danger</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Style Classes Table -->
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="font-semibold">Style Classes</h3>
+      </div>
+      <div class="paper-card-body">
+        <table class="paper-table text-sm">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Preview</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="paper-code">paper-btn-outline</code></td>
+              <td><button class="paper-btn paper-btn-outline btn-sm">Outline</button></td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">paper-btn-soft</code></td>
+              <td><button class="paper-btn paper-btn-soft btn-sm">Soft</button></td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">paper-btn-ghost</code></td>
+              <td><button class="paper-btn paper-btn-ghost btn-sm">Ghost</button></td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">btn-round</code></td>
+              <td><button class="paper-btn paper-btn-primary btn-round btn-sm">Round</button></td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">btn-icon</code></td>
+              <td><button class="btn-icon btn-round paper-btn-primary"><i class="nc-icon nc-favourite-28"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Code Examples -->
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="font-semibold">Code Examples</h3>
+    </div>
+    <div class="paper-card-body">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div>
+          <p class="paper-label mb-2">Basic Usage</p>
+          <pre class="paper-code-block text-sm">&lt;button class="paper-btn paper-btn-primary"&gt;
+  Save Changes
+&lt;/button&gt;</pre>
+        </div>
+        <div>
+          <p class="paper-label mb-2">With Icon</p>
+          <pre class="paper-code-block text-sm">&lt;button class="paper-btn paper-btn-success"&gt;
+  &lt;i class="nc-icon nc-check-2 mr-2"&gt;&lt;/i&gt;
+  Confirm
+&lt;/button&gt;</pre>
+        </div>
+        <div>
+          <p class="paper-label mb-2">Round Pill Style</p>
+          <pre class="paper-code-block text-sm">&lt;button class="paper-btn paper-btn-info btn-round"&gt;
+  Get Started
+&lt;/button&gt;</pre>
+        </div>
+        <div>
+          <p class="paper-label mb-2">Icon Only</p>
+          <pre class="paper-code-block text-sm">&lt;button class="btn-icon btn-round paper-btn-danger"&gt;
+  &lt;i class="nc-icon nc-simple-remove"&gt;&lt;/i&gt;
+&lt;/button&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CSS Variables -->
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="font-semibold">CSS Variables</h3>
+    </div>
+    <div class="paper-card-body">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        <div class="text-center">
+          <div class="h-12 w-12 mx-auto rounded-lg bg-[var(--paper-primary)]"></div>
+          <code class="text-[10px] text-[var(--paper-muted)] mt-2 block">--paper-primary</code>
+          <span class="text-[10px] text-[var(--paper-muted)]">#7a9e9f</span>
+        </div>
+        <div class="text-center">
+          <div class="h-12 w-12 mx-auto rounded-lg bg-[var(--paper-info)]"></div>
+          <code class="text-[10px] text-[var(--paper-muted)] mt-2 block">--paper-info</code>
+          <span class="text-[10px] text-[var(--paper-muted)]">#51bcda</span>
+        </div>
+        <div class="text-center">
+          <div class="h-12 w-12 mx-auto rounded-lg bg-[var(--paper-success)]"></div>
+          <code class="text-[10px] text-[var(--paper-muted)] mt-2 block">--paper-success</code>
+          <span class="text-[10px] text-[var(--paper-muted)]">#6bd098</span>
+        </div>
+        <div class="text-center">
+          <div class="h-12 w-12 mx-auto rounded-lg bg-[var(--paper-warning)]"></div>
+          <code class="text-[10px] text-[var(--paper-muted)] mt-2 block">--paper-warning</code>
+          <span class="text-[10px] text-[var(--paper-muted)]">#fbc658</span>
+        </div>
+        <div class="text-center">
+          <div class="h-12 w-12 mx-auto rounded-lg bg-[var(--paper-danger)]"></div>
+          <code class="text-[10px] text-[var(--paper-muted)] mt-2 block">--paper-danger</code>
+          <span class="text-[10px] text-[var(--paper-muted)]">#ef8157</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
       </main>

@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paper Dashboard | Documentation</title>
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/app.css">
+  <link rel="stylesheet" href="../../assets/nucleo.css">
+  <script defer src="../../assets/app.js"></script>
+  <script defer src="../../assets/alpine.js"></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!window.Alpine) {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js';
+      document.head.appendChild(script);
+    }
+  });
+</script>
+</head>
+<body data-page="docs" x-data="layout()" class="text-[var(--paper-text)] antialiased">
+  <div class="flex min-h-screen">
+    <div class="fixed inset-0 bg-black/40 lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
+    <!-- Sidebar -->
+    <aside class="sidebar-modern fixed inset-y-0 left-0 z-40 w-64 -translate-x-full bg-[var(--paper-sidebar)] text-white transition-all duration-300 lg:static lg:translate-x-0 lg:flex lg:flex-col" :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen, 'sidebar-mini': sidebarMini}">
+      <!-- Logo -->
+      <div class="px-6 py-6">
+        <div class="flex items-center gap-3">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10">
+            <img src="../../assets/img/logo-small.png" alt="Paper Dashboard logo" class="h-7 w-7">
+          </div>
+          <div class="sidebar-text overflow-hidden whitespace-nowrap transition-all duration-300">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em]">Paper</p>
+            <p class="text-xs text-white/60">Tailwind 4.1</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 overflow-y-auto px-3 pb-6">
+        <a class="sidebar-link" href="../dashboard.html">
+          <i class="nc-icon nc-bank shrink-0"></i>
+          <span class="sidebar-text">Dashboard</span>
+        </a>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-book-bookmark shrink-0"></i>
+            <span class="sidebar-text">Pages</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
+            <a class="sidebar-sublink" href="../pages/login.html">Login</a>
+            <a class="sidebar-sublink" href="../pages/register.html">Register</a>
+            <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
+            <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-layout-11 shrink-0"></i>
+            <span class="sidebar-text">Components</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" href="../components/buttons.html">Buttons</a>
+            <a class="sidebar-sublink" href="../components/grid.html">Grid System</a>
+            <a class="sidebar-sublink" href="../components/panels.html">Panels</a>
+            <a class="sidebar-sublink" href="../components/notifications.html">Notifications</a>
+            <a class="sidebar-sublink" href="../components/icons.html">Icons</a>
+            <a class="sidebar-sublink" href="../components/typography.html">Typography</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-ruler-pencil shrink-0"></i>
+            <span class="sidebar-text">Forms</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" href="../forms/regular.html">Regular Forms</a>
+            <a class="sidebar-sublink" href="../forms/extended.html">Extended Forms</a>
+            <a class="sidebar-sublink" href="../forms/validation.html">Validation</a>
+            <a class="sidebar-sublink" href="../forms/wizard.html">Wizard</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-single-copy-04 shrink-0"></i>
+            <span class="sidebar-text">Tables</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" href="../tables/regular.html">Regular Tables</a>
+            <a class="sidebar-sublink" href="../tables/extended.html">Extended Tables</a>
+            <a class="sidebar-sublink" href="../tables/datatables.html">DataTables</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-pin-3 shrink-0"></i>
+            <span class="sidebar-text">Maps</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" href="../maps/google.html">Google Maps</a>
+            <a class="sidebar-sublink" href="../maps/fullscreen.html">Full Screen Map</a>
+            <a class="sidebar-sublink" href="../maps/vector.html">Vector Map</a>
+          </div>
+        </div>
+
+        <a class="sidebar-link mt-2" href="../widgets.html">
+          <i class="nc-icon nc-box shrink-0"></i>
+          <span class="sidebar-text">Widgets</span>
+        </a>
+        <a class="sidebar-link" href="../charts.html">
+          <i class="nc-icon nc-chart-bar-32 shrink-0"></i>
+          <span class="sidebar-text">Charts</span>
+        </a>
+        <a class="sidebar-link" href="../calendar.html">
+          <i class="nc-icon nc-calendar-60 shrink-0"></i>
+          <span class="sidebar-text">Calendar</span>
+        </a>
+      </nav>
+
+      <!-- Help card -->
+      <div class="sidebar-help px-6 pb-6">
+        <div class="rounded-2xl bg-white/10 p-4 text-sm">
+          <p class="text-xs uppercase tracking-[0.2em] text-white/60">Need help?</p>
+          <p class="mt-2 text-white/80">You're viewing the docs!</p>
+          <a href="index.html" class="mt-3 block w-full rounded-full bg-[var(--paper-primary)] px-4 py-2 text-center text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[var(--paper-primary)]/80">Docs Home</a>
+        </div>
+      </div>
+    </aside>
+    <div class="flex min-h-screen flex-1 flex-col">
+      <header class="sticky top-0 z-30 bg-[var(--paper-bg)]/90 backdrop-blur">
+        <div class="flex items-center justify-between px-6 py-4">
+          <div class="flex items-center gap-3">
+            <button class="flex h-10 w-10 flex-col items-center justify-center gap-1 rounded-full bg-white/70 text-[var(--paper-text)] shadow lg:hidden" type="button" @click="sidebarOpen = !sidebarOpen" aria-label="Toggle navigation">
+              <span class="h-0.5 w-5 rounded-full bg-[var(--paper-text)]"></span>
+              <span class="h-0.5 w-5 rounded-full bg-[var(--paper-text)]"></span>
+              <span class="h-0.5 w-5 rounded-full bg-[var(--paper-text)]"></span>
+            </button>
+            <!-- Sidebar minimize toggle (desktop only) -->
+            <button class="hidden lg:flex h-10 w-10 items-center justify-center rounded-full bg-white shadow transition hover:shadow-md" type="button" @click="sidebarMini = !sidebarMini" aria-label="Toggle sidebar">
+              <i class="nc-icon nc-minimal-left text-[var(--paper-text)] transition-transform duration-300" :class="sidebarMini ? 'rotate-180' : ''"></i>
+            </button>
+            <div class="relative hidden md:block">
+              <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search docs...">
+            </div>
+            <div class="md:hidden">
+              <p class="text-sm font-semibold">Documentation</p>
+              <p class="text-xs text-[var(--paper-muted)]">Paper Dashboard</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <a href="../dashboard.html" class="paper-btn paper-btn-primary btn-sm btn-round">
+              <i class="nc-icon nc-bank mr-2"></i> Dashboard
+            </a>
+          </div>
+        </div>
+      </header>
+      <main class="flex-1 px-6 pb-12">
+
+<!-- Page Header -->
+<section class="pt-6">
+  <div class="text-center max-w-2xl mx-auto">
+    <div class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-info)] text-white mb-4">
+      <i class="nc-icon nc-book-bookmark text-3xl"></i>
+    </div>
+    <h1 class="text-3xl font-bold">Paper Dashboard Documentation</h1>
+    <p class="paper-muted mt-3">Complete reference for UI components, CSS classes, and usage examples. Built with Tailwind CSS 4.1 and Alpine.js.</p>
+  </div>
+</section>
+
+<!-- Quick Start -->
+<section class="mt-10">
+  <div class="paper-card bg-gradient-to-r from-[var(--paper-primary)] to-[var(--paper-info)] text-white">
+    <div class="paper-card-body">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <div>
+          <h2 class="text-xl font-semibold">Quick Start</h2>
+          <p class="mt-2 opacity-90">Get started with Paper Dashboard by exploring the component documentation. Each page includes live examples, class references, and code snippets.</p>
+          <a href="../components/buttons.html" class="mt-4 inline-block rounded-full bg-white px-6 py-2 text-sm font-semibold text-[var(--paper-primary)] transition hover:bg-white/90">
+            View Buttons <i class="nc-icon nc-minimal-right ml-2"></i>
+          </a>
+        </div>
+        <div class="text-center">
+          <div class="inline-block p-6 rounded-2xl bg-white/10">
+            <code class="text-sm opacity-90">npm install</code><br>
+            <code class="text-sm opacity-90">npx @tailwindcss/cli -i src/app.css -o assets/app.css</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Components Grid -->
+<section class="mt-10">
+  <h2 class="text-xl font-semibold mb-6">Components</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+    <a href="../components/buttons.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body">
+        <div class="flex items-center gap-4">
+          <div class="h-12 w-12 rounded-full bg-[var(--paper-primary)]/10 flex items-center justify-center text-[var(--paper-primary)] group-hover:bg-[var(--paper-primary)] group-hover:text-white transition-colors">
+            <i class="nc-icon nc-tap-01"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold">Buttons</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Colors, styles, sizes, icons</p>
+          </div>
+        </div>
+        <p class="mt-3 text-sm text-[var(--paper-muted)]">Complete button system with primary, info, success, warning, and danger variants. Includes outline, soft, and ghost styles.</p>
+      </div>
+    </a>
+
+    <a href="../components/grid.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body">
+        <div class="flex items-center gap-4">
+          <div class="h-12 w-12 rounded-full bg-[var(--paper-info)]/10 flex items-center justify-center text-[var(--paper-info)] group-hover:bg-[var(--paper-info)] group-hover:text-white transition-colors">
+            <i class="nc-icon nc-layout-11"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold">Grid System</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Responsive layouts</p>
+          </div>
+        </div>
+        <p class="mt-3 text-sm text-[var(--paper-muted)]">Tailwind CSS Grid utilities for 12-column layouts, responsive breakpoints, gaps, and alignment.</p>
+      </div>
+    </a>
+
+    <a href="../components/panels.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body">
+        <div class="flex items-center gap-4">
+          <div class="h-12 w-12 rounded-full bg-[var(--paper-success)]/10 flex items-center justify-center text-[var(--paper-success)] group-hover:bg-[var(--paper-success)] group-hover:text-white transition-colors">
+            <i class="nc-icon nc-tile-56"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold">Panels / Cards</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Content containers</p>
+          </div>
+        </div>
+        <p class="mt-3 text-sm text-[var(--paper-muted)]">Card components with headers, footers, and various styling options for content organization.</p>
+      </div>
+    </a>
+
+    <a href="../components/notifications.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body">
+        <div class="flex items-center gap-4">
+          <div class="h-12 w-12 rounded-full bg-[var(--paper-warning)]/10 flex items-center justify-center text-[var(--paper-warning)] group-hover:bg-[var(--paper-warning)] group-hover:text-white transition-colors">
+            <i class="nc-icon nc-bell-55"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold">Notifications</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Alerts and toasts</p>
+          </div>
+        </div>
+        <p class="mt-3 text-sm text-[var(--paper-muted)]">Alert components for displaying messages, warnings, and status notifications to users.</p>
+      </div>
+    </a>
+
+    <a href="../components/icons.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body">
+        <div class="flex items-center gap-4">
+          <div class="h-12 w-12 rounded-full bg-[var(--paper-danger)]/10 flex items-center justify-center text-[var(--paper-danger)] group-hover:bg-[var(--paper-danger)] group-hover:text-white transition-colors">
+            <i class="nc-icon nc-atom"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold">Icons</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Nucleo icon set</p>
+          </div>
+        </div>
+        <p class="mt-3 text-sm text-[var(--paper-muted)]">Nucleo icon reference with categories and usage examples for UI elements.</p>
+      </div>
+    </a>
+
+    <a href="../components/typography.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body">
+        <div class="flex items-center gap-4">
+          <div class="h-12 w-12 rounded-full bg-[var(--paper-primary)]/10 flex items-center justify-center text-[var(--paper-primary)] group-hover:bg-[var(--paper-primary)] group-hover:text-white transition-colors">
+            <i class="nc-icon nc-caps-small"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold">Typography</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Text styles</p>
+          </div>
+        </div>
+        <p class="mt-3 text-sm text-[var(--paper-muted)]">Headings, paragraphs, labels, and text utility classes for consistent typography.</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Forms Section -->
+<section class="mt-10">
+  <h2 class="text-xl font-semibold mb-6">Forms</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+    <a href="../forms/regular.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body text-center">
+        <div class="h-12 w-12 mx-auto rounded-full bg-[var(--paper-info)]/10 flex items-center justify-center text-[var(--paper-info)] group-hover:bg-[var(--paper-info)] group-hover:text-white transition-colors">
+          <i class="nc-icon nc-single-copy-04"></i>
+        </div>
+        <h3 class="mt-3 font-semibold">Regular Forms</h3>
+        <p class="text-xs text-[var(--paper-muted)]">Basic inputs and layouts</p>
+      </div>
+    </a>
+
+    <a href="../forms/extended.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body text-center">
+        <div class="h-12 w-12 mx-auto rounded-full bg-[var(--paper-success)]/10 flex items-center justify-center text-[var(--paper-success)] group-hover:bg-[var(--paper-success)] group-hover:text-white transition-colors">
+          <i class="nc-icon nc-ruler-pencil"></i>
+        </div>
+        <h3 class="mt-3 font-semibold">Extended Forms</h3>
+        <p class="text-xs text-[var(--paper-muted)]">Advanced form controls</p>
+      </div>
+    </a>
+
+    <a href="../forms/validation.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body text-center">
+        <div class="h-12 w-12 mx-auto rounded-full bg-[var(--paper-warning)]/10 flex items-center justify-center text-[var(--paper-warning)] group-hover:bg-[var(--paper-warning)] group-hover:text-white transition-colors">
+          <i class="nc-icon nc-check-2"></i>
+        </div>
+        <h3 class="mt-3 font-semibold">Validation</h3>
+        <p class="text-xs text-[var(--paper-muted)]">Error and success states</p>
+      </div>
+    </a>
+
+    <a href="../forms/wizard.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body text-center">
+        <div class="h-12 w-12 mx-auto rounded-full bg-[var(--paper-danger)]/10 flex items-center justify-center text-[var(--paper-danger)] group-hover:bg-[var(--paper-danger)] group-hover:text-white transition-colors">
+          <i class="nc-icon nc-spaceship"></i>
+        </div>
+        <h3 class="mt-3 font-semibold">Wizard</h3>
+        <p class="text-xs text-[var(--paper-muted)]">Multi-step forms</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Tables Section -->
+<section class="mt-10">
+  <h2 class="text-xl font-semibold mb-6">Tables</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+    <a href="../tables/regular.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body text-center">
+        <div class="h-12 w-12 mx-auto rounded-full bg-[var(--paper-primary)]/10 flex items-center justify-center text-[var(--paper-primary)] group-hover:bg-[var(--paper-primary)] group-hover:text-white transition-colors">
+          <i class="nc-icon nc-single-copy-04"></i>
+        </div>
+        <h3 class="mt-3 font-semibold">Regular Tables</h3>
+        <p class="text-xs text-[var(--paper-muted)]">Basic table styling</p>
+      </div>
+    </a>
+
+    <a href="../tables/extended.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body text-center">
+        <div class="h-12 w-12 mx-auto rounded-full bg-[var(--paper-info)]/10 flex items-center justify-center text-[var(--paper-info)] group-hover:bg-[var(--paper-info)] group-hover:text-white transition-colors">
+          <i class="nc-icon nc-bullet-list-67"></i>
+        </div>
+        <h3 class="mt-3 font-semibold">Extended Tables</h3>
+        <p class="text-xs text-[var(--paper-muted)]">Advanced features</p>
+      </div>
+    </a>
+
+    <a href="../tables/datatables.html" class="paper-card group hover:shadow-lg transition-shadow">
+      <div class="paper-card-body text-center">
+        <div class="h-12 w-12 mx-auto rounded-full bg-[var(--paper-success)]/10 flex items-center justify-center text-[var(--paper-success)] group-hover:bg-[var(--paper-success)] group-hover:text-white transition-colors">
+          <i class="nc-icon nc-zoom-split"></i>
+        </div>
+        <h3 class="mt-3 font-semibold">DataTables</h3>
+        <p class="text-xs text-[var(--paper-muted)]">Sorting and filtering</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- CSS Variables -->
+<section class="mt-10">
+  <h2 class="text-xl font-semibold mb-6">CSS Variables Reference</h2>
+  <div class="paper-card">
+    <div class="paper-card-body">
+      <p class="text-sm text-[var(--paper-muted)] mb-4">Paper Dashboard uses CSS custom properties for consistent theming. These can be customized in your <code class="paper-code">app.css</code> file.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <p class="paper-label mb-3">Colors</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-[var(--paper-primary)]"></div>
+              <code class="paper-code text-xs">--paper-primary</code>
+              <span class="text-xs text-[var(--paper-muted)]">#7a9e9f</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-[var(--paper-info)]"></div>
+              <code class="paper-code text-xs">--paper-info</code>
+              <span class="text-xs text-[var(--paper-muted)]">#51bcda</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-[var(--paper-success)]"></div>
+              <code class="paper-code text-xs">--paper-success</code>
+              <span class="text-xs text-[var(--paper-muted)]">#6bd098</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-[var(--paper-warning)]"></div>
+              <code class="paper-code text-xs">--paper-warning</code>
+              <span class="text-xs text-[var(--paper-muted)]">#fbc658</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-[var(--paper-danger)]"></div>
+              <code class="paper-code text-xs">--paper-danger</code>
+              <span class="text-xs text-[var(--paper-muted)]">#ef8157</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="paper-label mb-3">UI Colors</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-[var(--paper-bg)] border border-[var(--paper-border)]"></div>
+              <code class="paper-code text-xs">--paper-bg</code>
+              <span class="text-xs text-[var(--paper-muted)]">Background</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-[var(--paper-sidebar)]"></div>
+              <code class="paper-code text-xs">--paper-sidebar</code>
+              <span class="text-xs text-[var(--paper-muted)]">Sidebar bg</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-[var(--paper-text)]"></div>
+              <code class="paper-code text-xs">--paper-text</code>
+              <span class="text-xs text-[var(--paper-muted)]">Text color</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-[var(--paper-muted)]"></div>
+              <code class="paper-code text-xs">--paper-muted</code>
+              <span class="text-xs text-[var(--paper-muted)]">Muted text</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-8 w-8 rounded-lg bg-[var(--paper-border)]"></div>
+              <code class="paper-code text-xs">--paper-border</code>
+              <span class="text-xs text-[var(--paper-muted)]">Border color</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Utility Classes -->
+<section class="mt-10">
+  <h2 class="text-xl font-semibold mb-6">Core Utility Classes</h2>
+  <div class="paper-card">
+    <div class="paper-card-body">
+      <table class="paper-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="paper-code">paper-card</code></td>
+            <td>Card container with rounded corners and shadow</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">paper-card-header</code></td>
+            <td>Card header section</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">paper-card-body</code></td>
+            <td>Card body with padding</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">paper-btn</code></td>
+            <td>Base button class</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">paper-input</code></td>
+            <td>Form input styling</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">paper-table</code></td>
+            <td>Table styling</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">paper-badge</code></td>
+            <td>Badge/tag component</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">paper-code</code></td>
+            <td>Inline code styling</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">paper-code-block</code></td>
+            <td>Code block styling</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">paper-label</code></td>
+            <td>Form label styling</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">paper-muted</code></td>
+            <td>Muted text color</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+      </main>
+      <footer class="px-6 py-6 text-xs text-[var(--paper-muted)]">
+        <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          <p>Paper Dashboard 2 Tailwind build. All rights reserved.</p>
+          <div class="flex gap-4">
+            <a href="#" class="hover:text-[var(--paper-text)]">About</a>
+            <a href="index.html" class="hover:text-[var(--paper-text)]">Documentation</a>
+            <a href="#" class="hover:text-[var(--paper-text)]">Support</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

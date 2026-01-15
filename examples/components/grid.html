@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Dashboard | Grid</title>
+  <title>Paper Dashboard | Grid System</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,41 @@
     }
   });
 </script>
+  <style>
+    .grid-demo {
+      background: linear-gradient(135deg, var(--paper-primary) 0%, var(--paper-info) 100%);
+      color: white;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .grid-demo-alt {
+      background: linear-gradient(135deg, var(--paper-success) 0%, var(--paper-info) 100%);
+      color: white;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .grid-demo-muted {
+      background: rgba(0,0,0,0.05);
+      color: var(--paper-muted);
+      padding: 1rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+  </style>
 </head>
 <body data-page="grid" x-data="layout()" class="text-[var(--paper-text)] antialiased">
   <div class="flex min-h-screen">
@@ -138,7 +173,7 @@
         <div class="rounded-2xl bg-white/10 p-4 text-sm">
           <p class="text-xs uppercase tracking-[0.2em] text-white/60">Need help?</p>
           <p class="mt-2 text-white/80">Explore the docs or reach out to support.</p>
-          <button class="mt-3 w-full rounded-full bg-[var(--paper-primary)] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[var(--paper-primary)]/80" type="button">View docs</button>
+          <a href="../docs/index.html" class="mt-3 block w-full rounded-full bg-[var(--paper-primary)] px-4 py-2 text-center text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-[var(--paper-primary)]/80">View docs</a>
         </div>
       </div>
     </aside>
@@ -210,26 +245,778 @@
         </div>
       </header>
       <main class="flex-1 px-6 pb-12">
-        
+
+<!-- Page Header -->
 <section class="pt-6">
   <div>
-    <h1 class="text-2xl font-semibold">Grid</h1>
-    <p class="paper-muted text-sm">Responsive layout previews</p>
+    <h1 class="text-2xl font-semibold">Tailwind CSS Grid System</h1>
+    <p class="paper-muted text-sm">Responsive layouts using Tailwind's native CSS Grid utilities</p>
   </div>
-  <div class="mt-6 paper-card">
+</section>
+
+<!-- Basic 12-Column Grid -->
+<section class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">12-Column Grid</h2>
+  <p class="text-sm text-[var(--paper-muted)] mb-4">Use <code class="paper-code">grid grid-cols-12</code> to create a 12-column grid, then use <code class="paper-code">col-span-*</code> to control column width.</p>
+
+  <div class="paper-card">
     <div class="paper-card-body">
-      <div class="grid grid-cols-12 gap-3 text-xs font-semibold uppercase tracking-[0.15em] text-[var(--paper-muted)]">
-        <div class="col-span-12 rounded-xl bg-white/80 p-3 text-center">12</div>
-        <div class="col-span-6 rounded-xl bg-white/80 p-3 text-center">6</div>
-        <div class="col-span-6 rounded-xl bg-white/80 p-3 text-center">6</div>
-        <div class="col-span-4 rounded-xl bg-white/80 p-3 text-center">4</div>
-        <div class="col-span-4 rounded-xl bg-white/80 p-3 text-center">4</div>
-        <div class="col-span-4 rounded-xl bg-white/80 p-3 text-center">4</div>
-        <div class="col-span-3 rounded-xl bg-white/80 p-3 text-center">3</div>
-        <div class="col-span-3 rounded-xl bg-white/80 p-3 text-center">3</div>
-        <div class="col-span-3 rounded-xl bg-white/80 p-3 text-center">3</div>
-        <div class="col-span-3 rounded-xl bg-white/80 p-3 text-center">3</div>
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12 grid-demo">col-span-12</div>
+        <div class="col-span-6 grid-demo">col-span-6</div>
+        <div class="col-span-6 grid-demo">col-span-6</div>
+        <div class="col-span-4 grid-demo">col-span-4</div>
+        <div class="col-span-4 grid-demo">col-span-4</div>
+        <div class="col-span-4 grid-demo">col-span-4</div>
+        <div class="col-span-3 grid-demo">col-span-3</div>
+        <div class="col-span-3 grid-demo">col-span-3</div>
+        <div class="col-span-3 grid-demo">col-span-3</div>
+        <div class="col-span-3 grid-demo">col-span-3</div>
+        <div class="col-span-2 grid-demo">2</div>
+        <div class="col-span-2 grid-demo">2</div>
+        <div class="col-span-2 grid-demo">2</div>
+        <div class="col-span-2 grid-demo">2</div>
+        <div class="col-span-2 grid-demo">2</div>
+        <div class="col-span-2 grid-demo">2</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
+        <div class="col-span-1 grid-demo">1</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mixed Column Widths -->
+<section class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Mixed Column Widths</h2>
+  <p class="text-sm text-[var(--paper-muted)] mb-4">Combine different column spans to create flexible layouts.</p>
+
+  <div class="paper-card">
+    <div class="paper-card-body space-y-3">
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-8 grid-demo">col-span-8</div>
+        <div class="col-span-4 grid-demo-alt">col-span-4</div>
+      </div>
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-3 grid-demo">col-span-3</div>
+        <div class="col-span-6 grid-demo-alt">col-span-6</div>
+        <div class="col-span-3 grid-demo">col-span-3</div>
+      </div>
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-2 grid-demo">2</div>
+        <div class="col-span-8 grid-demo-alt">col-span-8</div>
+        <div class="col-span-2 grid-demo">2</div>
+      </div>
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-5 grid-demo">col-span-5</div>
+        <div class="col-span-7 grid-demo-alt">col-span-7</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Responsive Grid -->
+<section class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Responsive Grid</h2>
+  <p class="text-sm text-[var(--paper-muted)] mb-4">Use responsive prefixes (<code class="paper-code">sm:</code>, <code class="paper-code">md:</code>, <code class="paper-code">lg:</code>, <code class="paper-code">xl:</code>) to change layouts at different breakpoints. Resize your browser to see the effect.</p>
+
+  <div class="paper-card">
+    <div class="paper-card-body">
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
+          <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+        </div>
+        <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
+          <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+        </div>
+        <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
+          <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+        </div>
+        <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
+          <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Sidebar Layout Example</h3>
+    </div>
+    <div class="paper-card-body">
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12 lg:col-span-3 grid-demo-alt">
+          <span class="block">Sidebar</span>
+          <span class="block text-[10px] opacity-80">12 / lg:3</span>
+        </div>
+        <div class="col-span-12 lg:col-span-9 grid-demo">
+          <span class="block">Main Content</span>
+          <span class="block text-[10px] opacity-80">12 / lg:9</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gap Utilities -->
+<section class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Gap Utilities</h2>
+  <p class="text-sm text-[var(--paper-muted)] mb-4">Control spacing between grid items using <code class="paper-code">gap-*</code>, <code class="paper-code">gap-x-*</code>, and <code class="paper-code">gap-y-*</code> utilities.</p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">gap-2</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-3 gap-2">
+          <div class="grid-demo">1</div>
+          <div class="grid-demo">2</div>
+          <div class="grid-demo">3</div>
+          <div class="grid-demo">4</div>
+          <div class="grid-demo">5</div>
+          <div class="grid-demo">6</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">gap-4</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="grid-demo">1</div>
+          <div class="grid-demo">2</div>
+          <div class="grid-demo">3</div>
+          <div class="grid-demo">4</div>
+          <div class="grid-demo">5</div>
+          <div class="grid-demo">6</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">gap-6</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-3 gap-6">
+          <div class="grid-demo">1</div>
+          <div class="grid-demo">2</div>
+          <div class="grid-demo">3</div>
+          <div class="grid-demo">4</div>
+          <div class="grid-demo">5</div>
+          <div class="grid-demo">6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Different X and Y Gaps: gap-x-8 gap-y-2</h3>
+    </div>
+    <div class="paper-card-body">
+      <div class="grid grid-cols-4 gap-x-8 gap-y-2">
+        <div class="grid-demo">1</div>
+        <div class="grid-demo">2</div>
+        <div class="grid-demo">3</div>
+        <div class="grid-demo">4</div>
+        <div class="grid-demo">5</div>
+        <div class="grid-demo">6</div>
+        <div class="grid-demo">7</div>
+        <div class="grid-demo">8</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Column Start/End -->
+<section class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Column Start & End</h2>
+  <p class="text-sm text-[var(--paper-muted)] mb-4">Use <code class="paper-code">col-start-*</code> and <code class="paper-code">col-end-*</code> to position items precisely within the grid.</p>
+
+  <div class="paper-card">
+    <div class="paper-card-body">
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-start-1 col-end-5 grid-demo">col-start-1 col-end-5</div>
+        <div class="col-start-5 col-end-13 grid-demo-alt">col-start-5 col-end-13</div>
+        <div class="col-start-3 col-end-11 grid-demo">col-start-3 col-end-11</div>
+        <div class="col-start-1 col-end-4 grid-demo-alt">1-4</div>
+        <div class="col-start-5 col-end-9 grid-demo">5-9</div>
+        <div class="col-start-10 col-end-13 grid-demo-alt">10-13</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Auto-fit Grid -->
+<section class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Auto-fit Columns</h2>
+  <p class="text-sm text-[var(--paper-muted)] mb-4">Use simple column counts for automatic equal-width columns. These are easier to use than the 12-column system for many layouts.</p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">grid-cols-2</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-2 gap-3">
+          <div class="grid-demo">1</div>
+          <div class="grid-demo">2</div>
+          <div class="grid-demo">3</div>
+          <div class="grid-demo">4</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">grid-cols-3</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-3 gap-3">
+          <div class="grid-demo">1</div>
+          <div class="grid-demo">2</div>
+          <div class="grid-demo">3</div>
+          <div class="grid-demo">4</div>
+          <div class="grid-demo">5</div>
+          <div class="grid-demo">6</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">grid-cols-4</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-4 gap-3">
+          <div class="grid-demo">1</div>
+          <div class="grid-demo">2</div>
+          <div class="grid-demo">3</div>
+          <div class="grid-demo">4</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">grid-cols-6</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-6 gap-3">
+          <div class="grid-demo">1</div>
+          <div class="grid-demo">2</div>
+          <div class="grid-demo">3</div>
+          <div class="grid-demo">4</div>
+          <div class="grid-demo">5</div>
+          <div class="grid-demo">6</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nested Grids -->
+<section class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Nested Grids</h2>
+  <p class="text-sm text-[var(--paper-muted)] mb-4">Grids can be nested inside grid items to create complex layouts.</p>
+
+  <div class="paper-card">
+    <div class="paper-card-body">
+      <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-8 rounded-xl border-2 border-dashed border-[var(--paper-primary)]/30 p-4">
+          <p class="text-xs font-semibold text-[var(--paper-primary)] mb-3">PARENT: col-span-8</p>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="grid-demo">Nested 1</div>
+            <div class="grid-demo">Nested 2</div>
+            <div class="grid-demo">Nested 3</div>
+            <div class="grid-demo">Nested 4</div>
+          </div>
+        </div>
+        <div class="col-span-4 rounded-xl border-2 border-dashed border-[var(--paper-success)]/30 p-4">
+          <p class="text-xs font-semibold text-[var(--paper-success)] mb-3">PARENT: col-span-4</p>
+          <div class="grid grid-cols-1 gap-3">
+            <div class="grid-demo-alt">Nested 1</div>
+            <div class="grid-demo-alt">Nested 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Grid Rows -->
+<section class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Grid Rows</h2>
+  <p class="text-sm text-[var(--paper-muted)] mb-4">Control row spanning with <code class="paper-code">row-span-*</code>, <code class="paper-code">grid-rows-*</code>, and related utilities.</p>
+
+  <div class="paper-card">
+    <div class="paper-card-body">
+      <div class="grid grid-cols-3 grid-rows-3 gap-3" style="height: 300px;">
+        <div class="row-span-3 grid-demo flex items-center justify-center">row-span-3</div>
+        <div class="col-span-2 grid-demo-alt flex items-center justify-center">col-span-2</div>
+        <div class="row-span-2 col-span-2 grid-demo flex items-center justify-center">row-span-2 col-span-2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Place Items -->
+<section class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Alignment & Placement</h2>
+  <p class="text-sm text-[var(--paper-muted)] mb-4">Use <code class="paper-code">place-items-*</code>, <code class="paper-code">justify-items-*</code>, and <code class="paper-code">items-*</code> to align grid items.</p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">place-items-center</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-3 place-items-center gap-3 h-32 bg-[var(--paper-border)]/30 rounded-lg">
+          <div class="grid-demo p-2">1</div>
+          <div class="grid-demo p-2">2</div>
+          <div class="grid-demo p-2">3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">place-items-start</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-3 place-items-start gap-3 h-32 bg-[var(--paper-border)]/30 rounded-lg">
+          <div class="grid-demo p-2">1</div>
+          <div class="grid-demo p-2">2</div>
+          <div class="grid-demo p-2">3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">place-items-end</h3>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-3 place-items-end gap-3 h-32 bg-[var(--paper-border)]/30 rounded-lg">
+          <div class="grid-demo p-2">1</div>
+          <div class="grid-demo p-2">2</div>
+          <div class="grid-demo p-2">3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Practical Examples -->
+<section class="mt-8">
+  <h2 class="text-lg font-semibold mb-4">Practical Layout Examples</h2>
+
+  <div class="paper-card">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Dashboard Stats Layout</h3>
+    </div>
+    <div class="paper-card-body">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="paper-card bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-info)] text-white">
+          <div class="paper-card-body text-center">
+            <i class="nc-icon nc-money-coins text-3xl opacity-80"></i>
+            <p class="mt-2 text-2xl font-bold">$12,450</p>
+            <p class="text-sm opacity-80">Revenue</p>
+          </div>
+        </div>
+        <div class="paper-card bg-gradient-to-br from-[var(--paper-success)] to-[#34d399] text-white">
+          <div class="paper-card-body text-center">
+            <i class="nc-icon nc-single-02 text-3xl opacity-80"></i>
+            <p class="mt-2 text-2xl font-bold">1,234</p>
+            <p class="text-sm opacity-80">Users</p>
+          </div>
+        </div>
+        <div class="paper-card bg-gradient-to-br from-[var(--paper-warning)] to-[#fbbf24] text-white">
+          <div class="paper-card-body text-center">
+            <i class="nc-icon nc-cart-simple text-3xl opacity-80"></i>
+            <p class="mt-2 text-2xl font-bold">567</p>
+            <p class="text-sm opacity-80">Orders</p>
+          </div>
+        </div>
+        <div class="paper-card bg-gradient-to-br from-[var(--paper-danger)] to-[#f87171] text-white">
+          <div class="paper-card-body text-center">
+            <i class="nc-icon nc-bell-55 text-3xl opacity-80"></i>
+            <p class="mt-2 text-2xl font-bold">89</p>
+            <p class="text-sm opacity-80">Alerts</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Card Grid Layout</h3>
+    </div>
+    <div class="paper-card-body">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div class="paper-card">
+          <div class="paper-card-body">
+            <div class="flex items-center gap-3">
+              <div class="h-12 w-12 rounded-full bg-[var(--paper-primary)]/10 flex items-center justify-center">
+                <i class="nc-icon nc-settings-gear-65 text-[var(--paper-primary)]"></i>
+              </div>
+              <div>
+                <p class="font-semibold">Settings</p>
+                <p class="text-xs text-[var(--paper-muted)]">Manage preferences</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="paper-card">
+          <div class="paper-card-body">
+            <div class="flex items-center gap-3">
+              <div class="h-12 w-12 rounded-full bg-[var(--paper-info)]/10 flex items-center justify-center">
+                <i class="nc-icon nc-cloud-download-93 text-[var(--paper-info)]"></i>
+              </div>
+              <div>
+                <p class="font-semibold">Downloads</p>
+                <p class="text-xs text-[var(--paper-muted)]">Get resources</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="paper-card">
+          <div class="paper-card-body">
+            <div class="flex items-center gap-3">
+              <div class="h-12 w-12 rounded-full bg-[var(--paper-success)]/10 flex items-center justify-center">
+                <i class="nc-icon nc-check-2 text-[var(--paper-success)]"></i>
+              </div>
+              <div>
+                <p class="font-semibold">Tasks</p>
+                <p class="text-xs text-[var(--paper-muted)]">View completed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Documentation Section -->
+<section class="mt-12 pt-8 border-t border-[var(--paper-border)]">
+  <h2 class="text-xl font-semibold mb-6">Grid System Documentation</h2>
+
+  <!-- Grid Container -->
+  <div class="paper-card">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Grid Container Classes</h3>
+    </div>
+    <div class="paper-card-body">
+      <table class="paper-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="paper-code">grid</code></td>
+            <td>Creates a grid container</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">grid-cols-{n}</code></td>
+            <td>Sets the number of columns (1-12, or custom)</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">grid-rows-{n}</code></td>
+            <td>Sets the number of rows (1-6, or custom)</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">grid-flow-row</code></td>
+            <td>Items flow by row (default)</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">grid-flow-col</code></td>
+            <td>Items flow by column</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">grid-flow-dense</code></td>
+            <td>Dense packing algorithm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Column Span -->
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Column Span Classes</h3>
+    </div>
+    <div class="paper-card-body">
+      <table class="paper-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>CSS Property</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="paper-code">col-span-{n}</code></td>
+            <td><code>grid-column: span n</code></td>
+            <td>Span n columns (1-12, or full)</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">col-span-full</code></td>
+            <td><code>grid-column: 1 / -1</code></td>
+            <td>Span all columns</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">col-start-{n}</code></td>
+            <td><code>grid-column-start: n</code></td>
+            <td>Start at column n</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">col-end-{n}</code></td>
+            <td><code>grid-column-end: n</code></td>
+            <td>End at column n</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">col-auto</code></td>
+            <td><code>grid-column: auto</code></td>
+            <td>Auto-place the item</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Row Span -->
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Row Span Classes</h3>
+    </div>
+    <div class="paper-card-body">
+      <table class="paper-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="paper-code">row-span-{n}</code></td>
+            <td>Span n rows (1-6, or full)</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">row-span-full</code></td>
+            <td>Span all rows</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">row-start-{n}</code></td>
+            <td>Start at row n</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">row-end-{n}</code></td>
+            <td>End at row n</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Gap Utilities -->
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Gap Classes</h3>
+    </div>
+    <div class="paper-card-body">
+      <table class="paper-table">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Size</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="paper-code">gap-{size}</code></td>
+            <td>0, 1, 2, 3, 4, 5, 6, 8, 10, 12...</td>
+            <td>Gap in both directions</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">gap-x-{size}</code></td>
+            <td>0, 1, 2, 3, 4, 5, 6, 8, 10, 12...</td>
+            <td>Horizontal gap only</td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">gap-y-{size}</code></td>
+            <td>0, 1, 2, 3, 4, 5, 6, 8, 10, 12...</td>
+            <td>Vertical gap only</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="mt-3 text-sm text-[var(--paper-muted)]">Gap sizes follow Tailwind's spacing scale: 1 = 0.25rem (4px), 2 = 0.5rem (8px), 4 = 1rem (16px), etc.</p>
+    </div>
+  </div>
+
+  <!-- Responsive Prefixes -->
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Responsive Breakpoints</h3>
+    </div>
+    <div class="paper-card-body">
+      <table class="paper-table">
+        <thead>
+          <tr>
+            <th>Prefix</th>
+            <th>Min Width</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="paper-code">sm:</code></td>
+            <td>640px</td>
+            <td><code class="paper-code">sm:grid-cols-2</code></td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">md:</code></td>
+            <td>768px</td>
+            <td><code class="paper-code">md:col-span-6</code></td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">lg:</code></td>
+            <td>1024px</td>
+            <td><code class="paper-code">lg:grid-cols-4</code></td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">xl:</code></td>
+            <td>1280px</td>
+            <td><code class="paper-code">xl:gap-8</code></td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">2xl:</code></td>
+            <td>1536px</td>
+            <td><code class="paper-code">2xl:grid-cols-6</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Code Examples -->
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Code Examples</h3>
+    </div>
+    <div class="paper-card-body space-y-6">
+      <div>
+        <p class="paper-label mb-2">Basic 12-Column Grid</p>
+        <pre class="paper-code-block">&lt;div class="grid grid-cols-12 gap-4"&gt;
+  &lt;div class="col-span-8"&gt;Main content&lt;/div&gt;
+  &lt;div class="col-span-4"&gt;Sidebar&lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+
+      <div>
+        <p class="paper-label mb-2">Responsive Card Grid</p>
+        <pre class="paper-code-block">&lt;div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"&gt;
+  &lt;div class="paper-card"&gt;Card 1&lt;/div&gt;
+  &lt;div class="paper-card"&gt;Card 2&lt;/div&gt;
+  &lt;div class="paper-card"&gt;Card 3&lt;/div&gt;
+  &lt;div class="paper-card"&gt;Card 4&lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+
+      <div>
+        <p class="paper-label mb-2">Dashboard Layout</p>
+        <pre class="paper-code-block">&lt;div class="grid grid-cols-12 gap-6"&gt;
+  &lt;!-- Stats row --&gt;
+  &lt;div class="col-span-12 sm:col-span-6 lg:col-span-3"&gt;Stat 1&lt;/div&gt;
+  &lt;div class="col-span-12 sm:col-span-6 lg:col-span-3"&gt;Stat 2&lt;/div&gt;
+  &lt;div class="col-span-12 sm:col-span-6 lg:col-span-3"&gt;Stat 3&lt;/div&gt;
+  &lt;div class="col-span-12 sm:col-span-6 lg:col-span-3"&gt;Stat 4&lt;/div&gt;
+
+  &lt;!-- Chart section --&gt;
+  &lt;div class="col-span-12 lg:col-span-8"&gt;Main Chart&lt;/div&gt;
+  &lt;div class="col-span-12 lg:col-span-4"&gt;Side Panel&lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+
+      <div>
+        <p class="paper-label mb-2">Complex Layout with Row Spans</p>
+        <pre class="paper-code-block">&lt;div class="grid grid-cols-4 grid-rows-3 gap-4"&gt;
+  &lt;div class="row-span-3"&gt;Tall sidebar&lt;/div&gt;
+  &lt;div class="col-span-3"&gt;Header&lt;/div&gt;
+  &lt;div class="col-span-2 row-span-2"&gt;Main content&lt;/div&gt;
+  &lt;div&gt;Widget 1&lt;/div&gt;
+  &lt;div&gt;Widget 2&lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap to Tailwind Migration -->
+  <div class="paper-card mt-4">
+    <div class="paper-card-header">
+      <h3 class="paper-card-title">Bootstrap to Tailwind Migration Guide</h3>
+    </div>
+    <div class="paper-card-body">
+      <p class="text-sm text-[var(--paper-muted)] mb-4">If you're migrating from Bootstrap's grid system, here's a quick reference:</p>
+      <table class="paper-table">
+        <thead>
+          <tr>
+            <th>Bootstrap Class</th>
+            <th>Tailwind Equivalent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="paper-code">.container</code></td>
+            <td><code class="paper-code">container mx-auto px-4</code></td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">.row</code></td>
+            <td><code class="paper-code">grid grid-cols-12 gap-4</code></td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">.col-6</code></td>
+            <td><code class="paper-code">col-span-6</code></td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">.col-md-4</code></td>
+            <td><code class="paper-code">col-span-12 md:col-span-4</code></td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">.col-lg-3</code></td>
+            <td><code class="paper-code">col-span-12 lg:col-span-3</code></td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">.offset-3</code></td>
+            <td><code class="paper-code">col-start-4</code></td>
+          </tr>
+          <tr>
+            <td><code class="paper-code">.g-4</code> (gutters)</td>
+            <td><code class="paper-code">gap-4</code></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>

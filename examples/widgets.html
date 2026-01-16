@@ -55,11 +55,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="pages/login.html">Login</a>
             <a class="sidebar-sublink" href="pages/register.html">Register</a>
             <a class="sidebar-sublink" href="pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -119,7 +146,7 @@
           </div>
         </div>
 
-        <a class="sidebar-link active mt-2" href="widgets.html">
+        <a class="sidebar-link mt-2 active" href="widgets.html">
           <i class="nc-icon nc-box shrink-0"></i>
           <span class="sidebar-text">Widgets</span>
         </a>

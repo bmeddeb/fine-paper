@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Dashboard | Google Maps</title>
+  <title>Paper Dashboard | Blog Two Column</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
   });
 </script>
 </head>
-<body data-page="maps-google" x-data="layout()" class="text-[var(--paper-text)] antialiased">
+<body data-page="blog-2col" x-data="layout()" class="text-[var(--paper-text)] antialiased">
   <div class="flex min-h-screen">
     <div class="fixed inset-0 bg-black/40 lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
     <!-- Sidebar -->
@@ -48,23 +48,23 @@
           <span class="sidebar-text">Dashboard</span>
         </a>
 
-        <div x-data="collapse(false)" class="mt-2">
+        <div x-data="collapse(true)" class="mt-2">
           <button class="sidebar-link" type="button" @click="toggle()">
             <i class="nc-icon nc-book-bookmark shrink-0"></i>
             <span class="sidebar-text">Pages</span>
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
-            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
-            <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
-            <a class="sidebar-sublink" href="../pages/login.html">Login</a>
-            <a class="sidebar-sublink" href="../pages/register.html">Register</a>
-            <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
-            <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
-            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
-            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
-            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
-            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+            <a class="sidebar-sublink" data-editor-link="page" href="editor.html#type=page">Page Editor</a>
+            <a class="sidebar-sublink" href="timeline.html">Timeline</a>
+            <a class="sidebar-sublink" href="login.html">Login</a>
+            <a class="sidebar-sublink" href="register.html">Register</a>
+            <a class="sidebar-sublink" href="lock.html">Lock Screen</a>
+            <a class="sidebar-sublink" href="user.html">User Profile</a>
+            <a class="sidebar-sublink active" href="blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="magazine.html">Magazine</a>
           </div>
         </div>
 
@@ -75,7 +75,7 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
-            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+            <a class="sidebar-sublink" data-editor-link="post" href="editor.html#type=post">Post Editor</a>
           </div>
         </div>
 
@@ -86,7 +86,7 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
-            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
+            <a class="sidebar-sublink" data-editor-link="site" href="editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -133,16 +133,16 @@
           </div>
         </div>
 
-        <div x-data="collapse(true)" class="mt-2">
+        <div x-data="collapse(false)" class="mt-2">
           <button class="sidebar-link" type="button" @click="toggle()">
             <i class="nc-icon nc-pin-3 shrink-0"></i>
             <span class="sidebar-text">Maps</span>
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
-            <a class="sidebar-sublink active" href="google.html">Google Maps</a>
-            <a class="sidebar-sublink" href="fullscreen.html">Full Screen Map</a>
-            <a class="sidebar-sublink" href="vector.html">Vector Map</a>
+            <a class="sidebar-sublink" href="../maps/google.html">Google Maps</a>
+            <a class="sidebar-sublink" href="../maps/fullscreen.html">Full Screen Map</a>
+            <a class="sidebar-sublink" href="../maps/vector.html">Vector Map</a>
           </div>
         </div>
 
@@ -237,23 +237,159 @@
         </div>
       </header>
       <main class="flex-1 px-6 pb-12">
-        
-<section class="pt-6">
-  <div>
-    <h1 class="text-2xl font-semibold">Google Maps</h1>
-    <p class="paper-muted text-sm">Map placeholder layout</p>
-  </div>
-  <div class="mt-6 paper-card">
-    <div class="paper-card-body">
-      <div class="flex h-[420px] items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(81,188,218,0.2),rgba(239,129,87,0.15))]">
-        <div class="flex items-center gap-3 rounded-full bg-white/80 px-5 py-2 text-sm font-semibold">
-          <i class="nc-icon nc-pin-3"></i>
-          San Francisco, CA
-        </div>
-      </div>
+
+<section class="pt-6 paper-editorial">
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <h1 class="text-2xl font-semibold">Blog Two Column</h1>
+      <p class="text-sm text-[var(--paper-muted)]">Feature-led stories with a right rail of curated notes.</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <button class="paper-btn paper-btn-outline">Subscribe</button>
+      <button class="paper-btn paper-btn-primary">New issue</button>
     </div>
   </div>
+
+  <div class="mt-6 grid gap-6 lg:grid-cols-[2fr_1fr]">
+    <div class="space-y-6">
+      <article class="paper-card overflow-hidden">
+        <div class="grid gap-0 md:grid-cols-[1.1fr_0.9fr]">
+          <div class="relative min-h-[240px]">
+            <img src="../../assets/img/bg/david-marcu.jpg" alt="Desk with coffee" class="absolute inset-0 h-full w-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-tr from-[rgba(0,0,0,0.55)] via-[rgba(0,0,0,0.25)] to-transparent"></div>
+            <div class="relative p-6 text-white">
+              <span class="paper-badge paper-badge-danger">Cover story</span>
+              <h2 class="mt-4 text-2xl font-semibold">The weekly reset for product teams</h2>
+              <p class="mt-3 text-sm text-white/80">A simple ritual to align on priorities without adding more meetings.</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="paper-label text-[var(--editorial-neutral)]">From the editor</p>
+            <p class="mt-3 text-sm text-[var(--paper-muted)]">We asked six teams how they keep momentum without burning out. The answer was less about tools and more about rhythm.</p>
+            <div class="mt-4 flex items-center gap-3 text-xs text-[var(--editorial-neutral)]">
+              <img src="../../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Ayo Ogunseinde" class="h-7 w-7 rounded-full object-cover">
+              <span>Ayo Ogunseinde</span>
+              <span class="h-1 w-1 rounded-full bg-[var(--editorial-neutral)]/60"></span>
+              <span>8 min read</span>
+            </div>
+            <button class="paper-btn paper-btn-outline mt-5">Read story</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-card-body grid gap-4 md:grid-cols-[180px_1fr]">
+          <div class="relative h-32 overflow-hidden rounded-xl">
+            <img src="../../assets/img/bg/luke-chesser.jpg" alt="Notebook and tablet" class="absolute inset-0 h-full w-full object-cover">
+          </div>
+          <div>
+            <span class="paper-badge paper-badge-danger">Design</span>
+            <h3 class="mt-3 text-lg font-semibold">Design reviews that feel like workshops</h3>
+            <p class="mt-2 text-sm text-[var(--paper-muted)]">Turn critique into collaboration with lightweight prompts and shared context.</p>
+            <div class="mt-4 flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+              <div class="flex items-center gap-2">
+                <img src="../../assets/img/faces/clem-onojeghuo-2.jpg" alt="Clem Onojeghuo" class="h-6 w-6 rounded-full object-cover">
+                <span>Clem Onojeghuo</span>
+              </div>
+              <span>5 min read</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-card-body grid gap-4 md:grid-cols-[180px_1fr]">
+          <div class="relative h-32 overflow-hidden rounded-xl">
+            <img src="../../assets/img/bg/angelo-pantazis.jpg" alt="Studio workspace" class="absolute inset-0 h-full w-full object-cover">
+          </div>
+          <div>
+            <span class="paper-badge paper-badge-danger">Strategy</span>
+            <h3 class="mt-3 text-lg font-semibold">The brief that keeps teams aligned</h3>
+            <p class="mt-2 text-sm text-[var(--paper-muted)]">A one-page format for decisions, tradeoffs, and success metrics.</p>
+            <div class="mt-4 flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+              <div class="flex items-center gap-2">
+                <img src="../../assets/img/faces/erik-lucatero-2.jpg" alt="Erik Lucatero" class="h-6 w-6 rounded-full object-cover">
+                <span>Erik Lucatero</span>
+              </div>
+              <span>6 min read</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="paper-card">
+        <div class="paper-card-body grid gap-4 md:grid-cols-[180px_1fr]">
+          <div class="relative h-32 overflow-hidden rounded-xl">
+            <img src="../../assets/img/bg/pavel-kosov.jpg" alt="Wall of notes" class="absolute inset-0 h-full w-full object-cover">
+          </div>
+          <div>
+            <span class="paper-badge paper-badge-danger">Culture</span>
+            <h3 class="mt-3 text-lg font-semibold">Remote rituals that actually stick</h3>
+            <p class="mt-2 text-sm text-[var(--paper-muted)]">Small habits that keep teams feeling close, even when they are far apart.</p>
+            <div class="mt-4 flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+              <div class="flex items-center gap-2">
+                <img src="../../assets/img/faces/kaci-baum-1.jpg" alt="Kaci Baum" class="h-6 w-6 rounded-full object-cover">
+                <span>Kaci Baum</span>
+              </div>
+              <span>4 min read</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <aside class="space-y-6">
+      <div class="paper-card p-5">
+        <p class="paper-label text-[var(--editorial-neutral)]">Newsletter</p>
+        <h3 class="mt-2 text-lg font-semibold">Paper Dispatch</h3>
+        <p class="mt-2 text-sm text-[var(--paper-muted)]">A monthly editorial letter with the best reads, prompts, and product signals.</p>
+        <div class="mt-4 space-y-3">
+          <input class="paper-input" type="email" placeholder="you@studio.com">
+          <button class="paper-btn paper-btn-primary w-full">Subscribe</button>
+        </div>
+      </div>
+
+      <div class="paper-card p-5">
+        <p class="paper-label text-[var(--editorial-neutral)]">Trending</p>
+        <div class="mt-4 space-y-4">
+          <div class="flex items-start gap-3">
+            <span class="text-xs font-semibold text-[var(--editorial-accent)]">01</span>
+            <div>
+              <p class="text-sm font-semibold">The calm dashboard checklist</p>
+              <p class="text-xs text-[var(--paper-muted)]">Design, 3 min read</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xs font-semibold text-[var(--editorial-accent)]">02</span>
+            <div>
+              <p class="text-sm font-semibold">Questions for better retros</p>
+              <p class="text-xs text-[var(--paper-muted)]">Culture, 4 min read</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-xs font-semibold text-[var(--editorial-accent)]">03</span>
+            <div>
+              <p class="text-sm font-semibold">How to ship narrative reports</p>
+              <p class="text-xs text-[var(--paper-muted)]">Research, 5 min read</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="paper-card p-5">
+        <p class="paper-label text-[var(--editorial-neutral)]">Topics</p>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="paper-badge paper-badge-danger">Design</span>
+          <span class="paper-badge paper-badge-danger">Strategy</span>
+          <span class="paper-badge paper-badge-danger">Culture</span>
+          <span class="paper-badge paper-badge-danger">Research</span>
+        </div>
+      </div>
+    </aside>
+  </div>
 </section>
+
+
 
       </main>
       <footer class="px-6 py-6 text-xs text-[var(--paper-muted)]">

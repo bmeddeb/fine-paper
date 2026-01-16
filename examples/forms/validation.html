@@ -55,11 +55,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -214,19 +241,611 @@
 <section class="pt-6">
   <div>
     <h1 class="text-2xl font-semibold">Validation</h1>
-    <p class="paper-muted text-sm">Success and error states</p>
+    <p class="paper-muted text-sm">Success, error, and warning states with live validation</p>
   </div>
-  <div class="mt-6 paper-card">
-    <div class="paper-card-body space-y-4">
-      <div>
-        <label class="paper-label">Company name</label>
-        <input class="paper-input input-success" type="text" value="Creative Tim">
-        <p class="text-xs text-emerald-600">Looks good!</p>
+
+  <!-- Validation States -->
+  <div class="mt-8 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
+        <i class="nc-icon nc-check-2"></i>
       </div>
       <div>
-        <label class="paper-label">Billing email</label>
-        <input class="paper-input input-error" type="email" value="chet@">
-        <p class="text-xs text-[var(--paper-danger)]">Please enter a valid email.</p>
+        <h2 class="font-semibold">Validation States</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Success, error, and warning indicators</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-4 md:grid-cols-2">
+          <div>
+            <label class="paper-label">Success State</label>
+            <input class="paper-input input-success" type="text" value="Creative Tim">
+            <p class="mt-1 text-xs text-emerald-600 flex items-center gap-1">
+              <i class="nc-icon nc-check-2"></i> Looks good!
+            </p>
+          </div>
+          <div>
+            <label class="paper-label">Error State</label>
+            <input class="paper-input input-error" type="email" value="chet@">
+            <p class="mt-1 text-xs text-[var(--paper-danger)] flex items-center gap-1">
+              <i class="nc-icon nc-alert-circle-i"></i> Please enter a valid email.
+            </p>
+          </div>
+          <div>
+            <label class="paper-label">Warning State</label>
+            <input class="paper-input input-warning" type="text" value="admin">
+            <p class="mt-1 text-xs text-amber-600 flex items-center gap-1">
+              <i class="nc-icon nc-alert-circle-i"></i> This username is commonly used.
+            </p>
+          </div>
+          <div>
+            <label class="paper-label">Normal State</label>
+            <input class="paper-input" type="text" placeholder="Enter value...">
+            <p class="mt-1 text-xs text-[var(--paper-muted)]">Helper text for context.</p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Success --&gt;
+&lt;input class="paper-input input-success" type="text" value="Valid"&gt;
+&lt;p class="mt-1 text-xs text-emerald-600"&gt;Looks good!&lt;/p&gt;
+
+&lt;!-- Error --&gt;
+&lt;input class="paper-input input-error" type="email" value="invalid"&gt;
+&lt;p class="mt-1 text-xs text-[var(--paper-danger)]"&gt;Please fix this.&lt;/p&gt;
+
+&lt;!-- Warning --&gt;
+&lt;input class="paper-input input-warning" type="text" value="caution"&gt;
+&lt;p class="mt-1 text-xs text-amber-600"&gt;Warning message.&lt;/p&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Email Validation -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)] text-[var(--paper-info)]">
+        <i class="nc-icon nc-email-85"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Live Email Validation</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Real-time validation with Alpine.js</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="max-w-md" x-data="{
+          email: '',
+          touched: false,
+          get isValid() {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+          },
+          get state() {
+            if (!this.touched || !this.email) return 'neutral';
+            return this.isValid ? 'success' : 'error';
+          }
+        }">
+          <label class="paper-label">Email Address</label>
+          <div class="relative">
+            <input
+              type="email"
+              class="paper-input pr-10"
+              :class="{
+                'input-success': state === 'success',
+                'input-error': state === 'error'
+              }"
+              placeholder="hello@example.com"
+              x-model="email"
+              @blur="touched = true"
+            >
+            <div class="absolute right-3 top-1/2 -translate-y-1/2">
+              <i class="nc-icon nc-check-2 text-emerald-500" x-show="state === 'success'" x-transition></i>
+              <i class="nc-icon nc-simple-remove text-[var(--paper-danger)]" x-show="state === 'error'" x-transition></i>
+            </div>
+          </div>
+          <p class="mt-1 text-xs" :class="{
+            'text-emerald-600': state === 'success',
+            'text-[var(--paper-danger)]': state === 'error',
+            'text-[var(--paper-muted)]': state === 'neutral'
+          }">
+            <span x-show="state === 'neutral'">We'll never share your email.</span>
+            <span x-show="state === 'success'">Valid email address!</span>
+            <span x-show="state === 'error'">Please enter a valid email address.</span>
+          </p>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;div x-data="{
+  email: '',
+  touched: false,
+  get isValid() {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email);
+  },
+  get state() {
+    if (!this.touched || !this.email) return 'neutral';
+    return this.isValid ? 'success' : 'error';
+  }
+}"&gt;
+  &lt;input
+    type="email"
+    class="paper-input"
+    :class="{
+      'input-success': state === 'success',
+      'input-error': state === 'error'
+    }"
+    x-model="email"
+    @blur="touched = true"
+  &gt;
+  &lt;p :class="state === 'error' ? 'text-red-500' : 'text-gray-500'"&gt;
+    &lt;span x-show="state === 'success'"&gt;Valid!&lt;/span&gt;
+    &lt;span x-show="state === 'error'"&gt;Invalid email.&lt;/span&gt;
+  &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Password Strength -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,187,106,0.15)] text-[var(--paper-success)]">
+        <i class="nc-icon nc-lock-circle-open"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Password Strength</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Visual strength indicator</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="max-w-md" x-data="{
+          password: '',
+          show: false,
+          get strength() {
+            let score = 0;
+            if (this.password.length >= 8) score++;
+            if (this.password.length >= 12) score++;
+            if (/[a-z]/.test(this.password) && /[A-Z]/.test(this.password)) score++;
+            if (/\d/.test(this.password)) score++;
+            if (/[^a-zA-Z0-9]/.test(this.password)) score++;
+            return score;
+          },
+          get strengthLabel() {
+            const labels = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+            return this.password ? labels[Math.min(this.strength, 4)] : '';
+          },
+          get strengthColor() {
+            const colors = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-lime-500', 'bg-emerald-500'];
+            return colors[Math.min(this.strength, 4)];
+          }
+        }">
+          <label class="paper-label">Password</label>
+          <div class="relative">
+            <input
+              :type="show ? 'text' : 'password'"
+              class="paper-input pr-10"
+              placeholder="Enter a strong password"
+              x-model="password"
+            >
+            <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--paper-muted)] hover:text-[var(--paper-text)]" @click="show = !show">
+              <i class="nc-icon" :class="show ? 'nc-glasses-2' : 'nc-zoom-split'"></i>
+            </button>
+          </div>
+          <div class="mt-2" x-show="password.length > 0" x-transition>
+            <div class="flex gap-1 mb-1">
+              <template x-for="i in 5">
+                <div class="h-1.5 flex-1 rounded-full transition-colors" :class="i <= strength ? strengthColor : 'bg-gray-200'"></div>
+              </template>
+            </div>
+            <p class="text-xs" :class="{
+              'text-red-500': strength <= 1,
+              'text-orange-500': strength === 2,
+              'text-yellow-600': strength === 3,
+              'text-emerald-600': strength >= 4
+            }" x-text="strengthLabel"></p>
+          </div>
+          <ul class="mt-3 space-y-1 text-xs text-[var(--paper-muted)]">
+            <li class="flex items-center gap-2" :class="password.length >= 8 ? 'text-emerald-600' : ''">
+              <i class="nc-icon" :class="password.length >= 8 ? 'nc-check-2' : 'nc-circle-10'"></i>
+              At least 8 characters
+            </li>
+            <li class="flex items-center gap-2" :class="/[A-Z]/.test(password) && /[a-z]/.test(password) ? 'text-emerald-600' : ''">
+              <i class="nc-icon" :class="/[A-Z]/.test(password) && /[a-z]/.test(password) ? 'nc-check-2' : 'nc-circle-10'"></i>
+              Upper and lowercase letters
+            </li>
+            <li class="flex items-center gap-2" :class="/\d/.test(password) ? 'text-emerald-600' : ''">
+              <i class="nc-icon" :class="/\d/.test(password) ? 'nc-check-2' : 'nc-circle-10'"></i>
+              At least one number
+            </li>
+            <li class="flex items-center gap-2" :class="/[^a-zA-Z0-9]/.test(password) ? 'text-emerald-600' : ''">
+              <i class="nc-icon" :class="/[^a-zA-Z0-9]/.test(password) ? 'nc-check-2' : 'nc-circle-10'"></i>
+              At least one special character
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;div x-data="{
+  password: '',
+  get strength() {
+    let score = 0;
+    if (this.password.length &gt;= 8) score++;
+    if (this.password.length &gt;= 12) score++;
+    if (/[a-z]/.test(this.password) &amp;&amp; /[A-Z]/.test(this.password)) score++;
+    if (/\d/.test(this.password)) score++;
+    if (/[^a-zA-Z0-9]/.test(this.password)) score++;
+    return score;
+  }
+}"&gt;
+  &lt;input type="password" x-model="password"&gt;
+  &lt;div class="flex gap-1"&gt;
+    &lt;template x-for="i in 5"&gt;
+      &lt;div class="h-1.5 flex-1 rounded-full"
+        :class="i &lt;= strength ? 'bg-emerald-500' : 'bg-gray-200'"&gt;&lt;/div&gt;
+    &lt;/template&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Required Field Validation -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(239,129,87,0.15)] text-[var(--paper-danger)]">
+        <i class="nc-icon nc-alert-circle-i"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Required Fields</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Mark and validate required inputs</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="max-w-md" x-data="{
+          name: '',
+          email: '',
+          touched: { name: false, email: false },
+          errors: {},
+          validate() {
+            this.errors = {};
+            if (!this.name.trim()) this.errors.name = 'Name is required.';
+            if (!this.email.trim()) this.errors.email = 'Email is required.';
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email)) {
+              this.errors.email = 'Please enter a valid email.';
+            }
+            return Object.keys(this.errors).length === 0;
+          },
+          submit() {
+            this.touched = { name: true, email: true };
+            if (this.validate()) {
+              alert('Form submitted successfully!');
+            }
+          }
+        }">
+          <div class="space-y-4">
+            <div>
+              <label class="paper-label">
+                Full Name <span class="text-[var(--paper-danger)]">*</span>
+              </label>
+              <input
+                type="text"
+                class="paper-input"
+                :class="touched.name && errors.name ? 'input-error' : ''"
+                placeholder="John Doe"
+                x-model="name"
+                @blur="touched.name = true; validate()"
+              >
+              <p class="mt-1 text-xs text-[var(--paper-danger)]" x-show="touched.name && errors.name" x-text="errors.name" x-transition></p>
+            </div>
+            <div>
+              <label class="paper-label">
+                Email <span class="text-[var(--paper-danger)]">*</span>
+              </label>
+              <input
+                type="email"
+                class="paper-input"
+                :class="touched.email && errors.email ? 'input-error' : ''"
+                placeholder="john@example.com"
+                x-model="email"
+                @blur="touched.email = true; validate()"
+              >
+              <p class="mt-1 text-xs text-[var(--paper-danger)]" x-show="touched.email && errors.email" x-text="errors.email" x-transition></p>
+            </div>
+            <button class="paper-btn paper-btn-primary" type="button" @click="submit()">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Required Field Label --&gt;
+&lt;label class="paper-label"&gt;
+  Full Name &lt;span class="text-[var(--paper-danger)]"&gt;*&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- Validation Logic --&gt;
+&lt;div x-data="{
+  name: '',
+  touched: false,
+  get error() {
+    if (!this.touched) return '';
+    if (!this.name.trim()) return 'Name is required.';
+    return '';
+  }
+}"&gt;
+  &lt;input
+    type="text"
+    :class="error ? 'input-error' : ''"
+    x-model="name"
+    @blur="touched = true"
+  &gt;
+  &lt;p x-show="error" x-text="error" class="text-xs text-red-500"&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form with Summary Errors -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
+        <i class="nc-icon nc-bullet-list-67"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Error Summary</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Display all errors at once</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="max-w-lg" x-data="{
+          form: { username: '', email: '', password: '', confirm: '' },
+          errors: [],
+          submitted: false,
+          validate() {
+            this.errors = [];
+            if (!this.form.username) this.errors.push('Username is required.');
+            else if (this.form.username.length < 3) this.errors.push('Username must be at least 3 characters.');
+            if (!this.form.email) this.errors.push('Email is required.');
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.form.email)) this.errors.push('Email must be valid.');
+            if (!this.form.password) this.errors.push('Password is required.');
+            else if (this.form.password.length < 8) this.errors.push('Password must be at least 8 characters.');
+            if (this.form.password !== this.form.confirm) this.errors.push('Passwords do not match.');
+            return this.errors.length === 0;
+          },
+          submit() {
+            this.submitted = true;
+            if (this.validate()) {
+              this.errors = [];
+              alert('Registration successful!');
+            }
+          }
+        }">
+          <!-- Error Summary -->
+          <div class="mb-4 p-4 rounded-lg bg-red-50 border border-red-200" x-show="submitted && errors.length > 0" x-transition>
+            <div class="flex items-center gap-2 text-[var(--paper-danger)] font-semibold text-sm mb-2">
+              <i class="nc-icon nc-alert-circle-i"></i>
+              Please fix the following errors:
+            </div>
+            <ul class="list-disc list-inside text-sm text-red-700 space-y-1">
+              <template x-for="error in errors">
+                <li x-text="error"></li>
+              </template>
+            </ul>
+          </div>
+          <!-- Success Message -->
+          <div class="mb-4 p-4 rounded-lg bg-emerald-50 border border-emerald-200" x-show="submitted && errors.length === 0" x-transition>
+            <div class="flex items-center gap-2 text-emerald-700 font-semibold text-sm">
+              <i class="nc-icon nc-check-2"></i>
+              All fields are valid!
+            </div>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div>
+              <label class="paper-label">Username</label>
+              <input type="text" class="paper-input" placeholder="johndoe" x-model="form.username">
+            </div>
+            <div>
+              <label class="paper-label">Email</label>
+              <input type="email" class="paper-input" placeholder="john@example.com" x-model="form.email">
+            </div>
+            <div>
+              <label class="paper-label">Password</label>
+              <input type="password" class="paper-input" placeholder="••••••••" x-model="form.password">
+            </div>
+            <div>
+              <label class="paper-label">Confirm Password</label>
+              <input type="password" class="paper-input" placeholder="••••••••" x-model="form.confirm">
+            </div>
+          </div>
+          <button class="paper-btn paper-btn-primary mt-4" type="button" @click="submit()">Register</button>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Error Summary Banner --&gt;
+&lt;div class="p-4 rounded-lg bg-red-50 border border-red-200"
+  x-show="errors.length &gt; 0"&gt;
+  &lt;p class="font-semibold text-red-600"&gt;Please fix:&lt;/p&gt;
+  &lt;ul class="list-disc list-inside text-red-700"&gt;
+    &lt;template x-for="error in errors"&gt;
+      &lt;li x-text="error"&gt;&lt;/li&gt;
+    &lt;/template&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inline Validation Patterns -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(255,200,87,0.15)] text-[var(--paper-warning)]">
+        <i class="nc-icon nc-single-copy-04"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Pattern Validation</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Regex patterns for common inputs</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-4 md:grid-cols-2">
+          <!-- Phone -->
+          <div x-data="{
+            value: '',
+            touched: false,
+            get valid() { return /^\+?[\d\s\-()]{10,}$/.test(this.value); }
+          }">
+            <label class="paper-label">Phone Number</label>
+            <input
+              type="tel"
+              class="paper-input"
+              :class="touched && value && !valid ? 'input-error' : touched && valid ? 'input-success' : ''"
+              placeholder="+1 (555) 000-0000"
+              x-model="value"
+              @blur="touched = true"
+            >
+            <p class="mt-1 text-xs" :class="touched && value && !valid ? 'text-[var(--paper-danger)]' : 'text-[var(--paper-muted)]'">
+              <span x-show="!touched || !value">Format: +1 (555) 000-0000</span>
+              <span x-show="touched && value && !valid">Invalid phone number format.</span>
+              <span x-show="touched && valid" class="text-emerald-600">Valid phone number!</span>
+            </p>
+          </div>
+          <!-- URL -->
+          <div x-data="{
+            value: '',
+            touched: false,
+            get valid() { return /^https?:\/\/.+\..+/.test(this.value); }
+          }">
+            <label class="paper-label">Website URL</label>
+            <input
+              type="url"
+              class="paper-input"
+              :class="touched && value && !valid ? 'input-error' : touched && valid ? 'input-success' : ''"
+              placeholder="https://example.com"
+              x-model="value"
+              @blur="touched = true"
+            >
+            <p class="mt-1 text-xs" :class="touched && value && !valid ? 'text-[var(--paper-danger)]' : 'text-[var(--paper-muted)]'">
+              <span x-show="!touched || !value">Must start with http:// or https://</span>
+              <span x-show="touched && value && !valid">Invalid URL format.</span>
+              <span x-show="touched && valid" class="text-emerald-600">Valid URL!</span>
+            </p>
+          </div>
+          <!-- Credit Card -->
+          <div x-data="{
+            value: '',
+            touched: false,
+            get valid() { return /^\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}$/.test(this.value); }
+          }">
+            <label class="paper-label">Credit Card</label>
+            <input
+              type="text"
+              class="paper-input"
+              :class="touched && value && !valid ? 'input-error' : touched && valid ? 'input-success' : ''"
+              placeholder="1234 5678 9012 3456"
+              x-model="value"
+              @blur="touched = true"
+              maxlength="19"
+            >
+            <p class="mt-1 text-xs" :class="touched && value && !valid ? 'text-[var(--paper-danger)]' : 'text-[var(--paper-muted)]'">
+              <span x-show="!touched || !value">16 digits, spaces optional.</span>
+              <span x-show="touched && value && !valid">Invalid card number.</span>
+              <span x-show="touched && valid" class="text-emerald-600">Valid card format!</span>
+            </p>
+          </div>
+          <!-- Zip Code -->
+          <div x-data="{
+            value: '',
+            touched: false,
+            get valid() { return /^\d{5}(-\d{4})?$/.test(this.value); }
+          }">
+            <label class="paper-label">ZIP Code</label>
+            <input
+              type="text"
+              class="paper-input"
+              :class="touched && value && !valid ? 'input-error' : touched && valid ? 'input-success' : ''"
+              placeholder="12345 or 12345-6789"
+              x-model="value"
+              @blur="touched = true"
+              maxlength="10"
+            >
+            <p class="mt-1 text-xs" :class="touched && value && !valid ? 'text-[var(--paper-danger)]' : 'text-[var(--paper-muted)]'">
+              <span x-show="!touched || !value">5 digits, or ZIP+4 format.</span>
+              <span x-show="touched && value && !valid">Invalid ZIP code.</span>
+              <span x-show="touched && valid" class="text-emerald-600">Valid ZIP code!</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Pattern Validation Example --&gt;
+&lt;div x-data="{
+  value: '',
+  touched: false,
+  get valid() { return /^\d{5}(-\d{4})?$/.test(this.value); }
+}"&gt;
+  &lt;input
+    type="text"
+    :class="touched &amp;&amp; value &amp;&amp; !valid ? 'input-error'
+           : touched &amp;&amp; valid ? 'input-success' : ''"
+    x-model="value"
+    @blur="touched = true"
+  &gt;
+&lt;/div&gt;
+
+&lt;!-- Common Patterns --&gt;
+// Phone: /^\+?[\d\s\-()]{10,}$/
+// URL: /^https?:\/\/.+\..+/
+// Credit Card: /^\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}$/
+// ZIP: /^\d{5}(-\d{4})?$/</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Reference -->
+  <div class="mt-6 paper-card">
+    <div class="paper-card-header">
+      <h2 class="font-semibold">Quick Reference</h2>
+    </div>
+    <div class="paper-card-body">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-[var(--paper-border)]">
+              <th class="py-3 px-4 text-left font-semibold">State</th>
+              <th class="py-3 px-4 text-left font-semibold">Input Class</th>
+              <th class="py-3 px-4 text-left font-semibold">Text Class</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--paper-border)]">
+            <tr>
+              <td class="py-3 px-4">Success</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">.input-success</code></td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">text-emerald-600</code></td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Error</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">.input-error</code></td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">text-[var(--paper-danger)]</code></td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Warning</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">.input-warning</code></td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">text-amber-600</code></td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Required Marker</td>
+              <td class="py-3 px-4" colspan="2"><code class="text-xs bg-slate-100 px-2 py-1 rounded">&lt;span class="text-[var(--paper-danger)]"&gt;*&lt;/span&gt;</code></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

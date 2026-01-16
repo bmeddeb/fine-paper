@@ -90,11 +90,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -256,12 +283,24 @@
 
 <!-- Basic 12-Column Grid -->
 <section class="mt-8">
-  <h2 class="text-lg font-semibold mb-4">12-Column Grid</h2>
-  <p class="text-sm text-[var(--paper-muted)] mb-4">Use <code class="paper-code">grid grid-cols-12</code> to create a 12-column grid, then use <code class="paper-code">col-span-*</code> to control column width.</p>
-
-  <div class="paper-card">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+          <i class="nc-icon nc-layout-11 text-[var(--paper-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">12-Column Grid</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Use <code class="paper-code">grid grid-cols-12</code> with <code class="paper-code">col-span-*</code></p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
     <div class="paper-card-body">
-      <div class="grid grid-cols-12 gap-3">
+      <div class="grid grid-cols-12 gap-3 mb-4">
         <div class="col-span-12 grid-demo">col-span-12</div>
         <div class="col-span-6 grid-demo">col-span-6</div>
         <div class="col-span-6 grid-demo">col-span-6</div>
@@ -291,34 +330,82 @@
         <div class="col-span-1 grid-demo">1</div>
         <div class="col-span-1 grid-demo">1</div>
       </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;div class="grid grid-cols-12 gap-3"&gt;
+  &lt;div class="col-span-12"&gt;Full width&lt;/div&gt;
+  &lt;div class="col-span-6"&gt;Half&lt;/div&gt;
+  &lt;div class="col-span-6"&gt;Half&lt;/div&gt;
+  &lt;div class="col-span-4"&gt;Third&lt;/div&gt;
+  &lt;div class="col-span-4"&gt;Third&lt;/div&gt;
+  &lt;div class="col-span-4"&gt;Third&lt;/div&gt;
+  &lt;div class="col-span-3"&gt;Quarter&lt;/div&gt;
+  &lt;div class="col-span-3"&gt;Quarter&lt;/div&gt;
+  &lt;div class="col-span-3"&gt;Quarter&lt;/div&gt;
+  &lt;div class="col-span-3"&gt;Quarter&lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Mixed Column Widths -->
 <section class="mt-8">
-  <h2 class="text-lg font-semibold mb-4">Mixed Column Widths</h2>
-  <p class="text-sm text-[var(--paper-muted)] mb-4">Combine different column spans to create flexible layouts.</p>
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+          <i class="nc-icon nc-tile-56 text-[var(--paper-info)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Mixed Column Widths</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Combine different column spans for flexible layouts</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="space-y-3 mb-4">
+        <div class="grid grid-cols-12 gap-3">
+          <div class="col-span-8 grid-demo">col-span-8</div>
+          <div class="col-span-4 grid-demo-alt">col-span-4</div>
+        </div>
+        <div class="grid grid-cols-12 gap-3">
+          <div class="col-span-3 grid-demo">col-span-3</div>
+          <div class="col-span-6 grid-demo-alt">col-span-6</div>
+          <div class="col-span-3 grid-demo">col-span-3</div>
+        </div>
+        <div class="grid grid-cols-12 gap-3">
+          <div class="col-span-2 grid-demo">2</div>
+          <div class="col-span-8 grid-demo-alt">col-span-8</div>
+          <div class="col-span-2 grid-demo">2</div>
+        </div>
+        <div class="grid grid-cols-12 gap-3">
+          <div class="col-span-5 grid-demo">col-span-5</div>
+          <div class="col-span-7 grid-demo-alt">col-span-7</div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- 8 + 4 columns --&gt;
+&lt;div class="grid grid-cols-12 gap-3"&gt;
+  &lt;div class="col-span-8"&gt;Main content&lt;/div&gt;
+  &lt;div class="col-span-4"&gt;Sidebar&lt;/div&gt;
+&lt;/div&gt;
 
-  <div class="paper-card">
-    <div class="paper-card-body space-y-3">
-      <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-8 grid-demo">col-span-8</div>
-        <div class="col-span-4 grid-demo-alt">col-span-4</div>
-      </div>
-      <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-3 grid-demo">col-span-3</div>
-        <div class="col-span-6 grid-demo-alt">col-span-6</div>
-        <div class="col-span-3 grid-demo">col-span-3</div>
-      </div>
-      <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-2 grid-demo">2</div>
-        <div class="col-span-8 grid-demo-alt">col-span-8</div>
-        <div class="col-span-2 grid-demo">2</div>
-      </div>
-      <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-5 grid-demo">col-span-5</div>
-        <div class="col-span-7 grid-demo-alt">col-span-7</div>
+&lt;!-- 3 + 6 + 3 columns (centered) --&gt;
+&lt;div class="grid grid-cols-12 gap-3"&gt;
+  &lt;div class="col-span-3"&gt;Left&lt;/div&gt;
+  &lt;div class="col-span-6"&gt;Center&lt;/div&gt;
+  &lt;div class="col-span-3"&gt;Right&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 5 + 7 columns --&gt;
+&lt;div class="grid grid-cols-12 gap-3"&gt;
+  &lt;div class="col-span-5"&gt;Smaller&lt;/div&gt;
+  &lt;div class="col-span-7"&gt;Larger&lt;/div&gt;
+&lt;/div&gt;</pre>
       </div>
     </div>
   </div>
@@ -326,41 +413,89 @@
 
 <!-- Responsive Grid -->
 <section class="mt-8">
-  <h2 class="text-lg font-semibold mb-4">Responsive Grid</h2>
-  <p class="text-sm text-[var(--paper-muted)] mb-4">Use responsive prefixes (<code class="paper-code">sm:</code>, <code class="paper-code">md:</code>, <code class="paper-code">lg:</code>, <code class="paper-code">xl:</code>) to change layouts at different breakpoints. Resize your browser to see the effect.</p>
-
-  <div class="paper-card">
-    <div class="paper-card-body">
-      <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
-          <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Responsive Breakpoints -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+            <i class="nc-icon nc-tablet-2 text-[var(--paper-success)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Responsive Breakpoints</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Resize browser to see effect</p>
+          </div>
         </div>
-        <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
-          <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-12 gap-3 mb-4">
+          <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
+            <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+          </div>
+          <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
+            <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+          </div>
+          <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
+            <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+          </div>
+          <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
+            <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+          </div>
         </div>
-        <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
-          <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
-        </div>
-        <div class="col-span-12 md:col-span-6 lg:col-span-3 grid-demo">
-          <span class="block text-[10px] opacity-80">12 / md:6 / lg:3</span>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="grid grid-cols-12 gap-3"&gt;
+  &lt;!-- Full width on mobile, half on md, quarter on lg --&gt;
+  &lt;div class="col-span-12 md:col-span-6 lg:col-span-3"&gt;Item 1&lt;/div&gt;
+  &lt;div class="col-span-12 md:col-span-6 lg:col-span-3"&gt;Item 2&lt;/div&gt;
+  &lt;div class="col-span-12 md:col-span-6 lg:col-span-3"&gt;Item 3&lt;/div&gt;
+  &lt;div class="col-span-12 md:col-span-6 lg:col-span-3"&gt;Item 4&lt;/div&gt;
+&lt;/div&gt;</pre>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="paper-card mt-4">
-    <div class="paper-card-header">
-      <h3 class="paper-card-title">Sidebar Layout Example</h3>
-    </div>
-    <div class="paper-card-body">
-      <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-12 lg:col-span-3 grid-demo-alt">
-          <span class="block">Sidebar</span>
-          <span class="block text-[10px] opacity-80">12 / lg:3</span>
+    <!-- Sidebar Layout -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-warning)]/10">
+            <i class="nc-icon nc-single-copy-04 text-[var(--paper-warning)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Sidebar Layout</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Common dashboard pattern</p>
+          </div>
         </div>
-        <div class="col-span-12 lg:col-span-9 grid-demo">
-          <span class="block">Main Content</span>
-          <span class="block text-[10px] opacity-80">12 / lg:9</span>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-12 gap-3 mb-4">
+          <div class="col-span-12 lg:col-span-3 grid-demo-alt">
+            <span class="block">Sidebar</span>
+            <span class="block text-[10px] opacity-80">12 / lg:3</span>
+          </div>
+          <div class="col-span-12 lg:col-span-9 grid-demo">
+            <span class="block">Main Content</span>
+            <span class="block text-[10px] opacity-80">12 / lg:9</span>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="grid grid-cols-12 gap-3"&gt;
+  &lt;!-- Full width on mobile, sidebar on lg --&gt;
+  &lt;aside class="col-span-12 lg:col-span-3"&gt;
+    Sidebar content
+  &lt;/aside&gt;
+  &lt;main class="col-span-12 lg:col-span-9"&gt;
+    Main content
+  &lt;/main&gt;
+&lt;/div&gt;</pre>
         </div>
       </div>
     </div>
@@ -369,252 +504,370 @@
 
 <!-- Gap Utilities -->
 <section class="mt-8">
-  <h2 class="text-lg font-semibold mb-4">Gap Utilities</h2>
-  <p class="text-sm text-[var(--paper-muted)] mb-4">Control spacing between grid items using <code class="paper-code">gap-*</code>, <code class="paper-code">gap-x-*</code>, and <code class="paper-code">gap-y-*</code> utilities.</p>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <h3 class="paper-card-title">gap-2</h3>
-      </div>
-      <div class="paper-card-body">
-        <div class="grid grid-cols-3 gap-2">
-          <div class="grid-demo">1</div>
-          <div class="grid-demo">2</div>
-          <div class="grid-demo">3</div>
-          <div class="grid-demo">4</div>
-          <div class="grid-demo">5</div>
-          <div class="grid-demo">6</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <h3 class="paper-card-title">gap-4</h3>
-      </div>
-      <div class="paper-card-body">
-        <div class="grid grid-cols-3 gap-4">
-          <div class="grid-demo">1</div>
-          <div class="grid-demo">2</div>
-          <div class="grid-demo">3</div>
-          <div class="grid-demo">4</div>
-          <div class="grid-demo">5</div>
-          <div class="grid-demo">6</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <h3 class="paper-card-title">gap-6</h3>
-      </div>
-      <div class="paper-card-body">
-        <div class="grid grid-cols-3 gap-6">
-          <div class="grid-demo">1</div>
-          <div class="grid-demo">2</div>
-          <div class="grid-demo">3</div>
-          <div class="grid-demo">4</div>
-          <div class="grid-demo">5</div>
-          <div class="grid-demo">6</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="paper-card mt-4">
-    <div class="paper-card-header">
-      <h3 class="paper-card-title">Different X and Y Gaps: gap-x-8 gap-y-2</h3>
-    </div>
-    <div class="paper-card-body">
-      <div class="grid grid-cols-4 gap-x-8 gap-y-2">
-        <div class="grid-demo">1</div>
-        <div class="grid-demo">2</div>
-        <div class="grid-demo">3</div>
-        <div class="grid-demo">4</div>
-        <div class="grid-demo">5</div>
-        <div class="grid-demo">6</div>
-        <div class="grid-demo">7</div>
-        <div class="grid-demo">8</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Column Start/End -->
-<section class="mt-8">
-  <h2 class="text-lg font-semibold mb-4">Column Start & End</h2>
-  <p class="text-sm text-[var(--paper-muted)] mb-4">Use <code class="paper-code">col-start-*</code> and <code class="paper-code">col-end-*</code> to position items precisely within the grid.</p>
-
-  <div class="paper-card">
-    <div class="paper-card-body">
-      <div class="grid grid-cols-12 gap-3">
-        <div class="col-start-1 col-end-5 grid-demo">col-start-1 col-end-5</div>
-        <div class="col-start-5 col-end-13 grid-demo-alt">col-start-5 col-end-13</div>
-        <div class="col-start-3 col-end-11 grid-demo">col-start-3 col-end-11</div>
-        <div class="col-start-1 col-end-4 grid-demo-alt">1-4</div>
-        <div class="col-start-5 col-end-9 grid-demo">5-9</div>
-        <div class="col-start-10 col-end-13 grid-demo-alt">10-13</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Auto-fit Grid -->
-<section class="mt-8">
-  <h2 class="text-lg font-semibold mb-4">Auto-fit Columns</h2>
-  <p class="text-sm text-[var(--paper-muted)] mb-4">Use simple column counts for automatic equal-width columns. These are easier to use than the 12-column system for many layouts.</p>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <h3 class="paper-card-title">grid-cols-2</h3>
-      </div>
-      <div class="paper-card-body">
-        <div class="grid grid-cols-2 gap-3">
-          <div class="grid-demo">1</div>
-          <div class="grid-demo">2</div>
-          <div class="grid-demo">3</div>
-          <div class="grid-demo">4</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <h3 class="paper-card-title">grid-cols-3</h3>
-      </div>
-      <div class="paper-card-body">
-        <div class="grid grid-cols-3 gap-3">
-          <div class="grid-demo">1</div>
-          <div class="grid-demo">2</div>
-          <div class="grid-demo">3</div>
-          <div class="grid-demo">4</div>
-          <div class="grid-demo">5</div>
-          <div class="grid-demo">6</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <h3 class="paper-card-title">grid-cols-4</h3>
-      </div>
-      <div class="paper-card-body">
-        <div class="grid grid-cols-4 gap-3">
-          <div class="grid-demo">1</div>
-          <div class="grid-demo">2</div>
-          <div class="grid-demo">3</div>
-          <div class="grid-demo">4</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <h3 class="paper-card-title">grid-cols-6</h3>
-      </div>
-      <div class="paper-card-body">
-        <div class="grid grid-cols-6 gap-3">
-          <div class="grid-demo">1</div>
-          <div class="grid-demo">2</div>
-          <div class="grid-demo">3</div>
-          <div class="grid-demo">4</div>
-          <div class="grid-demo">5</div>
-          <div class="grid-demo">6</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Nested Grids -->
-<section class="mt-8">
-  <h2 class="text-lg font-semibold mb-4">Nested Grids</h2>
-  <p class="text-sm text-[var(--paper-muted)] mb-4">Grids can be nested inside grid items to create complex layouts.</p>
-
-  <div class="paper-card">
-    <div class="paper-card-body">
-      <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-8 rounded-xl border-2 border-dashed border-[var(--paper-primary)]/30 p-4">
-          <p class="text-xs font-semibold text-[var(--paper-primary)] mb-3">PARENT: col-span-8</p>
-          <div class="grid grid-cols-2 gap-3">
-            <div class="grid-demo">Nested 1</div>
-            <div class="grid-demo">Nested 2</div>
-            <div class="grid-demo">Nested 3</div>
-            <div class="grid-demo">Nested 4</div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Gap Sizes -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-danger)]/10">
+            <i class="nc-icon nc-ruler-pencil text-[var(--paper-danger)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Gap Sizes</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Control spacing with gap-*</p>
           </div>
         </div>
-        <div class="col-span-4 rounded-xl border-2 border-dashed border-[var(--paper-success)]/30 p-4">
-          <p class="text-xs font-semibold text-[var(--paper-success)] mb-3">PARENT: col-span-4</p>
-          <div class="grid grid-cols-1 gap-3">
-            <div class="grid-demo-alt">Nested 1</div>
-            <div class="grid-demo-alt">Nested 2</div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="space-y-4 mb-4">
+          <div>
+            <p class="text-xs text-[var(--paper-muted)] mb-2">gap-2 (0.5rem)</p>
+            <div class="grid grid-cols-4 gap-2">
+              <div class="grid-demo">1</div>
+              <div class="grid-demo">2</div>
+              <div class="grid-demo">3</div>
+              <div class="grid-demo">4</div>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs text-[var(--paper-muted)] mb-2">gap-4 (1rem)</p>
+            <div class="grid grid-cols-4 gap-4">
+              <div class="grid-demo">1</div>
+              <div class="grid-demo">2</div>
+              <div class="grid-demo">3</div>
+              <div class="grid-demo">4</div>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs text-[var(--paper-muted)] mb-2">gap-6 (1.5rem)</p>
+            <div class="grid grid-cols-4 gap-6">
+              <div class="grid-demo">1</div>
+              <div class="grid-demo">2</div>
+              <div class="grid-demo">3</div>
+              <div class="grid-demo">4</div>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- Small gap --&gt;
+&lt;div class="grid grid-cols-4 gap-2"&gt;...&lt;/div&gt;
+
+&lt;!-- Medium gap --&gt;
+&lt;div class="grid grid-cols-4 gap-4"&gt;...&lt;/div&gt;
+
+&lt;!-- Large gap --&gt;
+&lt;div class="grid grid-cols-4 gap-6"&gt;...&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Different X and Y Gaps -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+            <i class="nc-icon nc-vector text-[var(--paper-info)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Directional Gaps</h3>
+            <p class="text-xs text-[var(--paper-muted)]">gap-x-* and gap-y-* for X/Y control</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <p class="text-xs text-[var(--paper-muted)] mb-2">gap-x-8 gap-y-2</p>
+        <div class="grid grid-cols-4 gap-x-8 gap-y-2 mb-4">
+          <div class="grid-demo">1</div>
+          <div class="grid-demo">2</div>
+          <div class="grid-demo">3</div>
+          <div class="grid-demo">4</div>
+          <div class="grid-demo">5</div>
+          <div class="grid-demo">6</div>
+          <div class="grid-demo">7</div>
+          <div class="grid-demo">8</div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- Wide horizontal gaps, narrow vertical gaps --&gt;
+&lt;div class="grid grid-cols-4 gap-x-8 gap-y-2"&gt;
+  &lt;div&gt;1&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div&gt;5&lt;/div&gt;
+  &lt;div&gt;6&lt;/div&gt;
+  &lt;div&gt;7&lt;/div&gt;
+  &lt;div&gt;8&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Column Start/End & Auto-fit -->
+<section class="mt-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Column Start/End -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+            <i class="nc-icon nc-spaceship text-[var(--paper-primary)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Column Start & End</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Precise positioning with col-start/end</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-12 gap-3 mb-4">
+          <div class="col-start-1 col-end-5 grid-demo">col-start-1 col-end-5</div>
+          <div class="col-start-5 col-end-13 grid-demo-alt">col-start-5 col-end-13</div>
+          <div class="col-start-3 col-end-11 grid-demo">col-start-3 col-end-11</div>
+          <div class="col-start-1 col-end-4 grid-demo-alt">1-4</div>
+          <div class="col-start-5 col-end-9 grid-demo">5-9</div>
+          <div class="col-start-10 col-end-13 grid-demo-alt">10-13</div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="grid grid-cols-12 gap-3"&gt;
+  &lt;!-- Columns 1-4 --&gt;
+  &lt;div class="col-start-1 col-end-5"&gt;...&lt;/div&gt;
+  &lt;!-- Columns 5-12 --&gt;
+  &lt;div class="col-start-5 col-end-13"&gt;...&lt;/div&gt;
+  &lt;!-- Centered (columns 3-10) --&gt;
+  &lt;div class="col-start-3 col-end-11"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auto-fit Columns -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+            <i class="nc-icon nc-app text-[var(--paper-success)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Auto-fit Columns</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Simple equal-width columns</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="space-y-4 mb-4">
+          <div>
+            <p class="text-xs text-[var(--paper-muted)] mb-2">grid-cols-2</p>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="grid-demo">1</div>
+              <div class="grid-demo">2</div>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs text-[var(--paper-muted)] mb-2">grid-cols-3</p>
+            <div class="grid grid-cols-3 gap-2">
+              <div class="grid-demo">1</div>
+              <div class="grid-demo">2</div>
+              <div class="grid-demo">3</div>
+            </div>
+          </div>
+          <div>
+            <p class="text-xs text-[var(--paper-muted)] mb-2">grid-cols-4</p>
+            <div class="grid grid-cols-4 gap-2">
+              <div class="grid-demo">1</div>
+              <div class="grid-demo">2</div>
+              <div class="grid-demo">3</div>
+              <div class="grid-demo">4</div>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- 2 equal columns --&gt;
+&lt;div class="grid grid-cols-2 gap-2"&gt;...&lt;/div&gt;
+
+&lt;!-- 3 equal columns --&gt;
+&lt;div class="grid grid-cols-3 gap-2"&gt;...&lt;/div&gt;
+
+&lt;!-- 4 equal columns --&gt;
+&lt;div class="grid grid-cols-4 gap-2"&gt;...&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nested Grids & Grid Rows -->
+<section class="mt-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Nested Grids -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-warning)]/10">
+            <i class="nc-icon nc-layers-3 text-[var(--paper-warning)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Nested Grids</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Grids inside grid items</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-12 gap-3 mb-4">
+          <div class="col-span-8 rounded-xl border-2 border-dashed border-[var(--paper-primary)]/30 p-3">
+            <p class="text-[10px] font-semibold text-[var(--paper-primary)] mb-2">PARENT: col-span-8</p>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="grid-demo text-[10px] p-2">Nested 1</div>
+              <div class="grid-demo text-[10px] p-2">Nested 2</div>
+            </div>
+          </div>
+          <div class="col-span-4 rounded-xl border-2 border-dashed border-[var(--paper-success)]/30 p-3">
+            <p class="text-[10px] font-semibold text-[var(--paper-success)] mb-2">col-span-4</p>
+            <div class="grid grid-cols-1 gap-2">
+              <div class="grid-demo-alt text-[10px] p-2">Nested</div>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="grid grid-cols-12 gap-4"&gt;
+  &lt;div class="col-span-8"&gt;
+    &lt;!-- Nested 2-column grid --&gt;
+    &lt;div class="grid grid-cols-2 gap-3"&gt;
+      &lt;div&gt;Nested 1&lt;/div&gt;
+      &lt;div&gt;Nested 2&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="col-span-4"&gt;
+    &lt;!-- Nested single column --&gt;
+    &lt;div class="grid grid-cols-1 gap-3"&gt;
+      &lt;div&gt;Item&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid Rows -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-danger)]/10">
+            <i class="nc-icon nc-bullet-list-67 text-[var(--paper-danger)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Grid Rows</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Row spanning with row-span-*</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-3 grid-rows-3 gap-2 mb-4" style="height: 200px;">
+          <div class="row-span-3 grid-demo flex items-center justify-center text-[10px]">row-span-3</div>
+          <div class="col-span-2 grid-demo-alt flex items-center justify-center text-[10px]">col-span-2</div>
+          <div class="row-span-2 col-span-2 grid-demo flex items-center justify-center text-[10px]">row-span-2 col-span-2</div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="grid grid-cols-3 grid-rows-3 gap-3"&gt;
+  &lt;!-- Spans all 3 rows --&gt;
+  &lt;div class="row-span-3"&gt;Tall sidebar&lt;/div&gt;
+  &lt;!-- Spans 2 columns --&gt;
+  &lt;div class="col-span-2"&gt;Header&lt;/div&gt;
+  &lt;!-- Spans 2 rows and 2 columns --&gt;
+  &lt;div class="row-span-2 col-span-2"&gt;Main content&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Alignment & Placement -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+          <i class="nc-icon nc-align-center text-[var(--paper-info)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Alignment & Placement</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Control item alignment with place-items-*</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div>
+          <p class="text-xs text-[var(--paper-muted)] mb-2">place-items-center</p>
+          <div class="grid grid-cols-3 place-items-center gap-2 h-24 bg-[var(--paper-border)]/30 rounded-lg">
+            <div class="grid-demo p-2 text-[10px]">1</div>
+            <div class="grid-demo p-2 text-[10px]">2</div>
+            <div class="grid-demo p-2 text-[10px]">3</div>
+          </div>
+        </div>
+        <div>
+          <p class="text-xs text-[var(--paper-muted)] mb-2">place-items-start</p>
+          <div class="grid grid-cols-3 place-items-start gap-2 h-24 bg-[var(--paper-border)]/30 rounded-lg">
+            <div class="grid-demo p-2 text-[10px]">1</div>
+            <div class="grid-demo p-2 text-[10px]">2</div>
+            <div class="grid-demo p-2 text-[10px]">3</div>
+          </div>
+        </div>
+        <div>
+          <p class="text-xs text-[var(--paper-muted)] mb-2">place-items-end</p>
+          <div class="grid grid-cols-3 place-items-end gap-2 h-24 bg-[var(--paper-border)]/30 rounded-lg">
+            <div class="grid-demo p-2 text-[10px]">1</div>
+            <div class="grid-demo p-2 text-[10px]">2</div>
+            <div class="grid-demo p-2 text-[10px]">3</div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Center items in their cells --&gt;
+&lt;div class="grid grid-cols-3 place-items-center"&gt;...&lt;/div&gt;
 
-<!-- Grid Rows -->
-<section class="mt-8">
-  <h2 class="text-lg font-semibold mb-4">Grid Rows</h2>
-  <p class="text-sm text-[var(--paper-muted)] mb-4">Control row spanning with <code class="paper-code">row-span-*</code>, <code class="paper-code">grid-rows-*</code>, and related utilities.</p>
+&lt;!-- Align items to start (top-left) --&gt;
+&lt;div class="grid grid-cols-3 place-items-start"&gt;...&lt;/div&gt;
 
-  <div class="paper-card">
-    <div class="paper-card-body">
-      <div class="grid grid-cols-3 grid-rows-3 gap-3" style="height: 300px;">
-        <div class="row-span-3 grid-demo flex items-center justify-center">row-span-3</div>
-        <div class="col-span-2 grid-demo-alt flex items-center justify-center">col-span-2</div>
-        <div class="row-span-2 col-span-2 grid-demo flex items-center justify-center">row-span-2 col-span-2</div>
-      </div>
-    </div>
-  </div>
-</section>
+&lt;!-- Align items to end (bottom-right) --&gt;
+&lt;div class="grid grid-cols-3 place-items-end"&gt;...&lt;/div&gt;
 
-<!-- Place Items -->
-<section class="mt-8">
-  <h2 class="text-lg font-semibold mb-4">Alignment & Placement</h2>
-  <p class="text-sm text-[var(--paper-muted)] mb-4">Use <code class="paper-code">place-items-*</code>, <code class="paper-code">justify-items-*</code>, and <code class="paper-code">items-*</code> to align grid items.</p>
-
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <h3 class="paper-card-title">place-items-center</h3>
-      </div>
-      <div class="paper-card-body">
-        <div class="grid grid-cols-3 place-items-center gap-3 h-32 bg-[var(--paper-border)]/30 rounded-lg">
-          <div class="grid-demo p-2">1</div>
-          <div class="grid-demo p-2">2</div>
-          <div class="grid-demo p-2">3</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <h3 class="paper-card-title">place-items-start</h3>
-      </div>
-      <div class="paper-card-body">
-        <div class="grid grid-cols-3 place-items-start gap-3 h-32 bg-[var(--paper-border)]/30 rounded-lg">
-          <div class="grid-demo p-2">1</div>
-          <div class="grid-demo p-2">2</div>
-          <div class="grid-demo p-2">3</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <h3 class="paper-card-title">place-items-end</h3>
-      </div>
-      <div class="paper-card-body">
-        <div class="grid grid-cols-3 place-items-end gap-3 h-32 bg-[var(--paper-border)]/30 rounded-lg">
-          <div class="grid-demo p-2">1</div>
-          <div class="grid-demo p-2">2</div>
-          <div class="grid-demo p-2">3</div>
-        </div>
+&lt;!-- Individual item placement --&gt;
+&lt;div class="grid grid-cols-3"&gt;
+  &lt;div class="place-self-center"&gt;Centered&lt;/div&gt;
+  &lt;div class="place-self-start"&gt;Start&lt;/div&gt;
+  &lt;div class="place-self-end"&gt;End&lt;/div&gt;
+&lt;/div&gt;</pre>
       </div>
     </div>
   </div>
@@ -622,90 +875,148 @@
 
 <!-- Practical Examples -->
 <section class="mt-8">
-  <h2 class="text-lg font-semibold mb-4">Practical Layout Examples</h2>
-
-  <div class="paper-card">
-    <div class="paper-card-header">
-      <h3 class="paper-card-title">Dashboard Stats Layout</h3>
-    </div>
-    <div class="paper-card-body">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="paper-card bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-info)] text-white">
-          <div class="paper-card-body text-center">
-            <i class="nc-icon nc-money-coins text-3xl opacity-80"></i>
-            <p class="mt-2 text-2xl font-bold">$12,450</p>
-            <p class="text-sm opacity-80">Revenue</p>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Dashboard Stats Layout -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+            <i class="nc-icon nc-chart-bar-32 text-[var(--paper-primary)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Dashboard Stats</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Responsive stat cards</p>
           </div>
         </div>
-        <div class="paper-card bg-gradient-to-br from-[var(--paper-success)] to-[#34d399] text-white">
-          <div class="paper-card-body text-center">
-            <i class="nc-icon nc-single-02 text-3xl opacity-80"></i>
-            <p class="mt-2 text-2xl font-bold">1,234</p>
-            <p class="text-sm opacity-80">Users</p>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-4">
+          <div class="paper-card bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-info)] text-white">
+            <div class="paper-card-body text-center py-3">
+              <i class="nc-icon nc-money-coins text-xl opacity-80"></i>
+              <p class="mt-1 text-lg font-bold">$12,450</p>
+              <p class="text-[10px] opacity-80">Revenue</p>
+            </div>
+          </div>
+          <div class="paper-card bg-gradient-to-br from-[var(--paper-success)] to-[#34d399] text-white">
+            <div class="paper-card-body text-center py-3">
+              <i class="nc-icon nc-single-02 text-xl opacity-80"></i>
+              <p class="mt-1 text-lg font-bold">1,234</p>
+              <p class="text-[10px] opacity-80">Users</p>
+            </div>
+          </div>
+          <div class="paper-card bg-gradient-to-br from-[var(--paper-warning)] to-[#fbbf24] text-white">
+            <div class="paper-card-body text-center py-3">
+              <i class="nc-icon nc-cart-simple text-xl opacity-80"></i>
+              <p class="mt-1 text-lg font-bold">567</p>
+              <p class="text-[10px] opacity-80">Orders</p>
+            </div>
+          </div>
+          <div class="paper-card bg-gradient-to-br from-[var(--paper-danger)] to-[#f87171] text-white">
+            <div class="paper-card-body text-center py-3">
+              <i class="nc-icon nc-bell-55 text-xl opacity-80"></i>
+              <p class="mt-1 text-lg font-bold">89</p>
+              <p class="text-[10px] opacity-80">Alerts</p>
+            </div>
           </div>
         </div>
-        <div class="paper-card bg-gradient-to-br from-[var(--paper-warning)] to-[#fbbf24] text-white">
-          <div class="paper-card-body text-center">
-            <i class="nc-icon nc-cart-simple text-3xl opacity-80"></i>
-            <p class="mt-2 text-2xl font-bold">567</p>
-            <p class="text-sm opacity-80">Orders</p>
-          </div>
-        </div>
-        <div class="paper-card bg-gradient-to-br from-[var(--paper-danger)] to-[#f87171] text-white">
-          <div class="paper-card-body text-center">
-            <i class="nc-icon nc-bell-55 text-3xl opacity-80"></i>
-            <p class="mt-2 text-2xl font-bold">89</p>
-            <p class="text-sm opacity-80">Alerts</p>
-          </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- 1 col on mobile, 2 on sm, 4 on lg --&gt;
+&lt;div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"&gt;
+  &lt;div class="paper-card bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-info)]"&gt;
+    &lt;div class="paper-card-body text-center"&gt;
+      &lt;i class="nc-icon nc-money-coins"&gt;&lt;/i&gt;
+      &lt;p class="text-2xl font-bold"&gt;$12,450&lt;/p&gt;
+      &lt;p class="text-sm"&gt;Revenue&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Repeat for other stats... --&gt;
+&lt;/div&gt;</pre>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="paper-card mt-4">
-    <div class="paper-card-header">
-      <h3 class="paper-card-title">Card Grid Layout</h3>
-    </div>
-    <div class="paper-card-body">
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        <div class="paper-card">
-          <div class="paper-card-body">
-            <div class="flex items-center gap-3">
-              <div class="h-12 w-12 rounded-full bg-[var(--paper-primary)]/10 flex items-center justify-center">
-                <i class="nc-icon nc-settings-gear-65 text-[var(--paper-primary)]"></i>
+    <!-- Card Grid Layout -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+            <i class="nc-icon nc-box-2 text-[var(--paper-success)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Card Grid Layout</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Responsive feature cards</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+          <div class="paper-card">
+            <div class="paper-card-body py-3">
+              <div class="flex items-center gap-2">
+                <div class="h-8 w-8 rounded-full bg-[var(--paper-primary)]/10 flex items-center justify-center shrink-0">
+                  <i class="nc-icon nc-settings-gear-65 text-[var(--paper-primary)] text-sm"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-sm">Settings</p>
+                  <p class="text-[10px] text-[var(--paper-muted)]">Manage preferences</p>
+                </div>
               </div>
-              <div>
-                <p class="font-semibold">Settings</p>
-                <p class="text-xs text-[var(--paper-muted)]">Manage preferences</p>
+            </div>
+          </div>
+          <div class="paper-card">
+            <div class="paper-card-body py-3">
+              <div class="flex items-center gap-2">
+                <div class="h-8 w-8 rounded-full bg-[var(--paper-info)]/10 flex items-center justify-center shrink-0">
+                  <i class="nc-icon nc-cloud-download-93 text-[var(--paper-info)] text-sm"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-sm">Downloads</p>
+                  <p class="text-[10px] text-[var(--paper-muted)]">Get resources</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="paper-card">
+            <div class="paper-card-body py-3">
+              <div class="flex items-center gap-2">
+                <div class="h-8 w-8 rounded-full bg-[var(--paper-success)]/10 flex items-center justify-center shrink-0">
+                  <i class="nc-icon nc-check-2 text-[var(--paper-success)] text-sm"></i>
+                </div>
+                <div>
+                  <p class="font-semibold text-sm">Tasks</p>
+                  <p class="text-[10px] text-[var(--paper-muted)]">View completed</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="paper-card">
-          <div class="paper-card-body">
-            <div class="flex items-center gap-3">
-              <div class="h-12 w-12 rounded-full bg-[var(--paper-info)]/10 flex items-center justify-center">
-                <i class="nc-icon nc-cloud-download-93 text-[var(--paper-info)]"></i>
-              </div>
-              <div>
-                <p class="font-semibold">Downloads</p>
-                <p class="text-xs text-[var(--paper-muted)]">Get resources</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="paper-card">
-          <div class="paper-card-body">
-            <div class="flex items-center gap-3">
-              <div class="h-12 w-12 rounded-full bg-[var(--paper-success)]/10 flex items-center justify-center">
-                <i class="nc-icon nc-check-2 text-[var(--paper-success)]"></i>
-              </div>
-              <div>
-                <p class="font-semibold">Tasks</p>
-                <p class="text-xs text-[var(--paper-muted)]">View completed</p>
-              </div>
-            </div>
-          </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- 1 col on mobile, 2 on md, 3 on xl --&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"&gt;
+  &lt;div class="paper-card"&gt;
+    &lt;div class="paper-card-body"&gt;
+      &lt;div class="flex items-center gap-3"&gt;
+        &lt;div class="h-12 w-12 rounded-full bg-[var(--paper-primary)]/10"&gt;
+          &lt;i class="nc-icon nc-settings-gear-65"&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;p class="font-semibold"&gt;Settings&lt;/p&gt;
+          &lt;p class="text-xs"&gt;Manage preferences&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Repeat for other cards... --&gt;
+&lt;/div&gt;</pre>
         </div>
       </div>
     </div>

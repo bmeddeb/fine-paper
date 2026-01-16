@@ -55,11 +55,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -214,49 +241,705 @@
 <section class="pt-6">
   <div>
     <h1 class="text-2xl font-semibold">Extended Forms</h1>
-    <p class="paper-muted text-sm">Input groups, toggles, and extras</p>
+    <p class="paper-muted text-sm">Input groups, toggles, sliders, and advanced components</p>
   </div>
-  <div class="mt-6 grid gap-6 lg:grid-cols-2">
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <p class="paper-label">Input group</p>
-        <h2 class="text-lg font-semibold">With icon</h2>
+
+  <!-- Input Groups with Icons -->
+  <div class="mt-8 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
+        <i class="nc-icon nc-tag-content"></i>
       </div>
-      <div class="paper-card-body">
-        <div class="relative">
-          <i class="nc-icon nc-email-85 absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-          <input class="paper-input pl-10" type="email" placeholder="hello@paper.io">
+      <div>
+        <h2 class="font-semibold">Input Groups with Icons</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Icons positioned inside inputs</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-4 md:grid-cols-2">
+          <div>
+            <label class="paper-label">Left Icon</label>
+            <div class="relative">
+              <i class="nc-icon nc-email-85 absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <input class="paper-input pl-10" type="email" placeholder="hello@paper.io">
+            </div>
+          </div>
+          <div>
+            <label class="paper-label">Right Icon</label>
+            <div class="relative">
+              <input class="paper-input pr-10" type="text" placeholder="Search...">
+              <i class="nc-icon nc-zoom-split absolute right-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+            </div>
+          </div>
+          <div>
+            <label class="paper-label">Both Sides</label>
+            <div class="relative">
+              <i class="nc-icon nc-single-02 absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <input class="paper-input px-10" type="text" placeholder="Username">
+              <i class="nc-icon nc-check-2 absolute right-4 top-1/2 -translate-y-1/2 text-sm text-emerald-500"></i>
+            </div>
+          </div>
+          <div x-data="{ show: false }">
+            <label class="paper-label">Password Toggle</label>
+            <div class="relative">
+              <i class="nc-icon nc-lock-circle-open absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <input class="paper-input px-10" :type="show ? 'text' : 'password'" placeholder="••••••••">
+              <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--paper-muted)] hover:text-[var(--paper-text)]" @click="show = !show">
+                <i class="nc-icon" :class="show ? 'nc-glasses-2' : 'nc-zoom-split'"></i>
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="mt-4 relative">
-          <i class="nc-icon nc-lock-circle-open absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-          <input class="paper-input pl-10" type="password" placeholder="Password">
-        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Left Icon --&gt;
+&lt;div class="relative"&gt;
+  &lt;i class="nc-icon nc-email-85 absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"&gt;&lt;/i&gt;
+  &lt;input class="paper-input pl-10" type="email" placeholder="hello@paper.io"&gt;
+&lt;/div&gt;
+
+&lt;!-- Right Icon --&gt;
+&lt;div class="relative"&gt;
+  &lt;input class="paper-input pr-10" type="text" placeholder="Search..."&gt;
+  &lt;i class="nc-icon nc-zoom-split absolute right-4 top-1/2 -translate-y-1/2"&gt;&lt;/i&gt;
+&lt;/div&gt;
+
+&lt;!-- Password Toggle with Alpine.js --&gt;
+&lt;div class="relative" x-data="{ show: false }"&gt;
+  &lt;input class="paper-input px-10" :type="show ? 'text' : 'password'"&gt;
+  &lt;button type="button" @click="show = !show"&gt;
+    &lt;i class="nc-icon" :class="show ? 'nc-glasses-2' : 'nc-zoom-split'"&gt;&lt;/i&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
       </div>
     </div>
-    <div class="paper-card">
-      <div class="paper-card-header">
-        <p class="paper-label">Switches</p>
-        <h2 class="text-lg font-semibold">Preferences</h2>
+  </div>
+
+  <!-- Input Groups with Buttons/Addons -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)] text-[var(--paper-info)]">
+        <i class="nc-icon nc-simple-add"></i>
       </div>
-      <div class="paper-card-body space-y-4">
-        <div class="flex items-center justify-between rounded-xl border border-[var(--paper-border)] bg-white/70 p-4" x-data="{ on: true }">
+      <div>
+        <h2 class="font-semibold">Input Groups with Addons</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Buttons, text, and select addons</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="space-y-4 max-w-xl">
           <div>
-            <p class="font-semibold">Email updates</p>
-            <p class="text-xs text-[var(--paper-muted)]">Send weekly summaries</p>
+            <label class="paper-label">Text Addon (Left)</label>
+            <div class="flex">
+              <span class="inline-flex items-center px-4 rounded-l-lg border border-r-0 border-[var(--paper-border)] bg-gray-50 text-sm text-[var(--paper-muted)]">https://</span>
+              <input class="paper-input rounded-l-none flex-1" type="text" placeholder="example.com">
+            </div>
           </div>
-          <button type="button" class="relative h-6 w-11 rounded-full transition" :class="on ? 'bg-[var(--paper-success)]' : 'bg-gray-300'" @click="on = !on">
-            <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform" :class="on ? 'translate-x-5' : ''"></span>
-          </button>
-        </div>
-        <div class="flex items-center justify-between rounded-xl border border-[var(--paper-border)] bg-white/70 p-4" x-data="{ on: false }">
           <div>
-            <p class="font-semibold">SMS alerts</p>
-            <p class="text-xs text-[var(--paper-muted)]">Critical incidents only</p>
+            <label class="paper-label">Text Addon (Right)</label>
+            <div class="flex">
+              <input class="paper-input rounded-r-none flex-1" type="text" placeholder="recipient">
+              <span class="inline-flex items-center px-4 rounded-r-lg border border-l-0 border-[var(--paper-border)] bg-gray-50 text-sm text-[var(--paper-muted)]">@paper.io</span>
+            </div>
           </div>
-          <button type="button" class="relative h-6 w-11 rounded-full transition" :class="on ? 'bg-[var(--paper-warning)]' : 'bg-gray-300'" @click="on = !on">
-            <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform" :class="on ? 'translate-x-5' : ''"></span>
-          </button>
+          <div>
+            <label class="paper-label">Button Addon</label>
+            <div class="flex">
+              <input class="paper-input rounded-r-none flex-1" type="text" placeholder="Enter coupon code">
+              <button class="paper-btn paper-btn-primary rounded-l-none" type="button">Apply</button>
+            </div>
+          </div>
+          <div>
+            <label class="paper-label">Select Addon</label>
+            <div class="flex">
+              <select class="paper-select rounded-r-none w-auto">
+                <option>$</option>
+                <option>€</option>
+                <option>£</option>
+              </select>
+              <input class="paper-input rounded-l-none flex-1 border-l-0" type="number" placeholder="0.00">
+            </div>
+          </div>
+          <div>
+            <label class="paper-label">Search with Button</label>
+            <div class="flex">
+              <div class="relative flex-1">
+                <i class="nc-icon nc-zoom-split absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+                <input class="paper-input pl-10 rounded-r-none" type="text" placeholder="Search products...">
+              </div>
+              <button class="paper-btn paper-btn-info rounded-l-none" type="button">
+                <i class="nc-icon nc-zoom-split"></i>
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Text Addon Left --&gt;
+&lt;div class="flex"&gt;
+  &lt;span class="inline-flex items-center px-4 rounded-l-lg border border-r-0
+         border-[var(--paper-border)] bg-gray-50 text-sm"&gt;https://&lt;/span&gt;
+  &lt;input class="paper-input rounded-l-none flex-1" type="text"&gt;
+&lt;/div&gt;
+
+&lt;!-- Button Addon --&gt;
+&lt;div class="flex"&gt;
+  &lt;input class="paper-input rounded-r-none flex-1" type="text"&gt;
+  &lt;button class="paper-btn paper-btn-primary rounded-l-none"&gt;Apply&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Select Addon --&gt;
+&lt;div class="flex"&gt;
+  &lt;select class="paper-select rounded-r-none w-auto"&gt;
+    &lt;option&gt;$&lt;/option&gt;
+    &lt;option&gt;€&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;input class="paper-input rounded-l-none flex-1 border-l-0" type="number"&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toggle Switches -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,187,106,0.15)] text-[var(--paper-success)]">
+        <i class="nc-icon nc-refresh-69"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Toggle Switches</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Various sizes and colors</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-6 md:grid-cols-2">
+          <!-- Sizes -->
+          <div class="space-y-4">
+            <p class="text-sm font-semibold">Sizes</p>
+            <div class="flex items-center gap-4" x-data="{ on: true }">
+              <button type="button" class="relative h-5 w-9 rounded-full transition" :class="on ? 'bg-[var(--paper-primary)]' : 'bg-gray-300'" @click="on = !on">
+                <span class="absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white transition-transform shadow" :class="on ? 'translate-x-4' : ''"></span>
+              </button>
+              <span class="text-sm">Small</span>
+            </div>
+            <div class="flex items-center gap-4" x-data="{ on: true }">
+              <button type="button" class="relative h-6 w-11 rounded-full transition" :class="on ? 'bg-[var(--paper-primary)]' : 'bg-gray-300'" @click="on = !on">
+                <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform shadow" :class="on ? 'translate-x-5' : ''"></span>
+              </button>
+              <span class="text-sm">Default</span>
+            </div>
+            <div class="flex items-center gap-4" x-data="{ on: true }">
+              <button type="button" class="relative h-8 w-14 rounded-full transition" :class="on ? 'bg-[var(--paper-primary)]' : 'bg-gray-300'" @click="on = !on">
+                <span class="absolute left-1 top-1 h-6 w-6 rounded-full bg-white transition-transform shadow" :class="on ? 'translate-x-6' : ''"></span>
+              </button>
+              <span class="text-sm">Large</span>
+            </div>
+          </div>
+          <!-- Colors -->
+          <div class="space-y-4">
+            <p class="text-sm font-semibold">Colors</p>
+            <div class="flex items-center gap-4" x-data="{ on: true }">
+              <button type="button" class="relative h-6 w-11 rounded-full transition" :class="on ? 'bg-[var(--paper-success)]' : 'bg-gray-300'" @click="on = !on">
+                <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform shadow" :class="on ? 'translate-x-5' : ''"></span>
+              </button>
+              <span class="text-sm">Success</span>
+            </div>
+            <div class="flex items-center gap-4" x-data="{ on: true }">
+              <button type="button" class="relative h-6 w-11 rounded-full transition" :class="on ? 'bg-[var(--paper-info)]' : 'bg-gray-300'" @click="on = !on">
+                <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform shadow" :class="on ? 'translate-x-5' : ''"></span>
+              </button>
+              <span class="text-sm">Info</span>
+            </div>
+            <div class="flex items-center gap-4" x-data="{ on: true }">
+              <button type="button" class="relative h-6 w-11 rounded-full transition" :class="on ? 'bg-[var(--paper-warning)]' : 'bg-gray-300'" @click="on = !on">
+                <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform shadow" :class="on ? 'translate-x-5' : ''"></span>
+              </button>
+              <span class="text-sm">Warning</span>
+            </div>
+            <div class="flex items-center gap-4" x-data="{ on: true }">
+              <button type="button" class="relative h-6 w-11 rounded-full transition" :class="on ? 'bg-[var(--paper-danger)]' : 'bg-gray-300'" @click="on = !on">
+                <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform shadow" :class="on ? 'translate-x-5' : ''"></span>
+              </button>
+              <span class="text-sm">Danger</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Toggle Switch with Alpine.js --&gt;
+&lt;div x-data="{ on: false }"&gt;
+  &lt;button type="button"
+    class="relative h-6 w-11 rounded-full transition"
+    :class="on ? 'bg-[var(--paper-primary)]' : 'bg-gray-300'"
+    @click="on = !on"&gt;
+    &lt;span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white
+           transition-transform shadow"
+      :class="on ? 'translate-x-5' : ''"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- With Label --&gt;
+&lt;div class="flex items-center gap-4" x-data="{ on: true }"&gt;
+  &lt;button type="button" ... @click="on = !on"&gt;...&lt;/button&gt;
+  &lt;span class="text-sm"&gt;Enable feature&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Switch Cards (Preferences Style) -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(239,129,87,0.15)] text-[var(--paper-danger)]">
+        <i class="nc-icon nc-settings-gear-65"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Switch Cards</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Preference-style toggle settings</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="space-y-3 max-w-lg">
+          <div class="flex items-center justify-between rounded-xl border border-[var(--paper-border)] bg-white p-4" x-data="{ on: true }">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
+                <i class="nc-icon nc-email-85"></i>
+              </div>
+              <div>
+                <p class="font-semibold">Email notifications</p>
+                <p class="text-xs text-[var(--paper-muted)]">Receive updates via email</p>
+              </div>
+            </div>
+            <button type="button" class="relative h-6 w-11 rounded-full transition shrink-0" :class="on ? 'bg-[var(--paper-success)]' : 'bg-gray-300'" @click="on = !on">
+              <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform shadow" :class="on ? 'translate-x-5' : ''"></span>
+            </button>
+          </div>
+          <div class="flex items-center justify-between rounded-xl border border-[var(--paper-border)] bg-white p-4" x-data="{ on: false }">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)] text-[var(--paper-info)]">
+                <i class="nc-icon nc-chat-33"></i>
+              </div>
+              <div>
+                <p class="font-semibold">Push notifications</p>
+                <p class="text-xs text-[var(--paper-muted)]">Browser push alerts</p>
+              </div>
+            </div>
+            <button type="button" class="relative h-6 w-11 rounded-full transition shrink-0" :class="on ? 'bg-[var(--paper-success)]' : 'bg-gray-300'" @click="on = !on">
+              <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform shadow" :class="on ? 'translate-x-5' : ''"></span>
+            </button>
+          </div>
+          <div class="flex items-center justify-between rounded-xl border border-[var(--paper-border)] bg-white p-4" x-data="{ on: true }">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(255,200,87,0.15)] text-[var(--paper-warning)]">
+                <i class="nc-icon nc-bell-55"></i>
+              </div>
+              <div>
+                <p class="font-semibold">SMS alerts</p>
+                <p class="text-xs text-[var(--paper-muted)]">Critical incidents only</p>
+              </div>
+            </div>
+            <button type="button" class="relative h-6 w-11 rounded-full transition shrink-0" :class="on ? 'bg-[var(--paper-success)]' : 'bg-gray-300'" @click="on = !on">
+              <span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform shadow" :class="on ? 'translate-x-5' : ''"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;div class="flex items-center justify-between rounded-xl border
+     border-[var(--paper-border)] bg-white p-4" x-data="{ on: true }"&gt;
+  &lt;div class="flex items-center gap-3"&gt;
+    &lt;div class="flex h-10 w-10 items-center justify-center
+         rounded-full bg-[rgba(102,126,234,0.15)]"&gt;
+      &lt;i class="nc-icon nc-email-85"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p class="font-semibold"&gt;Email notifications&lt;/p&gt;
+      &lt;p class="text-xs text-[var(--paper-muted)]"&gt;Receive updates&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;button type="button" class="relative h-6 w-11 rounded-full"
+    :class="on ? 'bg-[var(--paper-success)]' : 'bg-gray-300'"
+    @click="on = !on"&gt;
+    &lt;span class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white
+           transition-transform" :class="on ? 'translate-x-5' : ''"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Range Sliders -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
+        <i class="nc-icon nc-sound-wave"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Range Sliders</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Native range inputs with values</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="space-y-6 max-w-lg">
+          <div x-data="{ value: 50 }">
+            <div class="flex items-center justify-between mb-2">
+              <label class="paper-label mb-0">Volume</label>
+              <span class="text-sm font-semibold text-[var(--paper-primary)]" x-text="value + '%'"></span>
+            </div>
+            <input type="range" min="0" max="100" x-model="value"
+              class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--paper-primary)]">
+          </div>
+          <div x-data="{ value: 25 }">
+            <div class="flex items-center justify-between mb-2">
+              <label class="paper-label mb-0">Brightness</label>
+              <span class="text-sm font-semibold text-[var(--paper-info)]" x-text="value + '%'"></span>
+            </div>
+            <input type="range" min="0" max="100" x-model="value"
+              class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--paper-info)]">
+          </div>
+          <div x-data="{ min: 20, max: 80 }">
+            <div class="flex items-center justify-between mb-2">
+              <label class="paper-label mb-0">Price Range</label>
+              <span class="text-sm font-semibold text-[var(--paper-success)]">$<span x-text="min"></span> - $<span x-text="max"></span></span>
+            </div>
+            <div class="flex gap-4 items-center">
+              <input type="range" min="0" max="100" x-model="min"
+                class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--paper-success)]">
+              <input type="range" min="0" max="100" x-model="max"
+                class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[var(--paper-success)]">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Range Slider with Live Value --&gt;
+&lt;div x-data="{ value: 50 }"&gt;
+  &lt;div class="flex items-center justify-between mb-2"&gt;
+    &lt;label class="paper-label mb-0"&gt;Volume&lt;/label&gt;
+    &lt;span class="text-sm font-semibold" x-text="value + '%'"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;input type="range" min="0" max="100" x-model="value"
+    class="w-full h-2 bg-gray-200 rounded-lg appearance-none
+           cursor-pointer accent-[var(--paper-primary)]"&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- File Inputs -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)] text-[var(--paper-info)]">
+        <i class="nc-icon nc-cloud-upload-94"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">File Inputs</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Styled file upload components</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-6 md:grid-cols-2">
+          <!-- Simple File Input -->
+          <div>
+            <label class="paper-label">Simple File Input</label>
+            <input type="file" class="block w-full text-sm text-[var(--paper-muted)]
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-full file:border-0
+              file:text-sm file:font-semibold
+              file:bg-[var(--paper-primary)] file:text-white
+              hover:file:bg-[var(--paper-primary)]/80
+              file:cursor-pointer cursor-pointer">
+          </div>
+          <!-- Multiple Files -->
+          <div>
+            <label class="paper-label">Multiple Files</label>
+            <input type="file" multiple class="block w-full text-sm text-[var(--paper-muted)]
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-full file:border-0
+              file:text-sm file:font-semibold
+              file:bg-[var(--paper-info)] file:text-white
+              hover:file:bg-[var(--paper-info)]/80
+              file:cursor-pointer cursor-pointer">
+          </div>
+          <!-- Dropzone Style -->
+          <div class="md:col-span-2" x-data="{ dragover: false, files: [] }">
+            <label class="paper-label">Drag & Drop Zone</label>
+            <div
+              class="border-2 border-dashed rounded-xl p-8 text-center transition-colors"
+              :class="dragover ? 'border-[var(--paper-primary)] bg-[rgba(102,126,234,0.05)]' : 'border-[var(--paper-border)]'"
+              @dragover.prevent="dragover = true"
+              @dragleave.prevent="dragover = false"
+              @drop.prevent="dragover = false; files = $event.dataTransfer.files"
+            >
+              <i class="nc-icon nc-cloud-upload-94 text-3xl text-[var(--paper-muted)]"></i>
+              <p class="mt-2 text-sm text-[var(--paper-muted)]">
+                Drag and drop files here, or
+                <label class="text-[var(--paper-primary)] cursor-pointer hover:underline">
+                  browse
+                  <input type="file" class="hidden" multiple @change="files = $event.target.files">
+                </label>
+              </p>
+              <p class="mt-1 text-xs text-[var(--paper-muted)]">PNG, JPG, PDF up to 10MB</p>
+              <template x-if="files.length > 0">
+                <div class="mt-4 text-sm text-left">
+                  <template x-for="file in files">
+                    <div class="flex items-center gap-2 py-1">
+                      <i class="nc-icon nc-single-copy-04 text-[var(--paper-primary)]"></i>
+                      <span x-text="file.name"></span>
+                      <span class="text-xs text-[var(--paper-muted)]" x-text="(file.size / 1024).toFixed(1) + ' KB'"></span>
+                    </div>
+                  </template>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Styled File Input --&gt;
+&lt;input type="file" class="block w-full text-sm text-[var(--paper-muted)]
+  file:mr-4 file:py-2 file:px-4
+  file:rounded-full file:border-0
+  file:text-sm file:font-semibold
+  file:bg-[var(--paper-primary)] file:text-white
+  hover:file:bg-[var(--paper-primary)]/80"&gt;
+
+&lt;!-- Drag & Drop Zone --&gt;
+&lt;div x-data="{ dragover: false, files: [] }"
+  class="border-2 border-dashed rounded-xl p-8"
+  :class="dragover ? 'border-[var(--paper-primary)]' : 'border-gray-300'"
+  @dragover.prevent="dragover = true"
+  @dragleave.prevent="dragover = false"
+  @drop.prevent="dragover = false; files = $event.dataTransfer.files"&gt;
+  &lt;!-- Content --&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tags Input -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,187,106,0.15)] text-[var(--paper-success)]">
+        <i class="nc-icon nc-tag-content"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Tags Input</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Add and remove tags dynamically</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="max-w-lg" x-data="{
+          tags: ['JavaScript', 'Tailwind', 'Alpine.js'],
+          newTag: '',
+          addTag() {
+            if (this.newTag.trim() && !this.tags.includes(this.newTag.trim())) {
+              this.tags.push(this.newTag.trim());
+              this.newTag = '';
+            }
+          },
+          removeTag(index) {
+            this.tags.splice(index, 1);
+          }
+        }">
+          <label class="paper-label">Skills</label>
+          <div class="flex flex-wrap items-center gap-2 p-3 border border-[var(--paper-border)] rounded-lg bg-white min-h-[50px]">
+            <template x-for="(tag, index) in tags" :key="index">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[var(--paper-primary)] text-white text-sm">
+                <span x-text="tag"></span>
+                <button type="button" class="hover:text-white/70" @click="removeTag(index)">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+                  </svg>
+                </button>
+              </span>
+            </template>
+            <input
+              type="text"
+              class="flex-1 min-w-[120px] outline-none text-sm bg-transparent"
+              placeholder="Add a tag..."
+              x-model="newTag"
+              @keydown.enter.prevent="addTag()"
+              @keydown.comma.prevent="addTag()"
+            >
+          </div>
+          <p class="mt-1 text-xs text-[var(--paper-muted)]">Press Enter or comma to add a tag.</p>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;div x-data="{
+  tags: ['JavaScript', 'Tailwind'],
+  newTag: '',
+  addTag() {
+    if (this.newTag.trim() &amp;&amp; !this.tags.includes(this.newTag.trim())) {
+      this.tags.push(this.newTag.trim());
+      this.newTag = '';
+    }
+  },
+  removeTag(index) { this.tags.splice(index, 1); }
+}"&gt;
+  &lt;div class="flex flex-wrap items-center gap-2 p-3 border rounded-lg"&gt;
+    &lt;template x-for="(tag, index) in tags"&gt;
+      &lt;span class="inline-flex items-center gap-1 px-3 py-1
+             rounded-full bg-[var(--paper-primary)] text-white"&gt;
+        &lt;span x-text="tag"&gt;&lt;/span&gt;
+        &lt;button @click="removeTag(index)"&gt;&amp;times;&lt;/button&gt;
+      &lt;/span&gt;
+    &lt;/template&gt;
+    &lt;input type="text" x-model="newTag"
+      @keydown.enter.prevent="addTag()"
+      @keydown.comma.prevent="addTag()"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Autocomplete -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(239,129,87,0.15)] text-[var(--paper-danger)]">
+        <i class="nc-icon nc-zoom-split"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Search with Suggestions</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Dropdown autocomplete pattern</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="max-w-md" x-data="{
+          search: '',
+          open: false,
+          items: ['Dashboard', 'Settings', 'Profile', 'Notifications', 'Users', 'Analytics', 'Reports', 'Billing'],
+          get filtered() {
+            if (!this.search) return [];
+            return this.items.filter(i => i.toLowerCase().includes(this.search.toLowerCase()));
+          },
+          select(item) {
+            this.search = item;
+            this.open = false;
+          }
+        }" @click.outside="open = false">
+          <label class="paper-label">Quick Search</label>
+          <div class="relative">
+            <i class="nc-icon nc-zoom-split absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+            <input
+              type="text"
+              class="paper-input pl-10"
+              placeholder="Search pages..."
+              x-model="search"
+              @focus="open = true"
+              @input="open = true"
+            >
+            <div
+              class="absolute left-0 right-0 mt-1 bg-white rounded-lg shadow-lg border border-[var(--paper-border)] z-10 max-h-48 overflow-y-auto"
+              x-show="open && filtered.length > 0"
+              x-transition
+            >
+              <template x-for="item in filtered" :key="item">
+                <button
+                  type="button"
+                  class="w-full px-4 py-2 text-left text-sm hover:bg-[var(--paper-bg)] flex items-center gap-2"
+                  @click="select(item)"
+                >
+                  <i class="nc-icon nc-minimal-right text-xs text-[var(--paper-muted)]"></i>
+                  <span x-text="item"></span>
+                </button>
+              </template>
+            </div>
+          </div>
+          <p class="mt-1 text-xs text-[var(--paper-muted)]">Try typing "dash" or "set".</p>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;div x-data="{
+  search: '',
+  open: false,
+  items: ['Dashboard', 'Settings', 'Profile'],
+  get filtered() {
+    if (!this.search) return [];
+    return this.items.filter(i =&gt;
+      i.toLowerCase().includes(this.search.toLowerCase())
+    );
+  },
+  select(item) { this.search = item; this.open = false; }
+}" @click.outside="open = false"&gt;
+  &lt;input type="text" x-model="search"
+    @focus="open = true" @input="open = true"&gt;
+  &lt;div x-show="open &amp;&amp; filtered.length &gt; 0"&gt;
+    &lt;template x-for="item in filtered"&gt;
+      &lt;button @click="select(item)" x-text="item"&gt;&lt;/button&gt;
+    &lt;/template&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Reference -->
+  <div class="mt-6 paper-card">
+    <div class="paper-card-header">
+      <h2 class="font-semibold">Quick Reference</h2>
+    </div>
+    <div class="paper-card-body">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-[var(--paper-border)]">
+              <th class="py-3 px-4 text-left font-semibold">Component</th>
+              <th class="py-3 px-4 text-left font-semibold">Key Classes</th>
+              <th class="py-3 px-4 text-left font-semibold">Alpine.js</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--paper-border)]">
+            <tr>
+              <td class="py-3 px-4">Icon Input</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">relative</code> + <code class="text-xs bg-slate-100 px-2 py-1 rounded">pl-10</code></td>
+              <td class="py-3 px-4 text-[var(--paper-muted)]">-</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Input Addon</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">flex</code> + <code class="text-xs bg-slate-100 px-2 py-1 rounded">rounded-l-none</code></td>
+              <td class="py-3 px-4 text-[var(--paper-muted)]">-</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Toggle Switch</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">h-6 w-11 rounded-full</code></td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">x-data="{ on: false }"</code></td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Range Slider</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">appearance-none accent-*</code></td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">x-model="value"</code></td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">File Input</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">file:* pseudo</code></td>
+              <td class="py-3 px-4 text-[var(--paper-muted)]">-</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Tags Input</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">flex-wrap gap-2</code></td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">@keydown.enter</code></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

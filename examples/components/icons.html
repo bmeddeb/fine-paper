@@ -21,6 +21,67 @@
       document.head.appendChild(script);
     }
   });
+
+  function iconLibrary() {
+    return {
+      search: '',
+      copied: '',
+      icons: [
+        { name: 'nc-alert-circle-i', category: 'UI' },
+        { name: 'nc-app', category: 'UI' },
+        { name: 'nc-bank', category: 'Business' },
+        { name: 'nc-bell-55', category: 'UI' },
+        { name: 'nc-book-bookmark', category: 'UI' },
+        { name: 'nc-box', category: 'Objects' },
+        { name: 'nc-bulb-63', category: 'Objects' },
+        { name: 'nc-bullet-list-67', category: 'UI' },
+        { name: 'nc-button-play', category: 'Media' },
+        { name: 'nc-calendar-60', category: 'UI' },
+        { name: 'nc-camera-20', category: 'Media' },
+        { name: 'nc-cart-simple', category: 'Business' },
+        { name: 'nc-chart-bar-32', category: 'Business' },
+        { name: 'nc-check-2', category: 'UI' },
+        { name: 'nc-cloud-download-93', category: 'UI' },
+        { name: 'nc-email-85', category: 'Communication' },
+        { name: 'nc-favourite-28', category: 'UI' },
+        { name: 'nc-globe', category: 'UI' },
+        { name: 'nc-grid-45', category: 'UI' },
+        { name: 'nc-layers-3', category: 'UI' },
+        { name: 'nc-layout-11', category: 'UI' },
+        { name: 'nc-lock-circle-open', category: 'Security' },
+        { name: 'nc-minimal-down', category: 'Arrows' },
+        { name: 'nc-minimal-left', category: 'Arrows' },
+        { name: 'nc-minimal-right', category: 'Arrows' },
+        { name: 'nc-minimal-up', category: 'Arrows' },
+        { name: 'nc-money-coins', category: 'Business' },
+        { name: 'nc-palette', category: 'Design' },
+        { name: 'nc-paper-2', category: 'Objects' },
+        { name: 'nc-pin-3', category: 'UI' },
+        { name: 'nc-ruler-pencil', category: 'Design' },
+        { name: 'nc-settings-gear-65', category: 'UI' },
+        { name: 'nc-simple-add', category: 'UI' },
+        { name: 'nc-simple-remove', category: 'UI' },
+        { name: 'nc-single-02', category: 'Users' },
+        { name: 'nc-single-copy-04', category: 'Objects' },
+        { name: 'nc-tap-01', category: 'UI' },
+        { name: 'nc-vector', category: 'Design' },
+        { name: 'nc-zoom-split', category: 'UI' }
+      ],
+      get filteredIcons() {
+        if (!this.search) return this.icons;
+        return this.icons.filter(icon =>
+          icon.name.toLowerCase().includes(this.search.toLowerCase()) ||
+          icon.category.toLowerCase().includes(this.search.toLowerCase())
+        );
+      },
+      copyIcon(name) {
+        const code = '<i class="nc-icon ' + name + '"></i>';
+        navigator.clipboard.writeText(code);
+        this.copied = name;
+        setTimeout(() => { this.copied = ''; }, 2000);
+      }
+    };
+  }
 </script>
 </head>
 <body data-page="icons" x-data="layout()" class="text-[var(--paper-text)] antialiased">
@@ -55,11 +116,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -210,23 +298,560 @@
         </div>
       </header>
       <main class="flex-1 px-6 pb-12">
-        
+
+<!-- Page Header -->
 <section class="pt-6">
   <div>
-    <h1 class="text-2xl font-semibold">Icons</h1>
-    <p class="paper-muted text-sm">Nucleo icon set preview</p>
+    <h1 class="text-2xl font-semibold">Nucleo Icons</h1>
+    <p class="paper-muted text-sm">A curated set of icons for the Paper Dashboard template</p>
   </div>
-  <div class="mt-6 paper-card">
+</section>
+
+<!-- Quick Usage -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+          <i class="nc-icon nc-bulb-63 text-[var(--paper-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Quick Start</h3>
+          <p class="text-xs text-[var(--paper-muted)]">How to use Nucleo icons in your project</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
     <div class="paper-card-body">
-      <div class="grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
-        <div class="flex items-center gap-3"><i class="nc-icon nc-bank text-lg"></i> nc-bank</div>
-        <div class="flex items-center gap-3"><i class="nc-icon nc-chart-bar-32 text-lg"></i> nc-chart-bar-32</div>
-        <div class="flex items-center gap-3"><i class="nc-icon nc-calendar-60 text-lg"></i> nc-calendar-60</div>
-        <div class="flex items-center gap-3"><i class="nc-icon nc-bell-55 text-lg"></i> nc-bell-55</div>
-        <div class="flex items-center gap-3"><i class="nc-icon nc-settings-gear-65 text-lg"></i> nc-settings-gear-65</div>
-        <div class="flex items-center gap-3"><i class="nc-icon nc-vector text-lg"></i> nc-vector</div>
-        <div class="flex items-center gap-3"><i class="nc-icon nc-money-coins text-lg"></i> nc-money-coins</div>
-        <div class="flex items-center gap-3"><i class="nc-icon nc-favourite-28 text-lg"></i> nc-favourite-28</div>
+      <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="flex h-16 w-16 mx-auto items-center justify-center rounded-full bg-white shadow">
+              <i class="nc-icon nc-bell-55 text-2xl text-[var(--paper-primary)]"></i>
+            </div>
+            <p class="font-semibold mt-3 text-sm">1. Add the icon class</p>
+            <p class="text-xs text-[var(--paper-muted)] mt-1">Use <code class="paper-code">nc-icon</code> + icon name</p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-16 w-16 mx-auto items-center justify-center rounded-full bg-white shadow">
+              <i class="nc-icon nc-palette text-2xl text-[var(--paper-success)]"></i>
+            </div>
+            <p class="font-semibold mt-3 text-sm">2. Style with Tailwind</p>
+            <p class="text-xs text-[var(--paper-muted)] mt-1">Add color and size classes</p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-16 w-16 mx-auto items-center justify-center rounded-full bg-white shadow">
+              <i class="nc-icon nc-check-2 text-2xl text-[var(--paper-info)]"></i>
+            </div>
+            <p class="font-semibold mt-3 text-sm">3. Done!</p>
+            <p class="text-xs text-[var(--paper-muted)] mt-1">Icons inherit font styles</p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Basic usage --&gt;
+&lt;i class="nc-icon nc-bell-55"&gt;&lt;/i&gt;
+
+&lt;!-- With Tailwind color --&gt;
+&lt;i class="nc-icon nc-bell-55 text-[var(--paper-primary)]"&gt;&lt;/i&gt;
+
+&lt;!-- With size --&gt;
+&lt;i class="nc-icon nc-bell-55 text-2xl"&gt;&lt;/i&gt;
+
+&lt;!-- In a button --&gt;
+&lt;button class="paper-btn paper-btn-primary"&gt;
+  &lt;i class="nc-icon nc-bell-55 mr-2"&gt;&lt;/i&gt; Notifications
+&lt;/button&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Icon Sizes -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+          <i class="nc-icon nc-zoom-split text-[var(--paper-info)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Icon Sizes</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Scale icons using Tailwind text size classes</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="flex items-end justify-center gap-8 flex-wrap">
+          <div class="text-center">
+            <i class="nc-icon nc-settings-gear-65 text-xs"></i>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">text-xs</p>
+          </div>
+          <div class="text-center">
+            <i class="nc-icon nc-settings-gear-65 text-sm"></i>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">text-sm</p>
+          </div>
+          <div class="text-center">
+            <i class="nc-icon nc-settings-gear-65 text-base"></i>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">text-base</p>
+          </div>
+          <div class="text-center">
+            <i class="nc-icon nc-settings-gear-65 text-lg"></i>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">text-lg</p>
+          </div>
+          <div class="text-center">
+            <i class="nc-icon nc-settings-gear-65 text-xl"></i>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">text-xl</p>
+          </div>
+          <div class="text-center">
+            <i class="nc-icon nc-settings-gear-65 text-2xl"></i>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">text-2xl</p>
+          </div>
+          <div class="text-center">
+            <i class="nc-icon nc-settings-gear-65 text-3xl"></i>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">text-3xl</p>
+          </div>
+          <div class="text-center">
+            <i class="nc-icon nc-settings-gear-65 text-4xl"></i>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">text-4xl</p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;i class="nc-icon nc-settings-gear-65 text-xs"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-settings-gear-65 text-sm"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-settings-gear-65 text-base"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-settings-gear-65 text-lg"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-settings-gear-65 text-xl"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-settings-gear-65 text-2xl"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-settings-gear-65 text-3xl"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-settings-gear-65 text-4xl"&gt;&lt;/i&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Icon Colors -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+          <i class="nc-icon nc-palette text-[var(--paper-success)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Icon Colors</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Apply theme colors to icons</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="flex items-center justify-center gap-6 flex-wrap">
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow">
+              <i class="nc-icon nc-bell-55 text-2xl text-[var(--paper-primary)]"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Primary</p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow">
+              <i class="nc-icon nc-bell-55 text-2xl text-[var(--paper-success)]"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Success</p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow">
+              <i class="nc-icon nc-bell-55 text-2xl text-[var(--paper-info)]"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Info</p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow">
+              <i class="nc-icon nc-bell-55 text-2xl text-[var(--paper-warning)]"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Warning</p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow">
+              <i class="nc-icon nc-bell-55 text-2xl text-[var(--paper-danger)]"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Danger</p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow">
+              <i class="nc-icon nc-bell-55 text-2xl text-[var(--paper-muted)]"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Muted</p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;i class="nc-icon nc-bell-55 text-[var(--paper-primary)]"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-bell-55 text-[var(--paper-success)]"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-bell-55 text-[var(--paper-info)]"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-bell-55 text-[var(--paper-warning)]"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-bell-55 text-[var(--paper-danger)]"&gt;&lt;/i&gt;
+&lt;i class="nc-icon nc-bell-55 text-[var(--paper-muted)]"&gt;&lt;/i&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Icon with Background -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-warning)]/10">
+          <i class="nc-icon nc-layers-3 text-[var(--paper-warning)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Icons with Backgrounds</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Common patterns for icon containers</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="flex items-center justify-center gap-6 flex-wrap">
+          <!-- Soft background -->
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+              <i class="nc-icon nc-bell-55 text-xl text-[var(--paper-primary)]"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Soft bg</p>
+          </div>
+          <!-- Solid background -->
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--paper-primary)]">
+              <i class="nc-icon nc-bell-55 text-xl text-white"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Solid bg</p>
+          </div>
+          <!-- Shadow -->
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-lg">
+              <i class="nc-icon nc-bell-55 text-xl text-[var(--paper-primary)]"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Shadow</p>
+          </div>
+          <!-- Border -->
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--paper-primary)]">
+              <i class="nc-icon nc-bell-55 text-xl text-[var(--paper-primary)]"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Border</p>
+          </div>
+          <!-- Square -->
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-[var(--paper-success)]/10">
+              <i class="nc-icon nc-check-2 text-xl text-[var(--paper-success)]"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Rounded</p>
+          </div>
+          <!-- Gradient -->
+          <div class="text-center">
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-info)]">
+              <i class="nc-icon nc-bell-55 text-xl text-white"></i>
+            </div>
+            <p class="text-[10px] text-[var(--paper-muted)] mt-2">Gradient</p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Soft background --&gt;
+&lt;div class="h-14 w-14 rounded-full bg-[var(--paper-primary)]/10 flex items-center justify-center"&gt;
+  &lt;i class="nc-icon nc-bell-55 text-xl text-[var(--paper-primary)]"&gt;&lt;/i&gt;
+&lt;/div&gt;
+
+&lt;!-- Solid background --&gt;
+&lt;div class="h-14 w-14 rounded-full bg-[var(--paper-primary)] flex items-center justify-center"&gt;
+  &lt;i class="nc-icon nc-bell-55 text-xl text-white"&gt;&lt;/i&gt;
+&lt;/div&gt;
+
+&lt;!-- With shadow --&gt;
+&lt;div class="h-14 w-14 rounded-full bg-white shadow-lg flex items-center justify-center"&gt;
+  &lt;i class="nc-icon nc-bell-55 text-xl text-[var(--paper-primary)]"&gt;&lt;/i&gt;
+&lt;/div&gt;
+
+&lt;!-- Border only --&gt;
+&lt;div class="h-14 w-14 rounded-full border-2 border-[var(--paper-primary)] flex items-center justify-center"&gt;
+  &lt;i class="nc-icon nc-bell-55 text-xl text-[var(--paper-primary)]"&gt;&lt;/i&gt;
+&lt;/div&gt;
+
+&lt;!-- Gradient background --&gt;
+&lt;div class="h-14 w-14 rounded-full bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-info)] flex items-center justify-center"&gt;
+  &lt;i class="nc-icon nc-bell-55 text-xl text-white"&gt;&lt;/i&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- All Icons Library -->
+<section class="mt-8" x-data="iconLibrary()">
+  <div class="paper-card">
+    <div class="paper-card-header">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-danger)]/10">
+            <i class="nc-icon nc-app text-[var(--paper-danger)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Icon Library</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Click any icon to copy its HTML code</p>
+          </div>
+        </div>
+        <div class="relative">
+          <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+          <input
+            type="text"
+            x-model="search"
+            placeholder="Search icons..."
+            class="h-10 w-full sm:w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20"
+          >
+        </div>
+      </div>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          <template x-for="icon in filteredIcons" :key="icon.name">
+            <button
+              @click="copyIcon(icon.name)"
+              class="group relative flex flex-col items-center gap-2 rounded-xl bg-white p-4 shadow-sm transition hover:shadow-md hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[var(--paper-primary)]/50"
+              :class="copied === icon.name ? 'ring-2 ring-[var(--paper-success)]' : ''"
+            >
+              <i class="nc-icon text-2xl text-[var(--paper-text)] group-hover:text-[var(--paper-primary)] transition" :class="icon.name"></i>
+              <span class="text-[10px] text-[var(--paper-muted)] truncate w-full text-center" x-text="icon.name.replace('nc-', '')"></span>
+              <span
+                x-show="copied === icon.name"
+                x-transition
+                class="absolute -top-2 left-1/2 -translate-x-1/2 rounded bg-[var(--paper-success)] px-2 py-0.5 text-[10px] text-white"
+              >Copied!</span>
+            </button>
+          </template>
+        </div>
+        <p x-show="filteredIcons.length === 0" class="text-center text-sm text-[var(--paper-muted)] py-8">
+          No icons found matching "<span x-text="search"></span>"
+        </p>
+      </div>
+      <p class="text-xs text-[var(--paper-muted)] mt-4 text-center">
+        Showing <span x-text="filteredIcons.length"></span> of <span x-text="icons.length"></span> icons
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Usage Examples -->
+<section class="mt-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Icons in Buttons -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+            <i class="nc-icon nc-tap-01 text-[var(--paper-primary)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Icons in Buttons</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Combine icons with button components</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <div class="flex flex-wrap gap-3">
+            <button class="paper-btn paper-btn-primary">
+              <i class="nc-icon nc-simple-add mr-2"></i> Add Item
+            </button>
+            <button class="paper-btn paper-btn-success">
+              <i class="nc-icon nc-check-2 mr-2"></i> Save
+            </button>
+            <button class="paper-btn paper-btn-outline-danger">
+              <i class="nc-icon nc-simple-remove mr-2"></i> Delete
+            </button>
+            <button class="paper-btn paper-btn-info">
+              <i class="nc-icon nc-cloud-download-93 mr-2"></i> Download
+            </button>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;button class="paper-btn paper-btn-primary"&gt;
+  &lt;i class="nc-icon nc-simple-add mr-2"&gt;&lt;/i&gt; Add Item
+&lt;/button&gt;
+
+&lt;button class="paper-btn paper-btn-success"&gt;
+  &lt;i class="nc-icon nc-check-2 mr-2"&gt;&lt;/i&gt; Save
+&lt;/button&gt;
+
+&lt;button class="paper-btn paper-btn-outline-danger"&gt;
+  &lt;i class="nc-icon nc-simple-remove mr-2"&gt;&lt;/i&gt; Delete
+&lt;/button&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icon-only Buttons -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+            <i class="nc-icon nc-button-play text-[var(--paper-success)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Icon-only Buttons</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Compact icon buttons for toolbars</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <div class="flex flex-wrap gap-3">
+            <button class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)] text-white hover:opacity-90 transition">
+              <i class="nc-icon nc-simple-add"></i>
+            </button>
+            <button class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)] text-white hover:opacity-90 transition">
+              <i class="nc-icon nc-check-2"></i>
+            </button>
+            <button class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-danger)] text-white hover:opacity-90 transition">
+              <i class="nc-icon nc-simple-remove"></i>
+            </button>
+            <button class="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow hover:shadow-md transition">
+              <i class="nc-icon nc-settings-gear-65 text-[var(--paper-text)]"></i>
+            </button>
+            <button class="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--paper-border)] hover:bg-[var(--paper-bg)] transition">
+              <i class="nc-icon nc-zoom-split text-[var(--paper-muted)]"></i>
+            </button>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;!-- Solid icon button --&gt;
+&lt;button class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)] text-white"&gt;
+  &lt;i class="nc-icon nc-simple-add"&gt;&lt;/i&gt;
+&lt;/button&gt;
+
+&lt;!-- Shadow icon button --&gt;
+&lt;button class="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow"&gt;
+  &lt;i class="nc-icon nc-settings-gear-65"&gt;&lt;/i&gt;
+&lt;/button&gt;
+
+&lt;!-- Border icon button --&gt;
+&lt;button class="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--paper-border)]"&gt;
+  &lt;i class="nc-icon nc-zoom-split"&gt;&lt;/i&gt;
+&lt;/button&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Documentation Reference -->
+<section class="mt-12 pt-8 border-t border-[var(--paper-border)]">
+  <h2 class="text-xl font-semibold mb-6">Icon Reference</h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">Available Icons</h3>
+      </div>
+      <div class="paper-card-body">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Icon</th>
+              <th>Class Name</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><i class="nc-icon nc-bank text-lg"></i></td>
+              <td><code class="paper-code">nc-bank</code></td>
+              <td>Business</td>
+            </tr>
+            <tr>
+              <td><i class="nc-icon nc-bell-55 text-lg"></i></td>
+              <td><code class="paper-code">nc-bell-55</code></td>
+              <td>UI</td>
+            </tr>
+            <tr>
+              <td><i class="nc-icon nc-chart-bar-32 text-lg"></i></td>
+              <td><code class="paper-code">nc-chart-bar-32</code></td>
+              <td>Business</td>
+            </tr>
+            <tr>
+              <td><i class="nc-icon nc-settings-gear-65 text-lg"></i></td>
+              <td><code class="paper-code">nc-settings-gear-65</code></td>
+              <td>UI</td>
+            </tr>
+            <tr>
+              <td><i class="nc-icon nc-single-02 text-lg"></i></td>
+              <td><code class="paper-code">nc-single-02</code></td>
+              <td>Users</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="text-xs text-[var(--paper-muted)] mt-3">See the Icon Library above for all available icons.</p>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">CSS Classes</h3>
+      </div>
+      <div class="paper-card-body">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="paper-code">nc-icon</code></td>
+              <td>Base class (required)</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">nc-[name]</code></td>
+              <td>Specific icon class</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">text-[size]</code></td>
+              <td>Tailwind size (xs to 4xl)</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">text-[color]</code></td>
+              <td>Tailwind or CSS var color</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

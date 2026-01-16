@@ -13,8 +13,11 @@
 
 .nc-icon {
   display: inline-block;
-  font: normal normal normal 14px/1 "nucleo-icons";
-  font-size: inherit;
+  font-family: "nucleo-icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
   speak: none;
   text-transform: none;
   -webkit-font-smoothing: antialiased;
@@ -155,4 +158,44 @@
 
 .nc-bullet-list-67::before {
   content: "\ea15";
+}
+
+.nc-layers-3::before {
+  content: "\ea37";
+}
+
+.nc-palette::before {
+  content: "\ea40";
+}
+
+.nc-cart-simple::before {
+  content: "\ea1c";
+}
+
+.nc-cloud-download-93::before {
+  content: "\ea26";
+}
+
+.nc-tap-01::before {
+  content: "\ea5e";
+}
+
+.nc-app::before {
+  content: "\ea08";
+}
+
+.nc-paper-2::before {
+  content: "\ea41";
+}
+
+.nc-grid-45::before {
+  content: "\ea32";
+}
+
+.nc-camera-20::before {
+  content: "\ea1a";
+}
+
+.nc-bulb-63::before {
+  content: "\ea14";
 }

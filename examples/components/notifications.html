@@ -21,6 +21,34 @@
       document.head.appendChild(script);
     }
   });
+
+  // Toast Manager for Alpine.js
+  function toastManager() {
+    return {
+      toasts: [],
+      init() {
+        window.addEventListener('show-toast', (e) => {
+          this.addToast(e.detail);
+        });
+      },
+      addToast({ type = 'info', title = '', message = '', duration = 4000 }) {
+        const id = Date.now();
+        this.toasts.push({ id, type, title, message, visible: true });
+        setTimeout(() => {
+          this.removeToast(id);
+        }, duration);
+      },
+      removeToast(id) {
+        const toast = this.toasts.find(t => t.id === id);
+        if (toast) {
+          toast.visible = false;
+          setTimeout(() => {
+            this.toasts = this.toasts.filter(t => t.id !== id);
+          }, 300);
+        }
+      }
+    };
+  }
 </script>
 </head>
 <body data-page="notifications" x-data="layout()" class="text-[var(--paper-text)] antialiased">
@@ -55,11 +83,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -210,17 +265,683 @@
         </div>
       </header>
       <main class="flex-1 px-6 pb-12">
-        
+
+<!-- Toast Container (Fixed position for live demos) -->
+<div x-data="toastManager()" x-ref="toastContainer" class="fixed top-20 right-6 z-50 space-y-3 w-80">
+  <template x-for="toast in toasts" :key="toast.id">
+    <div
+      x-show="toast.visible"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0 translate-x-8"
+      x-transition:enter-end="opacity-100 translate-x-0"
+      x-transition:leave="transition ease-in duration-200"
+      x-transition:leave-start="opacity-100 translate-x-0"
+      x-transition:leave-end="opacity-0 translate-x-8"
+      class="paper-card p-4 shadow-lg border-l-4"
+      :class="{
+        'border-[var(--paper-success)]': toast.type === 'success',
+        'border-[var(--paper-danger)]': toast.type === 'error',
+        'border-[var(--paper-warning)]': toast.type === 'warning',
+        'border-[var(--paper-info)]': toast.type === 'info'
+      }"
+    >
+      <div class="flex items-start gap-3">
+        <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+          :class="{
+            'bg-[var(--paper-success)]/10 text-[var(--paper-success)]': toast.type === 'success',
+            'bg-[var(--paper-danger)]/10 text-[var(--paper-danger)]': toast.type === 'error',
+            'bg-[var(--paper-warning)]/10 text-[var(--paper-warning)]': toast.type === 'warning',
+            'bg-[var(--paper-info)]/10 text-[var(--paper-info)]': toast.type === 'info'
+          }">
+          <i class="nc-icon"
+            :class="{
+              'nc-check-2': toast.type === 'success',
+              'nc-simple-remove': toast.type === 'error',
+              'nc-alert-circle-i': toast.type === 'warning',
+              'nc-alert-circle-i': toast.type === 'info'
+            }"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-semibold text-sm" x-text="toast.title"></p>
+          <p class="text-xs text-[var(--paper-muted)] mt-0.5" x-text="toast.message"></p>
+        </div>
+        <button @click="removeToast(toast.id)" class="text-[var(--paper-muted)] hover:text-[var(--paper-text)] transition">
+          <i class="nc-icon nc-simple-remove text-xs"></i>
+        </button>
+      </div>
+    </div>
+  </template>
+</div>
+
+<!-- Page Header -->
 <section class="pt-6">
   <div>
     <h1 class="text-2xl font-semibold">Notifications</h1>
-    <p class="paper-muted text-sm">Alerts and system feedback</p>
+    <p class="paper-muted text-sm">Alerts, toasts, and modal dialogs for user feedback</p>
   </div>
-  <div class="mt-6 space-y-4">
-    <div class="paper-alert paper-alert-info">Info alert: new users are onboarding faster than last week.</div>
-    <div class="paper-alert paper-alert-success">Success alert: billing migrations finished successfully.</div>
-    <div class="paper-alert paper-alert-warning">Warning alert: storage is reaching 80% of the quota.</div>
-    <div class="paper-alert paper-alert-danger">Danger alert: payment retries failed for 3 customers.</div>
+</section>
+
+<!-- Live Demo Section -->
+<section class="mt-8">
+  <div class="paper-card">
+    <div class="paper-card-header">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+          <i class="nc-icon nc-button-play text-[var(--paper-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Live Demo</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Click buttons to trigger notifications</p>
+        </div>
+      </div>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6">
+        <p class="paper-label mb-4">Toast Notifications</p>
+        <div class="flex flex-wrap gap-3">
+          <button @click="$dispatch('show-toast', {type: 'success', title: 'Success!', message: 'Your changes have been saved successfully.'})" class="paper-btn paper-btn-success">
+            <i class="nc-icon nc-check-2 mr-2"></i> Success Toast
+          </button>
+          <button @click="$dispatch('show-toast', {type: 'error', title: 'Error!', message: 'Something went wrong. Please try again.'})" class="paper-btn paper-btn-danger">
+            <i class="nc-icon nc-simple-remove mr-2"></i> Error Toast
+          </button>
+          <button @click="$dispatch('show-toast', {type: 'warning', title: 'Warning!', message: 'Your session will expire in 5 minutes.'})" class="paper-btn paper-btn-warning">
+            <i class="nc-icon nc-alert-circle-i mr-2"></i> Warning Toast
+          </button>
+          <button @click="$dispatch('show-toast', {type: 'info', title: 'Info', message: 'A new version is available for download.'})" class="paper-btn paper-btn-info">
+            <i class="nc-icon nc-alert-circle-i mr-2"></i> Info Toast
+          </button>
+        </div>
+
+        <p class="paper-label mb-4 mt-8">Modal Dialogs</p>
+        <div class="flex flex-wrap gap-3" x-data="{ confirmModal: false, successModal: false, deleteModal: false }">
+          <button @click="confirmModal = true" class="paper-btn paper-btn-primary">
+            <i class="nc-icon nc-alert-circle-i mr-2"></i> Confirm Dialog
+          </button>
+          <button @click="successModal = true" class="paper-btn paper-btn-success">
+            <i class="nc-icon nc-check-2 mr-2"></i> Success Dialog
+          </button>
+          <button @click="deleteModal = true" class="paper-btn paper-btn-outline-danger">
+            <i class="nc-icon nc-simple-remove mr-2"></i> Delete Dialog
+          </button>
+
+          <!-- Confirm Modal -->
+          <div x-show="confirmModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4" @keydown.escape.window="confirmModal = false">
+            <div class="fixed inset-0 bg-black/50" x-show="confirmModal" x-transition.opacity @click="confirmModal = false"></div>
+            <div class="relative paper-card w-full max-w-md p-6 shadow-2xl" x-show="confirmModal" x-transition>
+              <div class="text-center">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+                  <i class="nc-icon nc-alert-circle-i text-3xl text-[var(--paper-info)]"></i>
+                </div>
+                <h3 class="mt-4 text-xl font-semibold">Confirm Action</h3>
+                <p class="mt-2 text-sm text-[var(--paper-muted)]">Are you sure you want to proceed with this action? This cannot be undone.</p>
+                <div class="mt-6 flex justify-center gap-3">
+                  <button @click="confirmModal = false" class="paper-btn paper-btn-outline-secondary">Cancel</button>
+                  <button @click="confirmModal = false; $dispatch('show-toast', {type: 'success', title: 'Confirmed!', message: 'Action completed successfully.'})" class="paper-btn paper-btn-primary">Confirm</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Success Modal -->
+          <div x-show="successModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4" @keydown.escape.window="successModal = false">
+            <div class="fixed inset-0 bg-black/50" x-show="successModal" x-transition.opacity @click="successModal = false"></div>
+            <div class="relative paper-card w-full max-w-md p-6 shadow-2xl" x-show="successModal" x-transition>
+              <div class="text-center">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+                  <i class="nc-icon nc-check-2 text-3xl text-[var(--paper-success)]"></i>
+                </div>
+                <h3 class="mt-4 text-xl font-semibold">Success!</h3>
+                <p class="mt-2 text-sm text-[var(--paper-muted)]">Your operation has been completed successfully. You can now continue with your work.</p>
+                <div class="mt-6">
+                  <button @click="successModal = false" class="paper-btn paper-btn-success">Continue</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delete Modal -->
+          <div x-show="deleteModal" x-cloak class="fixed inset-0 z-50 flex items-center justify-center p-4" @keydown.escape.window="deleteModal = false">
+            <div class="fixed inset-0 bg-black/50" x-show="deleteModal" x-transition.opacity @click="deleteModal = false"></div>
+            <div class="relative paper-card w-full max-w-md p-6 shadow-2xl" x-show="deleteModal" x-transition>
+              <div class="text-center">
+                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[var(--paper-danger)]/10">
+                  <i class="nc-icon nc-simple-remove text-3xl text-[var(--paper-danger)]"></i>
+                </div>
+                <h3 class="mt-4 text-xl font-semibold">Delete Item?</h3>
+                <p class="mt-2 text-sm text-[var(--paper-muted)]">This action is permanent and cannot be reversed. All associated data will be lost.</p>
+                <div class="mt-6 flex justify-center gap-3">
+                  <button @click="deleteModal = false" class="paper-btn paper-btn-outline-secondary">Cancel</button>
+                  <button @click="deleteModal = false; $dispatch('show-toast', {type: 'success', title: 'Deleted!', message: 'Item has been removed.'})" class="paper-btn paper-btn-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Alert Banners -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+          <i class="nc-icon nc-bell-55 text-[var(--paper-info)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Alert Banners</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Static notification banners</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4 space-y-4">
+        <div class="paper-alert paper-alert-primary flex items-center gap-3">
+          <i class="nc-icon nc-bell-55"></i>
+          <span>Primary alert: A new feature has been added to your dashboard.</span>
+        </div>
+        <div class="paper-alert paper-alert-info flex items-center gap-3">
+          <i class="nc-icon nc-alert-circle-i"></i>
+          <span>Info alert: New users are onboarding faster than last week.</span>
+        </div>
+        <div class="paper-alert paper-alert-success flex items-center gap-3">
+          <i class="nc-icon nc-check-2"></i>
+          <span>Success alert: Billing migrations finished successfully.</span>
+        </div>
+        <div class="paper-alert paper-alert-warning flex items-center gap-3">
+          <i class="nc-icon nc-alert-circle-i"></i>
+          <span>Warning alert: Storage is reaching 80% of the quota.</span>
+        </div>
+        <div class="paper-alert paper-alert-danger flex items-center gap-3">
+          <i class="nc-icon nc-simple-remove"></i>
+          <span>Danger alert: Payment retries failed for 3 customers.</span>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;div class="paper-alert paper-alert-primary flex items-center gap-3"&gt;
+  &lt;i class="nc-icon nc-bell-55"&gt;&lt;/i&gt;
+  &lt;span&gt;Primary alert message&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="paper-alert paper-alert-success"&gt;Success message&lt;/div&gt;
+&lt;div class="paper-alert paper-alert-info"&gt;Info message&lt;/div&gt;
+&lt;div class="paper-alert paper-alert-warning"&gt;Warning message&lt;/div&gt;
+&lt;div class="paper-alert paper-alert-danger"&gt;Danger message&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dismissible Alerts -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false, alerts: {a1: true, a2: true, a3: true, a4: true} }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+          <i class="nc-icon nc-simple-remove text-[var(--paper-success)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Dismissible Alerts</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Alerts with close button</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4 space-y-4">
+        <div x-show="alerts.a1" x-transition class="paper-alert paper-alert-info flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <i class="nc-icon nc-alert-circle-i"></i>
+            <span>Click the X to dismiss this notification.</span>
+          </div>
+          <button @click="alerts.a1 = false" class="hover:opacity-70 transition">
+            <i class="nc-icon nc-simple-remove"></i>
+          </button>
+        </div>
+        <div x-show="alerts.a2" x-transition class="paper-alert paper-alert-success flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <i class="nc-icon nc-check-2"></i>
+            <span>Profile updated successfully!</span>
+          </div>
+          <button @click="alerts.a2 = false" class="hover:opacity-70 transition">
+            <i class="nc-icon nc-simple-remove"></i>
+          </button>
+        </div>
+        <div x-show="alerts.a3" x-transition class="paper-alert paper-alert-warning flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <i class="nc-icon nc-alert-circle-i"></i>
+            <span>Your trial expires in 3 days.</span>
+          </div>
+          <button @click="alerts.a3 = false" class="hover:opacity-70 transition">
+            <i class="nc-icon nc-simple-remove"></i>
+          </button>
+        </div>
+        <div x-show="alerts.a4" x-transition class="paper-alert paper-alert-danger flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <i class="nc-icon nc-simple-remove"></i>
+            <span>Connection lost. Retrying...</span>
+          </div>
+          <button @click="alerts.a4 = false" class="hover:opacity-70 transition">
+            <i class="nc-icon nc-simple-remove"></i>
+          </button>
+        </div>
+        <button x-show="!alerts.a1 || !alerts.a2 || !alerts.a3 || !alerts.a4" @click="alerts = {a1: true, a2: true, a3: true, a4: true}" class="paper-btn paper-btn-sm paper-btn-outline-primary">
+          Reset Alerts
+        </button>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;div x-data="{ show: true }"&gt;
+  &lt;div x-show="show" x-transition class="paper-alert paper-alert-info flex items-center justify-between"&gt;
+    &lt;div class="flex items-center gap-3"&gt;
+      &lt;i class="nc-icon nc-alert-circle-i"&gt;&lt;/i&gt;
+      &lt;span&gt;Dismissible alert message&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;button @click="show = false" class="hover:opacity-70"&gt;
+      &lt;i class="nc-icon nc-simple-remove"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Alerts with Actions -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-warning)]/10">
+          <i class="nc-icon nc-tap-01 text-[var(--paper-warning)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Alerts with Actions</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Alerts with buttons or links</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4 space-y-4">
+        <!-- Update available -->
+        <div class="rounded-xl border border-[var(--paper-info)] bg-[var(--paper-info)]/5 p-4">
+          <div class="flex items-start gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+              <i class="nc-icon nc-cloud-download-93 text-[var(--paper-info)]"></i>
+            </div>
+            <div class="flex-1">
+              <p class="font-semibold">Update Available</p>
+              <p class="text-sm text-[var(--paper-muted)] mt-1">A new version (v2.4.0) is ready to install with bug fixes and new features.</p>
+              <div class="flex gap-2 mt-3">
+                <button class="paper-btn paper-btn-sm paper-btn-info">Update Now</button>
+                <button class="paper-btn paper-btn-sm paper-btn-outline-secondary">Later</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subscription warning -->
+        <div class="rounded-xl border border-[var(--paper-warning)] bg-[var(--paper-warning)]/5 p-4">
+          <div class="flex items-start gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--paper-warning)]/10">
+              <i class="nc-icon nc-alert-circle-i text-[var(--paper-warning)]"></i>
+            </div>
+            <div class="flex-1">
+              <p class="font-semibold">Subscription Expiring</p>
+              <p class="text-sm text-[var(--paper-muted)] mt-1">Your Pro subscription will expire in 7 days. Renew now to avoid service interruption.</p>
+              <div class="flex gap-2 mt-3">
+                <button class="paper-btn paper-btn-sm paper-btn-warning">Renew Subscription</button>
+                <a href="#" class="paper-btn paper-btn-sm paper-btn-link">View Plans</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error with retry -->
+        <div class="rounded-xl border border-[var(--paper-danger)] bg-[var(--paper-danger)]/5 p-4">
+          <div class="flex items-start gap-4">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--paper-danger)]/10">
+              <i class="nc-icon nc-simple-remove text-[var(--paper-danger)]"></i>
+            </div>
+            <div class="flex-1">
+              <p class="font-semibold">Sync Failed</p>
+              <p class="text-sm text-[var(--paper-muted)] mt-1">Unable to sync your data with the server. Please check your connection and try again.</p>
+              <div class="flex gap-2 mt-3">
+                <button class="paper-btn paper-btn-sm paper-btn-danger">Retry</button>
+                <button class="paper-btn paper-btn-sm paper-btn-outline-secondary">Dismiss</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;div class="rounded-xl border border-[var(--paper-info)] bg-[var(--paper-info)]/5 p-4"&gt;
+  &lt;div class="flex items-start gap-4"&gt;
+    &lt;div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--paper-info)]/10"&gt;
+      &lt;i class="nc-icon nc-cloud-download-93 text-[var(--paper-info)]"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class="flex-1"&gt;
+      &lt;p class="font-semibold"&gt;Update Available&lt;/p&gt;
+      &lt;p class="text-sm text-[var(--paper-muted)] mt-1"&gt;Description text...&lt;/p&gt;
+      &lt;div class="flex gap-2 mt-3"&gt;
+        &lt;button class="paper-btn paper-btn-sm paper-btn-info"&gt;Action&lt;/button&gt;
+        &lt;button class="paper-btn paper-btn-sm paper-btn-outline-secondary"&gt;Cancel&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Toast Styles -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-danger)]/10">
+          <i class="nc-icon nc-bell-55 text-[var(--paper-danger)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Toast Styles</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Floating notification designs</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Success toast -->
+          <div class="paper-card p-4 shadow-lg border-l-4 border-[var(--paper-success)]">
+            <div class="flex items-start gap-3">
+              <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--paper-success)]/10 text-[var(--paper-success)]">
+                <i class="nc-icon nc-check-2"></i>
+              </div>
+              <div class="flex-1">
+                <p class="font-semibold text-sm">Success!</p>
+                <p class="text-xs text-[var(--paper-muted)]">Your changes have been saved.</p>
+              </div>
+              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]">
+                <i class="nc-icon nc-simple-remove text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Error toast -->
+          <div class="paper-card p-4 shadow-lg border-l-4 border-[var(--paper-danger)]">
+            <div class="flex items-start gap-3">
+              <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--paper-danger)]/10 text-[var(--paper-danger)]">
+                <i class="nc-icon nc-simple-remove"></i>
+              </div>
+              <div class="flex-1">
+                <p class="font-semibold text-sm">Error!</p>
+                <p class="text-xs text-[var(--paper-muted)]">Something went wrong.</p>
+              </div>
+              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]">
+                <i class="nc-icon nc-simple-remove text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Warning toast -->
+          <div class="paper-card p-4 shadow-lg border-l-4 border-[var(--paper-warning)]">
+            <div class="flex items-start gap-3">
+              <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--paper-warning)]/10 text-[var(--paper-warning)]">
+                <i class="nc-icon nc-alert-circle-i"></i>
+              </div>
+              <div class="flex-1">
+                <p class="font-semibold text-sm">Warning!</p>
+                <p class="text-xs text-[var(--paper-muted)]">Session expires in 5 min.</p>
+              </div>
+              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]">
+                <i class="nc-icon nc-simple-remove text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Info toast -->
+          <div class="paper-card p-4 shadow-lg border-l-4 border-[var(--paper-info)]">
+            <div class="flex items-start gap-3">
+              <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--paper-info)]/10 text-[var(--paper-info)]">
+                <i class="nc-icon nc-alert-circle-i"></i>
+              </div>
+              <div class="flex-1">
+                <p class="font-semibold text-sm">Info</p>
+                <p class="text-xs text-[var(--paper-muted)]">New update available.</p>
+              </div>
+              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]">
+                <i class="nc-icon nc-simple-remove text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Toast notification --&gt;
+&lt;div class="paper-card p-4 shadow-lg border-l-4 border-[var(--paper-success)]"&gt;
+  &lt;div class="flex items-start gap-3"&gt;
+    &lt;div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--paper-success)]/10 text-[var(--paper-success)]"&gt;
+      &lt;i class="nc-icon nc-check-2"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class="flex-1"&gt;
+      &lt;p class="font-semibold text-sm"&gt;Success!&lt;/p&gt;
+      &lt;p class="text-xs text-[var(--paper-muted)]"&gt;Message text&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;button class="text-[var(--paper-muted)]"&gt;
+      &lt;i class="nc-icon nc-simple-remove text-xs"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal Dialogs -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+          <i class="nc-icon nc-app text-[var(--paper-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Modal Dialog Patterns</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Common dialog designs</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Success dialog preview -->
+          <div class="paper-card p-6 shadow-lg">
+            <div class="text-center">
+              <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+                <i class="nc-icon nc-check-2 text-2xl text-[var(--paper-success)]"></i>
+              </div>
+              <h4 class="mt-3 font-semibold">Success!</h4>
+              <p class="mt-1 text-xs text-[var(--paper-muted)]">Operation completed.</p>
+              <button class="paper-btn paper-btn-sm paper-btn-success mt-4">Continue</button>
+            </div>
+          </div>
+
+          <!-- Confirm dialog preview -->
+          <div class="paper-card p-6 shadow-lg">
+            <div class="text-center">
+              <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+                <i class="nc-icon nc-alert-circle-i text-2xl text-[var(--paper-info)]"></i>
+              </div>
+              <h4 class="mt-3 font-semibold">Confirm?</h4>
+              <p class="mt-1 text-xs text-[var(--paper-muted)]">Are you sure?</p>
+              <div class="flex gap-2 justify-center mt-4">
+                <button class="paper-btn paper-btn-sm paper-btn-outline-secondary">No</button>
+                <button class="paper-btn paper-btn-sm paper-btn-primary">Yes</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delete dialog preview -->
+          <div class="paper-card p-6 shadow-lg">
+            <div class="text-center">
+              <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[var(--paper-danger)]/10">
+                <i class="nc-icon nc-simple-remove text-2xl text-[var(--paper-danger)]"></i>
+              </div>
+              <h4 class="mt-3 font-semibold">Delete?</h4>
+              <p class="mt-1 text-xs text-[var(--paper-muted)]">This cannot be undone.</p>
+              <div class="flex gap-2 justify-center mt-4">
+                <button class="paper-btn paper-btn-sm paper-btn-outline-secondary">Cancel</button>
+                <button class="paper-btn paper-btn-sm paper-btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Modal with Alpine.js --&gt;
+&lt;div x-data="{ open: false }"&gt;
+  &lt;button @click="open = true"&gt;Open Modal&lt;/button&gt;
+
+  &lt;div x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center"&gt;
+    &lt;!-- Backdrop --&gt;
+    &lt;div class="fixed inset-0 bg-black/50" @click="open = false"&gt;&lt;/div&gt;
+
+    &lt;!-- Modal content --&gt;
+    &lt;div class="relative paper-card w-full max-w-md p-6 shadow-2xl" x-transition&gt;
+      &lt;div class="text-center"&gt;
+        &lt;div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[var(--paper-success)]/10"&gt;
+          &lt;i class="nc-icon nc-check-2 text-3xl text-[var(--paper-success)]"&gt;&lt;/i&gt;
+        &lt;/div&gt;
+        &lt;h3 class="mt-4 text-xl font-semibold"&gt;Success!&lt;/h3&gt;
+        &lt;p class="mt-2 text-sm text-[var(--paper-muted)]"&gt;Your message here.&lt;/p&gt;
+        &lt;button @click="open = false" class="paper-btn paper-btn-success mt-6"&gt;
+          Continue
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Notification Positions -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+          <i class="nc-icon nc-layout-11 text-[var(--paper-success)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Toast Positions</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Different placement options</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="relative h-64 bg-white rounded-xl border border-[var(--paper-border)] overflow-hidden">
+          <!-- Visual representation of positions -->
+          <div class="absolute top-2 left-2 text-[10px] bg-[var(--paper-info)] text-white px-2 py-1 rounded">top-left</div>
+          <div class="absolute top-2 left-1/2 -translate-x-1/2 text-[10px] bg-[var(--paper-info)] text-white px-2 py-1 rounded">top-center</div>
+          <div class="absolute top-2 right-2 text-[10px] bg-[var(--paper-primary)] text-white px-2 py-1 rounded font-semibold">top-right (default)</div>
+          <div class="absolute bottom-2 left-2 text-[10px] bg-[var(--paper-info)] text-white px-2 py-1 rounded">bottom-left</div>
+          <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] bg-[var(--paper-info)] text-white px-2 py-1 rounded">bottom-center</div>
+          <div class="absolute bottom-2 right-2 text-[10px] bg-[var(--paper-info)] text-white px-2 py-1 rounded">bottom-right</div>
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]">Page Content</div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Toast container positions --&gt;
+
+&lt;!-- Top Right (recommended) --&gt;
+&lt;div class="fixed top-4 right-4 z-50"&gt;...&lt;/div&gt;
+
+&lt;!-- Top Left --&gt;
+&lt;div class="fixed top-4 left-4 z-50"&gt;...&lt;/div&gt;
+
+&lt;!-- Top Center --&gt;
+&lt;div class="fixed top-4 left-1/2 -translate-x-1/2 z-50"&gt;...&lt;/div&gt;
+
+&lt;!-- Bottom Right --&gt;
+&lt;div class="fixed bottom-4 right-4 z-50"&gt;...&lt;/div&gt;
+
+&lt;!-- Bottom Left --&gt;
+&lt;div class="fixed bottom-4 left-4 z-50"&gt;...&lt;/div&gt;
+
+&lt;!-- Bottom Center --&gt;
+&lt;div class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50"&gt;...&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JavaScript Reference -->
+<section class="mt-12 pt-8 border-t border-[var(--paper-border)]">
+  <h2 class="text-xl font-semibold mb-6">Toast Manager Code</h2>
+  <div class="paper-card">
+    <div class="paper-card-body">
+      <p class="text-sm text-[var(--paper-muted)] mb-4">Add this JavaScript to enable the toast notification system used in the Live Demo above:</p>
+      <pre class="paper-code-block text-xs">// Toast Manager for Alpine.js
+function toastManager() {
+  return {
+    toasts: [],
+    init() {
+      window.addEventListener('show-toast', (e) => {
+        this.addToast(e.detail);
+      });
+    },
+    addToast({ type = 'info', title = '', message = '', duration = 4000 }) {
+      const id = Date.now();
+      this.toasts.push({ id, type, title, message, visible: true });
+
+      setTimeout(() => {
+        this.removeToast(id);
+      }, duration);
+    },
+    removeToast(id) {
+      const toast = this.toasts.find(t => t.id === id);
+      if (toast) {
+        toast.visible = false;
+        setTimeout(() => {
+          this.toasts = this.toasts.filter(t => t.id !== id);
+        }, 300);
+      }
+    }
+  };
+}
+
+// Usage: Dispatch event from anywhere
+// $dispatch('show-toast', { type: 'success', title: 'Done!', message: 'Saved.' });</pre>
+    </div>
   </div>
 </section>
 

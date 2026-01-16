@@ -55,11 +55,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -214,11 +241,657 @@
 <section class="pt-6">
   <div>
     <h1 class="text-2xl font-semibold">Regular Forms</h1>
-    <p class="paper-muted text-sm">Standard input layouts</p>
+    <p class="paper-muted text-sm">Standard input layouts and form components</p>
   </div>
-  <div class="mt-6 paper-card">
+
+  <!-- Text Inputs -->
+  <div class="mt-8 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
+        <i class="nc-icon nc-single-02"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Text Inputs</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Standard text input types</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
     <div class="paper-card-body">
-      <form class="space-y-5">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-4 md:grid-cols-2">
+          <div>
+            <label class="paper-label">Text</label>
+            <input class="paper-input" type="text" placeholder="Enter text...">
+          </div>
+          <div>
+            <label class="paper-label">Email</label>
+            <input class="paper-input" type="email" placeholder="hello@example.com">
+          </div>
+          <div>
+            <label class="paper-label">Password</label>
+            <input class="paper-input" type="password" placeholder="••••••••">
+          </div>
+          <div>
+            <label class="paper-label">Number</label>
+            <input class="paper-input" type="number" placeholder="42">
+          </div>
+          <div>
+            <label class="paper-label">Phone</label>
+            <input class="paper-input" type="tel" placeholder="+1 (555) 000-0000">
+          </div>
+          <div>
+            <label class="paper-label">URL</label>
+            <input class="paper-input" type="url" placeholder="https://example.com">
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;label class="paper-label"&gt;Text&lt;/label&gt;
+&lt;input class="paper-input" type="text" placeholder="Enter text..."&gt;
+
+&lt;label class="paper-label"&gt;Email&lt;/label&gt;
+&lt;input class="paper-input" type="email" placeholder="hello@example.com"&gt;
+
+&lt;label class="paper-label"&gt;Password&lt;/label&gt;
+&lt;input class="paper-input" type="password" placeholder="••••••••"&gt;
+
+&lt;label class="paper-label"&gt;Number&lt;/label&gt;
+&lt;input class="paper-input" type="number" placeholder="42"&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Date & Time Inputs -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)] text-[var(--paper-info)]">
+        <i class="nc-icon nc-calendar-60"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Date & Time Inputs</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Native date and time pickers</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <label class="paper-label">Date</label>
+            <input class="paper-input" type="date">
+          </div>
+          <div>
+            <label class="paper-label">Time</label>
+            <input class="paper-input" type="time">
+          </div>
+          <div>
+            <label class="paper-label">Date & Time</label>
+            <input class="paper-input" type="datetime-local">
+          </div>
+          <div>
+            <label class="paper-label">Month</label>
+            <input class="paper-input" type="month">
+          </div>
+          <div>
+            <label class="paper-label">Week</label>
+            <input class="paper-input" type="week">
+          </div>
+          <div>
+            <label class="paper-label">Color</label>
+            <input class="paper-input h-[42px] p-1" type="color" value="#667eea">
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;input class="paper-input" type="date"&gt;
+&lt;input class="paper-input" type="time"&gt;
+&lt;input class="paper-input" type="datetime-local"&gt;
+&lt;input class="paper-input" type="month"&gt;
+&lt;input class="paper-input" type="week"&gt;
+&lt;input class="paper-input" type="color" value="#667eea"&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Sizes -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(108,117,125,0.15)] text-[var(--paper-muted)]">
+        <i class="nc-icon nc-ruler-pencil"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Input Sizes</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Small, default, and large variants</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="space-y-4 max-w-md">
+          <div>
+            <label class="paper-label">Small</label>
+            <input class="paper-input input-sm" type="text" placeholder="Small input">
+          </div>
+          <div>
+            <label class="paper-label">Default</label>
+            <input class="paper-input" type="text" placeholder="Default input">
+          </div>
+          <div>
+            <label class="paper-label">Large</label>
+            <input class="paper-input input-lg" type="text" placeholder="Large input">
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Small --&gt;
+&lt;input class="paper-input input-sm" type="text" placeholder="Small input"&gt;
+
+&lt;!-- Default --&gt;
+&lt;input class="paper-input" type="text" placeholder="Default input"&gt;
+
+&lt;!-- Large --&gt;
+&lt;input class="paper-input input-lg" type="text" placeholder="Large input"&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input States -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(239,129,87,0.15)] text-[var(--paper-danger)]">
+        <i class="nc-icon nc-settings-gear-65"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Input States</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Disabled, readonly, and focus states</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-4 md:grid-cols-2">
+          <div>
+            <label class="paper-label">Normal</label>
+            <input class="paper-input" type="text" placeholder="Editable input">
+          </div>
+          <div>
+            <label class="paper-label">Disabled</label>
+            <input class="paper-input" type="text" placeholder="Cannot edit" disabled>
+          </div>
+          <div>
+            <label class="paper-label">Readonly</label>
+            <input class="paper-input bg-gray-50" type="text" value="Readonly value" readonly>
+          </div>
+          <div>
+            <label class="paper-label">With helper text</label>
+            <input class="paper-input" type="text" placeholder="Enter username">
+            <p class="mt-1 text-xs text-[var(--paper-muted)]">Must be at least 3 characters long.</p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Normal --&gt;
+&lt;input class="paper-input" type="text" placeholder="Editable input"&gt;
+
+&lt;!-- Disabled --&gt;
+&lt;input class="paper-input" type="text" placeholder="Cannot edit" disabled&gt;
+
+&lt;!-- Readonly --&gt;
+&lt;input class="paper-input bg-gray-50" type="text" value="Readonly value" readonly&gt;
+
+&lt;!-- With helper text --&gt;
+&lt;input class="paper-input" type="text" placeholder="Enter username"&gt;
+&lt;p class="mt-1 text-xs text-[var(--paper-muted)]"&gt;Must be at least 3 characters.&lt;/p&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Labels -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
+        <i class="nc-icon nc-tag-content"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Floating Labels</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Labels that float on focus</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-6 md:grid-cols-2 max-w-2xl">
+          <div class="relative">
+            <input type="text" id="float-name" placeholder=" " class="peer paper-input pt-5">
+            <label for="float-name" class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)] transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-[var(--paper-primary)] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs">Full Name</label>
+          </div>
+          <div class="relative">
+            <input type="email" id="float-email" placeholder=" " class="peer paper-input pt-5">
+            <label for="float-email" class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)] transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs peer-focus:text-[var(--paper-primary)] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs">Email Address</label>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;div class="relative"&gt;
+  &lt;input type="text" id="float-name" placeholder=" "
+    class="peer paper-input pt-5"&gt;
+  &lt;label for="float-name"
+    class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]
+           transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm
+           peer-focus:top-2 peer-focus:text-xs peer-focus:text-[var(--paper-primary)]
+           peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs"&gt;
+    Full Name
+  &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Select Dropdowns -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,187,106,0.15)] text-[var(--paper-success)]">
+        <i class="nc-icon nc-bullet-list-67"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Select Dropdowns</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Single and multiple selection</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-4 md:grid-cols-2">
+          <div>
+            <label class="paper-label">Single Select</label>
+            <select class="paper-select">
+              <option value="">Choose an option...</option>
+              <option>Designer</option>
+              <option>Engineer</option>
+              <option>Product Manager</option>
+              <option>Marketing</option>
+            </select>
+          </div>
+          <div>
+            <label class="paper-label">With optgroups</label>
+            <select class="paper-select">
+              <optgroup label="Design">
+                <option>UI Designer</option>
+                <option>UX Designer</option>
+              </optgroup>
+              <optgroup label="Engineering">
+                <option>Frontend</option>
+                <option>Backend</option>
+                <option>DevOps</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label class="paper-label">Multiple Select</label>
+            <select class="paper-select" multiple size="4">
+              <option>React</option>
+              <option>Vue</option>
+              <option>Angular</option>
+              <option>Svelte</option>
+              <option>Alpine.js</option>
+            </select>
+            <p class="mt-1 text-xs text-[var(--paper-muted)]">Hold Ctrl/Cmd to select multiple options.</p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Single Select --&gt;
+&lt;select class="paper-select"&gt;
+  &lt;option value=""&gt;Choose an option...&lt;/option&gt;
+  &lt;option&gt;Designer&lt;/option&gt;
+  &lt;option&gt;Engineer&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;!-- With Optgroups --&gt;
+&lt;select class="paper-select"&gt;
+  &lt;optgroup label="Design"&gt;
+    &lt;option&gt;UI Designer&lt;/option&gt;
+    &lt;option&gt;UX Designer&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;
+
+&lt;!-- Multiple Select --&gt;
+&lt;select class="paper-select" multiple size="4"&gt;
+  &lt;option&gt;React&lt;/option&gt;
+  &lt;option&gt;Vue&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Textareas -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false, charCount: 0 }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)] text-[var(--paper-info)]">
+        <i class="nc-icon nc-paper"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Textareas</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Multi-line text inputs</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-4 md:grid-cols-2">
+          <div>
+            <label class="paper-label">Default</label>
+            <textarea class="paper-textarea" rows="4" placeholder="Enter your message..."></textarea>
+          </div>
+          <div>
+            <label class="paper-label">Auto-resize (Alpine.js)</label>
+            <textarea
+              class="paper-textarea resize-none overflow-hidden"
+              rows="2"
+              placeholder="Type to expand..."
+              x-data
+              @input="$el.style.height = 'auto'; $el.style.height = $el.scrollHeight + 'px'"
+            ></textarea>
+          </div>
+          <div class="md:col-span-2">
+            <label class="paper-label">With character counter</label>
+            <textarea
+              class="paper-textarea"
+              rows="3"
+              maxlength="200"
+              placeholder="Maximum 200 characters..."
+              @input="charCount = $el.value.length"
+            ></textarea>
+            <p class="mt-1 text-xs text-right" :class="charCount > 180 ? 'text-[var(--paper-danger)]' : 'text-[var(--paper-muted)]'">
+              <span x-text="charCount"></span>/200
+            </p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Default --&gt;
+&lt;textarea class="paper-textarea" rows="4" placeholder="Enter message..."&gt;&lt;/textarea&gt;
+
+&lt;!-- Auto-resize --&gt;
+&lt;textarea
+  class="paper-textarea resize-none overflow-hidden"
+  rows="2"
+  @input="$el.style.height = 'auto'; $el.style.height = $el.scrollHeight + 'px'"
+&gt;&lt;/textarea&gt;
+
+&lt;!-- With character counter --&gt;
+&lt;textarea
+  class="paper-textarea"
+  maxlength="200"
+  @input="charCount = $el.value.length"
+&gt;&lt;/textarea&gt;
+&lt;p&gt;&lt;span x-text="charCount"&gt;&lt;/span&gt;/200&lt;/p&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkboxes -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
+        <i class="nc-icon nc-check-2"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Checkboxes</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Boolean selections</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="space-y-3">
+            <p class="text-sm font-medium text-[var(--paper-text)]">Default Checkboxes</p>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-[var(--paper-primary)] focus:ring-[var(--paper-primary)]" checked>
+              <span class="text-sm">Checked option</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-[var(--paper-primary)] focus:ring-[var(--paper-primary)]">
+              <span class="text-sm">Unchecked option</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer opacity-60">
+              <input type="checkbox" class="h-4 w-4 rounded border-gray-300" disabled checked>
+              <span class="text-sm">Disabled checked</span>
+            </label>
+          </div>
+          <div class="space-y-3">
+            <p class="text-sm font-medium text-[var(--paper-text)]">Custom Styled</p>
+            <label class="flex items-start gap-3 cursor-pointer" x-data="{ checked: true }" @click="checked = !checked">
+              <div class="relative flex items-center justify-center h-5 w-5 shrink-0 rounded border-2 transition-colors" :class="checked ? 'border-[var(--paper-primary)] bg-[var(--paper-primary)]' : 'border-gray-300 bg-white'">
+                <svg x-show="checked" class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <span class="text-sm font-medium">Email notifications</span>
+                <p class="text-xs text-[var(--paper-muted)]">Receive email updates about your account.</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer" x-data="{ checked: false }" @click="checked = !checked">
+              <div class="relative flex items-center justify-center h-5 w-5 shrink-0 rounded border-2 transition-colors" :class="checked ? 'border-[var(--paper-primary)] bg-[var(--paper-primary)]' : 'border-gray-300 bg-white'">
+                <svg x-show="checked" class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <span class="text-sm font-medium">SMS notifications</span>
+                <p class="text-xs text-[var(--paper-muted)]">Get text messages for urgent alerts.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Default Checkbox --&gt;
+&lt;label class="flex items-center gap-3 cursor-pointer"&gt;
+  &lt;input type="checkbox" class="h-4 w-4 rounded border-gray-300
+         text-[var(--paper-primary)] focus:ring-[var(--paper-primary)]" checked&gt;
+  &lt;span class="text-sm"&gt;Checked option&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- With description --&gt;
+&lt;label class="flex items-start gap-3 cursor-pointer"&gt;
+  &lt;input type="checkbox" class="h-4 w-4 mt-0.5 rounded border-gray-300"&gt;
+  &lt;div&gt;
+    &lt;span class="text-sm font-medium"&gt;Email notifications&lt;/span&gt;
+    &lt;p class="text-xs text-[var(--paper-muted)]"&gt;Receive email updates.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/label&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Radio Buttons -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false, selected: 'option1' }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(239,129,87,0.15)] text-[var(--paper-danger)]">
+        <i class="nc-icon nc-circle-10"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Radio Buttons</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Single selection from multiple options</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid gap-6 md:grid-cols-2">
+          <div class="space-y-3">
+            <p class="text-sm font-medium text-[var(--paper-text)]">Default Radios</p>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="radio" name="plan" class="h-4 w-4 border-gray-300 text-[var(--paper-primary)] focus:ring-[var(--paper-primary)]" checked>
+              <span class="text-sm">Free plan</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="radio" name="plan" class="h-4 w-4 border-gray-300 text-[var(--paper-primary)] focus:ring-[var(--paper-primary)]">
+              <span class="text-sm">Pro plan</span>
+            </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="radio" name="plan" class="h-4 w-4 border-gray-300 text-[var(--paper-primary)] focus:ring-[var(--paper-primary)]">
+              <span class="text-sm">Enterprise plan</span>
+            </label>
+          </div>
+          <div class="space-y-3">
+            <p class="text-sm font-medium text-[var(--paper-text)]">Card Selection</p>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 p-3 rounded-lg border-2 cursor-pointer transition-colors" :class="selected === 'option1' ? 'border-[var(--paper-primary)] bg-[rgba(102,126,234,0.05)]' : 'border-gray-200 hover:border-gray-300'">
+                <input type="radio" name="card-plan" value="option1" x-model="selected" class="h-4 w-4 border-gray-300 text-[var(--paper-primary)]">
+                <div>
+                  <span class="text-sm font-medium">Startup</span>
+                  <p class="text-xs text-[var(--paper-muted)]">$29/month</p>
+                </div>
+              </label>
+              <label class="flex items-center gap-3 p-3 rounded-lg border-2 cursor-pointer transition-colors" :class="selected === 'option2' ? 'border-[var(--paper-primary)] bg-[rgba(102,126,234,0.05)]' : 'border-gray-200 hover:border-gray-300'">
+                <input type="radio" name="card-plan" value="option2" x-model="selected" class="h-4 w-4 border-gray-300 text-[var(--paper-primary)]">
+                <div>
+                  <span class="text-sm font-medium">Business</span>
+                  <p class="text-xs text-[var(--paper-muted)]">$99/month</p>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Default Radio --&gt;
+&lt;label class="flex items-center gap-3 cursor-pointer"&gt;
+  &lt;input type="radio" name="plan" class="h-4 w-4 border-gray-300
+         text-[var(--paper-primary)]" checked&gt;
+  &lt;span class="text-sm"&gt;Free plan&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- Card Selection with Alpine.js --&gt;
+&lt;label class="flex items-center gap-3 p-3 rounded-lg border-2 cursor-pointer"
+  :class="selected === 'option1' ? 'border-[var(--paper-primary)]' : 'border-gray-200'"&gt;
+  &lt;input type="radio" name="card-plan" value="option1" x-model="selected"&gt;
+  &lt;div&gt;
+    &lt;span class="text-sm font-medium"&gt;Startup&lt;/span&gt;
+    &lt;p class="text-xs text-[var(--paper-muted)]"&gt;$29/month&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/label&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Layouts -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,187,106,0.15)] text-[var(--paper-success)]">
+        <i class="nc-icon nc-layout-11"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Form Layouts</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Vertical, horizontal, and inline arrangements</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="space-y-8">
+        <!-- Vertical -->
+        <div>
+          <p class="text-sm font-semibold mb-3">Vertical (Default)</p>
+          <div class="rounded-xl bg-[var(--paper-bg)] p-6">
+            <form class="max-w-md space-y-4">
+              <div>
+                <label class="paper-label">Email</label>
+                <input class="paper-input" type="email" placeholder="you@example.com">
+              </div>
+              <div>
+                <label class="paper-label">Password</label>
+                <input class="paper-input" type="password" placeholder="••••••••">
+              </div>
+              <button class="paper-btn paper-btn-primary" type="button">Sign in</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Horizontal -->
+        <div>
+          <p class="text-sm font-semibold mb-3">Horizontal</p>
+          <div class="rounded-xl bg-[var(--paper-bg)] p-6">
+            <form class="space-y-4">
+              <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                <label class="paper-label md:w-32 md:text-right md:mb-0">Email</label>
+                <input class="paper-input md:flex-1 max-w-md" type="email" placeholder="you@example.com">
+              </div>
+              <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                <label class="paper-label md:w-32 md:text-right md:mb-0">Password</label>
+                <input class="paper-input md:flex-1 max-w-md" type="password" placeholder="••••••••">
+              </div>
+              <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                <div class="md:w-32"></div>
+                <button class="paper-btn paper-btn-primary" type="button">Sign in</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Inline -->
+        <div>
+          <p class="text-sm font-semibold mb-3">Inline</p>
+          <div class="rounded-xl bg-[var(--paper-bg)] p-6">
+            <form class="flex flex-wrap items-end gap-3">
+              <div>
+                <label class="paper-label">Email</label>
+                <input class="paper-input" type="email" placeholder="you@example.com">
+              </div>
+              <div>
+                <label class="paper-label">Password</label>
+                <input class="paper-input" type="password" placeholder="••••••••">
+              </div>
+              <button class="paper-btn paper-btn-primary" type="button">Sign in</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Vertical (default) --&gt;
+&lt;form class="space-y-4"&gt;
+  &lt;div&gt;
+    &lt;label class="paper-label"&gt;Email&lt;/label&gt;
+    &lt;input class="paper-input" type="email"&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;!-- Horizontal --&gt;
+&lt;form class="space-y-4"&gt;
+  &lt;div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4"&gt;
+    &lt;label class="paper-label md:w-32 md:text-right md:mb-0"&gt;Email&lt;/label&gt;
+    &lt;input class="paper-input md:flex-1 max-w-md" type="email"&gt;
+  &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;!-- Inline --&gt;
+&lt;form class="flex flex-wrap items-end gap-3"&gt;
+  &lt;div&gt;
+    &lt;label class="paper-label"&gt;Email&lt;/label&gt;
+    &lt;input class="paper-input" type="email"&gt;
+  &lt;/div&gt;
+  &lt;button class="paper-btn paper-btn-primary"&gt;Sign in&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Complete Form Example -->
+  <div class="mt-6 paper-card">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
+        <i class="nc-icon nc-single-copy-04"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Complete Form Example</h2>
+        <p class="text-xs text-[var(--paper-muted)]">All elements combined</p>
+      </div>
+    </div>
+    <div class="paper-card-body">
+      <form class="space-y-6">
         <div class="grid gap-4 md:grid-cols-2">
           <div>
             <label class="paper-label">First name</label>
@@ -234,23 +907,86 @@
           <input class="paper-input" type="email" placeholder="hello@example.com">
         </div>
         <div>
-          <label class="paper-label">Role</label>
+          <label class="paper-label">Department</label>
           <select class="paper-select">
-            <option>Designer</option>
-            <option>Engineer</option>
-            <option>Product</option>
+            <option value="">Select department...</option>
+            <option>Design</option>
+            <option>Engineering</option>
+            <option>Marketing</option>
+            <option>Sales</option>
           </select>
         </div>
         <div>
-          <label class="paper-label">Message</label>
-          <textarea class="paper-textarea" rows="4" placeholder="Share a few notes"></textarea>
+          <label class="paper-label">Bio</label>
+          <textarea class="paper-textarea" rows="4" placeholder="Tell us about yourself..."></textarea>
         </div>
-        <div class="flex items-center gap-2">
-          <input type="checkbox" class="h-4 w-4 rounded border-gray-300" checked>
-          <span class="text-sm text-[var(--paper-muted)]">Subscribe to weekly updates</span>
+        <div class="space-y-3">
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-[var(--paper-primary)]" checked>
+            <span class="text-sm">Subscribe to weekly updates</span>
+          </label>
+          <label class="flex items-center gap-3 cursor-pointer">
+            <input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-[var(--paper-primary)]">
+            <span class="text-sm">Accept terms and conditions</span>
+          </label>
         </div>
-        <button class="paper-btn paper-btn-primary" type="button">Save changes</button>
+        <div class="flex gap-3">
+          <button class="paper-btn paper-btn-primary" type="button">Save changes</button>
+          <button class="paper-btn paper-btn-default" type="button">Cancel</button>
+        </div>
       </form>
+    </div>
+  </div>
+
+  <!-- Quick Reference -->
+  <div class="mt-6 paper-card">
+    <div class="paper-card-header">
+      <h2 class="font-semibold">Quick Reference</h2>
+    </div>
+    <div class="paper-card-body">
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-[var(--paper-border)]">
+              <th class="py-3 px-4 text-left font-semibold">Component</th>
+              <th class="py-3 px-4 text-left font-semibold">Class</th>
+              <th class="py-3 px-4 text-left font-semibold">Description</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[var(--paper-border)]">
+            <tr>
+              <td class="py-3 px-4">Label</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">.paper-label</code></td>
+              <td class="py-3 px-4 text-[var(--paper-muted)]">Form field label</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Input</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">.paper-input</code></td>
+              <td class="py-3 px-4 text-[var(--paper-muted)]">Text input field</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Small Input</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">.paper-input .input-sm</code></td>
+              <td class="py-3 px-4 text-[var(--paper-muted)]">Smaller input variant</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Large Input</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">.paper-input .input-lg</code></td>
+              <td class="py-3 px-4 text-[var(--paper-muted)]">Larger input variant</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Select</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">.paper-select</code></td>
+              <td class="py-3 px-4 text-[var(--paper-muted)]">Dropdown select</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Textarea</td>
+              <td class="py-3 px-4"><code class="text-xs bg-slate-100 px-2 py-1 rounded">.paper-textarea</code></td>
+              <td class="py-3 px-4 text-[var(--paper-muted)]">Multi-line text input</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>

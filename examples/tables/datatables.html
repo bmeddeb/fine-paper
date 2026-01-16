@@ -55,11 +55,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -214,55 +241,635 @@
 <section class="pt-6">
   <div>
     <h1 class="text-2xl font-semibold">DataTables</h1>
-    <p class="paper-muted text-sm">Search and pagination layout</p>
+    <p class="paper-muted text-sm">Interactive tables with search, sort, and pagination</p>
   </div>
-  <div class="mt-6 paper-card">
-    <div class="paper-card-body">
-      <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div class="relative w-full md:w-72">
-          <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-          <input class="paper-input pl-9" type="text" placeholder="Search table">
-        </div>
-        <button class="paper-btn paper-btn-outline" type="button">Export</button>
+
+  <!-- Full Featured DataTable -->
+  <div class="mt-8 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
+        <i class="nc-icon nc-single-copy-04 text-lg text-[var(--paper-primary)]"></i>
       </div>
-      <table class="paper-table mt-6">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Stock</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Paper UI Kit</td>
-            <td>Design</td>
-            <td>$39</td>
-            <td>230</td>
-          </tr>
-          <tr>
-            <td>Dashboard Pro</td>
-            <td>Admin</td>
-            <td>$79</td>
-            <td>124</td>
-          </tr>
-          <tr>
-            <td>Illustration Pack</td>
-            <td>Assets</td>
-            <td>$19</td>
-            <td>322</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="mt-6 flex items-center justify-between text-sm text-[var(--paper-muted)]">
-        <span>Showing 1-3 of 24</span>
-        <div class="flex items-center gap-2">
-          <button class="paper-btn paper-btn-ghost" type="button">Prev</button>
-          <button class="paper-btn paper-btn-outline" type="button">1</button>
-          <button class="paper-btn paper-btn-ghost" type="button">2</button>
-          <button class="paper-btn paper-btn-ghost" type="button">Next</button>
+      <div>
+        <h2 class="font-semibold">Full Featured DataTable</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Search, sort, and paginate with Alpine.js</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4" x-data="{
+        search: '',
+        sortCol: 'name',
+        sortAsc: true,
+        page: 1,
+        perPage: 5,
+        allData: [
+          { id: 1, name: 'Tiger Nixon', position: 'System Architect', office: 'Edinburgh', age: 61, startDate: '2011-04-25', salary: 320800 },
+          { id: 2, name: 'Garrett Winters', position: 'Accountant', office: 'Tokyo', age: 63, startDate: '2011-07-25', salary: 170750 },
+          { id: 3, name: 'Ashton Cox', position: 'Junior Developer', office: 'San Francisco', age: 66, startDate: '2009-01-12', salary: 86000 },
+          { id: 4, name: 'Cedric Kelly', position: 'Senior Developer', office: 'Edinburgh', age: 22, startDate: '2012-03-29', salary: 433060 },
+          { id: 5, name: 'Airi Satou', position: 'Accountant', office: 'Tokyo', age: 33, startDate: '2008-11-28', salary: 162700 },
+          { id: 6, name: 'Brielle Williamson', position: 'Integration Specialist', office: 'New York', age: 61, startDate: '2012-12-02', salary: 372000 },
+          { id: 7, name: 'Herrod Chandler', position: 'Sales Assistant', office: 'San Francisco', age: 59, startDate: '2012-08-06', salary: 137500 },
+          { id: 8, name: 'Rhona Davidson', position: 'Integration Specialist', office: 'Tokyo', age: 55, startDate: '2010-10-14', salary: 327900 },
+          { id: 9, name: 'Colleen Hurst', position: 'Javascript Developer', office: 'San Francisco', age: 39, startDate: '2009-09-15', salary: 205500 },
+          { id: 10, name: 'Sonya Frost', position: 'Software Engineer', office: 'Edinburgh', age: 23, startDate: '2008-12-13', salary: 103600 },
+          { id: 11, name: 'Jena Gaines', position: 'Office Manager', office: 'London', age: 30, startDate: '2008-12-19', salary: 90560 },
+          { id: 12, name: 'Quinn Flynn', position: 'Support Lead', office: 'Edinburgh', age: 22, startDate: '2013-03-03', salary: 342000 }
+        ],
+        get filtered() {
+          let data = this.allData;
+          if (this.search) {
+            const s = this.search.toLowerCase();
+            data = data.filter(r => r.name.toLowerCase().includes(s) || r.position.toLowerCase().includes(s) || r.office.toLowerCase().includes(s));
+          }
+          return data;
+        },
+        get sorted() {
+          return [...this.filtered].sort((a, b) => {
+            let va = a[this.sortCol];
+            let vb = b[this.sortCol];
+            if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
+            if (va < vb) return this.sortAsc ? -1 : 1;
+            if (va > vb) return this.sortAsc ? 1 : -1;
+            return 0;
+          });
+        },
+        get paginated() {
+          const start = (this.page - 1) * this.perPage;
+          return this.sorted.slice(start, start + this.perPage);
+        },
+        get totalPages() { return Math.ceil(this.filtered.length / this.perPage); },
+        get showingFrom() { return this.filtered.length ? (this.page - 1) * this.perPage + 1 : 0; },
+        get showingTo() { return Math.min(this.page * this.perPage, this.filtered.length); },
+        sort(col) {
+          if (this.sortCol === col) { this.sortAsc = !this.sortAsc; }
+          else { this.sortCol = col; this.sortAsc = true; }
+        },
+        formatSalary(n) { return '$' + n.toLocaleString(); }
+      }">
+        <!-- Controls -->
+        <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <label class="text-sm">Show</label>
+            <select x-model.number="perPage" @change="page = 1" class="paper-select py-1.5 pr-8">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="25">25</option>
+            </select>
+            <span class="text-sm">entries</span>
+          </div>
+          <div class="relative w-full md:w-72">
+            <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+            <input x-model="search" @input="page = 1" class="paper-input pl-9" type="text" placeholder="Search...">
+          </div>
         </div>
+
+        <!-- Table -->
+        <div class="overflow-x-auto">
+          <table class="paper-table paper-table-hover min-w-[700px]">
+            <thead>
+              <tr>
+                <th class="cursor-pointer select-none" @click="sort('name')">
+                  <span class="flex items-center gap-1">Name <i class="nc-icon text-xs" :class="sortCol === 'name' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
+                </th>
+                <th class="cursor-pointer select-none" @click="sort('position')">
+                  <span class="flex items-center gap-1">Position <i class="nc-icon text-xs" :class="sortCol === 'position' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
+                </th>
+                <th class="cursor-pointer select-none" @click="sort('office')">
+                  <span class="flex items-center gap-1">Office <i class="nc-icon text-xs" :class="sortCol === 'office' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
+                </th>
+                <th class="cursor-pointer select-none text-right" @click="sort('age')">
+                  <span class="flex items-center justify-end gap-1">Age <i class="nc-icon text-xs" :class="sortCol === 'age' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
+                </th>
+                <th class="cursor-pointer select-none text-right" @click="sort('salary')">
+                  <span class="flex items-center justify-end gap-1">Salary <i class="nc-icon text-xs" :class="sortCol === 'salary' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in paginated" :key="row.id">
+                <tr>
+                  <td class="font-medium" x-text="row.name"></td>
+                  <td x-text="row.position"></td>
+                  <td x-text="row.office"></td>
+                  <td class="text-right" x-text="row.age"></td>
+                  <td class="text-right" x-text="formatSalary(row.salary)"></td>
+                </tr>
+              </template>
+              <tr x-show="paginated.length === 0">
+                <td colspan="5" class="text-center text-[var(--paper-muted)] py-8">No matching records found</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between text-sm">
+          <span class="text-[var(--paper-muted)]">Showing <span x-text="showingFrom"></span> to <span x-text="showingTo"></span> of <span x-text="filtered.length"></span> entries</span>
+          <div class="flex items-center gap-1">
+            <button class="paper-btn paper-btn-sm paper-btn-ghost" :disabled="page === 1" @click="page--">Prev</button>
+            <template x-for="p in totalPages" :key="p">
+              <button class="paper-btn paper-btn-sm" :class="p === page ? 'paper-btn-primary' : 'paper-btn-ghost'" @click="page = p" x-text="p"></button>
+            </template>
+            <button class="paper-btn paper-btn-sm paper-btn-ghost" :disabled="page === totalPages" @click="page++">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>x-data="{
+  search: '',
+  sortCol: 'name',
+  sortAsc: true,
+  page: 1,
+  perPage: 5,
+  allData: [...],
+  get filtered() {
+    let data = this.allData;
+    if (this.search) {
+      const s = this.search.toLowerCase();
+      data = data.filter(r =&gt;
+        r.name.toLowerCase().includes(s) ||
+        r.position.toLowerCase().includes(s)
+      );
+    }
+    return data;
+  },
+  get sorted() {
+    return [...this.filtered].sort((a, b) =&gt; {
+      let va = a[this.sortCol], vb = b[this.sortCol];
+      if (typeof va === 'string') { va = va.toLowerCase(); vb = vb.toLowerCase(); }
+      if (va &lt; vb) return this.sortAsc ? -1 : 1;
+      if (va &gt; vb) return this.sortAsc ? 1 : -1;
+      return 0;
+    });
+  },
+  get paginated() {
+    const start = (this.page - 1) * this.perPage;
+    return this.sorted.slice(start, start + this.perPage);
+  },
+  sort(col) {
+    if (this.sortCol === col) this.sortAsc = !this.sortAsc;
+    else { this.sortCol = col; this.sortAsc = true; }
+  }
+}"</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Server-side Style Pagination -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(110,195,114,0.15)]">
+        <i class="nc-icon nc-bullet-list-67 text-lg text-[var(--paper-success)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Pagination Styles</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Different pagination UI patterns</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body space-y-6">
+      <!-- Simple pagination -->
+      <div>
+        <p class="text-sm font-medium mb-2">Simple Previous/Next</p>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4">
+          <div class="flex items-center justify-between" x-data="{ page: 3, total: 10 }">
+            <span class="text-sm text-[var(--paper-muted)]">Page <span x-text="page"></span> of <span x-text="total"></span></span>
+            <div class="flex gap-2">
+              <button class="paper-btn paper-btn-sm paper-btn-outline" :disabled="page === 1" @click="page--">
+                <i class="nc-icon nc-minimal-left mr-1"></i> Previous
+              </button>
+              <button class="paper-btn paper-btn-sm paper-btn-outline" :disabled="page === total" @click="page++">
+                Next <i class="nc-icon nc-minimal-right ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Numbered with ellipsis -->
+      <div>
+        <p class="text-sm font-medium mb-2">Numbered with Ellipsis</p>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4">
+          <div class="flex items-center justify-center gap-1" x-data="{ page: 5, total: 20 }">
+            <button class="paper-btn paper-btn-sm paper-btn-ghost" :disabled="page === 1" @click="page--"><i class="nc-icon nc-minimal-left"></i></button>
+            <button class="paper-btn paper-btn-sm" :class="page === 1 ? 'paper-btn-primary' : 'paper-btn-ghost'" @click="page = 1">1</button>
+            <span class="px-2 text-[var(--paper-muted)]" x-show="page > 3">...</span>
+            <template x-for="p in [page - 1, page, page + 1].filter(n => n > 1 && n < total)" :key="p">
+              <button class="paper-btn paper-btn-sm" :class="p === page ? 'paper-btn-primary' : 'paper-btn-ghost'" @click="page = p" x-text="p"></button>
+            </template>
+            <span class="px-2 text-[var(--paper-muted)]" x-show="page < total - 2">...</span>
+            <button class="paper-btn paper-btn-sm" :class="page === total ? 'paper-btn-primary' : 'paper-btn-ghost'" @click="page = total" x-text="total"></button>
+            <button class="paper-btn paper-btn-sm paper-btn-ghost" :disabled="page === total" @click="page++"><i class="nc-icon nc-minimal-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rounded pill style -->
+      <div>
+        <p class="text-sm font-medium mb-2">Rounded Pill Style</p>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4">
+          <div class="flex items-center justify-center gap-2" x-data="{ page: 2, total: 5 }">
+            <template x-for="p in total" :key="p">
+              <button class="h-10 w-10 rounded-full text-sm font-medium transition" :class="p === page ? 'bg-[var(--paper-primary)] text-white' : 'bg-white border border-[var(--paper-border)] hover:border-[var(--paper-primary)]'" @click="page = p" x-text="p"></button>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;!-- Simple pagination --&gt;
+&lt;div class="flex gap-2"&gt;
+  &lt;button class="paper-btn paper-btn-outline" :disabled="page === 1" @click="page--"&gt;Previous&lt;/button&gt;
+  &lt;button class="paper-btn paper-btn-outline" :disabled="page === total" @click="page++"&gt;Next&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Numbered pagination --&gt;
+&lt;template x-for="p in totalPages"&gt;
+  &lt;button :class="p === page ? 'paper-btn-primary' : 'paper-btn-ghost'" @click="page = p" x-text="p"&gt;&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;!-- Pill style --&gt;
+&lt;button class="h-10 w-10 rounded-full" :class="p === page ? 'bg-[var(--paper-primary)] text-white' : 'bg-white border'"&gt;&lt;/button&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Column Visibility Toggle -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)]">
+        <i class="nc-icon nc-settings-gear-65 text-lg text-[var(--paper-info)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Column Visibility</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Toggle columns on and off</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4" x-data="{
+        columns: [
+          { key: 'name', label: 'Name', visible: true },
+          { key: 'email', label: 'Email', visible: true },
+          { key: 'role', label: 'Role', visible: true },
+          { key: 'department', label: 'Department', visible: true },
+          { key: 'location', label: 'Location', visible: false }
+        ],
+        rows: [
+          { name: 'John Smith', email: 'john@example.com', role: 'Admin', department: 'Engineering', location: 'New York' },
+          { name: 'Sarah Johnson', email: 'sarah@example.com', role: 'Editor', department: 'Marketing', location: 'Los Angeles' },
+          { name: 'Mike Brown', email: 'mike@example.com', role: 'Viewer', department: 'Sales', location: 'Chicago' }
+        ],
+        dropdownOpen: false
+      }">
+        <!-- Column toggle dropdown -->
+        <div class="mb-4 flex justify-end relative">
+          <div class="relative" @click.outside="dropdownOpen = false">
+            <button class="paper-btn paper-btn-outline" @click="dropdownOpen = !dropdownOpen">
+              <i class="nc-icon nc-settings-gear-65 mr-2"></i> Columns
+            </button>
+            <div class="absolute right-0 mt-2 w-48 paper-card p-2 shadow-lg z-10" x-show="dropdownOpen" x-transition>
+              <template x-for="col in columns" :key="col.key">
+                <label class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-slate-50 cursor-pointer">
+                  <input type="checkbox" x-model="col.visible" class="h-4 w-4 rounded border-gray-300 text-[var(--paper-primary)]">
+                  <span class="text-sm" x-text="col.label"></span>
+                </label>
+              </template>
+            </div>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="paper-table">
+            <thead>
+              <tr>
+                <template x-for="col in columns.filter(c => c.visible)" :key="col.key">
+                  <th x-text="col.label"></th>
+                </template>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="(row, idx) in rows" :key="idx">
+                <tr>
+                  <template x-for="col in columns.filter(c => c.visible)" :key="col.key">
+                    <td x-text="row[col.key]"></td>
+                  </template>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>x-data="{
+  columns: [
+    { key: 'name', label: 'Name', visible: true },
+    { key: 'email', label: 'Email', visible: true },
+    { key: 'role', label: 'Role', visible: false } // hidden by default
+  ],
+  rows: [...]
+}"
+
+&lt;!-- Column toggle --&gt;
+&lt;template x-for="col in columns"&gt;
+  &lt;label&gt;
+    &lt;input type="checkbox" x-model="col.visible"&gt;
+    &lt;span x-text="col.label"&gt;&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/template&gt;
+
+&lt;!-- Dynamic headers --&gt;
+&lt;template x-for="col in columns.filter(c =&gt; c.visible)"&gt;
+  &lt;th x-text="col.label"&gt;&lt;/th&gt;
+&lt;/template&gt;
+
+&lt;!-- Dynamic cells --&gt;
+&lt;template x-for="col in columns.filter(c =&gt; c.visible)"&gt;
+  &lt;td x-text="row[col.key]"&gt;&lt;/td&gt;
+&lt;/template&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Dropdowns -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(255,184,77,0.15)]">
+        <i class="nc-icon nc-zoom-split text-lg text-[var(--paper-warning)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Filter Dropdowns</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Category and status filters</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4" x-data="{
+        categoryFilter: '',
+        statusFilter: '',
+        products: [
+          { name: 'Paper UI Kit', category: 'Design', price: 39, status: 'Active' },
+          { name: 'Dashboard Pro', category: 'Admin', price: 79, status: 'Active' },
+          { name: 'Icon Pack', category: 'Assets', price: 19, status: 'Inactive' },
+          { name: 'Template Bundle', category: 'Design', price: 99, status: 'Active' },
+          { name: 'Chart Library', category: 'Components', price: 29, status: 'Draft' },
+          { name: 'Admin Starter', category: 'Admin', price: 49, status: 'Inactive' }
+        ],
+        get categories() { return [...new Set(this.products.map(p => p.category))]; },
+        get statuses() { return [...new Set(this.products.map(p => p.status))]; },
+        get filtered() {
+          return this.products.filter(p => {
+            if (this.categoryFilter && p.category !== this.categoryFilter) return false;
+            if (this.statusFilter && p.status !== this.statusFilter) return false;
+            return true;
+          });
+        }
+      }">
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-3 mb-4">
+          <select x-model="categoryFilter" class="paper-select">
+            <option value="">All Categories</option>
+            <template x-for="cat in categories" :key="cat">
+              <option :value="cat" x-text="cat"></option>
+            </template>
+          </select>
+          <select x-model="statusFilter" class="paper-select">
+            <option value="">All Statuses</option>
+            <template x-for="stat in statuses" :key="stat">
+              <option :value="stat" x-text="stat"></option>
+            </template>
+          </select>
+          <button class="paper-btn paper-btn-ghost text-sm" @click="categoryFilter = ''; statusFilter = ''" x-show="categoryFilter || statusFilter">
+            <i class="nc-icon nc-simple-remove mr-1"></i> Clear filters
+          </button>
+        </div>
+
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th class="text-right">Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="p in filtered" :key="p.name">
+              <tr>
+                <td class="font-medium" x-text="p.name"></td>
+                <td x-text="p.category"></td>
+                <td class="text-right" x-text="'$' + p.price"></td>
+                <td>
+                  <span class="paper-badge" :class="{
+                    'paper-badge-success': p.status === 'Active',
+                    'paper-badge-warning': p.status === 'Draft',
+                    'paper-badge-default': p.status === 'Inactive'
+                  }" x-text="p.status"></span>
+                </td>
+              </tr>
+            </template>
+            <tr x-show="filtered.length === 0">
+              <td colspan="4" class="text-center text-[var(--paper-muted)] py-8">No products match the selected filters</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="text-xs text-[var(--paper-muted)] mt-3">Showing <span x-text="filtered.length"></span> of <span x-text="products.length"></span> products</p>
+      </div>
+
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>x-data="{
+  categoryFilter: '',
+  statusFilter: '',
+  products: [...],
+  get categories() { return [...new Set(this.products.map(p =&gt; p.category))]; },
+  get filtered() {
+    return this.products.filter(p =&gt; {
+      if (this.categoryFilter && p.category !== this.categoryFilter) return false;
+      if (this.statusFilter && p.status !== this.statusFilter) return false;
+      return true;
+    });
+  }
+}"
+
+&lt;select x-model="categoryFilter"&gt;
+  &lt;option value=""&gt;All Categories&lt;/option&gt;
+  &lt;template x-for="cat in categories"&gt;
+    &lt;option :value="cat" x-text="cat"&gt;&lt;/option&gt;
+  &lt;/template&gt;
+&lt;/select&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Options -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(239,129,87,0.15)]">
+        <i class="nc-icon nc-cloud-download-93 text-lg text-[var(--paper-danger)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Export Options</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Download table data in various formats</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4" x-data="{
+        exportDropdown: false,
+        exportData(format) {
+          alert('Exporting as ' + format + '...');
+          this.exportDropdown = false;
+        }
+      }">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-medium">Sales Report</h3>
+          <div class="relative" @click.outside="exportDropdown = false">
+            <button class="paper-btn paper-btn-primary" @click="exportDropdown = !exportDropdown">
+              <i class="nc-icon nc-cloud-download-93 mr-2"></i> Export
+            </button>
+            <div class="absolute right-0 mt-2 w-40 paper-card p-2 shadow-lg z-10" x-show="exportDropdown" x-transition>
+              <button class="w-full text-left px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('CSV')">
+                <i class="nc-icon nc-single-copy-04 text-[var(--paper-success)]"></i> CSV
+              </button>
+              <button class="w-full text-left px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('Excel')">
+                <i class="nc-icon nc-chart-pie-36 text-[var(--paper-success)]"></i> Excel
+              </button>
+              <button class="w-full text-left px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('PDF')">
+                <i class="nc-icon nc-single-copy-04 text-[var(--paper-danger)]"></i> PDF
+              </button>
+              <button class="w-full text-left px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('Print')">
+                <i class="nc-icon nc-paper text-[var(--paper-info)]"></i> Print
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <table class="paper-table paper-table-sm">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th class="text-right">Revenue</th>
+              <th class="text-right">Orders</th>
+              <th class="text-right">Avg. Order</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>January</td>
+              <td class="text-right">$45,200</td>
+              <td class="text-right">320</td>
+              <td class="text-right">$141.25</td>
+            </tr>
+            <tr>
+              <td>February</td>
+              <td class="text-right">$52,800</td>
+              <td class="text-right">385</td>
+              <td class="text-right">$137.14</td>
+            </tr>
+            <tr>
+              <td>March</td>
+              <td class="text-right">$48,100</td>
+              <td class="text-right">342</td>
+              <td class="text-right">$140.64</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="font-semibold border-t-2 border-[var(--paper-border)]">
+              <td>Total</td>
+              <td class="text-right">$146,100</td>
+              <td class="text-right">1,047</td>
+              <td class="text-right">$139.54</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;div x-data="{ exportDropdown: false }"&gt;
+  &lt;button @click="exportDropdown = !exportDropdown"&gt;
+    &lt;i class="nc-icon nc-cloud-download-93"&gt;&lt;/i&gt; Export
+  &lt;/button&gt;
+
+  &lt;div x-show="exportDropdown" x-transition&gt;
+    &lt;button @click="exportToCSV()"&gt;CSV&lt;/button&gt;
+    &lt;button @click="exportToExcel()"&gt;Excel&lt;/button&gt;
+    &lt;button @click="exportToPDF()"&gt;PDF&lt;/button&gt;
+    &lt;button @click="window.print()"&gt;Print&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+// CSV export function example
+function exportToCSV() {
+  const rows = document.querySelectorAll('table tr');
+  const csv = Array.from(rows).map(row =&gt;
+    Array.from(row.cells).map(cell =&gt; cell.textContent).join(',')
+  ).join('\\n');
+  // Download logic...
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Reference -->
+  <div class="mt-6 paper-card">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
+        <i class="nc-icon nc-bookmark-2 text-lg text-[var(--paper-primary)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Quick Reference</h2>
+        <p class="text-xs text-[var(--paper-muted)]">DataTable patterns and techniques</p>
+      </div>
+    </div>
+    <div class="paper-card-body">
+      <div class="overflow-x-auto">
+        <table class="paper-table paper-table-sm">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Implementation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Search/Filter</td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">x-model="search"</code> + computed <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">filtered</code> getter</td>
+            </tr>
+            <tr>
+              <td>Sorting</td>
+              <td>Track <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">sortCol</code> and <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">sortAsc</code>, use Array.sort()</td>
+            </tr>
+            <tr>
+              <td>Pagination</td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">page</code> + <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">perPage</code> with Array.slice()</td>
+            </tr>
+            <tr>
+              <td>Per-page selector</td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">&lt;select x-model.number="perPage"&gt;</code></td>
+            </tr>
+            <tr>
+              <td>Column visibility</td>
+              <td>Array of column objects with <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">visible</code> boolean</td>
+            </tr>
+            <tr>
+              <td>Filter dropdowns</td>
+              <td>Extract unique values with <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">[...new Set()]</code></td>
+            </tr>
+            <tr>
+              <td>Empty state</td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">x-show="filtered.length === 0"</code></td>
+            </tr>
+            <tr>
+              <td>Sort indicator</td>
+              <td>Dynamic icon class based on <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">sortCol</code> and <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">sortAsc</code></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

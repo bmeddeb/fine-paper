@@ -55,11 +55,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -210,19 +237,880 @@
         </div>
       </header>
       <main class="flex-1 px-6 pb-12">
-        
+
+<!-- Page Header -->
 <section class="pt-6">
   <div>
     <h1 class="text-2xl font-semibold">Typography</h1>
-    <p class="paper-muted text-sm">Headings, body text, and quotes</p>
+    <p class="paper-muted text-sm">Headings, paragraphs, lists, and text utilities using Tailwind CSS</p>
   </div>
-  <div class="mt-6 paper-card">
-    <div class="paper-card-body space-y-4">
-      <h1 class="text-3xl font-semibold">Heading 1</h1>
-      <h2 class="text-2xl font-semibold">Heading 2</h2>
-      <h3 class="text-xl font-semibold">Heading 3</h3>
-      <p class="text-sm text-[var(--paper-muted)]">Paper Dashboard pairs muted neutrals with warm accents to keep data readable and human.</p>
-      <blockquote class="border-l-4 border-[var(--paper-warning)] pl-4 text-sm text-[var(--paper-muted)]">Design is the silent ambassador of your brand. - Paul Rand</blockquote>
+</section>
+
+<!-- Font Family -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+          <i class="nc-icon nc-paper-2 text-[var(--paper-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Font Family</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Montserrat is the primary typeface</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <p class="text-4xl font-light mb-2">Montserrat Light</p>
+        <p class="text-4xl font-normal mb-2">Montserrat Regular</p>
+        <p class="text-4xl font-medium mb-2">Montserrat Medium</p>
+        <p class="text-4xl font-semibold mb-2">Montserrat Semibold</p>
+        <p class="text-4xl font-bold">Montserrat Bold</p>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Font weights --&gt;
+&lt;p class="font-light"&gt;Light (300)&lt;/p&gt;
+&lt;p class="font-normal"&gt;Regular (400)&lt;/p&gt;
+&lt;p class="font-medium"&gt;Medium (500)&lt;/p&gt;
+&lt;p class="font-semibold"&gt;Semibold (600)&lt;/p&gt;
+&lt;p class="font-bold"&gt;Bold (700)&lt;/p&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Headings -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+          <i class="nc-icon nc-bullet-list-67 text-[var(--paper-info)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Headings</h3>
+          <p class="text-xs text-[var(--paper-muted)]">H1 through H6 heading styles</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4 space-y-4">
+        <div class="flex items-baseline gap-4">
+          <span class="text-xs text-[var(--paper-muted)] w-16 shrink-0">text-4xl</span>
+          <h1 class="text-4xl font-semibold">Heading 1</h1>
+        </div>
+        <div class="flex items-baseline gap-4">
+          <span class="text-xs text-[var(--paper-muted)] w-16 shrink-0">text-3xl</span>
+          <h2 class="text-3xl font-semibold">Heading 2</h2>
+        </div>
+        <div class="flex items-baseline gap-4">
+          <span class="text-xs text-[var(--paper-muted)] w-16 shrink-0">text-2xl</span>
+          <h3 class="text-2xl font-semibold">Heading 3</h3>
+        </div>
+        <div class="flex items-baseline gap-4">
+          <span class="text-xs text-[var(--paper-muted)] w-16 shrink-0">text-xl</span>
+          <h4 class="text-xl font-semibold">Heading 4</h4>
+        </div>
+        <div class="flex items-baseline gap-4">
+          <span class="text-xs text-[var(--paper-muted)] w-16 shrink-0">text-lg</span>
+          <h5 class="text-lg font-semibold">Heading 5</h5>
+        </div>
+        <div class="flex items-baseline gap-4">
+          <span class="text-xs text-[var(--paper-muted)] w-16 shrink-0">text-base</span>
+          <h6 class="text-base font-semibold">Heading 6</h6>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;h1 class="text-4xl font-semibold"&gt;Heading 1&lt;/h1&gt;
+&lt;h2 class="text-3xl font-semibold"&gt;Heading 2&lt;/h2&gt;
+&lt;h3 class="text-2xl font-semibold"&gt;Heading 3&lt;/h3&gt;
+&lt;h4 class="text-xl font-semibold"&gt;Heading 4&lt;/h4&gt;
+&lt;h5 class="text-lg font-semibold"&gt;Heading 5&lt;/h5&gt;
+&lt;h6 class="text-base font-semibold"&gt;Heading 6&lt;/h6&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Text Sizes -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+          <i class="nc-icon nc-zoom-split text-[var(--paper-success)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Text Sizes</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Tailwind text size utilities</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4 space-y-3">
+        <div class="flex items-baseline gap-4">
+          <code class="paper-code text-[10px] w-20 shrink-0">text-xs</code>
+          <p class="text-xs">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+        <div class="flex items-baseline gap-4">
+          <code class="paper-code text-[10px] w-20 shrink-0">text-sm</code>
+          <p class="text-sm">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+        <div class="flex items-baseline gap-4">
+          <code class="paper-code text-[10px] w-20 shrink-0">text-base</code>
+          <p class="text-base">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+        <div class="flex items-baseline gap-4">
+          <code class="paper-code text-[10px] w-20 shrink-0">text-lg</code>
+          <p class="text-lg">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+        <div class="flex items-baseline gap-4">
+          <code class="paper-code text-[10px] w-20 shrink-0">text-xl</code>
+          <p class="text-xl">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+        <div class="flex items-baseline gap-4">
+          <code class="paper-code text-[10px] w-20 shrink-0">text-2xl</code>
+          <p class="text-2xl">The quick brown fox jumps.</p>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;p class="text-xs"&gt;Extra small text (12px)&lt;/p&gt;
+&lt;p class="text-sm"&gt;Small text (14px)&lt;/p&gt;
+&lt;p class="text-base"&gt;Base text (16px)&lt;/p&gt;
+&lt;p class="text-lg"&gt;Large text (18px)&lt;/p&gt;
+&lt;p class="text-xl"&gt;Extra large text (20px)&lt;/p&gt;
+&lt;p class="text-2xl"&gt;2XL text (24px)&lt;/p&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Text Colors -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-warning)]/10">
+          <i class="nc-icon nc-palette text-[var(--paper-warning)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Text Colors</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Theme color utilities for text</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-lg font-semibold text-[var(--paper-text)]">Default Text</p>
+            <p class="text-sm text-[var(--paper-muted)]">text-[var(--paper-text)]</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-lg font-semibold text-[var(--paper-muted)]">Muted Text</p>
+            <p class="text-sm text-[var(--paper-muted)]">text-[var(--paper-muted)]</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-lg font-semibold text-[var(--paper-primary)]">Primary Text</p>
+            <p class="text-sm text-[var(--paper-muted)]">text-[var(--paper-primary)]</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-lg font-semibold text-[var(--paper-success)]">Success Text</p>
+            <p class="text-sm text-[var(--paper-muted)]">text-[var(--paper-success)]</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-lg font-semibold text-[var(--paper-info)]">Info Text</p>
+            <p class="text-sm text-[var(--paper-muted)]">text-[var(--paper-info)]</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-lg font-semibold text-[var(--paper-warning)]">Warning Text</p>
+            <p class="text-sm text-[var(--paper-muted)]">text-[var(--paper-warning)]</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-lg font-semibold text-[var(--paper-danger)]">Danger Text</p>
+            <p class="text-sm text-[var(--paper-muted)]">text-[var(--paper-danger)]</p>
+          </div>
+          <div class="bg-[var(--paper-sidebar)] rounded-lg p-4 shadow-sm">
+            <p class="text-lg font-semibold text-white">White Text</p>
+            <p class="text-sm text-white/60">text-white (on dark bg)</p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;p class="text-[var(--paper-text)]"&gt;Default text&lt;/p&gt;
+&lt;p class="text-[var(--paper-muted)]"&gt;Muted text&lt;/p&gt;
+&lt;p class="text-[var(--paper-primary)]"&gt;Primary text&lt;/p&gt;
+&lt;p class="text-[var(--paper-success)]"&gt;Success text&lt;/p&gt;
+&lt;p class="text-[var(--paper-info)]"&gt;Info text&lt;/p&gt;
+&lt;p class="text-[var(--paper-warning)]"&gt;Warning text&lt;/p&gt;
+&lt;p class="text-[var(--paper-danger)]"&gt;Danger text&lt;/p&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paragraphs & Lead -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-danger)]/10">
+          <i class="nc-icon nc-single-copy-04 text-[var(--paper-danger)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Paragraphs</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Body text and lead paragraph styles</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4 space-y-6">
+        <div>
+          <p class="paper-label mb-2">Lead Paragraph</p>
+          <p class="text-xl text-[var(--paper-muted)] leading-relaxed">
+            Paper Dashboard combines clean design with powerful features to help you build beautiful admin interfaces quickly and efficiently.
+          </p>
+        </div>
+        <div>
+          <p class="paper-label mb-2">Regular Paragraph</p>
+          <p class="text-base leading-relaxed">
+            The dashboard provides a comprehensive set of components built with Tailwind CSS. Each component is designed to be responsive, accessible, and easy to customize. Whether you're building a simple admin panel or a complex data visualization tool, Paper Dashboard has you covered.
+          </p>
+        </div>
+        <div>
+          <p class="paper-label mb-2">Small Text</p>
+          <p class="text-sm text-[var(--paper-muted)] leading-relaxed">
+            This is smaller body text often used for secondary information, captions, or metadata. It maintains readability while taking up less visual space in the interface.
+          </p>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Lead paragraph --&gt;
+&lt;p class="text-xl text-[var(--paper-muted)] leading-relaxed"&gt;
+  Lead paragraph text...
+&lt;/p&gt;
+
+&lt;!-- Regular paragraph --&gt;
+&lt;p class="text-base leading-relaxed"&gt;
+  Regular paragraph text...
+&lt;/p&gt;
+
+&lt;!-- Small text --&gt;
+&lt;p class="text-sm text-[var(--paper-muted)]"&gt;
+  Small paragraph text...
+&lt;/p&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Inline Text Elements -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+          <i class="nc-icon nc-ruler-pencil text-[var(--paper-info)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Inline Text Elements</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Bold, italic, underline, and more</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-sm text-[var(--paper-muted)] mb-1">Bold</p>
+            <p>This is <strong class="font-bold">bold text</strong> in a sentence.</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-sm text-[var(--paper-muted)] mb-1">Italic</p>
+            <p>This is <em class="italic">italic text</em> in a sentence.</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-sm text-[var(--paper-muted)] mb-1">Underline</p>
+            <p>This is <span class="underline">underlined text</span> in a sentence.</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-sm text-[var(--paper-muted)] mb-1">Strikethrough</p>
+            <p>This is <span class="line-through">strikethrough text</span> in a sentence.</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-sm text-[var(--paper-muted)] mb-1">Highlight</p>
+            <p>This is <mark class="bg-yellow-200 px-1 rounded">highlighted text</mark> in a sentence.</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-sm text-[var(--paper-muted)] mb-1">Small</p>
+            <p>This is <small class="text-sm">small text</small> in a sentence.</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-sm text-[var(--paper-muted)] mb-1">Link</p>
+            <p>This is a <a href="#" class="text-[var(--paper-primary)] hover:underline">hyperlink</a> in a sentence.</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 shadow-sm">
+            <p class="text-sm text-[var(--paper-muted)] mb-1">Inline Code</p>
+            <p>This is <code class="paper-code">inline code</code> in a sentence.</p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;strong class="font-bold"&gt;Bold text&lt;/strong&gt;
+&lt;em class="italic"&gt;Italic text&lt;/em&gt;
+&lt;span class="underline"&gt;Underlined text&lt;/span&gt;
+&lt;span class="line-through"&gt;Strikethrough text&lt;/span&gt;
+&lt;mark class="bg-yellow-200 px-1 rounded"&gt;Highlighted text&lt;/mark&gt;
+&lt;small class="text-sm"&gt;Small text&lt;/small&gt;
+&lt;a href="#" class="text-[var(--paper-primary)] hover:underline"&gt;Link&lt;/a&gt;
+&lt;code class="paper-code"&gt;Inline code&lt;/code&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lists -->
+<section class="mt-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Unordered List -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+            <i class="nc-icon nc-bullet-list-67 text-[var(--paper-primary)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Unordered Lists</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Bullet point lists</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <ul class="list-disc list-inside space-y-2 text-sm">
+            <li>First item in the list</li>
+            <li>Second item with more content
+              <ul class="list-circle list-inside ml-4 mt-2 space-y-1 text-[var(--paper-muted)]">
+                <li>Nested item one</li>
+                <li>Nested item two</li>
+              </ul>
+            </li>
+            <li>Third item in the list</li>
+            <li>Fourth item in the list</li>
+          </ul>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;ul class="list-disc list-inside space-y-2"&gt;
+  &lt;li&gt;First item&lt;/li&gt;
+  &lt;li&gt;Second item
+    &lt;ul class="list-circle list-inside ml-4"&gt;
+      &lt;li&gt;Nested item&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Third item&lt;/li&gt;
+&lt;/ul&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ordered List -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+            <i class="nc-icon nc-bullet-list-67 text-[var(--paper-success)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Ordered Lists</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Numbered lists</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <ol class="list-decimal list-inside space-y-2 text-sm">
+            <li>Clone the repository</li>
+            <li>Install dependencies
+              <ol class="list-[lower-alpha] list-inside ml-4 mt-2 space-y-1 text-[var(--paper-muted)]">
+                <li>Run npm install</li>
+                <li>Configure environment</li>
+              </ol>
+            </li>
+            <li>Start the development server</li>
+            <li>Open in your browser</li>
+          </ol>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;ol class="list-decimal list-inside space-y-2"&gt;
+  &lt;li&gt;First step&lt;/li&gt;
+  &lt;li&gt;Second step
+    &lt;ol class="list-[lower-alpha] list-inside ml-4"&gt;
+      &lt;li&gt;Sub-step a&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Third step&lt;/li&gt;
+&lt;/ol&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Custom Lists -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-warning)]/10">
+          <i class="nc-icon nc-check-2 text-[var(--paper-warning)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Custom Lists</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Lists with icons and custom styling</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Check list -->
+          <div class="bg-white rounded-xl p-4 shadow-sm">
+            <p class="font-semibold mb-3">Checklist</p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2 text-sm">
+                <i class="nc-icon nc-check-2 text-[var(--paper-success)]"></i>
+                <span>Completed task</span>
+              </li>
+              <li class="flex items-center gap-2 text-sm">
+                <i class="nc-icon nc-check-2 text-[var(--paper-success)]"></i>
+                <span>Another done item</span>
+              </li>
+              <li class="flex items-center gap-2 text-sm text-[var(--paper-muted)]">
+                <i class="nc-icon nc-simple-remove text-[var(--paper-muted)]"></i>
+                <span>Pending task</span>
+              </li>
+            </ul>
+          </div>
+          <!-- Feature list -->
+          <div class="bg-white rounded-xl p-4 shadow-sm">
+            <p class="font-semibold mb-3">Features</p>
+            <ul class="space-y-2">
+              <li class="flex items-start gap-2 text-sm">
+                <i class="nc-icon nc-favourite-28 text-[var(--paper-danger)] mt-0.5"></i>
+                <span>Responsive design</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <i class="nc-icon nc-favourite-28 text-[var(--paper-danger)] mt-0.5"></i>
+                <span>Dark mode support</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm">
+                <i class="nc-icon nc-favourite-28 text-[var(--paper-danger)] mt-0.5"></i>
+                <span>Customizable theme</span>
+              </li>
+            </ul>
+          </div>
+          <!-- Arrow list -->
+          <div class="bg-white rounded-xl p-4 shadow-sm">
+            <p class="font-semibold mb-3">Quick Links</p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2 text-sm">
+                <i class="nc-icon nc-minimal-right text-[var(--paper-primary)]"></i>
+                <a href="#" class="text-[var(--paper-primary)] hover:underline">Documentation</a>
+              </li>
+              <li class="flex items-center gap-2 text-sm">
+                <i class="nc-icon nc-minimal-right text-[var(--paper-primary)]"></i>
+                <a href="#" class="text-[var(--paper-primary)] hover:underline">Components</a>
+              </li>
+              <li class="flex items-center gap-2 text-sm">
+                <i class="nc-icon nc-minimal-right text-[var(--paper-primary)]"></i>
+                <a href="#" class="text-[var(--paper-primary)] hover:underline">Examples</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Checklist with icons --&gt;
+&lt;ul class="space-y-2"&gt;
+  &lt;li class="flex items-center gap-2"&gt;
+    &lt;i class="nc-icon nc-check-2 text-[var(--paper-success)]"&gt;&lt;/i&gt;
+    &lt;span&gt;Completed task&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Feature list --&gt;
+&lt;ul class="space-y-2"&gt;
+  &lt;li class="flex items-start gap-2"&gt;
+    &lt;i class="nc-icon nc-favourite-28 text-[var(--paper-danger)]"&gt;&lt;/i&gt;
+    &lt;span&gt;Feature item&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Blockquotes -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-danger)]/10">
+          <i class="nc-icon nc-paper-2 text-[var(--paper-danger)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Blockquotes</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Quote styles for citations and callouts</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4 space-y-6">
+        <!-- Default blockquote -->
+        <div>
+          <p class="paper-label mb-2">Default</p>
+          <blockquote class="border-l-4 border-[var(--paper-primary)] pl-4 py-2 text-[var(--paper-muted)] italic">
+            "Design is not just what it looks like and feels like. Design is how it works."
+            <footer class="mt-2 text-sm not-italic">— Steve Jobs</footer>
+          </blockquote>
+        </div>
+        <!-- Warning blockquote -->
+        <div>
+          <p class="paper-label mb-2">Warning Style</p>
+          <blockquote class="border-l-4 border-[var(--paper-warning)] bg-[var(--paper-warning)]/10 pl-4 pr-4 py-3 rounded-r-lg">
+            <p class="font-semibold text-[var(--paper-warning)]">Important Note</p>
+            <p class="text-sm mt-1">Make sure to backup your data before performing this operation.</p>
+          </blockquote>
+        </div>
+        <!-- Info blockquote -->
+        <div>
+          <p class="paper-label mb-2">Info Style</p>
+          <blockquote class="border-l-4 border-[var(--paper-info)] bg-[var(--paper-info)]/10 pl-4 pr-4 py-3 rounded-r-lg">
+            <p class="font-semibold text-[var(--paper-info)]">Did you know?</p>
+            <p class="text-sm mt-1">Tailwind CSS uses a utility-first approach that makes styling faster and more maintainable.</p>
+          </blockquote>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Default blockquote --&gt;
+&lt;blockquote class="border-l-4 border-[var(--paper-primary)] pl-4 py-2 italic"&gt;
+  "Quote text here..."
+  &lt;footer class="mt-2 text-sm not-italic"&gt;— Author&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+&lt;!-- Callout style --&gt;
+&lt;blockquote class="border-l-4 border-[var(--paper-warning)] bg-[var(--paper-warning)]/10 pl-4 pr-4 py-3 rounded-r-lg"&gt;
+  &lt;p class="font-semibold text-[var(--paper-warning)]"&gt;Title&lt;/p&gt;
+  &lt;p class="text-sm mt-1"&gt;Content text...&lt;/p&gt;
+&lt;/blockquote&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Code Blocks -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+          <i class="nc-icon nc-app text-[var(--paper-success)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Code Blocks</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Displaying code snippets</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4 space-y-4">
+        <div>
+          <p class="paper-label mb-2">Inline Code</p>
+          <p class="text-sm">Use the <code class="paper-code">paper-code</code> class for inline code like <code class="paper-code">npm install</code> commands.</p>
+        </div>
+        <div>
+          <p class="paper-label mb-2">Code Block</p>
+          <pre class="paper-code-block text-xs">// Example JavaScript code
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+const message = greet('World');
+console.log(message);</pre>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Inline code --&gt;
+&lt;code class="paper-code"&gt;npm install&lt;/code&gt;
+
+&lt;!-- Code block --&gt;
+&lt;pre class="paper-code-block"&gt;
+// Your code here
+function example() {
+  return true;
+}
+&lt;/pre&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Text Alignment -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+          <i class="nc-icon nc-layout-11 text-[var(--paper-info)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Text Alignment</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Left, center, right, and justify</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4 space-y-4">
+        <div class="bg-white rounded-lg p-4 shadow-sm">
+          <p class="paper-label mb-2">text-left</p>
+          <p class="text-left text-sm">This text is aligned to the left side of its container.</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow-sm">
+          <p class="paper-label mb-2">text-center</p>
+          <p class="text-center text-sm">This text is centered within its container.</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow-sm">
+          <p class="paper-label mb-2">text-right</p>
+          <p class="text-right text-sm">This text is aligned to the right side of its container.</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 shadow-sm">
+          <p class="paper-label mb-2">text-justify</p>
+          <p class="text-justify text-sm">This text is justified, meaning it stretches to fill the full width of its container with equal spacing between words on each line.</p>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;p class="text-left"&gt;Left aligned&lt;/p&gt;
+&lt;p class="text-center"&gt;Center aligned&lt;/p&gt;
+&lt;p class="text-right"&gt;Right aligned&lt;/p&gt;
+&lt;p class="text-justify"&gt;Justified text&lt;/p&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Labels & Badges -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+          <i class="nc-icon nc-single-02 text-[var(--paper-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Labels & Badges</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Small text elements for status and categories</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4 space-y-6">
+        <div>
+          <p class="paper-label mb-3">Labels</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="paper-label">Default Label</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-[var(--paper-primary)]">Primary</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-[var(--paper-success)]">Success</span>
+            <span class="text-xs font-semibold uppercase tracking-wider text-[var(--paper-danger)]">Danger</span>
+          </div>
+        </div>
+        <div>
+          <p class="paper-label mb-3">Badges</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-flex items-center rounded-full bg-[var(--paper-primary)] px-2.5 py-0.5 text-xs font-medium text-white">Primary</span>
+            <span class="inline-flex items-center rounded-full bg-[var(--paper-success)] px-2.5 py-0.5 text-xs font-medium text-white">Success</span>
+            <span class="inline-flex items-center rounded-full bg-[var(--paper-info)] px-2.5 py-0.5 text-xs font-medium text-white">Info</span>
+            <span class="inline-flex items-center rounded-full bg-[var(--paper-warning)] px-2.5 py-0.5 text-xs font-medium text-white">Warning</span>
+            <span class="inline-flex items-center rounded-full bg-[var(--paper-danger)] px-2.5 py-0.5 text-xs font-medium text-white">Danger</span>
+          </div>
+        </div>
+        <div>
+          <p class="paper-label mb-3">Outline Badges</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-flex items-center rounded-full border border-[var(--paper-primary)] px-2.5 py-0.5 text-xs font-medium text-[var(--paper-primary)]">Primary</span>
+            <span class="inline-flex items-center rounded-full border border-[var(--paper-success)] px-2.5 py-0.5 text-xs font-medium text-[var(--paper-success)]">Success</span>
+            <span class="inline-flex items-center rounded-full border border-[var(--paper-info)] px-2.5 py-0.5 text-xs font-medium text-[var(--paper-info)]">Info</span>
+            <span class="inline-flex items-center rounded-full border border-[var(--paper-warning)] px-2.5 py-0.5 text-xs font-medium text-[var(--paper-warning)]">Warning</span>
+            <span class="inline-flex items-center rounded-full border border-[var(--paper-danger)] px-2.5 py-0.5 text-xs font-medium text-[var(--paper-danger)]">Danger</span>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Label --&gt;
+&lt;span class="paper-label"&gt;Label text&lt;/span&gt;
+
+&lt;!-- Solid badge --&gt;
+&lt;span class="inline-flex items-center rounded-full bg-[var(--paper-primary)] px-2.5 py-0.5 text-xs font-medium text-white"&gt;
+  Badge
+&lt;/span&gt;
+
+&lt;!-- Outline badge --&gt;
+&lt;span class="inline-flex items-center rounded-full border border-[var(--paper-primary)] px-2.5 py-0.5 text-xs font-medium text-[var(--paper-primary)]"&gt;
+  Badge
+&lt;/span&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reference Table -->
+<section class="mt-12 pt-8 border-t border-[var(--paper-border)]">
+  <h2 class="text-xl font-semibold mb-6">Quick Reference</h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">Text Size Classes</h3>
+      </div>
+      <div class="paper-card-body">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Size</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="paper-code">text-xs</code></td>
+              <td>12px</td>
+              <td class="text-xs">Sample</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">text-sm</code></td>
+              <td>14px</td>
+              <td class="text-sm">Sample</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">text-base</code></td>
+              <td>16px</td>
+              <td class="text-base">Sample</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">text-lg</code></td>
+              <td>18px</td>
+              <td class="text-lg">Sample</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">text-xl</code></td>
+              <td>20px</td>
+              <td class="text-xl">Sample</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">text-2xl</code></td>
+              <td>24px</td>
+              <td class="text-2xl">Sample</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">Font Weight Classes</h3>
+      </div>
+      <div class="paper-card-body">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Weight</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="paper-code">font-light</code></td>
+              <td>300</td>
+              <td class="font-light">Sample</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">font-normal</code></td>
+              <td>400</td>
+              <td class="font-normal">Sample</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">font-medium</code></td>
+              <td>500</td>
+              <td class="font-medium">Sample</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">font-semibold</code></td>
+              <td>600</td>
+              <td class="font-semibold">Sample</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">font-bold</code></td>
+              <td>700</td>
+              <td class="font-bold">Sample</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>

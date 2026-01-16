@@ -55,11 +55,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -214,40 +241,800 @@
 <section class="pt-6">
   <div>
     <h1 class="text-2xl font-semibold">Regular Tables</h1>
-    <p class="paper-muted text-sm">Simple data table</p>
+    <p class="paper-muted text-sm">Basic table components and styling options</p>
   </div>
-  <div class="mt-6 paper-card">
+
+  <!-- Basic Table Structure -->
+  <div class="mt-8 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
+        <i class="nc-icon nc-single-copy-04 text-lg text-[var(--paper-primary)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Basic Table</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Standard table structure with paper-table class</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
     <div class="paper-card-body">
-      <table class="paper-table">
-        <thead>
-          <tr>
-            <th>Project</th>
-            <th>Owner</th>
-            <th>Status</th>
-            <th>Budget</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Market research</td>
-            <td>Angelica Ramos</td>
-            <td><span class="paper-badge paper-badge-success">Done</span></td>
-            <td>$12,000</td>
-          </tr>
-          <tr>
-            <td>UI refresh</td>
-            <td>Garrett Winters</td>
-            <td><span class="paper-badge paper-badge-info">Active</span></td>
-            <td>$8,200</td>
-          </tr>
-          <tr>
-            <td>Mobile tests</td>
-            <td>Ashton Cox</td>
-            <td><span class="paper-badge paper-badge-warning">Review</span></td>
-            <td>$5,400</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Owner</th>
+              <th>Status</th>
+              <th>Budget</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Market research</td>
+              <td>Angelica Ramos</td>
+              <td><span class="paper-badge paper-badge-success">Done</span></td>
+              <td>$12,000</td>
+            </tr>
+            <tr>
+              <td>UI refresh</td>
+              <td>Garrett Winters</td>
+              <td><span class="paper-badge paper-badge-info">Active</span></td>
+              <td>$8,200</td>
+            </tr>
+            <tr>
+              <td>Mobile tests</td>
+              <td>Ashton Cox</td>
+              <td><span class="paper-badge paper-badge-warning">Review</span></td>
+              <td>$5,400</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table class="paper-table"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Project&lt;/th&gt;
+      &lt;th&gt;Owner&lt;/th&gt;
+      &lt;th&gt;Status&lt;/th&gt;
+      &lt;th&gt;Budget&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Market research&lt;/td&gt;
+      &lt;td&gt;Angelica Ramos&lt;/td&gt;
+      &lt;td&gt;&lt;span class="paper-badge paper-badge-success"&gt;Done&lt;/span&gt;&lt;/td&gt;
+      &lt;td&gt;$12,000&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;!-- More rows... --&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Striped Table -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(110,195,114,0.15)]">
+        <i class="nc-icon nc-bullet-list-67 text-lg text-[var(--paper-success)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Striped Table</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Alternating row colors for better readability</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table paper-table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Office</th>
+              <th>Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tiger Nixon</td>
+              <td>System Architect</td>
+              <td>Edinburgh</td>
+              <td>$320,800</td>
+            </tr>
+            <tr>
+              <td>Garrett Winters</td>
+              <td>Accountant</td>
+              <td>Tokyo</td>
+              <td>$170,750</td>
+            </tr>
+            <tr>
+              <td>Ashton Cox</td>
+              <td>Junior Developer</td>
+              <td>San Francisco</td>
+              <td>$86,000</td>
+            </tr>
+            <tr>
+              <td>Cedric Kelly</td>
+              <td>Senior Developer</td>
+              <td>Edinburgh</td>
+              <td>$433,060</td>
+            </tr>
+            <tr>
+              <td>Airi Satou</td>
+              <td>Accountant</td>
+              <td>Tokyo</td>
+              <td>$162,700</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table class="paper-table paper-table-striped"&gt;
+  &lt;!-- Adds alternating bg colors to rows --&gt;
+&lt;/table&gt;
+
+&lt;!-- CSS for striped effect --&gt;
+&lt;style&gt;
+.paper-table-striped tbody tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bordered Table -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)]">
+        <i class="nc-icon nc-app text-lg text-[var(--paper-info)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Bordered Table</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Full borders on all cells</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table paper-table-bordered">
+          <thead>
+            <tr>
+              <th>Invoice</th>
+              <th>Client</th>
+              <th>Amount</th>
+              <th>Due Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#INV-001</td>
+              <td>Acme Corp</td>
+              <td>$5,400</td>
+              <td>Jan 15, 2026</td>
+            </tr>
+            <tr>
+              <td>#INV-002</td>
+              <td>Globex Inc</td>
+              <td>$3,200</td>
+              <td>Jan 20, 2026</td>
+            </tr>
+            <tr>
+              <td>#INV-003</td>
+              <td>Initech</td>
+              <td>$8,750</td>
+              <td>Jan 25, 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table class="paper-table paper-table-bordered"&gt;
+  &lt;!-- Adds borders to all cells --&gt;
+&lt;/table&gt;
+
+&lt;!-- CSS for bordered effect --&gt;
+&lt;style&gt;
+.paper-table-bordered,
+.paper-table-bordered th,
+.paper-table-bordered td {
+  border: 1px solid var(--paper-border);
+}
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hover Table -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(255,184,77,0.15)]">
+        <i class="nc-icon nc-touch-id text-lg text-[var(--paper-warning)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Hover Table</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Highlight rows on hover for better interactivity</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table paper-table-hover">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="cursor-pointer">
+              <td>Wireless Mouse</td>
+              <td>Electronics</td>
+              <td>$29.99</td>
+              <td>145</td>
+            </tr>
+            <tr class="cursor-pointer">
+              <td>USB Keyboard</td>
+              <td>Electronics</td>
+              <td>$49.99</td>
+              <td>89</td>
+            </tr>
+            <tr class="cursor-pointer">
+              <td>Monitor Stand</td>
+              <td>Accessories</td>
+              <td>$79.99</td>
+              <td>34</td>
+            </tr>
+            <tr class="cursor-pointer">
+              <td>Desk Lamp</td>
+              <td>Lighting</td>
+              <td>$39.99</td>
+              <td>67</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table class="paper-table paper-table-hover"&gt;
+  &lt;!-- Highlights rows on hover --&gt;
+&lt;/table&gt;
+
+&lt;!-- CSS for hover effect --&gt;
+&lt;style&gt;
+.paper-table-hover tbody tr:hover {
+  background-color: rgba(102, 126, 234, 0.05);
+}
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Sizes -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(239,129,87,0.15)]">
+        <i class="nc-icon nc-ruler-pencil text-lg text-[var(--paper-danger)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Table Sizes</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Compact, default, and relaxed cell padding</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body space-y-6">
+      <!-- Compact -->
+      <div>
+        <p class="text-sm font-medium mb-2">Compact Table</p>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-6">
+          <table class="paper-table paper-table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>001</td>
+                <td>Widget A</td>
+                <td>5</td>
+                <td>$25</td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>Widget B</td>
+                <td>3</td>
+                <td>$45</td>
+              </tr>
+              <tr>
+                <td>003</td>
+                <td>Widget C</td>
+                <td>8</td>
+                <td>$80</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Default -->
+      <div>
+        <p class="text-sm font-medium mb-2">Default Table</p>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-6">
+          <table class="paper-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>001</td>
+                <td>Widget A</td>
+                <td>5</td>
+                <td>$25</td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>Widget B</td>
+                <td>3</td>
+                <td>$45</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Relaxed -->
+      <div>
+        <p class="text-sm font-medium mb-2">Relaxed Table</p>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-6">
+          <table class="paper-table paper-table-lg">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>001</td>
+                <td>Widget A</td>
+                <td>5</td>
+                <td>$25</td>
+              </tr>
+              <tr>
+                <td>002</td>
+                <td>Widget B</td>
+                <td>3</td>
+                <td>$45</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;!-- Compact --&gt;
+&lt;table class="paper-table paper-table-sm"&gt;...&lt;/table&gt;
+
+&lt;!-- Default --&gt;
+&lt;table class="paper-table"&gt;...&lt;/table&gt;
+
+&lt;!-- Relaxed --&gt;
+&lt;table class="paper-table paper-table-lg"&gt;...&lt;/table&gt;
+
+&lt;!-- CSS --&gt;
+&lt;style&gt;
+.paper-table-sm th, .paper-table-sm td { padding: 0.5rem 0.75rem; }
+.paper-table-lg th, .paper-table-lg td { padding: 1rem 1.25rem; }
+&lt;/style&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status Badges in Tables -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
+        <i class="nc-icon nc-tag-content text-lg text-[var(--paper-primary)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Status Badges</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Using badges to show status indicators</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Payment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-mono text-sm">#ORD-7842</td>
+              <td>John Smith</td>
+              <td>Jan 10, 2026</td>
+              <td><span class="paper-badge paper-badge-success">Delivered</span></td>
+              <td><span class="paper-badge paper-badge-success">Paid</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono text-sm">#ORD-7843</td>
+              <td>Sarah Johnson</td>
+              <td>Jan 11, 2026</td>
+              <td><span class="paper-badge paper-badge-info">Shipped</span></td>
+              <td><span class="paper-badge paper-badge-success">Paid</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono text-sm">#ORD-7844</td>
+              <td>Mike Brown</td>
+              <td>Jan 12, 2026</td>
+              <td><span class="paper-badge paper-badge-warning">Processing</span></td>
+              <td><span class="paper-badge paper-badge-warning">Pending</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono text-sm">#ORD-7845</td>
+              <td>Emily Davis</td>
+              <td>Jan 13, 2026</td>
+              <td><span class="paper-badge paper-badge-danger">Cancelled</span></td>
+              <td><span class="paper-badge paper-badge-danger">Refunded</span></td>
+            </tr>
+            <tr>
+              <td class="font-mono text-sm">#ORD-7846</td>
+              <td>Chris Wilson</td>
+              <td>Jan 14, 2026</td>
+              <td><span class="paper-badge paper-badge-default">Draft</span></td>
+              <td><span class="paper-badge paper-badge-default">Awaiting</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;td&gt;&lt;span class="paper-badge paper-badge-success"&gt;Delivered&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="paper-badge paper-badge-info"&gt;Shipped&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="paper-badge paper-badge-warning"&gt;Processing&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="paper-badge paper-badge-danger"&gt;Cancelled&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;span class="paper-badge paper-badge-default"&gt;Draft&lt;/span&gt;&lt;/td&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Responsive Table -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(110,195,114,0.15)]">
+        <i class="nc-icon nc-tablet-2 text-lg text-[var(--paper-success)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Responsive Table</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Horizontal scroll on smaller screens</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <div class="overflow-x-auto">
+          <table class="paper-table min-w-[800px]">
+            <thead>
+              <tr>
+                <th>Employee</th>
+                <th>Position</th>
+                <th>Department</th>
+                <th>Start Date</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>James Anderson</td>
+                <td>Software Engineer</td>
+                <td>Engineering</td>
+                <td>Mar 15, 2023</td>
+                <td>james@company.com</td>
+                <td>+1 555-0101</td>
+                <td>New York</td>
+              </tr>
+              <tr>
+                <td>Lisa Martinez</td>
+                <td>Product Manager</td>
+                <td>Product</td>
+                <td>Jun 20, 2022</td>
+                <td>lisa@company.com</td>
+                <td>+1 555-0102</td>
+                <td>San Francisco</td>
+              </tr>
+              <tr>
+                <td>Robert Chen</td>
+                <td>UX Designer</td>
+                <td>Design</td>
+                <td>Sep 10, 2024</td>
+                <td>robert@company.com</td>
+                <td>+1 555-0103</td>
+                <td>Austin</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-[var(--paper-muted)] mt-3"><i class="nc-icon nc-alert-circle-i mr-1"></i>Try resizing your browser to see the horizontal scroll</p>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;!-- Wrap table in overflow container --&gt;
+&lt;div class="overflow-x-auto"&gt;
+  &lt;table class="paper-table min-w-[800px]"&gt;
+    &lt;!-- Table content --&gt;
+  &lt;/table&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table with Footer -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)]">
+        <i class="nc-icon nc-paper text-lg text-[var(--paper-info)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Table with Footer</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Summary row using tfoot element</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th class="text-right">Quantity</th>
+              <th class="text-right">Unit Price</th>
+              <th class="text-right">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Product A</td>
+              <td class="text-right">10</td>
+              <td class="text-right">$15.00</td>
+              <td class="text-right">$150.00</td>
+            </tr>
+            <tr>
+              <td>Product B</td>
+              <td class="text-right">5</td>
+              <td class="text-right">$25.00</td>
+              <td class="text-right">$125.00</td>
+            </tr>
+            <tr>
+              <td>Product C</td>
+              <td class="text-right">20</td>
+              <td class="text-right">$8.00</td>
+              <td class="text-right">$160.00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="border-t-2 border-[var(--paper-border)] font-semibold">
+              <td>Total</td>
+              <td class="text-right">35</td>
+              <td class="text-right">-</td>
+              <td class="text-right">$435.00</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table class="paper-table"&gt;
+  &lt;thead&gt;...&lt;/thead&gt;
+  &lt;tbody&gt;...&lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr class="border-t-2 border-[var(--paper-border)] font-semibold"&gt;
+      &lt;td&gt;Total&lt;/td&gt;
+      &lt;td class="text-right"&gt;35&lt;/td&gt;
+      &lt;td class="text-right"&gt;-&lt;/td&gt;
+      &lt;td class="text-right"&gt;$435.00&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Caption Table -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(255,184,77,0.15)]">
+        <i class="nc-icon nc-caps-small text-lg text-[var(--paper-warning)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Table with Caption</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Descriptive caption for accessibility</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <caption class="text-left text-sm text-[var(--paper-muted)] mb-3">
+            <strong>Table 1:</strong> Q4 2025 Sales Performance by Region
+          </caption>
+          <thead>
+            <tr>
+              <th>Region</th>
+              <th class="text-right">Revenue</th>
+              <th class="text-right">Growth</th>
+              <th class="text-right">Target</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>North America</td>
+              <td class="text-right">$1.2M</td>
+              <td class="text-right text-[var(--paper-success)]">+15%</td>
+              <td class="text-right">120%</td>
+            </tr>
+            <tr>
+              <td>Europe</td>
+              <td class="text-right">$890K</td>
+              <td class="text-right text-[var(--paper-success)]">+8%</td>
+              <td class="text-right">105%</td>
+            </tr>
+            <tr>
+              <td>Asia Pacific</td>
+              <td class="text-right">$650K</td>
+              <td class="text-right text-[var(--paper-danger)]">-3%</td>
+              <td class="text-right">87%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table class="paper-table"&gt;
+  &lt;caption class="text-left text-sm text-[var(--paper-muted)] mb-3"&gt;
+    &lt;strong&gt;Table 1:&lt;/strong&gt; Q4 2025 Sales Performance
+  &lt;/caption&gt;
+  &lt;thead&gt;...&lt;/thead&gt;
+  &lt;tbody&gt;...&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Column Alignment -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(239,129,87,0.15)]">
+        <i class="nc-icon nc-align-center text-lg text-[var(--paper-danger)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Column Alignment</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Left, center, and right alignment options</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th class="text-left">Left Aligned</th>
+              <th class="text-center">Centered</th>
+              <th class="text-right">Right Aligned</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left">Product name goes here</td>
+              <td class="text-center">Available</td>
+              <td class="text-right">$99.99</td>
+            </tr>
+            <tr>
+              <td class="text-left">Another product</td>
+              <td class="text-center">Out of stock</td>
+              <td class="text-right">$149.99</td>
+            </tr>
+            <tr>
+              <td class="text-left">Third product item</td>
+              <td class="text-center">Pre-order</td>
+              <td class="text-right">$299.99</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;th class="text-left"&gt;Left Aligned&lt;/th&gt;
+&lt;th class="text-center"&gt;Centered&lt;/th&gt;
+&lt;th class="text-right"&gt;Right Aligned&lt;/th&gt;
+
+&lt;td class="text-left"&gt;Content&lt;/td&gt;
+&lt;td class="text-center"&gt;Content&lt;/td&gt;
+&lt;td class="text-right"&gt;Content&lt;/td&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Reference -->
+  <div class="mt-6 paper-card">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
+        <i class="nc-icon nc-bookmark-2 text-lg text-[var(--paper-primary)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Quick Reference</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Table classes and modifiers</p>
+      </div>
+    </div>
+    <div class="paper-card-body">
+      <div class="overflow-x-auto">
+        <table class="paper-table paper-table-sm">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table</code></td>
+              <td>Base table styling with border-bottom rows</td>
+            </tr>
+            <tr>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table-striped</code></td>
+              <td>Alternating row background colors</td>
+            </tr>
+            <tr>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table-bordered</code></td>
+              <td>Full borders on all table cells</td>
+            </tr>
+            <tr>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table-hover</code></td>
+              <td>Highlight rows on hover</td>
+            </tr>
+            <tr>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table-sm</code></td>
+              <td>Compact cell padding (0.5rem)</td>
+            </tr>
+            <tr>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table-lg</code></td>
+              <td>Relaxed cell padding (1rem)</td>
+            </tr>
+            <tr>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.text-left</code></td>
+              <td>Left-align column content</td>
+            </tr>
+            <tr>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.text-center</code></td>
+              <td>Center-align column content</td>
+            </tr>
+            <tr>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.text-right</code></td>
+              <td>Right-align column content</td>
+            </tr>
+            <tr>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.overflow-x-auto</code></td>
+              <td>Enable horizontal scroll (wrapper)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>

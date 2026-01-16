@@ -55,11 +55,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -214,61 +241,786 @@
 <section class="pt-6">
   <div>
     <h1 class="text-2xl font-semibold">Extended Tables</h1>
-    <p class="paper-muted text-sm">Teams with progress indicators</p>
+    <p class="paper-muted text-sm">Advanced table features with interactivity</p>
   </div>
-  <div class="mt-6 paper-card">
+
+  <!-- Table with Avatars -->
+  <div class="mt-8 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
+        <i class="nc-icon nc-circle-10 text-lg text-[var(--paper-primary)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Table with Avatars</h2>
+        <p class="text-xs text-[var(--paper-muted)]">User profiles with images in table cells</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
     <div class="paper-card-body">
-      <table class="paper-table">
-        <thead>
-          <tr>
-            <th>Team</th>
-            <th>Lead</th>
-            <th>Progress</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Growth</td>
-            <td>
-              <div class="flex items-center gap-2">
-                <img src="../../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Lead" class="h-8 w-8 rounded-full">
-                Chet Faker
-              </div>
-            </td>
-            <td>
-              <div class="paper-progress"><span style="width: 72%; background: var(--paper-success);"></span></div>
-            </td>
-            <td><span class="paper-badge paper-badge-success">On track</span></td>
-          </tr>
-          <tr>
-            <td>Core</td>
-            <td>
-              <div class="flex items-center gap-2">
-                <img src="../../assets/img/faces/joe-gardner-2.jpg" alt="Lead" class="h-8 w-8 rounded-full">
-                Joe Gardner
-              </div>
-            </td>
-            <td>
-              <div class="paper-progress"><span style="width: 48%; background: var(--paper-warning);"></span></div>
-            </td>
-            <td><span class="paper-badge paper-badge-warning">At risk</span></td>
-          </tr>
-          <tr>
-            <td>Infra</td>
-            <td>
-              <div class="flex items-center gap-2">
-                <img src="../../assets/img/faces/kaci-baum-2.jpg" alt="Lead" class="h-8 w-8 rounded-full">
-                Kaci Baum
-              </div>
-            </td>
-            <td>
-              <div class="paper-progress"><span style="width: 92%; background: var(--paper-info);"></span></div>
-            </td>
-            <td><span class="paper-badge paper-badge-info">Steady</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Role</th>
+              <th>Email</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="flex items-center gap-3">
+                  <img src="../../assets/img/faces/ayo-ogunseinde-2.jpg" alt="User" class="h-10 w-10 rounded-full object-cover">
+                  <div>
+                    <p class="font-medium">Chet Faker</p>
+                    <p class="text-xs text-[var(--paper-muted)]">@chetfaker</p>
+                  </div>
+                </div>
+              </td>
+              <td>Admin</td>
+              <td>chet@example.com</td>
+              <td><span class="inline-flex items-center gap-1"><span class="h-2 w-2 rounded-full bg-[var(--paper-success)]"></span> Online</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="flex items-center gap-3">
+                  <img src="../../assets/img/faces/joe-gardner-2.jpg" alt="User" class="h-10 w-10 rounded-full object-cover">
+                  <div>
+                    <p class="font-medium">Joe Gardner</p>
+                    <p class="text-xs text-[var(--paper-muted)]">@joegardner</p>
+                  </div>
+                </div>
+              </td>
+              <td>Editor</td>
+              <td>joe@example.com</td>
+              <td><span class="inline-flex items-center gap-1"><span class="h-2 w-2 rounded-full bg-[var(--paper-success)]"></span> Online</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="flex items-center gap-3">
+                  <img src="../../assets/img/faces/kaci-baum-2.jpg" alt="User" class="h-10 w-10 rounded-full object-cover">
+                  <div>
+                    <p class="font-medium">Kaci Baum</p>
+                    <p class="text-xs text-[var(--paper-muted)]">@kacibaum</p>
+                  </div>
+                </div>
+              </td>
+              <td>Viewer</td>
+              <td>kaci@example.com</td>
+              <td><span class="inline-flex items-center gap-1"><span class="h-2 w-2 rounded-full bg-gray-400"></span> Offline</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;td&gt;
+  &lt;div class="flex items-center gap-3"&gt;
+    &lt;img src="avatar.jpg" alt="User" class="h-10 w-10 rounded-full object-cover"&gt;
+    &lt;div&gt;
+      &lt;p class="font-medium"&gt;User Name&lt;/p&gt;
+      &lt;p class="text-xs text-[var(--paper-muted)]"&gt;@username&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/td&gt;
+
+&lt;!-- Online status indicator --&gt;
+&lt;span class="inline-flex items-center gap-1"&gt;
+  &lt;span class="h-2 w-2 rounded-full bg-[var(--paper-success)]"&gt;&lt;/span&gt; Online
+&lt;/span&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Bars in Tables -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(110,195,114,0.15)]">
+        <i class="nc-icon nc-chart-bar-32 text-lg text-[var(--paper-success)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Progress Indicators</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Progress bars with percentages</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Team</th>
+              <th class="w-48">Progress</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-medium">Website Redesign</td>
+              <td>Design</td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="flex-1 paper-progress"><span style="width: 85%; background: var(--paper-success);"></span></div>
+                  <span class="text-sm font-medium">85%</span>
+                </div>
+              </td>
+              <td><span class="paper-badge paper-badge-success">On track</span></td>
+            </tr>
+            <tr>
+              <td class="font-medium">Mobile App</td>
+              <td>Engineering</td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="flex-1 paper-progress"><span style="width: 62%; background: var(--paper-info);"></span></div>
+                  <span class="text-sm font-medium">62%</span>
+                </div>
+              </td>
+              <td><span class="paper-badge paper-badge-info">In progress</span></td>
+            </tr>
+            <tr>
+              <td class="font-medium">Backend API</td>
+              <td>Backend</td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="flex-1 paper-progress"><span style="width: 35%; background: var(--paper-warning);"></span></div>
+                  <span class="text-sm font-medium">35%</span>
+                </div>
+              </td>
+              <td><span class="paper-badge paper-badge-warning">At risk</span></td>
+            </tr>
+            <tr>
+              <td class="font-medium">Documentation</td>
+              <td>Content</td>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div class="flex-1 paper-progress"><span style="width: 15%; background: var(--paper-danger);"></span></div>
+                  <span class="text-sm font-medium">15%</span>
+                </div>
+              </td>
+              <td><span class="paper-badge paper-badge-danger">Delayed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;td&gt;
+  &lt;div class="flex items-center gap-3"&gt;
+    &lt;div class="flex-1 paper-progress"&gt;
+      &lt;span style="width: 85%; background: var(--paper-success);"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;span class="text-sm font-medium"&gt;85%&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/td&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)]">
+        <i class="nc-icon nc-settings-gear-65 text-lg text-[var(--paper-info)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Action Buttons</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Row-level action controls</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Document</th>
+              <th>Type</th>
+              <th>Modified</th>
+              <th>Size</th>
+              <th class="text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-medium">Q4 Report.pdf</td>
+              <td><span class="text-[var(--paper-danger)]"><i class="nc-icon nc-single-copy-04 mr-1"></i>PDF</span></td>
+              <td>Jan 10, 2026</td>
+              <td>2.4 MB</td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                  <button class="paper-btn paper-btn-sm paper-btn-ghost" title="View"><i class="nc-icon nc-zoom-split"></i></button>
+                  <button class="paper-btn paper-btn-sm paper-btn-ghost" title="Download"><i class="nc-icon nc-cloud-download-93"></i></button>
+                  <button class="paper-btn paper-btn-sm paper-btn-ghost text-[var(--paper-danger)]" title="Delete"><i class="nc-icon nc-simple-remove"></i></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-medium">Design System.fig</td>
+              <td><span class="text-[var(--paper-primary)]"><i class="nc-icon nc-palette mr-1"></i>Figma</span></td>
+              <td>Jan 12, 2026</td>
+              <td>18.7 MB</td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                  <button class="paper-btn paper-btn-sm paper-btn-ghost" title="View"><i class="nc-icon nc-zoom-split"></i></button>
+                  <button class="paper-btn paper-btn-sm paper-btn-ghost" title="Download"><i class="nc-icon nc-cloud-download-93"></i></button>
+                  <button class="paper-btn paper-btn-sm paper-btn-ghost text-[var(--paper-danger)]" title="Delete"><i class="nc-icon nc-simple-remove"></i></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-medium">Budget.xlsx</td>
+              <td><span class="text-[var(--paper-success)]"><i class="nc-icon nc-chart-pie-36 mr-1"></i>Excel</span></td>
+              <td>Jan 14, 2026</td>
+              <td>845 KB</td>
+              <td class="text-right">
+                <div class="flex items-center justify-end gap-2">
+                  <button class="paper-btn paper-btn-sm paper-btn-ghost" title="View"><i class="nc-icon nc-zoom-split"></i></button>
+                  <button class="paper-btn paper-btn-sm paper-btn-ghost" title="Download"><i class="nc-icon nc-cloud-download-93"></i></button>
+                  <button class="paper-btn paper-btn-sm paper-btn-ghost text-[var(--paper-danger)]" title="Delete"><i class="nc-icon nc-simple-remove"></i></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;td class="text-right"&gt;
+  &lt;div class="flex items-center justify-end gap-2"&gt;
+    &lt;button class="paper-btn paper-btn-sm paper-btn-ghost" title="View"&gt;
+      &lt;i class="nc-icon nc-zoom-split"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+    &lt;button class="paper-btn paper-btn-sm paper-btn-ghost" title="Download"&gt;
+      &lt;i class="nc-icon nc-cloud-download-93"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+    &lt;button class="paper-btn paper-btn-sm paper-btn-ghost text-[var(--paper-danger)]" title="Delete"&gt;
+      &lt;i class="nc-icon nc-simple-remove"&gt;&lt;/i&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/td&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expandable Rows -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(255,184,77,0.15)]">
+        <i class="nc-icon nc-minimal-down text-lg text-[var(--paper-warning)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Expandable Rows</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Click to expand additional details</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table" x-data="{ expanded: null }">
+          <thead>
+            <tr>
+              <th class="w-10"></th>
+              <th>Order</th>
+              <th>Customer</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1 -->
+            <tr class="cursor-pointer" @click="expanded = expanded === 1 ? null : 1" :class="expanded === 1 ? 'bg-[rgba(102,126,234,0.05)]' : ''">
+              <td>
+                <i class="nc-icon nc-minimal-right text-sm transition-transform" :class="expanded === 1 ? 'rotate-90' : ''"></i>
+              </td>
+              <td class="font-mono">#ORD-4521</td>
+              <td>John Smith</td>
+              <td>$249.00</td>
+              <td><span class="paper-badge paper-badge-success">Completed</span></td>
+            </tr>
+            <tr x-show="expanded === 1" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+              <td colspan="5" class="bg-slate-50 p-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Shipping Address</p>
+                    <p class="font-medium">123 Main St, New York, NY 10001</p>
+                  </div>
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Payment Method</p>
+                    <p class="font-medium">Visa ending in 4242</p>
+                  </div>
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Order Date</p>
+                    <p class="font-medium">Jan 10, 2026</p>
+                  </div>
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Tracking</p>
+                    <p class="font-medium text-[var(--paper-primary)]">1Z999AA10123456784</p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 2 -->
+            <tr class="cursor-pointer" @click="expanded = expanded === 2 ? null : 2" :class="expanded === 2 ? 'bg-[rgba(102,126,234,0.05)]' : ''">
+              <td>
+                <i class="nc-icon nc-minimal-right text-sm transition-transform" :class="expanded === 2 ? 'rotate-90' : ''"></i>
+              </td>
+              <td class="font-mono">#ORD-4522</td>
+              <td>Sarah Johnson</td>
+              <td>$89.99</td>
+              <td><span class="paper-badge paper-badge-info">Shipped</span></td>
+            </tr>
+            <tr x-show="expanded === 2" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+              <td colspan="5" class="bg-slate-50 p-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Shipping Address</p>
+                    <p class="font-medium">456 Oak Ave, Los Angeles, CA 90001</p>
+                  </div>
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Payment Method</p>
+                    <p class="font-medium">PayPal</p>
+                  </div>
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Order Date</p>
+                    <p class="font-medium">Jan 12, 2026</p>
+                  </div>
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Tracking</p>
+                    <p class="font-medium text-[var(--paper-primary)]">1Z999AA10123456785</p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 3 -->
+            <tr class="cursor-pointer" @click="expanded = expanded === 3 ? null : 3" :class="expanded === 3 ? 'bg-[rgba(102,126,234,0.05)]' : ''">
+              <td>
+                <i class="nc-icon nc-minimal-right text-sm transition-transform" :class="expanded === 3 ? 'rotate-90' : ''"></i>
+              </td>
+              <td class="font-mono">#ORD-4523</td>
+              <td>Mike Brown</td>
+              <td>$175.50</td>
+              <td><span class="paper-badge paper-badge-warning">Processing</span></td>
+            </tr>
+            <tr x-show="expanded === 3" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+              <td colspan="5" class="bg-slate-50 p-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Shipping Address</p>
+                    <p class="font-medium">789 Pine Rd, Chicago, IL 60601</p>
+                  </div>
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Payment Method</p>
+                    <p class="font-medium">Mastercard ending in 5555</p>
+                  </div>
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Order Date</p>
+                    <p class="font-medium">Jan 14, 2026</p>
+                  </div>
+                  <div>
+                    <p class="text-[var(--paper-muted)]">Tracking</p>
+                    <p class="font-medium text-[var(--paper-muted)]">Pending</p>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table x-data="{ expanded: null }"&gt;
+  &lt;!-- Clickable row --&gt;
+  &lt;tr @click="expanded = expanded === 1 ? null : 1"
+      :class="expanded === 1 ? 'bg-[rgba(102,126,234,0.05)]' : ''"&gt;
+    &lt;td&gt;
+      &lt;i class="nc-icon nc-minimal-right transition-transform"
+         :class="expanded === 1 ? 'rotate-90' : ''"&gt;&lt;/i&gt;
+    &lt;/td&gt;
+    &lt;!-- Row data... --&gt;
+  &lt;/tr&gt;
+
+  &lt;!-- Expandable content --&gt;
+  &lt;tr x-show="expanded === 1" x-transition&gt;
+    &lt;td colspan="5" class="bg-slate-50 p-4"&gt;
+      &lt;!-- Detailed content --&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkbox Selection -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(239,129,87,0.15)]">
+        <i class="nc-icon nc-check-2 text-lg text-[var(--paper-danger)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Checkbox Selection</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Select multiple rows with bulk actions</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4" x-data="{
+        items: [
+          { id: 1, name: 'Product A', sku: 'SKU-001', price: 29.99, stock: 150 },
+          { id: 2, name: 'Product B', sku: 'SKU-002', price: 49.99, stock: 85 },
+          { id: 3, name: 'Product C', sku: 'SKU-003', price: 19.99, stock: 230 },
+          { id: 4, name: 'Product D', sku: 'SKU-004', price: 99.99, stock: 42 }
+        ],
+        selected: [],
+        get allSelected() { return this.selected.length === this.items.length; },
+        toggleAll() { this.selected = this.allSelected ? [] : this.items.map(i => i.id); },
+        isSelected(id) { return this.selected.includes(id); },
+        toggle(id) {
+          if (this.isSelected(id)) {
+            this.selected = this.selected.filter(i => i !== id);
+          } else {
+            this.selected.push(id);
+          }
+        }
+      }">
+        <!-- Bulk actions bar -->
+        <div class="flex items-center justify-between mb-4" x-show="selected.length > 0" x-transition>
+          <span class="text-sm font-medium"><span x-text="selected.length"></span> items selected</span>
+          <div class="flex gap-2">
+            <button class="paper-btn paper-btn-sm paper-btn-outline">Edit Selected</button>
+            <button class="paper-btn paper-btn-sm paper-btn-danger">Delete Selected</button>
+          </div>
+        </div>
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th class="w-10">
+                <input type="checkbox" :checked="allSelected" @change="toggleAll()" class="h-4 w-4 rounded border-gray-300 text-[var(--paper-primary)] focus:ring-[var(--paper-primary)]">
+              </th>
+              <th>Product</th>
+              <th>SKU</th>
+              <th class="text-right">Price</th>
+              <th class="text-right">Stock</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template x-for="item in items" :key="item.id">
+              <tr :class="isSelected(item.id) ? 'bg-[rgba(102,126,234,0.05)]' : ''">
+                <td>
+                  <input type="checkbox" :checked="isSelected(item.id)" @change="toggle(item.id)" class="h-4 w-4 rounded border-gray-300 text-[var(--paper-primary)] focus:ring-[var(--paper-primary)]">
+                </td>
+                <td class="font-medium" x-text="item.name"></td>
+                <td class="text-[var(--paper-muted)] font-mono text-sm" x-text="item.sku"></td>
+                <td class="text-right" x-text="'$' + item.price.toFixed(2)"></td>
+                <td class="text-right" x-text="item.stock"></td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;div x-data="{
+  items: [...],
+  selected: [],
+  get allSelected() { return this.selected.length === this.items.length; },
+  toggleAll() { this.selected = this.allSelected ? [] : this.items.map(i =&gt; i.id); },
+  isSelected(id) { return this.selected.includes(id); },
+  toggle(id) {
+    if (this.isSelected(id)) {
+      this.selected = this.selected.filter(i =&gt; i !== id);
+    } else {
+      this.selected.push(id);
+    }
+  }
+}"&gt;
+  &lt;!-- Select all checkbox in header --&gt;
+  &lt;input type="checkbox" :checked="allSelected" @change="toggleAll()"&gt;
+
+  &lt;!-- Row checkbox --&gt;
+  &lt;input type="checkbox" :checked="isSelected(item.id)" @change="toggle(item.id)"&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inline Editing -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
+        <i class="nc-icon nc-ruler-pencil text-lg text-[var(--paper-primary)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Inline Editing</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Click to edit cell values directly</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th class="text-right">Price</th>
+              <th class="text-right">Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr x-data="{ editing: null, product: 'Widget Pro', price: 49.99, qty: 100 }">
+              <td>
+                <div x-show="editing !== 'product'" @click="editing = 'product'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="product"></div>
+                <input x-show="editing === 'product'" x-model="product" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1" x-ref="productInput" x-init="$watch('editing', val => { if(val === 'product') $nextTick(() => $refs.productInput.focus()) })">
+              </td>
+              <td class="text-right">
+                <div x-show="editing !== 'price'" @click="editing = 'price'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="'$' + price.toFixed(2)"></div>
+                <input x-show="editing === 'price'" type="number" step="0.01" x-model.number="price" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-right w-24" x-ref="priceInput" x-init="$watch('editing', val => { if(val === 'price') $nextTick(() => $refs.priceInput.focus()) })">
+              </td>
+              <td class="text-right">
+                <div x-show="editing !== 'qty'" @click="editing = 'qty'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="qty"></div>
+                <input x-show="editing === 'qty'" type="number" x-model.number="qty" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-right w-20" x-ref="qtyInput" x-init="$watch('editing', val => { if(val === 'qty') $nextTick(() => $refs.qtyInput.focus()) })">
+              </td>
+            </tr>
+            <tr x-data="{ editing: null, product: 'Basic Widget', price: 24.99, qty: 250 }">
+              <td>
+                <div x-show="editing !== 'product'" @click="editing = 'product'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="product"></div>
+                <input x-show="editing === 'product'" x-model="product" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1" x-ref="productInput2" x-init="$watch('editing', val => { if(val === 'product') $nextTick(() => $refs.productInput2.focus()) })">
+              </td>
+              <td class="text-right">
+                <div x-show="editing !== 'price'" @click="editing = 'price'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="'$' + price.toFixed(2)"></div>
+                <input x-show="editing === 'price'" type="number" step="0.01" x-model.number="price" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-right w-24" x-ref="priceInput2" x-init="$watch('editing', val => { if(val === 'price') $nextTick(() => $refs.priceInput2.focus()) })">
+              </td>
+              <td class="text-right">
+                <div x-show="editing !== 'qty'" @click="editing = 'qty'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="qty"></div>
+                <input x-show="editing === 'qty'" type="number" x-model.number="qty" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-right w-20" x-ref="qtyInput2" x-init="$watch('editing', val => { if(val === 'qty') $nextTick(() => $refs.qtyInput2.focus()) })">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="text-xs text-[var(--paper-muted)] mt-3"><i class="nc-icon nc-alert-circle-i mr-1"></i>Click on any cell to edit. Press Enter or click outside to save.</p>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;tr x-data="{ editing: null, product: 'Widget Pro', price: 49.99 }"&gt;
+  &lt;td&gt;
+    &lt;!-- Display mode --&gt;
+    &lt;div x-show="editing !== 'product'"
+         @click="editing = 'product'"
+         class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded"
+         x-text="product"&gt;&lt;/div&gt;
+
+    &lt;!-- Edit mode --&gt;
+    &lt;input x-show="editing === 'product'"
+           x-model="product"
+           @blur="editing = null"
+           @keydown.enter="editing = null"
+           class="paper-input"&gt;
+  &lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Avatar Stacks -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(110,195,114,0.15)]">
+        <i class="nc-icon nc-single-02 text-lg text-[var(--paper-success)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Avatar Stacks</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Multiple team members in a single cell</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Team Members</th>
+              <th>Deadline</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-medium">Website Redesign</td>
+              <td>
+                <div class="flex -space-x-2">
+                  <img src="../../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Team member" class="h-8 w-8 rounded-full border-2 border-white object-cover">
+                  <img src="../../assets/img/faces/joe-gardner-2.jpg" alt="Team member" class="h-8 w-8 rounded-full border-2 border-white object-cover">
+                  <img src="../../assets/img/faces/kaci-baum-2.jpg" alt="Team member" class="h-8 w-8 rounded-full border-2 border-white object-cover">
+                  <span class="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-slate-100 text-xs font-medium">+2</span>
+                </div>
+              </td>
+              <td>Jan 30, 2026</td>
+              <td><span class="paper-badge paper-badge-success">On track</span></td>
+            </tr>
+            <tr>
+              <td class="font-medium">Mobile App v2</td>
+              <td>
+                <div class="flex -space-x-2">
+                  <img src="../../assets/img/faces/erik-lucatero-2.jpg" alt="Team member" class="h-8 w-8 rounded-full border-2 border-white object-cover">
+                  <img src="../../assets/img/faces/clem-onojeghuo-2.jpg" alt="Team member" class="h-8 w-8 rounded-full border-2 border-white object-cover">
+                </div>
+              </td>
+              <td>Feb 15, 2026</td>
+              <td><span class="paper-badge paper-badge-warning">At risk</span></td>
+            </tr>
+            <tr>
+              <td class="font-medium">API Integration</td>
+              <td>
+                <div class="flex -space-x-2">
+                  <img src="../../assets/img/faces/ayo-ogunseinde-1.jpg" alt="Team member" class="h-8 w-8 rounded-full border-2 border-white object-cover">
+                  <img src="../../assets/img/faces/joe-gardner-1.jpg" alt="Team member" class="h-8 w-8 rounded-full border-2 border-white object-cover">
+                  <img src="../../assets/img/faces/kaci-baum-1.jpg" alt="Team member" class="h-8 w-8 rounded-full border-2 border-white object-cover">
+                  <img src="../../assets/img/faces/erik-lucatero-1.jpg" alt="Team member" class="h-8 w-8 rounded-full border-2 border-white object-cover">
+                </div>
+              </td>
+              <td>Mar 1, 2026</td>
+              <td><span class="paper-badge paper-badge-info">In progress</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;td&gt;
+  &lt;div class="flex -space-x-2"&gt;
+    &lt;img src="avatar1.jpg" class="h-8 w-8 rounded-full border-2 border-white"&gt;
+    &lt;img src="avatar2.jpg" class="h-8 w-8 rounded-full border-2 border-white"&gt;
+    &lt;img src="avatar3.jpg" class="h-8 w-8 rounded-full border-2 border-white"&gt;
+    &lt;span class="flex h-8 w-8 items-center justify-center rounded-full
+                border-2 border-white bg-slate-100 text-xs font-medium"&gt;+2&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/td&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contextual Row Colors -->
+  <div class="mt-6 paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)]">
+        <i class="nc-icon nc-palette text-lg text-[var(--paper-info)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Contextual Row Colors</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Highlight entire rows based on status</p>
+      </div>
+      <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>Priority</th>
+              <th>Due Date</th>
+              <th>Assigned</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-[rgba(110,195,114,0.1)]">
+              <td>Deploy production update</td>
+              <td>Low</td>
+              <td>Jan 20, 2026</td>
+              <td>Team A</td>
+            </tr>
+            <tr>
+              <td>Review pull requests</td>
+              <td>Normal</td>
+              <td>Jan 18, 2026</td>
+              <td>Team B</td>
+            </tr>
+            <tr class="bg-[rgba(255,184,77,0.1)]">
+              <td>Fix login bug</td>
+              <td>High</td>
+              <td>Jan 16, 2026</td>
+              <td>Team C</td>
+            </tr>
+            <tr class="bg-[rgba(239,129,87,0.1)]">
+              <td>Critical security patch</td>
+              <td>Urgent</td>
+              <td>Jan 15, 2026</td>
+              <td>Team D</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div x-show="showCode" x-transition class="mt-4">
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;!-- Success/Low priority --&gt;
+&lt;tr class="bg-[rgba(110,195,114,0.1)]"&gt;...&lt;/tr&gt;
+
+&lt;!-- Warning/High priority --&gt;
+&lt;tr class="bg-[rgba(255,184,77,0.1)]"&gt;...&lt;/tr&gt;
+
+&lt;!-- Danger/Urgent priority --&gt;
+&lt;tr class="bg-[rgba(239,129,87,0.1)]"&gt;...&lt;/tr&gt;
+
+&lt;!-- Info --&gt;
+&lt;tr class="bg-[rgba(81,188,218,0.1)]"&gt;...&lt;/tr&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Reference -->
+  <div class="mt-6 paper-card">
+    <div class="paper-card-header flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
+        <i class="nc-icon nc-bookmark-2 text-lg text-[var(--paper-primary)]"></i>
+      </div>
+      <div>
+        <h2 class="font-semibold">Quick Reference</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Extended table patterns</p>
+      </div>
+    </div>
+    <div class="paper-card-body">
+      <div class="overflow-x-auto">
+        <table class="paper-table paper-table-sm">
+          <thead>
+            <tr>
+              <th>Pattern</th>
+              <th>Key Classes/Techniques</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Avatar cell</td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">flex items-center gap-3</code> with img + text</td>
+            </tr>
+            <tr>
+              <td>Avatar stack</td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">flex -space-x-2</code> with border-2 border-white</td>
+            </tr>
+            <tr>
+              <td>Progress bar</td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-progress</code> with inline width style</td>
+            </tr>
+            <tr>
+              <td>Action buttons</td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-btn-sm .paper-btn-ghost</code></td>
+            </tr>
+            <tr>
+              <td>Expandable rows</td>
+              <td>Alpine.js <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">x-show</code> with x-transition</td>
+            </tr>
+            <tr>
+              <td>Checkbox selection</td>
+              <td>Alpine.js array tracking with <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">selected[]</code></td>
+            </tr>
+            <tr>
+              <td>Inline editing</td>
+              <td>Toggle between display/input with <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">editing</code> state</td>
+            </tr>
+            <tr>
+              <td>Online status</td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">h-2 w-2 rounded-full</code> colored dot</td>
+            </tr>
+            <tr>
+              <td>Row highlighting</td>
+              <td>Background colors like <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">bg-[rgba(color,0.1)]</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>

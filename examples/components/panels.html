@@ -55,11 +55,38 @@
             <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
           </button>
           <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="page" href="../pages/editor.html#type=page">Page Editor</a>
             <a class="sidebar-sublink" href="../pages/timeline.html">Timeline</a>
             <a class="sidebar-sublink" href="../pages/login.html">Login</a>
             <a class="sidebar-sublink" href="../pages/register.html">Register</a>
             <a class="sidebar-sublink" href="../pages/lock.html">Lock Screen</a>
             <a class="sidebar-sublink" href="../pages/user.html">User Profile</a>
+            <a class="sidebar-sublink" href="../pages/blog-2col.html">Blog Two Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-3col.html">Blog Three Column</a>
+            <a class="sidebar-sublink" href="../pages/blog-widescreen.html">Blog Widescreen</a>
+            <a class="sidebar-sublink" href="../pages/magazine.html">Magazine</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-paper-2 shrink-0"></i>
+            <span class="sidebar-text">Posts</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="post" href="../pages/editor.html#type=post">Post Editor</a>
+          </div>
+        </div>
+
+        <div x-data="collapse(false)" class="mt-2">
+          <button class="sidebar-link" type="button" @click="toggle()">
+            <i class="nc-icon nc-globe shrink-0"></i>
+            <span class="sidebar-text">Site</span>
+            <i class="nc-icon nc-minimal-down ml-auto text-xs transition-transform shrink-0" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div class="sidebar-submenu mt-1 ml-4 space-y-1 border-l border-white/20 pl-4" x-show="open" x-transition x-cloak>
+            <a class="sidebar-sublink" data-editor-link="site" href="../pages/editor.html#type=site">Site Editor</a>
           </div>
         </div>
 
@@ -210,35 +237,938 @@
         </div>
       </header>
       <main class="flex-1 px-6 pb-12">
-        
+
+<!-- Page Header -->
 <section class="pt-6">
   <div>
-    <h1 class="text-2xl font-semibold">Panels</h1>
-    <p class="paper-muted text-sm">Card-based layouts</p>
+    <h1 class="text-2xl font-semibold">Panels & Cards</h1>
+    <p class="paper-muted text-sm">Card-based layouts for organizing content in dashboards and applications</p>
   </div>
-  <div class="mt-6 grid gap-6 lg:grid-cols-3">
-    <div class="paper-card overflow-hidden">
-      <div class="bg-[rgba(81,203,206,0.2)] px-4 py-3">
-        <p class="text-sm font-semibold">Team health</p>
+</section>
+
+<!-- Card Style Variants -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+          <i class="nc-icon nc-layers-3 text-[var(--paper-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Card Style Variants</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Default (shadow), outlined, and flat card styles</p>
+        </div>
       </div>
-      <div class="paper-card-body text-sm text-[var(--paper-muted)]">
-        Engagement is up 12% since last sprint and velocity improved.
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Default (Shadow) -->
+          <div>
+            <p class="text-xs text-[var(--paper-muted)] mb-2 font-medium">Default (Shadow)</p>
+            <div class="paper-card">
+              <div class="paper-card-body">
+                <p class="font-semibold text-sm">Shadow Card</p>
+                <p class="text-xs text-[var(--paper-muted)] mt-1">The default style with a subtle drop shadow for depth.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Outlined -->
+          <div>
+            <p class="text-xs text-[var(--paper-muted)] mb-2 font-medium">Outlined</p>
+            <div class="rounded-xl border border-[var(--paper-border)] bg-white">
+              <div class="p-4">
+                <p class="font-semibold text-sm">Outlined Card</p>
+                <p class="text-xs text-[var(--paper-muted)] mt-1">Border-only style without shadow for a flatter look.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Flat/Ghost -->
+          <div>
+            <p class="text-xs text-[var(--paper-muted)] mb-2 font-medium">Flat / Ghost</p>
+            <div class="rounded-xl bg-[var(--paper-border)]/50">
+              <div class="p-4">
+                <p class="font-semibold text-sm">Flat Card</p>
+                <p class="text-xs text-[var(--paper-muted)] mt-1">Subtle background, no border or shadow.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Default card with shadow --&gt;
+&lt;div class="paper-card"&gt;
+  &lt;div class="paper-card-body"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Outlined card (no shadow, border only) --&gt;
+&lt;div class="rounded-xl border border-[var(--paper-border)] bg-white"&gt;
+  &lt;div class="p-4"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Flat/Ghost card (subtle background) --&gt;
+&lt;div class="rounded-xl bg-[var(--paper-border)]/50"&gt;
+  &lt;div class="p-4"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
       </div>
     </div>
-    <div class="paper-card overflow-hidden">
-      <div class="bg-[rgba(239,129,87,0.2)] px-4 py-3">
-        <p class="text-sm font-semibold">Release cadence</p>
+  </div>
+</section>
+
+<!-- Basic Card Structure -->
+<section class="mt-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Basic Cards -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+            <i class="nc-icon nc-single-copy-04 text-[var(--paper-info)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Basic Card</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Simple card with body content</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
       </div>
-      <div class="paper-card-body text-sm text-[var(--paper-muted)]">
-        Two minor releases scheduled this week with a hotfix on standby.
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <div class="paper-card">
+            <div class="paper-card-body">
+              <p class="font-semibold">Welcome back!</p>
+              <p class="text-sm text-[var(--paper-muted)] mt-1">You have 3 new notifications and 2 pending tasks to review.</p>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="paper-card"&gt;
+  &lt;div class="paper-card-body"&gt;
+    &lt;p class="font-semibold"&gt;Welcome back!&lt;/p&gt;
+    &lt;p class="text-sm text-[var(--paper-muted)]"&gt;Description text...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
       </div>
     </div>
-    <div class="paper-card overflow-hidden">
-      <div class="bg-[rgba(251,198,88,0.25)] px-4 py-3">
-        <p class="text-sm font-semibold">Support tickets</p>
+
+    <!-- Cards with Header -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+            <i class="nc-icon nc-grid-45 text-[var(--paper-success)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Card with Header</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Separate header and body sections</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
       </div>
-      <div class="paper-card-body text-sm text-[var(--paper-muted)]">
-        Average response time is 2h 10m with an 87% satisfaction rate.
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <div class="paper-card">
+            <div class="paper-card-header">
+              <h3 class="paper-card-title">Project Overview</h3>
+            </div>
+            <div class="paper-card-body">
+              <p class="text-sm text-[var(--paper-muted)]">The header section creates a visual separation for titled content. Perfect for data tables, settings panels, and more.</p>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="paper-card"&gt;
+  &lt;div class="paper-card-header"&gt;
+    &lt;h3 class="paper-card-title"&gt;Card Header&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div class="paper-card-body"&gt;
+    &lt;p&gt;Body content here...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Color Accent Cards -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+          <i class="nc-icon nc-palette text-[var(--paper-success)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Color Accent Cards</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Cards with colored headers for categorization</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="paper-card overflow-hidden">
+            <div class="bg-[var(--paper-primary)]/20 px-4 py-3">
+              <p class="text-sm font-semibold text-[var(--paper-primary)]">Primary</p>
+            </div>
+            <div class="paper-card-body text-sm text-[var(--paper-muted)]">
+              Primary accent card for main actions.
+            </div>
+          </div>
+          <div class="paper-card overflow-hidden">
+            <div class="bg-[var(--paper-success)]/20 px-4 py-3">
+              <p class="text-sm font-semibold text-[var(--paper-success)]">Success</p>
+            </div>
+            <div class="paper-card-body text-sm text-[var(--paper-muted)]">
+              Success accent for positive states.
+            </div>
+          </div>
+          <div class="paper-card overflow-hidden">
+            <div class="bg-[var(--paper-warning)]/20 px-4 py-3">
+              <p class="text-sm font-semibold text-[var(--paper-warning)]">Warning</p>
+            </div>
+            <div class="paper-card-body text-sm text-[var(--paper-muted)]">
+              Warning accent for caution states.
+            </div>
+          </div>
+          <div class="paper-card overflow-hidden">
+            <div class="bg-[var(--paper-danger)]/20 px-4 py-3">
+              <p class="text-sm font-semibold text-[var(--paper-danger)]">Danger</p>
+            </div>
+            <div class="paper-card-body text-sm text-[var(--paper-muted)]">
+              Danger accent for critical alerts.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;div class="paper-card overflow-hidden"&gt;
+  &lt;div class="bg-[var(--paper-primary)]/20 px-4 py-3"&gt;
+    &lt;p class="text-sm font-semibold text-[var(--paper-primary)]"&gt;Primary&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="paper-card-body"&gt;
+    Card content...
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Color options: --paper-primary, --paper-success, --paper-warning, --paper-danger, --paper-info --&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cards with Icons -->
+<section class="mt-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Icon in Header -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-warning)]/10">
+            <i class="nc-icon nc-bulb-63 text-[var(--paper-warning)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Icon Headers</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Cards with icons in headers</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="paper-card">
+              <div class="paper-card-header flex items-center gap-3">
+                <div class="h-8 w-8 rounded-full bg-[var(--paper-primary)]/10 flex items-center justify-center">
+                  <i class="nc-icon nc-settings-gear-65 text-[var(--paper-primary)] text-sm"></i>
+                </div>
+                <h4 class="font-semibold text-sm">Settings</h4>
+              </div>
+              <div class="paper-card-body">
+                <p class="text-xs text-[var(--paper-muted)]">Configure your preferences</p>
+              </div>
+            </div>
+            <div class="paper-card">
+              <div class="paper-card-header flex items-center gap-3">
+                <div class="h-8 w-8 rounded-full bg-[var(--paper-success)]/10 flex items-center justify-center">
+                  <i class="nc-icon nc-check-2 text-[var(--paper-success)] text-sm"></i>
+                </div>
+                <h4 class="font-semibold text-sm">Completed</h4>
+              </div>
+              <div class="paper-card-body">
+                <p class="text-xs text-[var(--paper-muted)]">All tasks finished</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="paper-card"&gt;
+  &lt;div class="paper-card-header flex items-center gap-3"&gt;
+    &lt;div class="h-8 w-8 rounded-full bg-[var(--paper-primary)]/10 flex items-center justify-center"&gt;
+      &lt;i class="nc-icon nc-settings-gear-65 text-[var(--paper-primary)]"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;h4 class="font-semibold"&gt;Settings&lt;/h4&gt;
+  &lt;/div&gt;
+  &lt;div class="paper-card-body"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Large Icon Cards -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-danger)]/10">
+            <i class="nc-icon nc-app text-[var(--paper-danger)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Feature Cards</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Cards with prominent icons</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="paper-card text-center">
+              <div class="paper-card-body">
+                <div class="h-12 w-12 mx-auto rounded-full bg-[var(--paper-info)]/10 flex items-center justify-center">
+                  <i class="nc-icon nc-cloud-download-93 text-[var(--paper-info)] text-xl"></i>
+                </div>
+                <p class="font-semibold mt-3 text-sm">Downloads</p>
+                <p class="text-xs text-[var(--paper-muted)]">Get resources</p>
+              </div>
+            </div>
+            <div class="paper-card text-center">
+              <div class="paper-card-body">
+                <div class="h-12 w-12 mx-auto rounded-full bg-[var(--paper-danger)]/10 flex items-center justify-center">
+                  <i class="nc-icon nc-bell-55 text-[var(--paper-danger)] text-xl"></i>
+                </div>
+                <p class="font-semibold mt-3 text-sm">Alerts</p>
+                <p class="text-xs text-[var(--paper-muted)]">View notifications</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="paper-card text-center"&gt;
+  &lt;div class="paper-card-body"&gt;
+    &lt;div class="h-12 w-12 mx-auto rounded-full bg-[var(--paper-info)]/10 flex items-center justify-center"&gt;
+      &lt;i class="nc-icon nc-cloud-download-93 text-[var(--paper-info)] text-xl"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;p class="font-semibold mt-3"&gt;Downloads&lt;/p&gt;
+    &lt;p class="text-xs text-[var(--paper-muted)]"&gt;Get resources&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stat/KPI Cards -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+          <i class="nc-icon nc-chart-bar-32 text-[var(--paper-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Stat & KPI Cards</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Display metrics and key performance indicators</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Simple Stat -->
+          <div class="paper-card">
+            <div class="paper-card-body">
+              <p class="text-xs text-[var(--paper-muted)] uppercase tracking-wider">Revenue</p>
+              <p class="text-2xl font-bold mt-1">$24,500</p>
+              <p class="text-xs text-[var(--paper-success)] mt-2 flex items-center gap-1">
+                <i class="nc-icon nc-minimal-up"></i> +12.5%
+              </p>
+            </div>
+          </div>
+          <!-- Stat with Icon -->
+          <div class="paper-card">
+            <div class="paper-card-body flex items-center gap-4">
+              <div class="h-14 w-14 rounded-full bg-[var(--paper-info)]/10 flex items-center justify-center shrink-0">
+                <i class="nc-icon nc-single-02 text-[var(--paper-info)] text-2xl"></i>
+              </div>
+              <div>
+                <p class="text-xs text-[var(--paper-muted)]">Users</p>
+                <p class="text-xl font-bold">1,234</p>
+              </div>
+            </div>
+          </div>
+          <!-- Gradient Stat -->
+          <div class="paper-card bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-info)] text-white">
+            <div class="paper-card-body text-center">
+              <i class="nc-icon nc-cart-simple text-2xl opacity-80"></i>
+              <p class="text-2xl font-bold mt-2">567</p>
+              <p class="text-xs opacity-80">Orders</p>
+            </div>
+          </div>
+          <!-- Stat with Progress -->
+          <div class="paper-card">
+            <div class="paper-card-body">
+              <div class="flex justify-between items-center">
+                <p class="text-xs text-[var(--paper-muted)]">Capacity</p>
+                <p class="text-xs font-semibold">78%</p>
+              </div>
+              <div class="mt-2 h-2 rounded-full bg-[var(--paper-border)]">
+                <div class="h-2 rounded-full bg-[var(--paper-success)]" style="width: 78%"></div>
+              </div>
+              <p class="text-lg font-bold mt-2">78 / 100</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Simple stat --&gt;
+&lt;div class="paper-card"&gt;
+  &lt;div class="paper-card-body"&gt;
+    &lt;p class="text-xs text-[var(--paper-muted)] uppercase"&gt;Revenue&lt;/p&gt;
+    &lt;p class="text-2xl font-bold"&gt;$24,500&lt;/p&gt;
+    &lt;p class="text-xs text-[var(--paper-success)]"&gt;+12.5%&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Stat with icon --&gt;
+&lt;div class="paper-card"&gt;
+  &lt;div class="paper-card-body flex items-center gap-4"&gt;
+    &lt;div class="h-14 w-14 rounded-full bg-[var(--paper-info)]/10"&gt;
+      &lt;i class="nc-icon nc-single-02"&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;p class="text-xs"&gt;Users&lt;/p&gt;
+      &lt;p class="text-xl font-bold"&gt;1,234&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Gradient stat --&gt;
+&lt;div class="paper-card bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-info)] text-white"&gt;
+  &lt;div class="paper-card-body text-center"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Collapsible Panels -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+          <i class="nc-icon nc-minimal-down text-[var(--paper-info)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Collapsible Panels</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Accordion-style expandable cards with Alpine.js</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+        <div class="space-y-3">
+          <!-- Collapsible Card 1 -->
+          <div class="paper-card" x-data="{ open: true }">
+            <div class="paper-card-header flex items-center justify-between cursor-pointer" @click="open = !open">
+              <h4 class="font-semibold text-sm">What is Paper Dashboard?</h4>
+              <i class="nc-icon nc-minimal-down text-xs transition-transform" :class="open ? 'rotate-180' : ''"></i>
+            </div>
+            <div class="paper-card-body" x-show="open" x-collapse>
+              <p class="text-sm text-[var(--paper-muted)]">Paper Dashboard is a beautiful Bootstrap 4 admin dashboard template ported to Tailwind CSS 4.1 with Alpine.js for interactivity.</p>
+            </div>
+          </div>
+          <!-- Collapsible Card 2 -->
+          <div class="paper-card" x-data="{ open: false }">
+            <div class="paper-card-header flex items-center justify-between cursor-pointer" @click="open = !open">
+              <h4 class="font-semibold text-sm">How do I customize the theme?</h4>
+              <i class="nc-icon nc-minimal-down text-xs transition-transform" :class="open ? 'rotate-180' : ''"></i>
+            </div>
+            <div class="paper-card-body" x-show="open" x-collapse>
+              <p class="text-sm text-[var(--paper-muted)]">Customize the CSS variables in the app.css file to change colors, fonts, and spacing throughout the entire dashboard.</p>
+            </div>
+          </div>
+          <!-- Collapsible Card 3 -->
+          <div class="paper-card" x-data="{ open: false }">
+            <div class="paper-card-header flex items-center justify-between cursor-pointer" @click="open = !open">
+              <h4 class="font-semibold text-sm">Is it responsive?</h4>
+              <i class="nc-icon nc-minimal-down text-xs transition-transform" :class="open ? 'rotate-180' : ''"></i>
+            </div>
+            <div class="paper-card-body" x-show="open" x-collapse>
+              <p class="text-sm text-[var(--paper-muted)]">Yes! All components are fully responsive and work great on mobile, tablet, and desktop devices.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;div class="paper-card" x-data="{ open: false }"&gt;
+  &lt;div class="paper-card-header flex items-center justify-between cursor-pointer" @click="open = !open"&gt;
+    &lt;h4 class="font-semibold"&gt;Panel Title&lt;/h4&gt;
+    &lt;i class="nc-icon nc-minimal-down transition-transform" :class="open ? 'rotate-180' : ''"&gt;&lt;/i&gt;
+  &lt;/div&gt;
+  &lt;div class="paper-card-body" x-show="open" x-collapse&gt;
+    &lt;p&gt;Collapsible content here...&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cards with Actions -->
+<section class="mt-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Header Actions -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+            <i class="nc-icon nc-tap-01 text-[var(--paper-success)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Header Actions</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Buttons and links in card headers</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <div class="paper-card">
+            <div class="paper-card-header flex items-center justify-between">
+              <h4 class="font-semibold text-sm">Recent Activity</h4>
+              <div class="flex gap-2">
+                <button class="paper-btn paper-btn-sm paper-btn-outline-primary">Export</button>
+                <button class="paper-btn paper-btn-sm paper-btn-primary">Add New</button>
+              </div>
+            </div>
+            <div class="paper-card-body">
+              <p class="text-sm text-[var(--paper-muted)]">Card content with action buttons in the header for quick access to common operations.</p>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="paper-card"&gt;
+  &lt;div class="paper-card-header flex items-center justify-between"&gt;
+    &lt;h4 class="font-semibold"&gt;Title&lt;/h4&gt;
+    &lt;div class="flex gap-2"&gt;
+      &lt;button class="paper-btn paper-btn-sm paper-btn-outline-primary"&gt;Export&lt;/button&gt;
+      &lt;button class="paper-btn paper-btn-sm paper-btn-primary"&gt;Add New&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="paper-card-body"&gt;...&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Actions -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-warning)]/10">
+            <i class="nc-icon nc-button-play text-[var(--paper-warning)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Footer Actions</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Action buttons in card footer</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <div class="paper-card">
+            <div class="paper-card-header">
+              <h4 class="font-semibold text-sm">Confirm Action</h4>
+            </div>
+            <div class="paper-card-body">
+              <p class="text-sm text-[var(--paper-muted)]">Are you sure you want to proceed with this action? This cannot be undone.</p>
+            </div>
+            <div class="paper-card-footer flex justify-end gap-2">
+              <button class="paper-btn paper-btn-sm">Cancel</button>
+              <button class="paper-btn paper-btn-sm paper-btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="paper-card"&gt;
+  &lt;div class="paper-card-header"&gt;
+    &lt;h4 class="font-semibold"&gt;Title&lt;/h4&gt;
+  &lt;/div&gt;
+  &lt;div class="paper-card-body"&gt;...&lt;/div&gt;
+  &lt;div class="paper-card-footer flex justify-end gap-2"&gt;
+    &lt;button class="paper-btn paper-btn-sm"&gt;Cancel&lt;/button&gt;
+    &lt;button class="paper-btn paper-btn-sm paper-btn-danger"&gt;Delete&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Profile Cards -->
+<section class="mt-8">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
+          <i class="nc-icon nc-single-02 text-[var(--paper-primary)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Profile Cards</h3>
+          <p class="text-xs text-[var(--paper-muted)]">User profile and team member cards</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Simple Profile Card -->
+          <div class="paper-card text-center">
+            <div class="paper-card-body">
+              <img src="../../assets/img/faces/ayo-ogunseinde-2.jpg" alt="User" class="h-20 w-20 rounded-full mx-auto object-cover">
+              <p class="font-semibold mt-3">John Smith</p>
+              <p class="text-xs text-[var(--paper-muted)]">Product Designer</p>
+              <div class="flex justify-center gap-2 mt-3">
+                <button class="paper-btn paper-btn-sm paper-btn-outline-primary">Message</button>
+                <button class="paper-btn paper-btn-sm paper-btn-primary">Follow</button>
+              </div>
+            </div>
+          </div>
+          <!-- Horizontal Profile Card -->
+          <div class="paper-card">
+            <div class="paper-card-body flex items-center gap-4">
+              <img src="../../assets/img/faces/joe-gardner-2.jpg" alt="User" class="h-16 w-16 rounded-full object-cover shrink-0">
+              <div class="flex-1 min-w-0">
+                <p class="font-semibold truncate">Emma Wilson</p>
+                <p class="text-xs text-[var(--paper-muted)]">Senior Developer</p>
+                <div class="flex items-center gap-3 mt-2 text-xs text-[var(--paper-muted)]">
+                  <span class="flex items-center gap-1"><i class="nc-icon nc-pin-3"></i> NYC</span>
+                  <span class="flex items-center gap-1"><i class="nc-icon nc-email-85"></i> 5</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Profile Card with Stats -->
+          <div class="paper-card">
+            <div class="paper-card-body text-center">
+              <img src="../../assets/img/faces/erik-lucatero-2.jpg" alt="User" class="h-16 w-16 rounded-full mx-auto object-cover">
+              <p class="font-semibold mt-2">Mike Johnson</p>
+              <p class="text-xs text-[var(--paper-muted)]">Marketing Lead</p>
+            </div>
+            <div class="border-t border-[var(--paper-border)] grid grid-cols-3 divide-x divide-[var(--paper-border)]">
+              <div class="py-3 text-center">
+                <p class="font-bold text-sm">125</p>
+                <p class="text-[10px] text-[var(--paper-muted)]">Posts</p>
+              </div>
+              <div class="py-3 text-center">
+                <p class="font-bold text-sm">1.2k</p>
+                <p class="text-[10px] text-[var(--paper-muted)]">Followers</p>
+              </div>
+              <div class="py-3 text-center">
+                <p class="font-bold text-sm">342</p>
+                <p class="text-[10px] text-[var(--paper-muted)]">Following</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Simple profile card --&gt;
+&lt;div class="paper-card text-center"&gt;
+  &lt;div class="paper-card-body"&gt;
+    &lt;img src="avatar.jpg" class="h-20 w-20 rounded-full mx-auto"&gt;
+    &lt;p class="font-semibold mt-3"&gt;John Smith&lt;/p&gt;
+    &lt;p class="text-xs text-[var(--paper-muted)]"&gt;Product Designer&lt;/p&gt;
+    &lt;div class="flex justify-center gap-2 mt-3"&gt;
+      &lt;button class="paper-btn paper-btn-sm"&gt;Message&lt;/button&gt;
+      &lt;button class="paper-btn paper-btn-sm paper-btn-primary"&gt;Follow&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Profile with stats footer --&gt;
+&lt;div class="paper-card"&gt;
+  &lt;div class="paper-card-body text-center"&gt;...&lt;/div&gt;
+  &lt;div class="border-t grid grid-cols-3 divide-x"&gt;
+    &lt;div class="py-3 text-center"&gt;
+      &lt;p class="font-bold"&gt;125&lt;/p&gt;
+      &lt;p class="text-xs"&gt;Posts&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;!-- more stats... --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cards with Lists -->
+<section class="mt-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Simple List -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+            <i class="nc-icon nc-bullet-list-67 text-[var(--paper-info)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">List Cards</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Cards containing list items</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <div class="paper-card">
+            <div class="paper-card-header">
+              <h4 class="font-semibold text-sm">Recent Files</h4>
+            </div>
+            <div class="divide-y divide-[var(--paper-border)]">
+              <div class="px-4 py-3 flex items-center justify-between hover:bg-[var(--paper-border)]/30 transition">
+                <div class="flex items-center gap-3">
+                  <i class="nc-icon nc-single-copy-04 text-[var(--paper-primary)]"></i>
+                  <span class="text-sm">Document.pdf</span>
+                </div>
+                <span class="text-xs text-[var(--paper-muted)]">2.3 MB</span>
+              </div>
+              <div class="px-4 py-3 flex items-center justify-between hover:bg-[var(--paper-border)]/30 transition">
+                <div class="flex items-center gap-3">
+                  <i class="nc-icon nc-camera-20 text-[var(--paper-info)]"></i>
+                  <span class="text-sm">Photo.jpg</span>
+                </div>
+                <span class="text-xs text-[var(--paper-muted)]">1.8 MB</span>
+              </div>
+              <div class="px-4 py-3 flex items-center justify-between hover:bg-[var(--paper-border)]/30 transition">
+                <div class="flex items-center gap-3">
+                  <i class="nc-icon nc-paper-2 text-[var(--paper-success)]"></i>
+                  <span class="text-sm">Spreadsheet.xlsx</span>
+                </div>
+                <span class="text-xs text-[var(--paper-muted)]">856 KB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="paper-card"&gt;
+  &lt;div class="paper-card-header"&gt;
+    &lt;h4 class="font-semibold"&gt;Recent Files&lt;/h4&gt;
+  &lt;/div&gt;
+  &lt;div class="divide-y divide-[var(--paper-border)]"&gt;
+    &lt;div class="px-4 py-3 flex items-center justify-between hover:bg-[var(--paper-border)]/30"&gt;
+      &lt;div class="flex items-center gap-3"&gt;
+        &lt;i class="nc-icon nc-single-copy-04"&gt;&lt;/i&gt;
+        &lt;span&gt;Document.pdf&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;span class="text-xs"&gt;2.3 MB&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;!-- more items... --&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task/Todo List -->
+    <div class="paper-card" x-data="{ showCode: false }">
+      <div class="paper-card-header flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
+            <i class="nc-icon nc-check-2 text-[var(--paper-success)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Task Lists</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Interactive todo/task lists</p>
+          </div>
+        </div>
+        <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+          <i class="nc-icon nc-paper-2 text-sm"></i>
+          <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+        </button>
+      </div>
+      <div class="paper-card-body">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+          <div class="paper-card" x-data="{ tasks: [
+            { text: 'Review pull requests', done: true },
+            { text: 'Update documentation', done: false },
+            { text: 'Deploy to production', done: false }
+          ] }">
+            <div class="paper-card-header flex items-center justify-between">
+              <h4 class="font-semibold text-sm">Today's Tasks</h4>
+              <span class="text-xs text-[var(--paper-muted)]" x-text="tasks.filter(t => t.done).length + '/' + tasks.length + ' done'"></span>
+            </div>
+            <div class="divide-y divide-[var(--paper-border)]">
+              <template x-for="(task, index) in tasks" :key="index">
+                <label class="px-4 py-3 flex items-center gap-3 cursor-pointer hover:bg-[var(--paper-border)]/30 transition">
+                  <input type="checkbox" x-model="task.done" class="h-4 w-4 rounded border-[var(--paper-border)] text-[var(--paper-primary)] focus:ring-[var(--paper-primary)]">
+                  <span class="text-sm" :class="task.done ? 'line-through text-[var(--paper-muted)]' : ''" x-text="task.text"></span>
+                </label>
+              </template>
+            </div>
+          </div>
+        </div>
+        <div x-show="showCode" x-collapse>
+          <pre class="paper-code-block text-xs">&lt;div class="paper-card" x-data="{ tasks: [
+  { text: 'Review PRs', done: true },
+  { text: 'Update docs', done: false }
+] }"&gt;
+  &lt;div class="paper-card-header"&gt;
+    &lt;h4&gt;Today's Tasks&lt;/h4&gt;
+    &lt;span x-text="tasks.filter(t =&gt; t.done).length + '/' + tasks.length"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="divide-y"&gt;
+    &lt;template x-for="task in tasks"&gt;
+      &lt;label class="px-4 py-3 flex items-center gap-3"&gt;
+        &lt;input type="checkbox" x-model="task.done"&gt;
+        &lt;span :class="task.done ? 'line-through' : ''" x-text="task.text"&gt;&lt;/span&gt;
+      &lt;/label&gt;
+    &lt;/template&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Documentation Section -->
+<section class="mt-12 pt-8 border-t border-[var(--paper-border)]">
+  <h2 class="text-xl font-semibold mb-6">Panel Classes Reference</h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <!-- Card Structure -->
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">Card Structure Classes</h3>
+      </div>
+      <div class="paper-card-body">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="paper-code">paper-card</code></td>
+              <td>Base card container with rounded corners and shadow</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">paper-card-header</code></td>
+              <td>Card header section with bottom border</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">paper-card-body</code></td>
+              <td>Card body section with padding</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">paper-card-footer</code></td>
+              <td>Card footer section with top border</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">paper-card-title</code></td>
+              <td>Styled title text for card headers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Utility Classes -->
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">Useful Utility Classes</h3>
+      </div>
+      <div class="paper-card-body">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="paper-code">overflow-hidden</code></td>
+              <td>For cards with colored headers</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">divide-y</code></td>
+              <td>Add borders between list items</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">text-center</code></td>
+              <td>Center-aligned content cards</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">cursor-pointer</code></td>
+              <td>Clickable/collapsible headers</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">x-collapse</code></td>
+              <td>Alpine.js smooth collapse animation</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

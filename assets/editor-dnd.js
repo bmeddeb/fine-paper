@@ -1,10 +1,28 @@
 window.editorDnd = function () {
   return {
+    dragArmed: false,
     draggingId: null,
     dragOverIndex: null,
 
     get isDragging() {
       return !!this.draggingId;
+    },
+
+    armDrag() {
+      this.dragArmed = true;
+    },
+
+    disarmDrag() {
+      this.dragArmed = false;
+    },
+
+    maybeStartDrag(id, event) {
+      if (!this.dragArmed) {
+        if (event) event.preventDefault();
+        return;
+      }
+      this.dragArmed = false;
+      this.startDrag(id, event);
     },
 
     startDrag(id, event) {
@@ -27,6 +45,17 @@ window.editorDnd = function () {
         event.dataTransfer.dropEffect = 'move';
       }
       this.dragOverIndex = index;
+    },
+
+    dragOverBlock(index, event) {
+      if (!this.draggingId || !event) return;
+      const rect = event.currentTarget.getBoundingClientRect();
+      const offset = event.clientY - rect.top;
+      const nextIndex = offset > rect.height / 2 ? index + 1 : index;
+      this.dragOverIndex = nextIndex;
+      if (event.dataTransfer) {
+        event.dataTransfer.dropEffect = 'move';
+      }
     },
 
     dragLeave(index) {
@@ -70,6 +99,7 @@ window.editorDnd = function () {
     endDrag() {
       this.draggingId = null;
       this.dragOverIndex = null;
+      this.dragArmed = false;
     },
 
     dropzoneClass(index) {

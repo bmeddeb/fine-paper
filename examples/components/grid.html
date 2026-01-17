@@ -1284,48 +1284,56 @@
     </div>
   </div>
 
-  <!-- Bootstrap to Tailwind Migration -->
+  <!-- Tailwind Layout Patterns -->
   <div class="paper-card mt-4">
     <div class="paper-card-header">
-      <h3 class="paper-card-title">Bootstrap to Tailwind Migration Guide</h3>
+      <h3 class="paper-card-title">Tailwind Layout Patterns</h3>
     </div>
-    <div class="paper-card-body">
-      <p class="text-sm text-[var(--paper-muted)] mb-4">If you're migrating from Bootstrap's grid system, here's a quick reference:</p>
+    <div class="paper-card-body space-y-4">
+      <p class="text-sm text-[var(--paper-muted)]">Use these Tailwind layout recipes to build sections without custom CSS.</p>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div>
+          <p class="paper-label mb-2">Split Content</p>
+          <pre class="paper-code-block text-xs">&lt;div class="grid grid-cols-1 lg:grid-cols-12 gap-6"&gt;
+  &lt;aside class="lg:col-span-4"&gt;Sidebar&lt;/aside&gt;
+  &lt;main class="lg:col-span-8"&gt;Content&lt;/main&gt;
+&lt;/div&gt;</pre>
+        </div>
+        <div>
+          <p class="paper-label mb-2">Media + Details</p>
+          <pre class="paper-code-block text-xs">&lt;div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center"&gt;
+  &lt;div class="md:col-span-4"&gt;Media&lt;/div&gt;
+  &lt;div class="md:col-span-8"&gt;Details&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
       <table class="paper-table">
         <thead>
           <tr>
-            <th>Bootstrap Class</th>
-            <th>Tailwind Equivalent</th>
+            <th>Pattern</th>
+            <th>Tailwind Classes</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code class="paper-code">.container</code></td>
-            <td><code class="paper-code">container mx-auto px-4</code></td>
-          </tr>
-          <tr>
-            <td><code class="paper-code">.row</code></td>
+            <td>12-column scaffold</td>
             <td><code class="paper-code">grid grid-cols-12 gap-4</code></td>
           </tr>
           <tr>
-            <td><code class="paper-code">.col-6</code></td>
-            <td><code class="paper-code">col-span-6</code></td>
+            <td>Responsive spans</td>
+            <td><code class="paper-code">col-span-12 md:col-span-6 lg:col-span-3</code></td>
           </tr>
           <tr>
-            <td><code class="paper-code">.col-md-4</code></td>
-            <td><code class="paper-code">col-span-12 md:col-span-4</code></td>
+            <td>Equal cards</td>
+            <td><code class="paper-code">grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4</code></td>
           </tr>
           <tr>
-            <td><code class="paper-code">.col-lg-3</code></td>
-            <td><code class="paper-code">col-span-12 lg:col-span-3</code></td>
+            <td>Offset columns</td>
+            <td><code class="paper-code">col-start-3 col-end-11</code></td>
           </tr>
           <tr>
-            <td><code class="paper-code">.offset-3</code></td>
-            <td><code class="paper-code">col-start-4</code></td>
-          </tr>
-          <tr>
-            <td><code class="paper-code">.g-4</code> (gutters)</td>
-            <td><code class="paper-code">gap-4</code></td>
+            <td>Inline alignment</td>
+            <td><code class="paper-code">flex items-center justify-between gap-3</code></td>
           </tr>
         </tbody>
       </table>

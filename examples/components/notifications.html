@@ -52,6 +52,7 @@
 </script>
 </head>
 <body data-page="notifications" x-data="layout()" class="text-[var(--paper-text)] antialiased">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
   <div class="flex min-h-screen">
     <div class="fixed inset-0 bg-black/40 lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
     <!-- Sidebar -->
@@ -212,7 +213,7 @@
             </button>
             <div class="relative hidden md:block">
               <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search...">
+              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
               <p class="text-sm font-semibold">Fine Paper</p>
@@ -264,7 +265,7 @@
           </div>
         </div>
       </header>
-      <main class="flex-1 px-6 pb-12">
+      <main id="main-content" class="flex-1 px-6 pb-12">
 
 <!-- Toast Container (Fixed position for live demos) -->
 <div x-data="toastManager()" x-ref="toastContainer" class="fixed top-20 right-6 z-50 space-y-3 w-80">
@@ -305,7 +306,7 @@
           <p class="font-semibold text-sm" x-text="toast.title"></p>
           <p class="text-xs text-[var(--paper-muted)] mt-0.5" x-text="toast.message"></p>
         </div>
-        <button @click="removeToast(toast.id)" class="text-[var(--paper-muted)] hover:text-[var(--paper-text)] transition">
+        <button @click="removeToast(toast.id)" class="text-[var(--paper-muted)] hover:text-[var(--paper-text)] transition" aria-label="Dismiss notification">
           <i class="nc-icon nc-simple-remove text-xs"></i>
         </button>
       </div>
@@ -504,7 +505,7 @@
             <i class="nc-icon nc-alert-circle-i"></i>
             <span>Click the X to dismiss this notification.</span>
           </div>
-          <button @click="alerts.a1 = false" class="hover:opacity-70 transition">
+          <button @click="alerts.a1 = false" class="hover:opacity-70 transition" aria-label="Dismiss alert">
             <i class="nc-icon nc-simple-remove"></i>
           </button>
         </div>
@@ -513,7 +514,7 @@
             <i class="nc-icon nc-check-2"></i>
             <span>Profile updated successfully!</span>
           </div>
-          <button @click="alerts.a2 = false" class="hover:opacity-70 transition">
+          <button @click="alerts.a2 = false" class="hover:opacity-70 transition" aria-label="Dismiss alert">
             <i class="nc-icon nc-simple-remove"></i>
           </button>
         </div>
@@ -522,7 +523,7 @@
             <i class="nc-icon nc-alert-circle-i"></i>
             <span>Your trial expires in 3 days.</span>
           </div>
-          <button @click="alerts.a3 = false" class="hover:opacity-70 transition">
+          <button @click="alerts.a3 = false" class="hover:opacity-70 transition" aria-label="Dismiss alert">
             <i class="nc-icon nc-simple-remove"></i>
           </button>
         </div>
@@ -531,7 +532,7 @@
             <i class="nc-icon nc-simple-remove"></i>
             <span>Connection lost. Retrying...</span>
           </div>
-          <button @click="alerts.a4 = false" class="hover:opacity-70 transition">
+          <button @click="alerts.a4 = false" class="hover:opacity-70 transition" aria-label="Dismiss alert">
             <i class="nc-icon nc-simple-remove"></i>
           </button>
         </div>
@@ -679,7 +680,7 @@
                 <p class="font-semibold text-sm">Success!</p>
                 <p class="text-xs text-[var(--paper-muted)]">Your changes have been saved.</p>
               </div>
-              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]">
+              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]" aria-label="Dismiss toast">
                 <i class="nc-icon nc-simple-remove text-xs"></i>
               </button>
             </div>
@@ -695,7 +696,7 @@
                 <p class="font-semibold text-sm">Error!</p>
                 <p class="text-xs text-[var(--paper-muted)]">Something went wrong.</p>
               </div>
-              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]">
+              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]" aria-label="Dismiss toast">
                 <i class="nc-icon nc-simple-remove text-xs"></i>
               </button>
             </div>
@@ -711,7 +712,7 @@
                 <p class="font-semibold text-sm">Warning!</p>
                 <p class="text-xs text-[var(--paper-muted)]">Session expires in 5 min.</p>
               </div>
-              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]">
+              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]" aria-label="Dismiss toast">
                 <i class="nc-icon nc-simple-remove text-xs"></i>
               </button>
             </div>
@@ -727,7 +728,7 @@
                 <p class="font-semibold text-sm">Info</p>
                 <p class="text-xs text-[var(--paper-muted)]">New update available.</p>
               </div>
-              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]">
+              <button class="text-[var(--paper-muted)] hover:text-[var(--paper-text)]" aria-label="Dismiss toast">
                 <i class="nc-icon nc-simple-remove text-xs"></i>
               </button>
             </div>

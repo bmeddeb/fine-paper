@@ -43,6 +43,7 @@
 </head>
 
 <body class="text-[var(--paper-text)] antialiased" data-page="dashboard" x-data="layout()">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
   <div class="flex min-h-screen">
     <!-- Mobile overlay -->
     <div class="fixed inset-0 bg-black/40 lg:hidden z-30" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
@@ -210,7 +211,7 @@
             <!-- Search -->
             <div class="relative hidden md:block">
               <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search...">
+              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <!-- Mobile title -->
             <div class="md:hidden">
@@ -289,7 +290,7 @@
       </header>
 
       <!-- Main content area -->
-      <main class="flex-1 p-6">
+      <main id="main-content" class="flex-1 p-6">
         <!-- Stats Row -->
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <div class="card card-stats">
@@ -413,7 +414,7 @@
                 </div>
                 <div class="col-sm-5">
                   <div class="pull-right">
-                    <button class="btn btn-success btn-round btn-icon btn-sm">
+                    <button class="btn btn-success btn-round btn-icon btn-sm" aria-label="Add">
                       <i class="nc-icon nc-simple-add"></i>
                     </button>
                   </div>
@@ -446,7 +447,7 @@
                 </div>
                 <div class="col-sm-5">
                   <div class="pull-right">
-                    <button class="btn btn-danger btn-round btn-icon btn-sm">
+                    <button class="btn btn-danger btn-round btn-icon btn-sm" aria-label="View members">
                       <i class="nc-icon nc-button-play"></i>
                     </button>
                   </div>
@@ -479,7 +480,7 @@
                 </div>
                 <div class="col-sm-5">
                   <div class="pull-right">
-                    <button class="btn btn-warning btn-round btn-icon btn-sm">
+                    <button class="btn btn-warning btn-round btn-icon btn-sm" aria-label="View details">
                       <i class="nc-icon nc-alert-circle-i"></i>
                     </button>
                   </div>
@@ -565,7 +566,7 @@
                       <td>
                         <div class="form-check">
                           <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" checked>
+                            <input class="form-check-input" type="checkbox" checked aria-label="Select task">
                             <span class="form-check-sign"></span>
                           </label>
                         </div>
@@ -577,10 +578,10 @@
                       </td>
                       <td class="text-left">Sign contract for "What are conference organizers afraid of?"</td>
                       <td class="td-actions text-right">
-                        <button type="button" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" title="Edit Task">
+                        <button type="button" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" title="Edit Task" aria-label="Edit Task">
                           <i class="nc-icon nc-ruler-pencil"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" title="Remove">
+                        <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" title="Remove" aria-label="Remove">
                           <i class="nc-icon nc-simple-remove"></i>
                         </button>
                       </td>
@@ -589,7 +590,7 @@
                       <td>
                         <div class="form-check">
                           <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox">
+                            <input class="form-check-input" type="checkbox" aria-label="Select task">
                             <span class="form-check-sign"></span>
                           </label>
                         </div>
@@ -601,10 +602,10 @@
                       </td>
                       <td class="text-left">Lines From Great Russian Literature? Or E-mails From My Boss?</td>
                       <td class="td-actions text-right">
-                        <button type="button" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" title="Edit Task">
+                        <button type="button" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" title="Edit Task" aria-label="Edit Task">
                           <i class="nc-icon nc-ruler-pencil"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" title="Remove">
+                        <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" title="Remove" aria-label="Remove">
                           <i class="nc-icon nc-simple-remove"></i>
                         </button>
                       </td>
@@ -613,7 +614,7 @@
                       <td>
                         <div class="form-check">
                           <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" checked>
+                            <input class="form-check-input" type="checkbox" checked aria-label="Select task">
                             <span class="form-check-sign"></span>
                           </label>
                         </div>
@@ -625,10 +626,10 @@
                       </td>
                       <td class="text-left">Using dummy content or fake information in the Web design process</td>
                       <td class="td-actions text-right">
-                        <button type="button" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" title="Edit Task">
+                        <button type="button" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" title="Edit Task" aria-label="Edit Task">
                           <i class="nc-icon nc-ruler-pencil"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" title="Remove">
+                        <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" title="Remove" aria-label="Remove">
                           <i class="nc-icon nc-simple-remove"></i>
                         </button>
                       </td>
@@ -637,7 +638,7 @@
                       <td>
                         <div class="form-check">
                           <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox">
+                            <input class="form-check-input" type="checkbox" aria-label="Select task">
                             <span class="form-check-sign"></span>
                           </label>
                         </div>
@@ -649,10 +650,10 @@
                       </td>
                       <td class="text-left">But I must explain to you how all this mistaken idea of denouncing</td>
                       <td class="td-actions text-right">
-                        <button type="button" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" title="Edit Task">
+                        <button type="button" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" title="Edit Task" aria-label="Edit Task">
                           <i class="nc-icon nc-ruler-pencil"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" title="Remove">
+                        <button type="button" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" title="Remove" aria-label="Remove">
                           <i class="nc-icon nc-simple-remove"></i>
                         </button>
                       </td>

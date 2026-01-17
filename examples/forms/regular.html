@@ -24,6 +24,7 @@
 </script>
 </head>
 <body data-page="forms-regular" x-data="layout()" class="text-[var(--paper-text)] antialiased">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
   <div class="flex min-h-screen">
     <div class="fixed inset-0 bg-black/40 lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
     <!-- Sidebar -->
@@ -184,7 +185,7 @@
             </button>
             <div class="relative hidden md:block">
               <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search...">
+              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
               <p class="text-sm font-semibold">Fine Paper</p>
@@ -236,7 +237,7 @@
           </div>
         </div>
       </header>
-      <main class="flex-1 px-6 pb-12">
+      <main id="main-content" class="flex-1 px-6 pb-12">
         
 <section class="pt-6">
   <div>

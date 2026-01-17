@@ -583,6 +583,7 @@
 </head>
 
 <body class="text-[var(--paper-text)] antialiased" data-page="charts" x-data="layout()">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
   <div class="flex min-h-screen">
     <!-- Mobile overlay -->
     <div class="fixed inset-0 bg-black/40 lg:hidden z-30" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
@@ -750,7 +751,7 @@
             <!-- Search -->
             <div class="relative hidden md:block">
               <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search...">
+              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
               <p class="text-sm font-semibold">Charts</p>
@@ -807,7 +808,7 @@
       </header>
 
       <!-- Main content area -->
-      <main class="flex-1 p-6">
+      <main id="main-content" class="flex-1 p-6">
         <!-- Page header -->
         <div class="mb-8">
           <h1 class="text-2xl font-semibold">Charts</h1>

@@ -29,6 +29,7 @@
 </head>
 
 <body class="text-[var(--paper-text)] antialiased" data-page="timeline" x-data="layout()">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
   <div class="flex min-h-screen">
     <!-- Mobile overlay -->
     <div class="fixed inset-0 bg-black/40 lg:hidden z-30" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
@@ -196,7 +197,7 @@
             <!-- Search -->
             <div class="relative hidden md:block">
               <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search...">
+              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <!-- Mobile title -->
             <div class="md:hidden">
@@ -275,7 +276,7 @@
       </header>
 
       <!-- Main content area -->
-      <main class="flex-1 p-6">
+      <main id="main-content" class="flex-1 p-6">
         <!-- Page header -->
         <div class="mb-8 text-center">
           <h1 class="text-2xl font-semibold">Timeline</h1>
@@ -331,7 +332,7 @@
                     </div>
                     <div class="timeline-footer" x-data="{ open: false }">
                       <div class="dropdown">
-                        <button type="button" class="btn btn-round btn-info dropdown-toggle" @click="open = !open">
+                        <button type="button" class="btn btn-round btn-info dropdown-toggle" @click="open = !open" aria-label="Timeline options">
                           <i class="nc-icon nc-settings-gear-65"></i>
                         </button>
                         <div class="dropdown-menu" x-show="open" x-transition @click.outside="open = false">

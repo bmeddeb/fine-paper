@@ -24,6 +24,7 @@
 </script>
 </head>
 <body data-page="tables-datatables" x-data="layout()" class="text-[var(--paper-text)] antialiased">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
   <div class="flex min-h-screen">
     <div class="fixed inset-0 bg-black/40 lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
     <!-- Sidebar -->
@@ -184,7 +185,7 @@
             </button>
             <div class="relative hidden md:block">
               <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search...">
+              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
               <p class="text-sm font-semibold">Fine Paper</p>
@@ -236,7 +237,7 @@
           </div>
         </div>
       </header>
-      <main class="flex-1 px-6 pb-12">
+      <main id="main-content" class="flex-1 px-6 pb-12">
         
 <section class="pt-6">
   <div>
@@ -321,7 +322,7 @@
           </div>
           <div class="relative w-full md:w-72">
             <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-            <input x-model="search" @input="page = 1" class="paper-input pl-9" type="text" placeholder="Search...">
+            <input x-model="search" @input="page = 1" class="paper-input pl-9" type="text" placeholder="Search..." aria-label="Search">
           </div>
         </div>
 
@@ -454,7 +455,7 @@
         <p class="text-sm font-medium mb-2">Numbered with Ellipsis</p>
         <div class="rounded-xl bg-[var(--paper-bg)] p-4">
           <div class="flex items-center justify-center gap-1" x-data="{ page: 5, total: 20 }">
-            <button class="paper-btn paper-btn-sm paper-btn-ghost" :disabled="page === 1" @click="page--"><i class="nc-icon nc-minimal-left"></i></button>
+            <button class="paper-btn paper-btn-sm paper-btn-ghost" :disabled="page === 1" @click="page--" aria-label="Previous page"><i class="nc-icon nc-minimal-left"></i></button>
             <button class="paper-btn paper-btn-sm" :class="page === 1 ? 'paper-btn-primary' : 'paper-btn-ghost'" @click="page = 1">1</button>
             <span class="px-2 text-[var(--paper-muted)]" x-show="page > 3">...</span>
             <template x-for="p in [page - 1, page, page + 1].filter(n => n > 1 && n < total)" :key="p">
@@ -462,7 +463,7 @@
             </template>
             <span class="px-2 text-[var(--paper-muted)]" x-show="page < total - 2">...</span>
             <button class="paper-btn paper-btn-sm" :class="page === total ? 'paper-btn-primary' : 'paper-btn-ghost'" @click="page = total" x-text="total"></button>
-            <button class="paper-btn paper-btn-sm paper-btn-ghost" :disabled="page === total" @click="page++"><i class="nc-icon nc-minimal-right"></i></button>
+            <button class="paper-btn paper-btn-sm paper-btn-ghost" :disabled="page === total" @click="page++" aria-label="Next page"><i class="nc-icon nc-minimal-right"></i></button>
           </div>
         </div>
       </div>

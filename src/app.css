@@ -60,6 +60,26 @@ img {
   height: auto;
 }
 
+.paper-skip-link {
+  position: absolute;
+  left: 1.5rem;
+  top: 1.5rem;
+  transform: translateY(-200%);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--paper-text);
+  box-shadow: var(--paper-shadow);
+  transition: transform 0.2s ease;
+  z-index: 50;
+}
+
+.paper-skip-link:focus {
+  transform: translateY(0);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(239, 129, 87, 0.2), var(--paper-shadow);
+}
+
 /* Override Tailwind's collapse utility so Bootstrap-style collapse works. */
 .collapse {
   visibility: visible;

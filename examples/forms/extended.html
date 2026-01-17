@@ -24,6 +24,7 @@
 </script>
 </head>
 <body data-page="forms-extended" x-data="layout()" class="text-[var(--paper-text)] antialiased">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
   <div class="flex min-h-screen">
     <div class="fixed inset-0 bg-black/40 lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
     <!-- Sidebar -->
@@ -184,7 +185,7 @@
             </button>
             <div class="relative hidden md:block">
               <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search...">
+              <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
               <p class="text-sm font-semibold">Fine Paper</p>
@@ -236,7 +237,7 @@
           </div>
         </div>
       </header>
-      <main class="flex-1 px-6 pb-12">
+      <main id="main-content" class="flex-1 px-6 pb-12">
         
 <section class="pt-6">
   <div>
@@ -269,7 +270,7 @@
           <div>
             <label class="paper-label">Right Icon</label>
             <div class="relative">
-              <input class="paper-input pr-10" type="text" placeholder="Search...">
+              <input class="paper-input pr-10" type="text" placeholder="Search..." aria-label="Search">
               <i class="nc-icon nc-zoom-split absolute right-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
             </div>
           </div>
@@ -286,7 +287,7 @@
             <div class="relative">
               <i class="nc-icon nc-lock-circle-open absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
               <input class="paper-input px-10" :type="show ? 'text' : 'password'" placeholder="••••••••">
-              <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--paper-muted)] hover:text-[var(--paper-text)]" @click="show = !show">
+              <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--paper-muted)] hover:text-[var(--paper-text)]" @click="show = !show" aria-label="Toggle password visibility">
                 <i class="nc-icon" :class="show ? 'nc-glasses-2' : 'nc-zoom-split'"></i>
               </button>
             </div>
@@ -369,9 +370,9 @@
             <div class="flex">
               <div class="relative flex-1">
                 <i class="nc-icon nc-zoom-split absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
-                <input class="paper-input pl-10 rounded-r-none" type="text" placeholder="Search products...">
+                <input class="paper-input pl-10 rounded-r-none" type="text" placeholder="Search products..." aria-label="Search products">
               </div>
-              <button class="paper-btn paper-btn-info rounded-l-none" type="button">
+              <button class="paper-btn paper-btn-info rounded-l-none" type="button" aria-label="Search">
                 <i class="nc-icon nc-zoom-split"></i>
               </button>
             </div>
@@ -846,7 +847,7 @@
               x-model="search"
               @focus="open = true"
               @input="open = true"
-            >
+             aria-label="Search pages">
             <div
               class="absolute left-0 right-0 mt-1 bg-white rounded-lg shadow-lg border border-[var(--paper-border)] z-10 max-h-48 overflow-y-auto"
               x-show="open && filtered.length > 0"

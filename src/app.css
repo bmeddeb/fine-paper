@@ -80,7 +80,7 @@ img {
   box-shadow: 0 0 0 3px rgba(239, 129, 87, 0.2), var(--paper-shadow);
 }
 
-/* Override Tailwind's collapse utility so Bootstrap-style collapse works. */
+/* Override Tailwind's collapse utility so legacy collapse behavior works. */
 .collapse {
   visibility: visible;
 }

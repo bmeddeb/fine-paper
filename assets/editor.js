@@ -485,8 +485,8 @@ window.editorCore = function () {
 
     textAlignClass(alignment) {
       if (alignment === 'center') return 'text-center';
-      if (alignment === 'right') return 'text-right';
-      return 'text-left';
+      if (alignment === 'right') return 'text-end';
+      return 'text-start';
     },
 
     textSizeClass(size) {

@@ -6,6 +6,7 @@
   <title>Fine Paper | Tables Extended</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/app.css">
@@ -184,7 +185,7 @@
               <i class="nc-icon nc-minimal-left text-[var(--paper-text)] transition-transform duration-300" :class="sidebarMini ? 'rotate-180' : ''"></i>
             </button>
             <div class="relative hidden md:block">
-              <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-zoom-split absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
@@ -249,7 +250,7 @@
   <div class="mt-8 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
-        <i class="nc-icon nc-circle-10 text-lg text-[var(--paper-primary)]"></i>
+        <i class="fa fa-circle-o text-lg text-[var(--paper-primary)]"></i>
       </div>
       <div>
         <h2 class="font-semibold">Table with Avatars</h2>
@@ -470,7 +471,7 @@
             </tr>
             <tr>
               <td class="font-medium">Budget.xlsx</td>
-              <td><span class="text-[var(--paper-success)]"><i class="nc-icon nc-chart-pie-36 mr-1"></i>Excel</span></td>
+              <td><span class="text-[var(--paper-success)]"><i class="fa fa-file-excel-o mr-1"></i>Excel</span></td>
               <td>Jan 14, 2026</td>
               <td>845 KB</td>
               <td class="text-end">
@@ -966,7 +967,7 @@
   <div class="mt-6 paper-card">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
-        <i class="nc-icon nc-bookmark-2 text-lg text-[var(--paper-primary)]"></i>
+        <i class="fa fa-bookmark-o text-lg text-[var(--paper-primary)]"></i>
       </div>
       <div>
         <h2 class="font-semibold">Quick Reference</h2>

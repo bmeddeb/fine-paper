@@ -6,6 +6,7 @@
   <title>Fine Paper | Grid System</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/app.css">
@@ -219,7 +220,7 @@
               <i class="nc-icon nc-minimal-left text-[var(--paper-text)] transition-transform duration-300" :class="sidebarMini ? 'rotate-180' : ''"></i>
             </button>
             <div class="relative hidden md:block">
-              <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-zoom-split absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
@@ -296,7 +297,7 @@
         </div>
       </div>
       <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-        <i class="nc-icon nc-paper text-sm"></i>
+        <i class="fa fa-file-text-o text-sm"></i>
         <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
       </button>
     </div>
@@ -355,7 +356,7 @@
     <div class="paper-card-header flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
-          <i class="nc-icon nc-tile-56 text-[var(--paper-info)]"></i>
+          <i class="fa fa-th-large text-[var(--paper-info)]"></i>
         </div>
         <div>
           <h3 class="paper-card-title">Mixed Column Widths</h3>
@@ -363,7 +364,7 @@
         </div>
       </div>
       <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-        <i class="nc-icon nc-paper text-sm"></i>
+        <i class="fa fa-file-text-o text-sm"></i>
         <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
       </button>
     </div>
@@ -420,7 +421,7 @@
       <div class="paper-card-header flex items-center justify-between">
         <div class="flex items-center gap-3">
           <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
-            <i class="nc-icon nc-tablet-2 text-[var(--paper-success)]"></i>
+            <i class="fa fa-tablet text-[var(--paper-success)]"></i>
           </div>
           <div>
             <h3 class="paper-card-title">Responsive Breakpoints</h3>
@@ -428,7 +429,7 @@
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-          <i class="nc-icon nc-paper text-sm"></i>
+          <i class="fa fa-file-text-o text-sm"></i>
           <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
         </button>
       </div>
@@ -472,7 +473,7 @@
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-          <i class="nc-icon nc-paper text-sm"></i>
+          <i class="fa fa-file-text-o text-sm"></i>
           <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
         </button>
       </div>
@@ -519,7 +520,7 @@
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-          <i class="nc-icon nc-paper text-sm"></i>
+          <i class="fa fa-file-text-o text-sm"></i>
           <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
         </button>
       </div>
@@ -579,7 +580,7 @@
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-          <i class="nc-icon nc-paper text-sm"></i>
+          <i class="fa fa-file-text-o text-sm"></i>
           <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
         </button>
       </div>
@@ -621,7 +622,7 @@
       <div class="paper-card-header flex items-center justify-between">
         <div class="flex items-center gap-3">
           <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-primary)]/10">
-            <i class="nc-icon nc-spaceship text-[var(--paper-primary)]"></i>
+            <i class="fa fa-rocket text-[var(--paper-primary)]"></i>
           </div>
           <div>
             <h3 class="paper-card-title">Column Start & End</h3>
@@ -629,7 +630,7 @@
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-          <i class="nc-icon nc-paper text-sm"></i>
+          <i class="fa fa-file-text-o text-sm"></i>
           <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
         </button>
       </div>
@@ -668,7 +669,7 @@
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-          <i class="nc-icon nc-paper text-sm"></i>
+          <i class="fa fa-file-text-o text-sm"></i>
           <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
         </button>
       </div>
@@ -730,7 +731,7 @@
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-          <i class="nc-icon nc-paper text-sm"></i>
+          <i class="fa fa-file-text-o text-sm"></i>
           <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
         </button>
       </div>
@@ -783,7 +784,7 @@
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-          <i class="nc-icon nc-paper text-sm"></i>
+          <i class="fa fa-file-text-o text-sm"></i>
           <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
         </button>
       </div>
@@ -813,7 +814,7 @@
     <div class="paper-card-header flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
-          <i class="nc-icon nc-align-center text-[var(--paper-info)]"></i>
+          <i class="fa fa-align-center text-[var(--paper-info)]"></i>
         </div>
         <div>
           <h3 class="paper-card-title">Alignment & Placement</h3>
@@ -821,7 +822,7 @@
         </div>
       </div>
       <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-        <i class="nc-icon nc-paper text-sm"></i>
+        <i class="fa fa-file-text-o text-sm"></i>
         <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
       </button>
     </div>
@@ -889,7 +890,7 @@
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-          <i class="nc-icon nc-paper text-sm"></i>
+          <i class="fa fa-file-text-o text-sm"></i>
           <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
         </button>
       </div>
@@ -945,7 +946,7 @@
       <div class="paper-card-header flex items-center justify-between">
         <div class="flex items-center gap-3">
           <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-success)]/10">
-            <i class="nc-icon nc-box-2 text-[var(--paper-success)]"></i>
+            <i class="fa fa-cube text-[var(--paper-success)]"></i>
           </div>
           <div>
             <h3 class="paper-card-title">Card Grid Layout</h3>
@@ -953,7 +954,7 @@
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
-          <i class="nc-icon nc-paper text-sm"></i>
+          <i class="fa fa-file-text-o text-sm"></i>
           <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
         </button>
       </div>

@@ -6,6 +6,7 @@
   <title>Fine Paper | Icons</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/app.css">
@@ -76,6 +77,65 @@
       },
       copyIcon(name) {
         const code = '<i class="nc-icon ' + name + '"></i>';
+        navigator.clipboard.writeText(code);
+        this.copied = name;
+        setTimeout(() => { this.copied = ''; }, 2000);
+      }
+    };
+  }
+
+  function faLibrary() {
+    return {
+      search: '',
+      copied: '',
+      icons: [
+        { name: 'fa-align-center', category: 'Layout' },
+        { name: 'fa-bookmark-o', category: 'UI' },
+        { name: 'fa-calendar', category: 'Time' },
+        { name: 'fa-calendar-o', category: 'Time' },
+        { name: 'fa-check', category: 'Status' },
+        { name: 'fa-circle', category: 'Shapes' },
+        { name: 'fa-circle-o', category: 'Shapes' },
+        { name: 'fa-clock-o', category: 'Time' },
+        { name: 'fa-cloud-upload', category: 'Actions' },
+        { name: 'fa-comment-o', category: 'Communication' },
+        { name: 'fa-credit-card', category: 'Commerce' },
+        { name: 'fa-cube', category: 'Objects' },
+        { name: 'fa-eye', category: 'UI' },
+        { name: 'fa-eye-slash', category: 'UI' },
+        { name: 'fa-file-excel-o', category: 'Files' },
+        { name: 'fa-file-text-o', category: 'Files' },
+        { name: 'fa-font', category: 'Typography' },
+        { name: 'fa-hand-pointer-o', category: 'UI' },
+        { name: 'fa-history', category: 'Time' },
+        { name: 'fa-map-marker', category: 'Maps' },
+        { name: 'fa-power-off', category: 'Actions' },
+        { name: 'fa-print', category: 'Actions' },
+        { name: 'fa-refresh', category: 'Actions' },
+        { name: 'fa-rocket', category: 'Misc' },
+        { name: 'fa-search', category: 'UI' },
+        { name: 'fa-share-alt', category: 'Actions' },
+        { name: 'fa-shopping-cart', category: 'Commerce' },
+        { name: 'fa-sort', category: 'Navigation' },
+        { name: 'fa-sort-asc', category: 'Navigation' },
+        { name: 'fa-sort-desc', category: 'Navigation' },
+        { name: 'fa-star', category: 'UI' },
+        { name: 'fa-tablet', category: 'Devices' },
+        { name: 'fa-tag', category: 'Tags' },
+        { name: 'fa-th-large', category: 'Layout' },
+        { name: 'fa-truck', category: 'Commerce' },
+        { name: 'fa-user', category: 'Users' },
+        { name: 'fa-volume-up', category: 'Media' }
+      ],
+      get filteredIcons() {
+        if (!this.search) return this.icons;
+        return this.icons.filter(icon =>
+          icon.name.toLowerCase().includes(this.search.toLowerCase()) ||
+          icon.category.toLowerCase().includes(this.search.toLowerCase())
+        );
+      },
+      copyIcon(name) {
+        const code = '<i class="fa ' + name + '"></i>';
         navigator.clipboard.writeText(code);
         this.copied = name;
         setTimeout(() => { this.copied = ''; }, 2000);
@@ -245,7 +305,7 @@
               <i class="nc-icon nc-minimal-left text-[var(--paper-text)] transition-transform duration-300" :class="sidebarMini ? 'rotate-180' : ''"></i>
             </button>
             <div class="relative hidden md:block">
-              <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-zoom-split absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
@@ -303,8 +363,8 @@
 <!-- Page Header -->
 <section class="pt-6">
   <div>
-    <h1 class="text-2xl font-semibold">Nucleo Icons</h1>
-    <p class="paper-muted text-sm">A curated set of icons for the Fine Paper template</p>
+    <h1 class="text-2xl font-semibold">Icon Libraries</h1>
+    <p class="paper-muted text-sm">Nucleo for core UI icons, with Font Awesome for supplemental symbols.</p>
   </div>
 </section>
 
@@ -317,7 +377,7 @@
           <i class="nc-icon nc-bulb-63 text-[var(--paper-primary)]"></i>
         </div>
         <div>
-          <h3 class="paper-card-title">Quick Start</h3>
+          <h3 class="paper-card-title">Nucleo Quick Start</h3>
           <p class="text-xs text-[var(--paper-muted)]">How to use Nucleo icons in your project</p>
         </div>
       </div>
@@ -365,6 +425,69 @@
 &lt;!-- In a button --&gt;
 &lt;button class="paper-btn paper-btn-primary"&gt;
   &lt;i class="nc-icon nc-bell-55 mr-2"&gt;&lt;/i&gt; Notifications
+&lt;/button&gt;</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Font Awesome Quick Usage -->
+<section class="mt-6">
+  <div class="paper-card" x-data="{ showCode: false }">
+    <div class="paper-card-header flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+          <i class="fa fa-star text-[var(--paper-info)]"></i>
+        </div>
+        <div>
+          <h3 class="paper-card-title">Font Awesome Quick Start</h3>
+          <p class="text-xs text-[var(--paper-muted)]">Supplemental icons for missing symbols</p>
+        </div>
+      </div>
+      <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
+        <i class="nc-icon nc-paper-2 text-sm"></i>
+        <span x-text="showCode ? 'Hide Code' : 'Show Code'"></span>
+      </button>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-4 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="flex h-16 w-16 mx-auto items-center justify-center rounded-full bg-white shadow">
+              <i class="fa fa-star text-2xl text-[var(--paper-info)]"></i>
+            </div>
+            <p class="font-semibold mt-3 text-sm">1. Add the base class</p>
+            <p class="text-xs text-[var(--paper-muted)] mt-1">Use <code class="paper-code">fa</code> + <code class="paper-code">fa-[name]</code></p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-16 w-16 mx-auto items-center justify-center rounded-full bg-white shadow">
+              <i class="fa fa-font text-2xl text-[var(--paper-success)]"></i>
+            </div>
+            <p class="font-semibold mt-3 text-sm">2. Style with Tailwind</p>
+            <p class="text-xs text-[var(--paper-muted)] mt-1">Add size and color utilities</p>
+          </div>
+          <div class="text-center">
+            <div class="flex h-16 w-16 mx-auto items-center justify-center rounded-full bg-white shadow">
+              <i class="fa fa-share-alt text-2xl text-[var(--paper-primary)]"></i>
+            </div>
+            <p class="font-semibold mt-3 text-sm">3. Use alongside Nucleo</p>
+            <p class="text-xs text-[var(--paper-muted)] mt-1">Great for gaps in the set</p>
+          </div>
+        </div>
+      </div>
+      <div x-show="showCode" x-collapse>
+        <pre class="paper-code-block text-xs">&lt;!-- Basic usage --&gt;
+&lt;i class="fa fa-star"&gt;&lt;/i&gt;
+
+&lt;!-- With Tailwind color --&gt;
+&lt;i class="fa fa-star text-[var(--paper-primary)]"&gt;&lt;/i&gt;
+
+&lt;!-- With size --&gt;
+&lt;i class="fa fa-star text-2xl"&gt;&lt;/i&gt;
+
+&lt;!-- In a button --&gt;
+&lt;button class="paper-btn paper-btn-primary"&gt;
+  &lt;i class="fa fa-star mr-2"&gt;&lt;/i&gt; Favorite
 &lt;/button&gt;</pre>
       </div>
     </div>
@@ -606,7 +729,7 @@
   </div>
 </section>
 
-<!-- All Icons Library -->
+<!-- Nucleo Icon Library -->
 <section class="mt-8" x-data="iconLibrary()">
   <div class="paper-card">
     <div class="paper-card-header">
@@ -616,12 +739,12 @@
             <i class="nc-icon nc-app text-[var(--paper-danger)]"></i>
           </div>
           <div>
-            <h3 class="paper-card-title">Icon Library</h3>
+            <h3 class="paper-card-title">Nucleo Icon Library</h3>
             <p class="text-xs text-[var(--paper-muted)]">Click any icon to copy its HTML code</p>
           </div>
         </div>
         <div class="relative">
-          <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+          <i class="nc-icon nc-zoom-split absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
           <input
             type="text"
             x-model="search"
@@ -642,6 +765,61 @@
             >
               <i class="nc-icon text-2xl text-[var(--paper-text)] group-hover:text-[var(--paper-primary)] transition" :class="icon.name"></i>
               <span class="text-[10px] text-[var(--paper-muted)] truncate w-full text-center" x-text="icon.name.replace('nc-', '')"></span>
+              <span
+                x-show="copied === icon.name"
+                x-transition
+                class="absolute -top-2 left-1/2 -translate-x-1/2 rounded bg-[var(--paper-success)] px-2 py-0.5 text-[10px] text-white"
+              >Copied!</span>
+            </button>
+          </template>
+        </div>
+        <p x-show="filteredIcons.length === 0" class="text-center text-sm text-[var(--paper-muted)] py-8">
+          No icons found matching "<span x-text="search"></span>"
+        </p>
+      </div>
+      <p class="text-xs text-[var(--paper-muted)] mt-4 text-center">
+        Showing <span x-text="filteredIcons.length"></span> of <span x-text="icons.length"></span> icons
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Font Awesome Icon Library -->
+<section class="mt-8" x-data="faLibrary()">
+  <div class="paper-card">
+    <div class="paper-card-header">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--paper-info)]/10">
+            <i class="fa fa-star text-[var(--paper-info)]"></i>
+          </div>
+          <div>
+            <h3 class="paper-card-title">Font Awesome Library</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Supplemental symbols with copy-ready markup</p>
+          </div>
+        </div>
+        <div class="relative">
+          <i class="fa fa-search absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
+          <input
+            type="text"
+            x-model="search"
+            placeholder="Search Font Awesome..."
+            class="h-10 w-full sm:w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20"
+            aria-label="Search Font Awesome icons">
+        </div>
+      </div>
+    </div>
+    <div class="paper-card-body">
+      <div class="rounded-xl bg-[var(--paper-bg)] p-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          <template x-for="icon in filteredIcons" :key="icon.name">
+            <button
+              @click="copyIcon(icon.name)"
+              class="group relative flex flex-col items-center gap-2 rounded-xl bg-white p-4 shadow-sm transition hover:shadow-md hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[var(--paper-primary)]/50"
+              :class="copied === icon.name ? 'ring-2 ring-[var(--paper-success)]' : ''"
+            >
+              <i class="fa text-2xl text-[var(--paper-text)] group-hover:text-[var(--paper-primary)] transition" :class="icon.name"></i>
+              <span class="text-[10px] text-[var(--paper-muted)] truncate w-full text-center" x-text="icon.name.replace('fa-', '')"></span>
               <span
                 x-show="copied === icon.name"
                 x-transition
@@ -779,7 +957,7 @@
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
     <div class="paper-card">
       <div class="paper-card-header">
-        <h3 class="paper-card-title">Available Icons</h3>
+        <h3 class="paper-card-title">Nucleo Samples</h3>
       </div>
       <div class="paper-card-body">
         <table class="paper-table">
@@ -818,13 +996,13 @@
             </tr>
           </tbody>
         </table>
-        <p class="text-xs text-[var(--paper-muted)] mt-3">See the Icon Library above for all available icons.</p>
+        <p class="text-xs text-[var(--paper-muted)] mt-3">See the Nucleo Icon Library above for all available icons.</p>
       </div>
     </div>
 
     <div class="paper-card">
       <div class="paper-card-header">
-        <h3 class="paper-card-title">CSS Classes</h3>
+        <h3 class="paper-card-title">Nucleo Classes</h3>
       </div>
       <div class="paper-card-body">
         <table class="paper-table">
@@ -841,6 +1019,85 @@
             </tr>
             <tr>
               <td><code class="paper-code">nc-[name]</code></td>
+              <td>Specific icon class</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">text-[size]</code></td>
+              <td>Tailwind size (xs to 4xl)</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">text-[color]</code></td>
+              <td>Tailwind or CSS var color</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">Font Awesome Samples</h3>
+      </div>
+      <div class="paper-card-body">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Icon</th>
+              <th>Class Name</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><i class="fa fa-star text-lg"></i></td>
+              <td><code class="paper-code">fa-star</code></td>
+              <td>UI</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-search text-lg"></i></td>
+              <td><code class="paper-code">fa-search</code></td>
+              <td>UI</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-shopping-cart text-lg"></i></td>
+              <td><code class="paper-code">fa-shopping-cart</code></td>
+              <td>Commerce</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-map-marker text-lg"></i></td>
+              <td><code class="paper-code">fa-map-marker</code></td>
+              <td>Maps</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-credit-card text-lg"></i></td>
+              <td><code class="paper-code">fa-credit-card</code></td>
+              <td>Commerce</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="text-xs text-[var(--paper-muted)] mt-3">See the Font Awesome Library above for all available icons.</p>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-card-header">
+        <h3 class="paper-card-title">Font Awesome Classes</h3>
+      </div>
+      <div class="paper-card-body">
+        <table class="paper-table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="paper-code">fa</code></td>
+              <td>Base class (required)</td>
+            </tr>
+            <tr>
+              <td><code class="paper-code">fa-[name]</code></td>
               <td>Specific icon class</td>
             </tr>
             <tr>

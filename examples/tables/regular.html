@@ -6,6 +6,7 @@
   <title>Fine Paper | Tables Regular</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/app.css">
@@ -184,7 +185,7 @@
               <i class="nc-icon nc-minimal-left text-[var(--paper-text)] transition-transform duration-300" :class="sidebarMini ? 'rotate-180' : ''"></i>
             </button>
             <div class="relative hidden md:block">
-              <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-zoom-split absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
@@ -452,7 +453,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(255,184,77,0.15)]">
-        <i class="nc-icon nc-touch-id text-lg text-[var(--paper-warning)]"></i>
+        <i class="fa fa-hand-pointer-o text-lg text-[var(--paper-warning)]"></i>
       </div>
       <div>
         <h2 class="font-semibold">Hover Table</h2>
@@ -649,7 +650,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
-        <i class="nc-icon nc-tag-content text-lg text-[var(--paper-primary)]"></i>
+        <i class="fa fa-tag text-lg text-[var(--paper-primary)]"></i>
       </div>
       <div>
         <h2 class="font-semibold">Status Badges</h2>
@@ -722,7 +723,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(110,195,114,0.15)]">
-        <i class="nc-icon nc-tablet-2 text-lg text-[var(--paper-success)]"></i>
+        <i class="fa fa-tablet text-lg text-[var(--paper-success)]"></i>
       </div>
       <div>
         <h2 class="font-semibold">Responsive Table</h2>
@@ -793,7 +794,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)]">
-        <i class="nc-icon nc-paper text-lg text-[var(--paper-info)]"></i>
+        <i class="fa fa-file-text-o text-lg text-[var(--paper-info)]"></i>
       </div>
       <div>
         <h2 class="font-semibold">Table with Footer</h2>
@@ -863,7 +864,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(255,184,77,0.15)]">
-        <i class="nc-icon nc-caps-small text-lg text-[var(--paper-warning)]"></i>
+        <i class="fa fa-font text-lg text-[var(--paper-warning)]"></i>
       </div>
       <div>
         <h2 class="font-semibold">Table with Caption</h2>
@@ -923,7 +924,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(239,129,87,0.15)]">
-        <i class="nc-icon nc-align-center text-lg text-[var(--paper-danger)]"></i>
+        <i class="fa fa-align-center text-lg text-[var(--paper-danger)]"></i>
       </div>
       <div>
         <h2 class="font-semibold">Column Alignment</h2>
@@ -976,7 +977,7 @@
   <div class="mt-6 paper-card">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
-        <i class="nc-icon nc-bookmark-2 text-lg text-[var(--paper-primary)]"></i>
+        <i class="fa fa-bookmark-o text-lg text-[var(--paper-primary)]"></i>
       </div>
       <div>
         <h2 class="font-semibold">Quick Reference</h2>

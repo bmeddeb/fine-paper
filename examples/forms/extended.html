@@ -6,6 +6,7 @@
   <title>Fine Paper | Forms Extended</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/app.css">
@@ -184,7 +185,7 @@
               <i class="nc-icon nc-minimal-left text-[var(--paper-text)] transition-transform duration-300" :class="sidebarMini ? 'rotate-180' : ''"></i>
             </button>
             <div class="relative hidden md:block">
-              <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-zoom-split absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
@@ -249,7 +250,7 @@
   <div class="mt-8 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
-        <i class="nc-icon nc-tag-content"></i>
+        <i class="fa fa-tag"></i>
       </div>
       <div>
         <h2 class="font-semibold">Input Groups with Icons</h2>
@@ -263,7 +264,7 @@
           <div>
             <label class="paper-label">Left Icon</label>
             <div class="relative">
-              <i class="nc-icon nc-email-85 absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-email-85 absolute inset-y-0 left-4 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="paper-input pl-10" type="email" placeholder="hello@paper.io">
             </div>
           </div>
@@ -271,24 +272,24 @@
             <label class="paper-label">Right Icon</label>
             <div class="relative">
               <input class="paper-input pr-10" type="text" placeholder="Search..." aria-label="Search">
-              <i class="nc-icon nc-zoom-split absolute right-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-zoom-split absolute inset-y-0 right-4 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
             </div>
           </div>
           <div>
             <label class="paper-label">Both Sides</label>
             <div class="relative">
-              <i class="nc-icon nc-single-02 absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-single-02 absolute inset-y-0 left-4 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="paper-input px-10" type="text" placeholder="Username">
-              <i class="nc-icon nc-check-2 absolute right-4 top-1/2 -translate-y-1/2 text-sm text-emerald-500"></i>
+              <i class="nc-icon nc-check-2 absolute inset-y-0 right-4 flex items-center text-sm text-emerald-500"></i>
             </div>
           </div>
           <div x-data="{ show: false }">
             <label class="paper-label">Password Toggle</label>
             <div class="relative">
-              <i class="nc-icon nc-lock-circle-open absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-lock-circle-open absolute inset-y-0 left-4 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="paper-input px-10" :type="show ? 'text' : 'password'" placeholder="••••••••">
-              <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--paper-muted)] hover:text-[var(--paper-text)]" @click="show = !show" aria-label="Toggle password visibility">
-                <i class="nc-icon" :class="show ? 'nc-glasses-2' : 'nc-zoom-split'"></i>
+              <button type="button" class="absolute inset-y-0 right-4 flex items-center text-[var(--paper-muted)] hover:text-[var(--paper-text)]" @click="show = !show" aria-label="Toggle password visibility">
+                <i class="fa" :class="show ? 'fa-eye-slash' : 'fa-eye'"></i>
               </button>
             </div>
           </div>
@@ -297,21 +298,21 @@
       <div x-show="showCode" x-transition class="mt-4">
         <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;!-- Left Icon --&gt;
 &lt;div class="relative"&gt;
-  &lt;i class="nc-icon nc-email-85 absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"&gt;&lt;/i&gt;
+  &lt;i class="nc-icon nc-email-85 absolute inset-y-0 left-4 flex items-center text-sm text-[var(--paper-muted)]"&gt;&lt;/i&gt;
   &lt;input class="paper-input pl-10" type="email" placeholder="hello@paper.io"&gt;
 &lt;/div&gt;
 
 &lt;!-- Right Icon --&gt;
 &lt;div class="relative"&gt;
   &lt;input class="paper-input pr-10" type="text" placeholder="Search..."&gt;
-  &lt;i class="nc-icon nc-zoom-split absolute right-4 top-1/2 -translate-y-1/2"&gt;&lt;/i&gt;
+  &lt;i class="nc-icon nc-zoom-split absolute inset-y-0 right-4 flex items-center"&gt;&lt;/i&gt;
 &lt;/div&gt;
 
 &lt;!-- Password Toggle with Alpine.js --&gt;
 &lt;div class="relative" x-data="{ show: false }"&gt;
   &lt;input class="paper-input px-10" :type="show ? 'text' : 'password'"&gt;
   &lt;button type="button" @click="show = !show"&gt;
-    &lt;i class="nc-icon" :class="show ? 'nc-glasses-2' : 'nc-zoom-split'"&gt;&lt;/i&gt;
+    &lt;i class="fa" :class="show ? 'fa-eye-slash' : 'fa-eye'"&gt;&lt;/i&gt;
   &lt;/button&gt;
 &lt;/div&gt;</code></pre>
       </div>
@@ -369,7 +370,7 @@
             <label class="paper-label">Search with Button</label>
             <div class="flex">
               <div class="relative flex-1">
-                <i class="nc-icon nc-zoom-split absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+                <i class="nc-icon nc-zoom-split absolute inset-y-0 left-4 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
                 <input class="paper-input pl-10 rounded-r-none" type="text" placeholder="Search products..." aria-label="Search products">
               </div>
               <button class="paper-btn paper-btn-info rounded-l-none" type="button" aria-label="Search">
@@ -409,7 +410,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,187,106,0.15)] text-[var(--paper-success)]">
-        <i class="nc-icon nc-refresh-69"></i>
+        <i class="fa fa-refresh"></i>
       </div>
       <div>
         <h2 class="font-semibold">Toggle Switches</h2>
@@ -526,7 +527,7 @@
           <div class="flex items-center justify-between rounded-xl border border-[var(--paper-border)] bg-white p-4" x-data="{ on: false }">
             <div class="flex items-center gap-3">
               <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)] text-[var(--paper-info)]">
-                <i class="nc-icon nc-chat-33"></i>
+                <i class="fa fa-comment-o"></i>
               </div>
               <div>
                 <p class="font-semibold">Push notifications</p>
@@ -581,7 +582,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)] text-[var(--paper-primary)]">
-        <i class="nc-icon nc-sound-wave"></i>
+        <i class="fa fa-volume-up"></i>
       </div>
       <div>
         <h2 class="font-semibold">Range Sliders</h2>
@@ -641,7 +642,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)] text-[var(--paper-info)]">
-        <i class="nc-icon nc-cloud-upload-94"></i>
+        <i class="fa fa-cloud-upload"></i>
       </div>
       <div>
         <h2 class="font-semibold">File Inputs</h2>
@@ -684,7 +685,7 @@
               @dragleave.prevent="dragover = false"
               @drop.prevent="dragover = false; files = $event.dataTransfer.files"
             >
-              <i class="nc-icon nc-cloud-upload-94 text-3xl text-[var(--paper-muted)]"></i>
+              <i class="fa fa-cloud-upload text-3xl text-[var(--paper-muted)]"></i>
               <p class="mt-2 text-sm text-[var(--paper-muted)]">
                 Drag and drop files here, or
                 <label class="text-[var(--paper-primary)] cursor-pointer hover:underline">
@@ -734,7 +735,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,187,106,0.15)] text-[var(--paper-success)]">
-        <i class="nc-icon nc-tag-content"></i>
+        <i class="fa fa-tag"></i>
       </div>
       <div>
         <h2 class="font-semibold">Tags Input</h2>
@@ -839,7 +840,7 @@
         }" @click.outside="open = false">
           <label class="paper-label">Quick Search</label>
           <div class="relative">
-            <i class="nc-icon nc-zoom-split absolute left-4 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+            <i class="nc-icon nc-zoom-split absolute inset-y-0 left-4 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
             <input
               type="text"
               class="paper-input pl-10"

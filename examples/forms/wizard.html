@@ -6,6 +6,7 @@
   <title>Fine Paper | Forms Wizard</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/app.css">
@@ -184,7 +185,7 @@
               <i class="nc-icon nc-minimal-left text-[var(--paper-text)] transition-transform duration-300" :class="sidebarMini ? 'rotate-180' : ''"></i>
             </button>
             <div class="relative hidden md:block">
-              <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-zoom-split absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
@@ -471,11 +472,11 @@
         <div class="rounded-xl bg-[var(--paper-bg)] p-6 min-h-[120px] flex items-center justify-center">
           <div class="text-center">
             <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--wizard-accent)]/10 text-[var(--wizard-accent)] mx-auto mb-3">
-              <i class="nc-icon text-2xl" :class="{
-                'nc-single-02': step === 1,
-                'nc-pin-3': step === 2,
-                'nc-credit-card': step === 3,
-                'nc-check-2': step === 4
+              <i class="fa text-2xl" :class="{
+                'fa-user': step === 1,
+                'fa-map-marker': step === 2,
+                'fa-credit-card': step === 3,
+                'fa-check': step === 4
               }"></i>
             </div>
             <p class="font-semibold" x-text="['Enter Details', 'Shipping Address', 'Payment Method', 'Review Order'][step - 1]"></p>
@@ -514,7 +515,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--wizard-accent)]/15 text-[var(--wizard-accent)]">
-        <i class="nc-icon nc-spaceship"></i>
+        <i class="fa fa-rocket"></i>
       </div>
       <div>
         <h2 class="font-semibold">Icon Steps Wizard</h2>
@@ -526,10 +527,10 @@
       <div x-data="{
         step: 1,
         steps: [
-          { icon: 'nc-cart-simple', title: 'Cart', desc: 'Review items' },
-          { icon: 'nc-delivery-fast', title: 'Shipping', desc: 'Delivery info' },
-          { icon: 'nc-credit-card', title: 'Payment', desc: 'Card details' },
-          { icon: 'nc-check-2', title: 'Complete', desc: 'Order placed' }
+          { icon: 'fa-shopping-cart', title: 'Cart', desc: 'Review items' },
+          { icon: 'fa-truck', title: 'Shipping', desc: 'Delivery info' },
+          { icon: 'fa-credit-card', title: 'Payment', desc: 'Card details' },
+          { icon: 'fa-check', title: 'Complete', desc: 'Order placed' }
         ]
       }">
         <!-- Icon Steps -->
@@ -542,7 +543,7 @@
                     class="flex h-14 w-14 items-center justify-center rounded-full transition-all"
                     :class="step > i + 1 ? 'bg-[var(--wizard-accent)] text-white' : step === i + 1 ? 'bg-[var(--wizard-accent)]/15 text-[var(--wizard-accent)] ring-2 ring-[var(--wizard-accent)]' : 'bg-[var(--wizard-neutral)]/10 text-[var(--wizard-neutral)]'"
                   >
-                    <i class="nc-icon text-xl" :class="step > i + 1 ? 'nc-check-2' : s.icon"></i>
+                    <i class="fa text-xl" :class="step > i + 1 ? 'fa-check' : s.icon"></i>
                   </div>
                   <p class="mt-2 text-sm font-semibold" :class="step >= i + 1 ? 'text-[var(--wizard-accent)]' : 'text-[var(--wizard-neutral)]'" x-text="s.title"></p>
                   <p class="text-xs text-[var(--paper-muted)] hidden sm:block" x-text="s.desc"></p>
@@ -582,10 +583,10 @@
         <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-100 overflow-x-auto"><code>&lt;div x-data="{
   step: 1,
   steps: [
-    { icon: 'nc-cart-simple', title: 'Cart' },
-    { icon: 'nc-delivery-fast', title: 'Shipping' },
-    { icon: 'nc-credit-card', title: 'Payment' },
-    { icon: 'nc-check-2', title: 'Complete' }
+    { icon: 'fa-shopping-cart', title: 'Cart' },
+    { icon: 'fa-truck', title: 'Shipping' },
+    { icon: 'fa-credit-card', title: 'Payment' },
+    { icon: 'fa-check', title: 'Complete' }
   ]
 }"&gt;
   &lt;template x-for="(s, i) in steps"&gt;
@@ -593,7 +594,7 @@
       :class="step &gt; i + 1 ? 'bg-[var(--wizard-accent)] text-white'
             : step === i + 1 ? 'bg-[var(--wizard-accent)]/15 text-[var(--wizard-accent)] ring-2 ring-[var(--wizard-accent)]'
             : 'bg-[var(--wizard-neutral)]/10 text-[var(--wizard-neutral)]'"&gt;
-      &lt;i class="nc-icon" :class="step &gt; i + 1 ? 'nc-check-2' : s.icon"&gt;&lt;/i&gt;
+      &lt;i class="fa" :class="step &gt; i + 1 ? 'fa-check' : s.icon"&gt;&lt;/i&gt;
     &lt;/div&gt;
   &lt;/template&gt;
 &lt;/div&gt;</code></pre>
@@ -605,7 +606,7 @@
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--wizard-accent)]/15 text-[var(--wizard-accent)]">
-        <i class="nc-icon nc-tile-56"></i>
+        <i class="fa fa-th-large"></i>
       </div>
       <div>
         <h2 class="font-semibold">Vertical Wizard</h2>

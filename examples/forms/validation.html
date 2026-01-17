@@ -6,6 +6,7 @@
   <title>Fine Paper | Forms Validation</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/app.css">
@@ -184,7 +185,7 @@
               <i class="nc-icon nc-minimal-left text-[var(--paper-text)] transition-transform duration-300" :class="sidebarMini ? 'rotate-180' : ''"></i>
             </button>
             <div class="relative hidden md:block">
-              <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-zoom-split absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
@@ -342,7 +343,7 @@
               x-model="email"
               @blur="touched = true"
             >
-            <div class="absolute right-3 top-1/2 -translate-y-1/2">
+            <div class="absolute inset-y-0 right-3 flex items-center">
               <i class="nc-icon nc-check-2 text-emerald-500" x-show="state === 'success'" x-transition></i>
               <i class="nc-icon nc-simple-remove text-[var(--paper-danger)]" x-show="state === 'error'" x-transition></i>
             </div>
@@ -432,8 +433,8 @@
               placeholder="Enter a strong password"
               x-model="password"
             >
-                <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--paper-muted)] hover:text-[var(--paper-text)]" @click="show = !show" aria-label="Toggle password visibility">
-                  <i class="nc-icon" :class="show ? 'nc-glasses-2' : 'nc-zoom-split'"></i>
+                <button type="button" class="absolute inset-y-0 right-3 flex items-center text-[var(--paper-muted)] hover:text-[var(--paper-text)]" @click="show = !show" aria-label="Toggle password visibility">
+                  <i class="fa" :class="show ? 'fa-eye-slash' : 'fa-eye'"></i>
                 </button>
           </div>
           <div class="mt-2" x-show="password.length > 0" x-transition>
@@ -451,19 +452,19 @@
           </div>
           <ul class="mt-3 space-y-1 text-xs text-[var(--paper-muted)]">
             <li class="flex items-center gap-2" :class="password.length >= 8 ? 'text-emerald-600' : ''">
-              <i class="nc-icon" :class="password.length >= 8 ? 'nc-check-2' : 'nc-circle-10'"></i>
+              <i class="fa" :class="password.length >= 8 ? 'fa-check' : 'fa-circle-o'"></i>
               At least 8 characters
             </li>
             <li class="flex items-center gap-2" :class="/[A-Z]/.test(password) && /[a-z]/.test(password) ? 'text-emerald-600' : ''">
-              <i class="nc-icon" :class="/[A-Z]/.test(password) && /[a-z]/.test(password) ? 'nc-check-2' : 'nc-circle-10'"></i>
+              <i class="fa" :class="/[A-Z]/.test(password) && /[a-z]/.test(password) ? 'fa-check' : 'fa-circle-o'"></i>
               Upper and lowercase letters
             </li>
             <li class="flex items-center gap-2" :class="/\d/.test(password) ? 'text-emerald-600' : ''">
-              <i class="nc-icon" :class="/\d/.test(password) ? 'nc-check-2' : 'nc-circle-10'"></i>
+              <i class="fa" :class="/\d/.test(password) ? 'fa-check' : 'fa-circle-o'"></i>
               At least one number
             </li>
             <li class="flex items-center gap-2" :class="/[^a-zA-Z0-9]/.test(password) ? 'text-emerald-600' : ''">
-              <i class="nc-icon" :class="/[^a-zA-Z0-9]/.test(password) ? 'nc-check-2' : 'nc-circle-10'"></i>
+              <i class="fa" :class="/[^a-zA-Z0-9]/.test(password) ? 'fa-check' : 'fa-circle-o'"></i>
               At least one special character
             </li>
           </ul>

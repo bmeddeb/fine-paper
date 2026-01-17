@@ -6,6 +6,7 @@
   <title>Fine Paper | DataTables</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/app.css">
@@ -184,7 +185,7 @@
               <i class="nc-icon nc-minimal-left text-[var(--paper-text)] transition-transform duration-300" :class="sidebarMini ? 'rotate-180' : ''"></i>
             </button>
             <div class="relative hidden md:block">
-              <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+              <i class="nc-icon nc-zoom-split absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
               <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search..." aria-label="Search">
             </div>
             <div class="md:hidden">
@@ -321,7 +322,7 @@
             <span class="text-sm">entries</span>
           </div>
           <div class="relative w-full md:w-72">
-            <i class="nc-icon nc-zoom-split absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[var(--paper-muted)]"></i>
+            <i class="nc-icon nc-zoom-split absolute inset-y-0 left-3 flex items-center text-sm text-[var(--paper-muted)] pointer-events-none"></i>
             <input x-model="search" @input="page = 1" class="paper-input pl-9" type="text" placeholder="Search..." aria-label="Search">
           </div>
         </div>
@@ -332,19 +333,19 @@
             <thead>
               <tr>
                 <th class="cursor-pointer select-none" @click="sort('name')">
-                  <span class="flex items-center gap-1">Name <i class="nc-icon text-xs" :class="sortCol === 'name' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
+                  <span class="flex items-center gap-1">Name <i class="fa text-xs" :class="sortCol === 'name' ? (sortAsc ? 'fa-sort-asc' : 'fa-sort-desc') : 'fa-sort text-gray-300'"></i></span>
                 </th>
                 <th class="cursor-pointer select-none" @click="sort('position')">
-                  <span class="flex items-center gap-1">Position <i class="nc-icon text-xs" :class="sortCol === 'position' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
+                  <span class="flex items-center gap-1">Position <i class="fa text-xs" :class="sortCol === 'position' ? (sortAsc ? 'fa-sort-asc' : 'fa-sort-desc') : 'fa-sort text-gray-300'"></i></span>
                 </th>
                 <th class="cursor-pointer select-none" @click="sort('office')">
-                  <span class="flex items-center gap-1">Office <i class="nc-icon text-xs" :class="sortCol === 'office' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
+                  <span class="flex items-center gap-1">Office <i class="fa text-xs" :class="sortCol === 'office' ? (sortAsc ? 'fa-sort-asc' : 'fa-sort-desc') : 'fa-sort text-gray-300'"></i></span>
                 </th>
                 <th class="cursor-pointer select-none text-end" @click="sort('age')">
-                  <span class="flex items-center justify-end gap-1">Age <i class="nc-icon text-xs" :class="sortCol === 'age' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
+                  <span class="flex items-center justify-end gap-1">Age <i class="fa text-xs" :class="sortCol === 'age' ? (sortAsc ? 'fa-sort-asc' : 'fa-sort-desc') : 'fa-sort text-gray-300'"></i></span>
                 </th>
                 <th class="cursor-pointer select-none text-end" @click="sort('salary')">
-                  <span class="flex items-center justify-end gap-1">Salary <i class="nc-icon text-xs" :class="sortCol === 'salary' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
+                  <span class="flex items-center justify-end gap-1">Salary <i class="fa text-xs" :class="sortCol === 'salary' ? (sortAsc ? 'fa-sort-asc' : 'fa-sort-desc') : 'fa-sort text-gray-300'"></i></span>
                 </th>
               </tr>
             </thead>
@@ -738,13 +739,13 @@
                 <i class="nc-icon nc-single-copy-04 text-[var(--paper-success)]"></i> CSV
               </button>
               <button class="w-full text-start px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('Excel')">
-                <i class="nc-icon nc-chart-pie-36 text-[var(--paper-success)]"></i> Excel
+                <i class="fa fa-file-excel-o text-[var(--paper-success)]"></i> Excel
               </button>
               <button class="w-full text-start px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('PDF')">
                 <i class="nc-icon nc-single-copy-04 text-[var(--paper-danger)]"></i> PDF
               </button>
               <button class="w-full text-start px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('Print')">
-                <i class="nc-icon nc-paper text-[var(--paper-info)]"></i> Print
+                <i class="fa fa-print text-[var(--paper-info)]"></i> Print
               </button>
             </div>
           </div>
@@ -820,7 +821,7 @@ function exportToCSV() {
   <div class="mt-6 paper-card">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(102,126,234,0.15)]">
-        <i class="nc-icon nc-bookmark-2 text-lg text-[var(--paper-primary)]"></i>
+        <i class="fa fa-bookmark-o text-lg text-[var(--paper-primary)]"></i>
       </div>
       <div>
         <h2 class="font-semibold">Quick Reference</h2>

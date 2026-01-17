@@ -374,7 +374,7 @@ window.initDashboardCharts = function () {
     });
   }
 
-  // Chart 6: Donut Chart 2 (New Visitators - 34%)
+  // Chart 6: Donut Chart 2 (New Visitors - 34%)
   ctx = document.getElementById('chartDonut2');
   if (ctx) {
     new Chart(ctx.getContext("2d"), {
@@ -382,7 +382,7 @@ window.initDashboardCharts = function () {
       data: {
         labels: ['Visited', 'Other'],
         datasets: [{
-          label: "Visitators",
+          label: "Visitors",
           backgroundColor: ['#fcc468', '#f4f3ef'],
           borderWidth: 0,
           data: [34, 66]

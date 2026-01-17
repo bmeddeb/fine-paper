@@ -1,6 +1,6 @@
-# Tailwind Paper
+# Fine Paper
 
-This folder contains the Tailwind 4.1 + Alpine.js refresh of Paper Dashboard.
+This folder contains the Tailwind 4.1 + Alpine.js refresh of Fine Paper.
 
 ## Quick start
 - Open `tailwind-paper/examples/dashboard.html` in a browser.

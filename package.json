@@ -2,7 +2,7 @@
   "name": "tailwind-paper",
   "private": true,
   "version": "0.1.0",
-  "description": "Tailwind tooling for the Paper Dashboard refresh",
+  "description": "Tailwind tooling for the Fine Paper refresh",
   "devDependencies": {
     "alpinejs": "^3.13.5",
     "@tailwindcss/cli": "^4.1.0",

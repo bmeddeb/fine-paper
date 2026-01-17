@@ -525,7 +525,7 @@ img {
   }
 
   .sidebar-modern.sidebar-mini {
-    width: 80px;
+    width: 56px;
   }
 
   .sidebar-modern.sidebar-mini .sidebar-text {
@@ -544,17 +544,45 @@ img {
 
   .sidebar-modern.sidebar-mini .sidebar-link {
     justify-content: center;
-    padding: 10px;
+    padding: 8px;
+    gap: 0;
   }
 
   .sidebar-modern.sidebar-mini .sidebar-link i:first-child {
     margin: 0;
-    font-size: 18px;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .sidebar-modern.sidebar-mini .sidebar-link .nc-minimal-down {
+    display: none;
+  }
+
+  .sidebar-modern.sidebar-mini > .px-6.py-6 {
+    display: flex;
+    justify-content: center;
+    padding: 10px 6px;
+  }
+
+  .sidebar-modern.sidebar-mini > .px-6.py-6 > .flex {
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+  }
+
+  .sidebar-modern.sidebar-mini > .px-6.py-6 .h-11.w-11 {
+    width: 36px;
+    height: 36px;
   }
 
   /* Hover expansion for mini sidebar */
   .sidebar-modern.sidebar-mini:hover {
-    width: 256px;
+    width: 224px;
   }
 
   .sidebar-modern.sidebar-mini:hover .sidebar-text {
@@ -573,14 +601,37 @@ img {
   .sidebar-modern.sidebar-mini:hover .sidebar-link {
     justify-content: flex-start;
     padding: 10px 16px;
+    gap: 12px;
   }
 
   .sidebar-modern.sidebar-mini:hover .sidebar-link i:first-child {
     font-size: inherit;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    line-height: normal;
+  }
+
+  .sidebar-modern.sidebar-mini:hover .sidebar-link .nc-minimal-down {
+    display: inline-block;
+  }
+
+  .sidebar-modern.sidebar-mini:hover > .px-6.py-6 {
+    padding: 24px;
+  }
+
+  .sidebar-modern.sidebar-mini:hover > .px-6.py-6 > .flex {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .sidebar-modern.sidebar-mini:hover > .px-6.py-6 .h-11.w-11 {
+    width: 44px;
+    height: 44px;
   }
 }
 
-/* Paper Dashboard layout parity (Tailwind rebuild) */
+/* Dashboard layout parity (Tailwind rebuild) */
 .wrapper {
   position: relative;
   top: 0;

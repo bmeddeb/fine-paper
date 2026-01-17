@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Dashboard | Documentation</title>
+  <title>Fine Paper | Documentation</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,15 +27,15 @@
   <div class="flex min-h-screen">
     <div class="fixed inset-0 bg-black/40 lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
     <!-- Sidebar -->
-    <aside class="sidebar-modern fixed inset-y-0 left-0 z-40 w-64 -translate-x-full bg-[var(--paper-sidebar)] text-white transition-all duration-300 lg:static lg:translate-x-0 lg:flex lg:flex-col" :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen, 'sidebar-mini': sidebarMini}">
+    <aside class="sidebar-modern fixed inset-y-0 left-0 z-40 w-56 -translate-x-full bg-[var(--paper-sidebar)] text-white transition-all duration-300 lg:static lg:translate-x-0 lg:flex lg:flex-col" :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen, 'sidebar-mini': sidebarMini}">
       <!-- Logo -->
       <div class="px-6 py-6">
         <div class="flex items-center gap-3">
           <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10">
-            <img src="../../assets/img/logo-small.png" alt="Paper Dashboard logo" class="h-7 w-7">
+            <img src="../../assets/img/finepaper.png" alt="Fine Paper logo" class="h-7 w-7">
           </div>
           <div class="sidebar-text overflow-hidden whitespace-nowrap transition-all duration-300">
-            <p class="text-sm font-semibold uppercase tracking-[0.2em]">Paper</p>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em]">Fine Paper</p>
             <p class="text-xs text-white/60">Tailwind 4.1</p>
           </div>
         </div>
@@ -188,7 +188,7 @@
             </div>
             <div class="md:hidden">
               <p class="text-sm font-semibold">Documentation</p>
-              <p class="text-xs text-[var(--paper-muted)]">Paper Dashboard</p>
+              <p class="text-xs text-[var(--paper-muted)]">Fine Paper</p>
             </div>
           </div>
           <div class="flex items-center gap-3">
@@ -206,7 +206,7 @@
     <div class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[var(--paper-primary)] to-[var(--paper-info)] text-white mb-4">
       <i class="nc-icon nc-book-bookmark text-3xl"></i>
     </div>
-    <h1 class="text-3xl font-bold">Paper Dashboard Documentation</h1>
+    <h1 class="text-3xl font-bold">Fine Paper Documentation</h1>
     <p class="paper-muted mt-3">Complete reference for UI components, CSS classes, and usage examples. Built with Tailwind CSS 4.1 and Alpine.js.</p>
   </div>
 </section>
@@ -218,7 +218,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         <div>
           <h2 class="text-xl font-semibold">Quick Start</h2>
-          <p class="mt-2 opacity-90">Get started with Paper Dashboard by exploring the component documentation. Each page includes live examples, class references, and code snippets.</p>
+          <p class="mt-2 opacity-90">Get started with Fine Paper by exploring the component documentation. Each page includes live examples, class references, and code snippets.</p>
           <a href="../components/buttons.html" class="mt-4 inline-block rounded-full bg-white px-6 py-2 text-sm font-semibold text-[var(--paper-primary)] transition hover:bg-white/90">
             View Buttons <i class="nc-icon nc-minimal-right ml-2"></i>
           </a>
@@ -423,7 +423,7 @@
   <h2 class="text-xl font-semibold mb-6">CSS Variables Reference</h2>
   <div class="paper-card">
     <div class="paper-card-body">
-      <p class="text-sm text-[var(--paper-muted)] mb-4">Paper Dashboard uses CSS custom properties for consistent theming. These can be customized in your <code class="paper-code">app.css</code> file.</p>
+      <p class="text-sm text-[var(--paper-muted)] mb-4">The dashboard uses CSS custom properties for consistent theming. These can be customized in your <code class="paper-code">src/app.css</code> file.</p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
@@ -557,7 +557,7 @@
       </main>
       <footer class="px-6 py-6 text-xs text-[var(--paper-muted)]">
         <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <p>Paper Dashboard 2 Tailwind build. All rights reserved.</p>
+          <p>Fine Paper build. All rights reserved.</p>
           <div class="flex gap-4">
             <a href="#" class="hover:text-[var(--paper-text)]">About</a>
             <a href="index.html" class="hover:text-[var(--paper-text)]">Documentation</a>

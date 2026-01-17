@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Paper Dashboard | Forms Regular</title>
+  <title>Fine Paper | Forms Regular</title>
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,15 +27,15 @@
   <div class="flex min-h-screen">
     <div class="fixed inset-0 bg-black/40 lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false"></div>
     <!-- Sidebar -->
-    <aside class="sidebar-modern fixed inset-y-0 left-0 z-40 w-64 -translate-x-full bg-[var(--paper-sidebar)] text-white transition-all duration-300 lg:static lg:translate-x-0 lg:flex lg:flex-col" :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen, 'sidebar-mini': sidebarMini}">
+    <aside class="sidebar-modern fixed inset-y-0 left-0 z-40 w-56 -translate-x-full bg-[var(--paper-sidebar)] text-white transition-all duration-300 lg:static lg:translate-x-0 lg:flex lg:flex-col" :class="{'translate-x-0': sidebarOpen, '-translate-x-full': !sidebarOpen, 'sidebar-mini': sidebarMini}">
       <!-- Logo -->
       <div class="px-6 py-6">
         <div class="flex items-center gap-3">
           <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10">
-            <img src="../../assets/img/logo-small.png" alt="Paper Dashboard logo" class="h-7 w-7">
+            <img src="../../assets/img/finepaper.png" alt="Fine Paper logo" class="h-7 w-7">
           </div>
           <div class="sidebar-text overflow-hidden whitespace-nowrap transition-all duration-300">
-            <p class="text-sm font-semibold uppercase tracking-[0.2em]">Paper</p>
+            <p class="text-sm font-semibold uppercase tracking-[0.2em]">Fine Paper</p>
             <p class="text-xs text-white/60">Tailwind 4.1</p>
           </div>
         </div>
@@ -187,7 +187,7 @@
               <input class="h-10 w-64 rounded-full border border-[var(--paper-border)] bg-white pl-9 pr-4 text-sm outline-none transition focus:border-[var(--paper-primary)] focus:ring-2 focus:ring-[var(--paper-primary)]/20" type="text" placeholder="Search...">
             </div>
             <div class="md:hidden">
-              <p class="text-sm font-semibold">Paper Dashboard</p>
+              <p class="text-sm font-semibold">Fine Paper</p>
               <p class="text-xs text-[var(--paper-muted)]">Overview</p>
             </div>
           </div>
@@ -994,7 +994,7 @@
       </main>
       <footer class="px-6 py-6 text-xs text-[var(--paper-muted)]">
         <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-          <p>Paper Dashboard 2 Tailwind build. All rights reserved.</p>
+          <p>Fine Paper build. All rights reserved.</p>
           <div class="flex gap-4">
             <a href="#" class="hover:text-[var(--paper-text)]">About</a>
             <a href="#" class="hover:text-[var(--paper-text)]">Documentation</a>

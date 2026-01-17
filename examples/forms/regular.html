@@ -603,7 +603,7 @@
               placeholder="Maximum 200 characters..."
               @input="charCount = $el.value.length"
             ></textarea>
-            <p class="mt-1 text-xs text-right" :class="charCount > 180 ? 'text-[var(--paper-danger)]' : 'text-[var(--paper-muted)]'">
+            <p class="mt-1 text-xs text-end" :class="charCount > 180 ? 'text-[var(--paper-danger)]' : 'text-[var(--paper-muted)]'">
               <span x-text="charCount"></span>/200
             </p>
           </div>
@@ -818,11 +818,11 @@
           <div class="rounded-xl bg-[var(--paper-bg)] p-6">
             <form class="space-y-4">
               <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-                <label class="paper-label md:w-32 md:text-right md:mb-0">Email</label>
+                <label class="paper-label md:w-32 md:text-end md:mb-0">Email</label>
                 <input class="paper-input md:flex-1 max-w-md" type="email" placeholder="you@example.com">
               </div>
               <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-                <label class="paper-label md:w-32 md:text-right md:mb-0">Password</label>
+                <label class="paper-label md:w-32 md:text-end md:mb-0">Password</label>
                 <input class="paper-input md:flex-1 max-w-md" type="password" placeholder="••••••••">
               </div>
               <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
@@ -863,7 +863,7 @@
 &lt;!-- Horizontal --&gt;
 &lt;form class="space-y-4"&gt;
   &lt;div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4"&gt;
-    &lt;label class="paper-label md:w-32 md:text-right md:mb-0"&gt;Email&lt;/label&gt;
+    &lt;label class="paper-label md:w-32 md:text-end md:mb-0"&gt;Email&lt;/label&gt;
     &lt;input class="paper-input md:flex-1 max-w-md" type="email"&gt;
   &lt;/div&gt;
 &lt;/form&gt;
@@ -949,9 +949,9 @@
         <table class="w-full text-sm">
           <thead>
             <tr class="border-b border-[var(--paper-border)]">
-              <th class="py-3 px-4 text-left font-semibold">Component</th>
-              <th class="py-3 px-4 text-left font-semibold">Class</th>
-              <th class="py-3 px-4 text-left font-semibold">Description</th>
+              <th class="py-3 px-4 text-start font-semibold">Component</th>
+              <th class="py-3 px-4 text-start font-semibold">Class</th>
+              <th class="py-3 px-4 text-start font-semibold">Description</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-[var(--paper-border)]">

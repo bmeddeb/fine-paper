@@ -694,7 +694,7 @@
               </p>
               <p class="mt-1 text-xs text-[var(--paper-muted)]">PNG, JPG, PDF up to 10MB</p>
               <template x-if="files.length > 0">
-                <div class="mt-4 text-sm text-left">
+                <div class="mt-4 text-sm text-start">
                   <template x-for="file in files">
                     <div class="flex items-center gap-2 py-1">
                       <i class="nc-icon nc-single-copy-04 text-[var(--paper-primary)]"></i>
@@ -856,7 +856,7 @@
               <template x-for="item in filtered" :key="item">
                 <button
                   type="button"
-                  class="w-full px-4 py-2 text-left text-sm hover:bg-[var(--paper-bg)] flex items-center gap-2"
+                  class="w-full px-4 py-2 text-start text-sm hover:bg-[var(--paper-bg)] flex items-center gap-2"
                   @click="select(item)"
                 >
                   <i class="nc-icon nc-minimal-right text-xs text-[var(--paper-muted)]"></i>
@@ -903,9 +903,9 @@
         <table class="w-full text-sm">
           <thead>
             <tr class="border-b border-[var(--paper-border)]">
-              <th class="py-3 px-4 text-left font-semibold">Component</th>
-              <th class="py-3 px-4 text-left font-semibold">Key Classes</th>
-              <th class="py-3 px-4 text-left font-semibold">Alpine.js</th>
+              <th class="py-3 px-4 text-start font-semibold">Component</th>
+              <th class="py-3 px-4 text-start font-semibold">Key Classes</th>
+              <th class="py-3 px-4 text-start font-semibold">Alpine.js</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-[var(--paper-border)]">

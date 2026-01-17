@@ -807,37 +807,37 @@
           <thead>
             <tr>
               <th>Item</th>
-              <th class="text-right">Quantity</th>
-              <th class="text-right">Unit Price</th>
-              <th class="text-right">Total</th>
+              <th class="text-end">Quantity</th>
+              <th class="text-end">Unit Price</th>
+              <th class="text-end">Total</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Product A</td>
-              <td class="text-right">10</td>
-              <td class="text-right">$15.00</td>
-              <td class="text-right">$150.00</td>
+              <td class="text-end">10</td>
+              <td class="text-end">$15.00</td>
+              <td class="text-end">$150.00</td>
             </tr>
             <tr>
               <td>Product B</td>
-              <td class="text-right">5</td>
-              <td class="text-right">$25.00</td>
-              <td class="text-right">$125.00</td>
+              <td class="text-end">5</td>
+              <td class="text-end">$25.00</td>
+              <td class="text-end">$125.00</td>
             </tr>
             <tr>
               <td>Product C</td>
-              <td class="text-right">20</td>
-              <td class="text-right">$8.00</td>
-              <td class="text-right">$160.00</td>
+              <td class="text-end">20</td>
+              <td class="text-end">$8.00</td>
+              <td class="text-end">$160.00</td>
             </tr>
           </tbody>
           <tfoot>
             <tr class="border-t-2 border-[var(--paper-border)] font-semibold">
               <td>Total</td>
-              <td class="text-right">35</td>
-              <td class="text-right">-</td>
-              <td class="text-right">$435.00</td>
+              <td class="text-end">35</td>
+              <td class="text-end">-</td>
+              <td class="text-end">$435.00</td>
             </tr>
           </tfoot>
         </table>
@@ -849,9 +849,9 @@
   &lt;tfoot&gt;
     &lt;tr class="border-t-2 border-[var(--paper-border)] font-semibold"&gt;
       &lt;td&gt;Total&lt;/td&gt;
-      &lt;td class="text-right"&gt;35&lt;/td&gt;
-      &lt;td class="text-right"&gt;-&lt;/td&gt;
-      &lt;td class="text-right"&gt;$435.00&lt;/td&gt;
+      &lt;td class="text-end"&gt;35&lt;/td&gt;
+      &lt;td class="text-end"&gt;-&lt;/td&gt;
+      &lt;td class="text-end"&gt;$435.00&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tfoot&gt;
 &lt;/table&gt;</code></pre>
@@ -874,42 +874,42 @@
     <div class="paper-card-body">
       <div class="rounded-xl bg-[var(--paper-bg)] p-6 mb-4">
         <table class="paper-table">
-          <caption class="text-left text-sm text-[var(--paper-muted)] mb-3">
+          <caption class="text-start text-sm text-[var(--paper-muted)] mb-3">
             <strong>Table 1:</strong> Q4 2025 Sales Performance by Region
           </caption>
           <thead>
             <tr>
               <th>Region</th>
-              <th class="text-right">Revenue</th>
-              <th class="text-right">Growth</th>
-              <th class="text-right">Target</th>
+              <th class="text-end">Revenue</th>
+              <th class="text-end">Growth</th>
+              <th class="text-end">Target</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>North America</td>
-              <td class="text-right">$1.2M</td>
-              <td class="text-right text-[var(--paper-success)]">+15%</td>
-              <td class="text-right">120%</td>
+              <td class="text-end">$1.2M</td>
+              <td class="text-end text-[var(--paper-success)]">+15%</td>
+              <td class="text-end">120%</td>
             </tr>
             <tr>
               <td>Europe</td>
-              <td class="text-right">$890K</td>
-              <td class="text-right text-[var(--paper-success)]">+8%</td>
-              <td class="text-right">105%</td>
+              <td class="text-end">$890K</td>
+              <td class="text-end text-[var(--paper-success)]">+8%</td>
+              <td class="text-end">105%</td>
             </tr>
             <tr>
               <td>Asia Pacific</td>
-              <td class="text-right">$650K</td>
-              <td class="text-right text-[var(--paper-danger)]">-3%</td>
-              <td class="text-right">87%</td>
+              <td class="text-end">$650K</td>
+              <td class="text-end text-[var(--paper-danger)]">-3%</td>
+              <td class="text-end">87%</td>
             </tr>
           </tbody>
         </table>
       </div>
       <div x-show="showCode" x-transition class="mt-4">
         <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table class="paper-table"&gt;
-  &lt;caption class="text-left text-sm text-[var(--paper-muted)] mb-3"&gt;
+  &lt;caption class="text-start text-sm text-[var(--paper-muted)] mb-3"&gt;
     &lt;strong&gt;Table 1:&lt;/strong&gt; Q4 2025 Sales Performance
   &lt;/caption&gt;
   &lt;thead&gt;...&lt;/thead&gt;
@@ -936,38 +936,38 @@
         <table class="paper-table">
           <thead>
             <tr>
-              <th class="text-left">Left Aligned</th>
+              <th class="text-start">Left Aligned</th>
               <th class="text-center">Centered</th>
-              <th class="text-right">Right Aligned</th>
+              <th class="text-end">Right Aligned</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="text-left">Product name goes here</td>
+              <td class="text-start">Product name goes here</td>
               <td class="text-center">Available</td>
-              <td class="text-right">$99.99</td>
+              <td class="text-end">$99.99</td>
             </tr>
             <tr>
-              <td class="text-left">Another product</td>
+              <td class="text-start">Another product</td>
               <td class="text-center">Out of stock</td>
-              <td class="text-right">$149.99</td>
+              <td class="text-end">$149.99</td>
             </tr>
             <tr>
-              <td class="text-left">Third product item</td>
+              <td class="text-start">Third product item</td>
               <td class="text-center">Pre-order</td>
-              <td class="text-right">$299.99</td>
+              <td class="text-end">$299.99</td>
             </tr>
           </tbody>
         </table>
       </div>
       <div x-show="showCode" x-transition class="mt-4">
-        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;th class="text-left"&gt;Left Aligned&lt;/th&gt;
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;th class="text-start"&gt;Left Aligned&lt;/th&gt;
 &lt;th class="text-center"&gt;Centered&lt;/th&gt;
-&lt;th class="text-right"&gt;Right Aligned&lt;/th&gt;
+&lt;th class="text-end"&gt;Right Aligned&lt;/th&gt;
 
-&lt;td class="text-left"&gt;Content&lt;/td&gt;
+&lt;td class="text-start"&gt;Content&lt;/td&gt;
 &lt;td class="text-center"&gt;Content&lt;/td&gt;
-&lt;td class="text-right"&gt;Content&lt;/td&gt;</code></pre>
+&lt;td class="text-end"&gt;Content&lt;/td&gt;</code></pre>
       </div>
     </div>
   </div>
@@ -1018,7 +1018,7 @@
               <td>Relaxed cell padding (1rem)</td>
             </tr>
             <tr>
-              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.text-left</code></td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.text-start</code></td>
               <td>Left-align column content</td>
             </tr>
             <tr>
@@ -1026,7 +1026,7 @@
               <td>Center-align column content</td>
             </tr>
             <tr>
-              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.text-right</code></td>
+              <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.text-end</code></td>
               <td>Right-align column content</td>
             </tr>
             <tr>

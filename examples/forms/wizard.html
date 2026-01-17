@@ -359,7 +359,7 @@
               </div>
               <div class="flex justify-between">
                 <span class="text-[var(--paper-muted)]">Bio</span>
-                <span class="font-medium text-right max-w-[200px] truncate" x-text="form.bio || '-'"></span>
+                <span class="font-medium text-end max-w-[200px] truncate" x-text="form.bio || '-'"></span>
               </div>
             </div>
             <label class="flex items-center gap-3 mt-4 cursor-pointer">
@@ -624,7 +624,7 @@
             <div class="space-y-2">
               <template x-for="(s, i) in steps" :key="i">
                 <button
-                  class="w-full flex items-center gap-3 p-3 rounded-lg text-left transition-colors"
+                  class="w-full flex items-center gap-3 p-3 rounded-lg text-start transition-colors"
                   :class="step === i + 1 ? 'bg-[var(--wizard-accent)] text-white' : step > i + 1 ? 'bg-[var(--wizard-accent)]/10 text-[var(--wizard-accent)]' : 'bg-[var(--wizard-neutral)]/10 text-[var(--wizard-neutral)] hover:bg-[var(--wizard-neutral)]/20'"
                   @click="step = i + 1"
                 >
@@ -752,9 +752,9 @@
         <table class="w-full text-sm">
           <thead>
             <tr class="border-b border-[var(--paper-border)]">
-              <th class="py-3 px-4 text-left font-semibold">Pattern</th>
-              <th class="py-3 px-4 text-left font-semibold">Use Case</th>
-              <th class="py-3 px-4 text-left font-semibold">Key Alpine.js</th>
+              <th class="py-3 px-4 text-start font-semibold">Pattern</th>
+              <th class="py-3 px-4 text-start font-semibold">Use Case</th>
+              <th class="py-3 px-4 text-start font-semibold">Key Alpine.js</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-[var(--paper-border)]">

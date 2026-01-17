@@ -279,22 +279,22 @@
             <button class="paper-btn paper-btn-outline" type="button" @click.stop="ui.inserterOpen = !ui.inserterOpen">+ Add Block</button>
             <div class="absolute left-0 top-full z-20 mt-2 w-64 rounded-xl bg-white p-3 text-sm shadow-lg" x-show="ui.inserterOpen" x-transition>
               <p class="paper-label px-2">Text</p>
-              <button class="mt-2 w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('heading')">Heading</button>
-              <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('paragraph')">Paragraph</button>
-              <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('list')">List</button>
-              <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('quote')">Quote</button>
+              <button class="mt-2 w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('heading')">Heading</button>
+              <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('paragraph')">Paragraph</button>
+              <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('list')">List</button>
+              <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('quote')">Quote</button>
               <p class="paper-label mt-3 px-2">Media</p>
-              <button class="mt-2 w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('image')">Image</button>
-              <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('gallery')">Gallery</button>
-              <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('video')">Video</button>
+              <button class="mt-2 w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('image')">Image</button>
+              <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('gallery')">Gallery</button>
+              <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('video')">Video</button>
               <p class="paper-label mt-3 px-2">Design</p>
-              <button class="mt-2 w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('buttons')">Buttons</button>
-              <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('columns')">Columns</button>
-              <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('separator')">Separator</button>
-              <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('spacer')">Spacer</button>
+              <button class="mt-2 w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('buttons')">Buttons</button>
+              <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('columns')">Columns</button>
+              <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('separator')">Separator</button>
+              <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('spacer')">Spacer</button>
               <p class="paper-label mt-3 px-2">Widgets</p>
-              <button class="mt-2 w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('shortcode')">Shortcode</button>
-              <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('html')">Custom HTML</button>
+              <button class="mt-2 w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('shortcode')">Shortcode</button>
+              <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="addBlock('html')">Custom HTML</button>
             </div>
           </div>
           <button class="paper-btn paper-btn-ghost" type="button" @click.stop="ui.listView = !ui.listView">
@@ -325,7 +325,7 @@
             <div class="mt-3 space-y-2">
               <template x-for="(block, index) in blocks" :key="block.id">
                 <button
-                  class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition hover:bg-white"
+                  class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-start text-sm transition hover:bg-white"
                   type="button"
                   @click.stop="selectBlock(block.id)"
                 >
@@ -382,8 +382,8 @@
                     <i class="nc-icon nc-minimal-down"></i>
                   </button>
                   <div class="absolute right-0 top-9 z-20 w-48 rounded-xl bg-white p-2 text-sm shadow-lg" x-show="blockMenuId === block.id" x-transition @click.outside="blockMenuId = null">
-                    <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="duplicateBlock(block.id)">Duplicate</button>
-                    <button class="w-full rounded-lg px-3 py-2 text-left hover:bg-[var(--paper-bg)]" type="button" @click="deleteBlock(block.id)">Delete</button>
+                    <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="duplicateBlock(block.id)">Duplicate</button>
+                    <button class="w-full rounded-lg px-3 py-2 text-start hover:bg-[var(--paper-bg)]" type="button" @click="deleteBlock(block.id)">Delete</button>
                   </div>
                 </div>
                 <div class="ml-0" :class="ui.isPreview ? '' : 'sm:ml-10'">

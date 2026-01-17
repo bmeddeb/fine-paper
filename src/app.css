@@ -1258,10 +1258,6 @@ hr {
   padding: 15px 15px 0;
 }
 
-.card-stats .card-body > .row {
-  align-items: center;
-}
-
 .card-stats .icon-big {
   font-size: 3em;
   min-height: 64px;
@@ -1681,14 +1677,6 @@ hr {
   color: #6c757d;
 }
 
-.pull-left {
-  float: left;
-}
-
-.pull-right {
-  float: right;
-}
-
 .justify-content-end {
   justify-content: flex-end;
 }
@@ -1827,87 +1815,7 @@ hr {
   }
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -15px;
-  margin-right: -15px;
-}
-
-[class*="col-"] {
-  position: relative;
-  width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.col-5 {
-  flex: 0 0 41.6667% !important;
-  max-width: 41.6667% !important;
-  grid-column: auto !important;
-}
-
-.col-7 {
-  flex: 0 0 58.3333% !important;
-  max-width: 58.3333% !important;
-  grid-column: auto !important;
-}
-
-@media (min-width: 576px) {
-  .col-sm-5 {
-    flex: 0 0 41.6667%;
-    max-width: 41.6667%;
-  }
-
-  .col-sm-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  .col-sm-7 {
-    flex: 0 0 58.3333%;
-    max-width: 58.3333%;
-  }
-}
-
-@media (min-width: 768px) {
-  .col-md-3 {
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
-
-  .col-md-4 {
-    flex: 0 0 33.3333%;
-    max-width: 33.3333%;
-  }
-
-  .col-md-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  .col-md-8 {
-    flex: 0 0 66.6667%;
-    max-width: 66.6667%;
-  }
-
-  .col-md-12 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-}
-
 @media (min-width: 992px) {
-  .col-lg-3 {
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
-
-  .col-lg-4 {
-    flex: 0 0 33.3333%;
-    max-width: 33.3333%;
-  }
-
   .navbar .navbar-toggle {
     display: none;
   }
@@ -2261,14 +2169,6 @@ hr {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-}
-
-.text-right {
-  text-align: right !important;
-}
-
-.text-left {
-  text-align: left !important;
 }
 
 .text-center {

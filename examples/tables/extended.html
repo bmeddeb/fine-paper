@@ -438,7 +438,7 @@
               <th>Type</th>
               <th>Modified</th>
               <th>Size</th>
-              <th class="text-right">Actions</th>
+              <th class="text-end">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -447,7 +447,7 @@
               <td><span class="text-[var(--paper-danger)]"><i class="nc-icon nc-single-copy-04 mr-1"></i>PDF</span></td>
               <td>Jan 10, 2026</td>
               <td>2.4 MB</td>
-              <td class="text-right">
+              <td class="text-end">
                 <div class="flex items-center justify-end gap-2">
                   <button class="paper-btn paper-btn-sm paper-btn-ghost" title="View" aria-label="View"><i class="nc-icon nc-zoom-split"></i></button>
                   <button class="paper-btn paper-btn-sm paper-btn-ghost" title="Download" aria-label="Download"><i class="nc-icon nc-cloud-download-93"></i></button>
@@ -460,7 +460,7 @@
               <td><span class="text-[var(--paper-primary)]"><i class="nc-icon nc-palette mr-1"></i>Figma</span></td>
               <td>Jan 12, 2026</td>
               <td>18.7 MB</td>
-              <td class="text-right">
+              <td class="text-end">
                 <div class="flex items-center justify-end gap-2">
                   <button class="paper-btn paper-btn-sm paper-btn-ghost" title="View" aria-label="View"><i class="nc-icon nc-zoom-split"></i></button>
                   <button class="paper-btn paper-btn-sm paper-btn-ghost" title="Download" aria-label="Download"><i class="nc-icon nc-cloud-download-93"></i></button>
@@ -473,7 +473,7 @@
               <td><span class="text-[var(--paper-success)]"><i class="nc-icon nc-chart-pie-36 mr-1"></i>Excel</span></td>
               <td>Jan 14, 2026</td>
               <td>845 KB</td>
-              <td class="text-right">
+              <td class="text-end">
                 <div class="flex items-center justify-end gap-2">
                   <button class="paper-btn paper-btn-sm paper-btn-ghost" title="View" aria-label="View"><i class="nc-icon nc-zoom-split"></i></button>
                   <button class="paper-btn paper-btn-sm paper-btn-ghost" title="Download" aria-label="Download"><i class="nc-icon nc-cloud-download-93"></i></button>
@@ -485,7 +485,7 @@
         </table>
       </div>
       <div x-show="showCode" x-transition class="mt-4">
-        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;td class="text-right"&gt;
+        <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;td class="text-end"&gt;
   &lt;div class="flex items-center justify-end gap-2"&gt;
     &lt;button class="paper-btn paper-btn-sm paper-btn-ghost" title="View"&gt;
       &lt;i class="nc-icon nc-zoom-split"&gt;&lt;/i&gt;
@@ -697,8 +697,8 @@
               </th>
               <th>Product</th>
               <th>SKU</th>
-              <th class="text-right">Price</th>
-              <th class="text-right">Stock</th>
+              <th class="text-end">Price</th>
+              <th class="text-end">Stock</th>
             </tr>
           </thead>
           <tbody>
@@ -709,8 +709,8 @@
                 </td>
                 <td class="font-medium" x-text="item.name"></td>
                 <td class="text-[var(--paper-muted)] font-mono text-sm" x-text="item.sku"></td>
-                <td class="text-right" x-text="'$' + item.price.toFixed(2)"></td>
-                <td class="text-right" x-text="item.stock"></td>
+                <td class="text-end" x-text="'$' + item.price.toFixed(2)"></td>
+                <td class="text-end" x-text="item.stock"></td>
               </tr>
             </template>
           </tbody>
@@ -759,8 +759,8 @@
           <thead>
             <tr>
               <th>Product</th>
-              <th class="text-right">Price</th>
-              <th class="text-right">Quantity</th>
+              <th class="text-end">Price</th>
+              <th class="text-end">Quantity</th>
             </tr>
           </thead>
           <tbody>
@@ -769,13 +769,13 @@
                 <div x-show="editing !== 'product'" @click="editing = 'product'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="product"></div>
                 <input x-show="editing === 'product'" x-model="product" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1" x-ref="productInput" x-init="$watch('editing', val => { if(val === 'product') $nextTick(() => $refs.productInput.focus()) })">
               </td>
-              <td class="text-right">
+              <td class="text-end">
                 <div x-show="editing !== 'price'" @click="editing = 'price'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="'$' + price.toFixed(2)"></div>
-                <input x-show="editing === 'price'" type="number" step="0.01" x-model.number="price" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-right w-24" x-ref="priceInput" x-init="$watch('editing', val => { if(val === 'price') $nextTick(() => $refs.priceInput.focus()) })">
+                <input x-show="editing === 'price'" type="number" step="0.01" x-model.number="price" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-end w-24" x-ref="priceInput" x-init="$watch('editing', val => { if(val === 'price') $nextTick(() => $refs.priceInput.focus()) })">
               </td>
-              <td class="text-right">
+              <td class="text-end">
                 <div x-show="editing !== 'qty'" @click="editing = 'qty'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="qty"></div>
-                <input x-show="editing === 'qty'" type="number" x-model.number="qty" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-right w-20" x-ref="qtyInput" x-init="$watch('editing', val => { if(val === 'qty') $nextTick(() => $refs.qtyInput.focus()) })">
+                <input x-show="editing === 'qty'" type="number" x-model.number="qty" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-end w-20" x-ref="qtyInput" x-init="$watch('editing', val => { if(val === 'qty') $nextTick(() => $refs.qtyInput.focus()) })">
               </td>
             </tr>
             <tr x-data="{ editing: null, product: 'Basic Widget', price: 24.99, qty: 250 }">
@@ -783,13 +783,13 @@
                 <div x-show="editing !== 'product'" @click="editing = 'product'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="product"></div>
                 <input x-show="editing === 'product'" x-model="product" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1" x-ref="productInput2" x-init="$watch('editing', val => { if(val === 'product') $nextTick(() => $refs.productInput2.focus()) })">
               </td>
-              <td class="text-right">
+              <td class="text-end">
                 <div x-show="editing !== 'price'" @click="editing = 'price'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="'$' + price.toFixed(2)"></div>
-                <input x-show="editing === 'price'" type="number" step="0.01" x-model.number="price" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-right w-24" x-ref="priceInput2" x-init="$watch('editing', val => { if(val === 'price') $nextTick(() => $refs.priceInput2.focus()) })">
+                <input x-show="editing === 'price'" type="number" step="0.01" x-model.number="price" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-end w-24" x-ref="priceInput2" x-init="$watch('editing', val => { if(val === 'price') $nextTick(() => $refs.priceInput2.focus()) })">
               </td>
-              <td class="text-right">
+              <td class="text-end">
                 <div x-show="editing !== 'qty'" @click="editing = 'qty'" class="cursor-pointer hover:bg-slate-100 -m-2 p-2 rounded" x-text="qty"></div>
-                <input x-show="editing === 'qty'" type="number" x-model.number="qty" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-right w-20" x-ref="qtyInput2" x-init="$watch('editing', val => { if(val === 'qty') $nextTick(() => $refs.qtyInput2.focus()) })">
+                <input x-show="editing === 'qty'" type="number" x-model.number="qty" @blur="editing = null" @keydown.enter="editing = null" @keydown.escape="editing = null" class="paper-input py-1 text-end w-20" x-ref="qtyInput2" x-init="$watch('editing', val => { if(val === 'qty') $nextTick(() => $refs.qtyInput2.focus()) })">
               </td>
             </tr>
           </tbody>

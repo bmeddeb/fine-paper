@@ -340,10 +340,10 @@
                 <th class="cursor-pointer select-none" @click="sort('office')">
                   <span class="flex items-center gap-1">Office <i class="nc-icon text-xs" :class="sortCol === 'office' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
                 </th>
-                <th class="cursor-pointer select-none text-right" @click="sort('age')">
+                <th class="cursor-pointer select-none text-end" @click="sort('age')">
                   <span class="flex items-center justify-end gap-1">Age <i class="nc-icon text-xs" :class="sortCol === 'age' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
                 </th>
-                <th class="cursor-pointer select-none text-right" @click="sort('salary')">
+                <th class="cursor-pointer select-none text-end" @click="sort('salary')">
                   <span class="flex items-center justify-end gap-1">Salary <i class="nc-icon text-xs" :class="sortCol === 'salary' ? (sortAsc ? 'nc-minimal-up' : 'nc-minimal-down') : 'nc-stre-up text-gray-300'"></i></span>
                 </th>
               </tr>
@@ -354,8 +354,8 @@
                   <td class="font-medium" x-text="row.name"></td>
                   <td x-text="row.position"></td>
                   <td x-text="row.office"></td>
-                  <td class="text-right" x-text="row.age"></td>
-                  <td class="text-right" x-text="formatSalary(row.salary)"></td>
+                  <td class="text-end" x-text="row.age"></td>
+                  <td class="text-end" x-text="formatSalary(row.salary)"></td>
                 </tr>
               </template>
               <tr x-show="paginated.length === 0">
@@ -654,7 +654,7 @@
             <tr>
               <th>Product</th>
               <th>Category</th>
-              <th class="text-right">Price</th>
+              <th class="text-end">Price</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -663,7 +663,7 @@
               <tr>
                 <td class="font-medium" x-text="p.name"></td>
                 <td x-text="p.category"></td>
-                <td class="text-right" x-text="'$' + p.price"></td>
+                <td class="text-end" x-text="'$' + p.price"></td>
                 <td>
                   <span class="paper-badge" :class="{
                     'paper-badge-success': p.status === 'Active',
@@ -734,16 +734,16 @@
               <i class="nc-icon nc-cloud-download-93 mr-2"></i> Export
             </button>
             <div class="absolute right-0 mt-2 w-40 paper-card p-2 shadow-lg z-10" x-show="exportDropdown" x-transition>
-              <button class="w-full text-left px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('CSV')">
+              <button class="w-full text-start px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('CSV')">
                 <i class="nc-icon nc-single-copy-04 text-[var(--paper-success)]"></i> CSV
               </button>
-              <button class="w-full text-left px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('Excel')">
+              <button class="w-full text-start px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('Excel')">
                 <i class="nc-icon nc-chart-pie-36 text-[var(--paper-success)]"></i> Excel
               </button>
-              <button class="w-full text-left px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('PDF')">
+              <button class="w-full text-start px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('PDF')">
                 <i class="nc-icon nc-single-copy-04 text-[var(--paper-danger)]"></i> PDF
               </button>
-              <button class="w-full text-left px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('Print')">
+              <button class="w-full text-start px-3 py-2 rounded hover:bg-slate-50 text-sm flex items-center gap-2" @click="exportData('Print')">
                 <i class="nc-icon nc-paper text-[var(--paper-info)]"></i> Print
               </button>
             </div>
@@ -754,37 +754,37 @@
           <thead>
             <tr>
               <th>Month</th>
-              <th class="text-right">Revenue</th>
-              <th class="text-right">Orders</th>
-              <th class="text-right">Avg. Order</th>
+              <th class="text-end">Revenue</th>
+              <th class="text-end">Orders</th>
+              <th class="text-end">Avg. Order</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>January</td>
-              <td class="text-right">$45,200</td>
-              <td class="text-right">320</td>
-              <td class="text-right">$141.25</td>
+              <td class="text-end">$45,200</td>
+              <td class="text-end">320</td>
+              <td class="text-end">$141.25</td>
             </tr>
             <tr>
               <td>February</td>
-              <td class="text-right">$52,800</td>
-              <td class="text-right">385</td>
-              <td class="text-right">$137.14</td>
+              <td class="text-end">$52,800</td>
+              <td class="text-end">385</td>
+              <td class="text-end">$137.14</td>
             </tr>
             <tr>
               <td>March</td>
-              <td class="text-right">$48,100</td>
-              <td class="text-right">342</td>
-              <td class="text-right">$140.64</td>
+              <td class="text-end">$48,100</td>
+              <td class="text-end">342</td>
+              <td class="text-end">$140.64</td>
             </tr>
           </tbody>
           <tfoot>
             <tr class="font-semibold border-t-2 border-[var(--paper-border)]">
               <td>Total</td>
-              <td class="text-right">$146,100</td>
-              <td class="text-right">1,047</td>
-              <td class="text-right">$139.54</td>
+              <td class="text-end">$146,100</td>
+              <td class="text-end">1,047</td>
+              <td class="text-end">$139.54</td>
             </tr>
           </tfoot>
         </table>

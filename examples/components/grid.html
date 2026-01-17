@@ -714,7 +714,7 @@
   </div>
 </section>
 
-<!-- Nested Grids & Grid Rows -->
+<!-- Nested Grids & Grid Flow -->
 <section class="mt-8">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
     <!-- Nested Grids -->
@@ -770,7 +770,7 @@
       </div>
     </div>
 
-    <!-- Grid Rows -->
+    <!-- Grid Flow -->
     <div class="paper-card" x-data="{ showCode: false }">
       <div class="paper-card-header flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -778,8 +778,8 @@
             <i class="nc-icon nc-bullet-list-67 text-[var(--paper-danger)]"></i>
           </div>
           <div>
-            <h3 class="paper-card-title">Grid Rows</h3>
-            <p class="text-xs text-[var(--paper-muted)]">Row spanning with row-span-*</p>
+            <h3 class="paper-card-title">Grid Flow</h3>
+            <p class="text-xs text-[var(--paper-muted)]">Control placement with grid-flow-col and auto-cols-*</p>
           </div>
         </div>
         <button @click="showCode = !showCode" class="text-xs text-[var(--paper-primary)] hover:underline flex items-center gap-1">
@@ -788,19 +788,18 @@
         </button>
       </div>
       <div class="paper-card-body">
-        <div class="grid grid-cols-3 grid-rows-3 gap-2 mb-4" style="height: 200px;">
-          <div class="row-span-3 grid-demo flex items-center justify-center text-[10px]">row-span-3</div>
-          <div class="col-span-2 grid-demo-alt flex items-center justify-center text-[10px]">col-span-2</div>
-          <div class="row-span-2 col-span-2 grid-demo flex items-center justify-center text-[10px]">row-span-2 col-span-2</div>
+        <div class="grid grid-flow-col auto-cols-fr gap-2 mb-4">
+          <div class="grid-demo flex items-center justify-center text-[10px]">auto-cols-fr</div>
+          <div class="grid-demo-alt flex items-center justify-center text-[10px]">auto-cols-fr</div>
+          <div class="grid-demo flex items-center justify-center text-[10px]">auto-cols-fr</div>
+          <div class="grid-demo-alt flex items-center justify-center text-[10px]">auto-cols-fr</div>
         </div>
         <div x-show="showCode" x-collapse>
-          <pre class="paper-code-block text-xs">&lt;div class="grid grid-cols-3 grid-rows-3 gap-3"&gt;
-  &lt;!-- Spans all 3 rows --&gt;
-  &lt;div class="row-span-3"&gt;Tall sidebar&lt;/div&gt;
-  &lt;!-- Spans 2 columns --&gt;
-  &lt;div class="col-span-2"&gt;Header&lt;/div&gt;
-  &lt;!-- Spans 2 rows and 2 columns --&gt;
-  &lt;div class="row-span-2 col-span-2"&gt;Main content&lt;/div&gt;
+          <pre class="paper-code-block text-xs">&lt;div class="grid grid-flow-col auto-cols-fr gap-3"&gt;
+  &lt;div&gt;Card A&lt;/div&gt;
+  &lt;div&gt;Card B&lt;/div&gt;
+  &lt;div&gt;Card C&lt;/div&gt;
+  &lt;div&gt;Card D&lt;/div&gt;
 &lt;/div&gt;</pre>
         </div>
       </div>
@@ -1051,12 +1050,8 @@
             <td>Sets the number of columns (1-12, or custom)</td>
           </tr>
           <tr>
-            <td><code class="paper-code">grid-rows-{n}</code></td>
-            <td>Sets the number of rows (1-6, or custom)</td>
-          </tr>
-          <tr>
-            <td><code class="paper-code">grid-flow-row</code></td>
-            <td>Items flow by row (default)</td>
+            <td><code class="paper-code">auto-cols-{size}</code></td>
+            <td>Sets implicit column sizing (auto, min, max, fr)</td>
           </tr>
           <tr>
             <td><code class="paper-code">grid-flow-col</code></td>
@@ -1116,10 +1111,10 @@
     </div>
   </div>
 
-  <!-- Row Span -->
+  <!-- Auto Columns -->
   <div class="paper-card mt-4">
     <div class="paper-card-header">
-      <h3 class="paper-card-title">Row Span Classes</h3>
+      <h3 class="paper-card-title">Auto Column Classes</h3>
     </div>
     <div class="paper-card-body">
       <table class="paper-table">
@@ -1131,20 +1126,20 @@
         </thead>
         <tbody>
           <tr>
-            <td><code class="paper-code">row-span-{n}</code></td>
-            <td>Span n rows (1-6, or full)</td>
+            <td><code class="paper-code">auto-cols-auto</code></td>
+            <td>Size columns to content</td>
           </tr>
           <tr>
-            <td><code class="paper-code">row-span-full</code></td>
-            <td>Span all rows</td>
+            <td><code class="paper-code">auto-cols-min</code></td>
+            <td>Use min-content sizing</td>
           </tr>
           <tr>
-            <td><code class="paper-code">row-start-{n}</code></td>
-            <td>Start at row n</td>
+            <td><code class="paper-code">auto-cols-max</code></td>
+            <td>Use max-content sizing</td>
           </tr>
           <tr>
-            <td><code class="paper-code">row-end-{n}</code></td>
-            <td>End at row n</td>
+            <td><code class="paper-code">auto-cols-fr</code></td>
+            <td>Distribute space evenly</td>
           </tr>
         </tbody>
       </table>
@@ -1259,7 +1254,7 @@
       <div>
         <p class="paper-label mb-2">Dashboard Layout</p>
         <pre class="paper-code-block">&lt;div class="grid grid-cols-12 gap-6"&gt;
-  &lt;!-- Stats row --&gt;
+  &lt;!-- Stats tiles --&gt;
   &lt;div class="col-span-12 sm:col-span-6 lg:col-span-3"&gt;Stat 1&lt;/div&gt;
   &lt;div class="col-span-12 sm:col-span-6 lg:col-span-3"&gt;Stat 2&lt;/div&gt;
   &lt;div class="col-span-12 sm:col-span-6 lg:col-span-3"&gt;Stat 3&lt;/div&gt;
@@ -1272,13 +1267,15 @@
       </div>
 
       <div>
-        <p class="paper-label mb-2">Complex Layout with Row Spans</p>
-        <pre class="paper-code-block">&lt;div class="grid grid-cols-4 grid-rows-3 gap-4"&gt;
-  &lt;div class="row-span-3"&gt;Tall sidebar&lt;/div&gt;
-  &lt;div class="col-span-3"&gt;Header&lt;/div&gt;
-  &lt;div class="col-span-2 row-span-2"&gt;Main content&lt;/div&gt;
-  &lt;div&gt;Widget 1&lt;/div&gt;
-  &lt;div&gt;Widget 2&lt;/div&gt;
+        <p class="paper-label mb-2">Complex Layout with Nested Grids</p>
+        <pre class="paper-code-block">&lt;div class="grid grid-cols-4 gap-4"&gt;
+  &lt;div class="col-span-4"&gt;Header&lt;/div&gt;
+  &lt;div class="col-span-1"&gt;Sidebar&lt;/div&gt;
+  &lt;div class="col-span-3 grid grid-cols-2 gap-4"&gt;
+    &lt;div class="col-span-2"&gt;Main content&lt;/div&gt;
+    &lt;div&gt;Widget A&lt;/div&gt;
+    &lt;div&gt;Widget B&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</pre>
       </div>
     </div>

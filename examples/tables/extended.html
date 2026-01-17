@@ -425,7 +425,7 @@
       </div>
       <div>
         <h2 class="font-semibold">Action Buttons</h2>
-        <p class="text-xs text-[var(--paper-muted)]">Row-level action controls</p>
+        <p class="text-xs text-[var(--paper-muted)]">Item-level action controls</p>
       </div>
       <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
     </div>
@@ -502,14 +502,14 @@
     </div>
   </div>
 
-  <!-- Expandable Rows -->
+  <!-- Expandable Entries -->
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(255,184,77,0.15)]">
         <i class="nc-icon nc-minimal-down text-lg text-[var(--paper-warning)]"></i>
       </div>
       <div>
-        <h2 class="font-semibold">Expandable Rows</h2>
+        <h2 class="font-semibold">Expandable Entries</h2>
         <p class="text-xs text-[var(--paper-muted)]">Click to expand additional details</p>
       </div>
       <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
@@ -527,7 +527,7 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Row 1 -->
+            <!-- Entry 1 -->
             <tr class="cursor-pointer" @click="expanded = expanded === 1 ? null : 1" :class="expanded === 1 ? 'bg-[rgba(102,126,234,0.05)]' : ''">
               <td>
                 <i class="nc-icon nc-minimal-right text-sm transition-transform" :class="expanded === 1 ? 'rotate-90' : ''"></i>
@@ -559,7 +559,7 @@
                 </div>
               </td>
             </tr>
-            <!-- Row 2 -->
+            <!-- Entry 2 -->
             <tr class="cursor-pointer" @click="expanded = expanded === 2 ? null : 2" :class="expanded === 2 ? 'bg-[rgba(102,126,234,0.05)]' : ''">
               <td>
                 <i class="nc-icon nc-minimal-right text-sm transition-transform" :class="expanded === 2 ? 'rotate-90' : ''"></i>
@@ -591,7 +591,7 @@
                 </div>
               </td>
             </tr>
-            <!-- Row 3 -->
+            <!-- Entry 3 -->
             <tr class="cursor-pointer" @click="expanded = expanded === 3 ? null : 3" :class="expanded === 3 ? 'bg-[rgba(102,126,234,0.05)]' : ''">
               <td>
                 <i class="nc-icon nc-minimal-right text-sm transition-transform" :class="expanded === 3 ? 'rotate-90' : ''"></i>
@@ -628,14 +628,14 @@
       </div>
       <div x-show="showCode" x-transition class="mt-4">
         <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table x-data="{ expanded: null }"&gt;
-  &lt;!-- Clickable row --&gt;
+  &lt;!-- Clickable entry --&gt;
   &lt;tr @click="expanded = expanded === 1 ? null : 1"
       :class="expanded === 1 ? 'bg-[rgba(102,126,234,0.05)]' : ''"&gt;
     &lt;td&gt;
       &lt;i class="nc-icon nc-minimal-right transition-transform"
          :class="expanded === 1 ? 'rotate-90' : ''"&gt;&lt;/i&gt;
     &lt;/td&gt;
-    &lt;!-- Row data... --&gt;
+    &lt;!-- Entry data... --&gt;
   &lt;/tr&gt;
 
   &lt;!-- Expandable content --&gt;
@@ -657,7 +657,7 @@
       </div>
       <div>
         <h2 class="font-semibold">Checkbox Selection</h2>
-        <p class="text-xs text-[var(--paper-muted)]">Select multiple rows with bulk actions</p>
+        <p class="text-xs text-[var(--paper-muted)]">Select multiple items with bulk actions</p>
       </div>
       <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
     </div>
@@ -734,7 +734,7 @@
   &lt;!-- Select all checkbox in header --&gt;
   &lt;input type="checkbox" :checked="allSelected" @change="toggleAll()"&gt;
 
-  &lt;!-- Row checkbox --&gt;
+  &lt;!-- Entry checkbox --&gt;
   &lt;input type="checkbox" :checked="isSelected(item.id)" @change="toggle(item.id)"&gt;
 &lt;/div&gt;</code></pre>
       </div>
@@ -895,15 +895,15 @@
     </div>
   </div>
 
-  <!-- Contextual Row Colors -->
+  <!-- Contextual Status Colors -->
   <div class="mt-6 paper-card" x-data="{ showCode: false }">
     <div class="paper-card-header flex items-center gap-3">
       <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(81,188,218,0.15)]">
         <i class="nc-icon nc-palette text-lg text-[var(--paper-info)]"></i>
       </div>
       <div>
-        <h2 class="font-semibold">Contextual Row Colors</h2>
-        <p class="text-xs text-[var(--paper-muted)]">Highlight entire rows based on status</p>
+        <h2 class="font-semibold">Contextual Status Colors</h2>
+        <p class="text-xs text-[var(--paper-muted)]">Highlight entire entries based on status</p>
       </div>
       <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
     </div>
@@ -1000,7 +1000,7 @@
               <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-btn-sm .paper-btn-ghost</code></td>
             </tr>
             <tr>
-              <td>Expandable rows</td>
+              <td>Expandable entries</td>
               <td>Alpine.js <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">x-show</code> with x-transition</td>
             </tr>
             <tr>
@@ -1016,7 +1016,7 @@
               <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">h-2 w-2 rounded-full</code> colored dot</td>
             </tr>
             <tr>
-              <td>Row highlighting</td>
+              <td>Entry highlighting</td>
               <td>Background colors like <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">bg-[rgba(color,0.1)]</code></td>
             </tr>
           </tbody>

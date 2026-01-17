@@ -307,7 +307,7 @@
       &lt;td&gt;&lt;span class="paper-badge paper-badge-success"&gt;Done&lt;/span&gt;&lt;/td&gt;
       &lt;td&gt;$12,000&lt;/td&gt;
     &lt;/tr&gt;
-    &lt;!-- More rows... --&gt;
+    &lt;!-- More entries... --&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
       </div>
@@ -322,7 +322,7 @@
       </div>
       <div>
         <h2 class="font-semibold">Striped Table</h2>
-        <p class="text-xs text-[var(--paper-muted)]">Alternating row colors for better readability</p>
+        <p class="text-xs text-[var(--paper-muted)]">Alternating stripe colors for better readability</p>
       </div>
       <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
     </div>
@@ -373,7 +373,7 @@
       </div>
       <div x-show="showCode" x-transition class="mt-4">
         <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table class="paper-table paper-table-striped"&gt;
-  &lt;!-- Adds alternating bg colors to rows --&gt;
+&lt;!-- Adds alternating bg colors to entries --&gt;
 &lt;/table&gt;
 
 &lt;!-- CSS for striped effect --&gt;
@@ -456,7 +456,7 @@
       </div>
       <div>
         <h2 class="font-semibold">Hover Table</h2>
-        <p class="text-xs text-[var(--paper-muted)]">Highlight rows on hover for better interactivity</p>
+        <p class="text-xs text-[var(--paper-muted)]">Highlight entries on hover for better interactivity</p>
       </div>
       <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
     </div>
@@ -501,7 +501,7 @@
       </div>
       <div x-show="showCode" x-transition class="mt-4">
         <pre class="rounded-lg bg-slate-900 p-4 text-sm text-slate-50 overflow-x-auto"><code>&lt;table class="paper-table paper-table-hover"&gt;
-  &lt;!-- Highlights rows on hover --&gt;
+  &lt;!-- Highlights entries on hover --&gt;
 &lt;/table&gt;
 
 &lt;!-- CSS for hover effect --&gt;
@@ -797,7 +797,7 @@
       </div>
       <div>
         <h2 class="font-semibold">Table with Footer</h2>
-        <p class="text-xs text-[var(--paper-muted)]">Summary row using tfoot element</p>
+        <p class="text-xs text-[var(--paper-muted)]">Footer summary using the tfoot element</p>
       </div>
       <button class="ml-auto text-xs text-[var(--paper-primary)] hover:underline" @click="showCode = !showCode" x-text="showCode ? 'Hide Code' : 'Show Code'"></button>
     </div>
@@ -995,11 +995,11 @@
           <tbody>
             <tr>
               <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table</code></td>
-              <td>Base table styling with border-bottom rows</td>
+              <td>Base table styling with border-bottom dividers</td>
             </tr>
             <tr>
               <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table-striped</code></td>
-              <td>Alternating row background colors</td>
+              <td>Alternating stripe backgrounds</td>
             </tr>
             <tr>
               <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table-bordered</code></td>
@@ -1007,7 +1007,7 @@
             </tr>
             <tr>
               <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table-hover</code></td>
-              <td>Highlight rows on hover</td>
+              <td>Highlight entries on hover</td>
             </tr>
             <tr>
               <td><code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">.paper-table-sm</code></td>

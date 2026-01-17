@@ -349,13 +349,13 @@
               </tr>
             </thead>
             <tbody>
-              <template x-for="row in paginated" :key="row.id">
+              <template x-for="entry in paginated" :key="entry.id">
                 <tr>
-                  <td class="font-medium" x-text="row.name"></td>
-                  <td x-text="row.position"></td>
-                  <td x-text="row.office"></td>
-                  <td class="text-end" x-text="row.age"></td>
-                  <td class="text-end" x-text="formatSalary(row.salary)"></td>
+                  <td class="font-medium" x-text="entry.name"></td>
+                  <td x-text="entry.position"></td>
+                  <td x-text="entry.office"></td>
+                  <td class="text-end" x-text="entry.age"></td>
+                  <td class="text-end" x-text="formatSalary(entry.salary)"></td>
                 </tr>
               </template>
               <tr x-show="paginated.length === 0">
@@ -519,7 +519,7 @@
           { key: 'department', label: 'Department', visible: true },
           { key: 'location', label: 'Location', visible: false }
         ],
-        rows: [
+        entries: [
           { name: 'John Smith', email: 'john@example.com', role: 'Admin', department: 'Engineering', location: 'New York' },
           { name: 'Sarah Johnson', email: 'sarah@example.com', role: 'Editor', department: 'Marketing', location: 'Los Angeles' },
           { name: 'Mike Brown', email: 'mike@example.com', role: 'Viewer', department: 'Sales', location: 'Chicago' }
@@ -553,10 +553,10 @@
               </tr>
             </thead>
             <tbody>
-              <template x-for="(row, idx) in rows" :key="idx">
+              <template x-for="(entry, idx) in entries" :key="idx">
                 <tr>
                   <template x-for="col in columns.filter(c => c.visible)" :key="col.key">
-                    <td x-text="row[col.key]"></td>
+                    <td x-text="entry[col.key]"></td>
                   </template>
                 </tr>
               </template>
@@ -572,7 +572,7 @@
     { key: 'email', label: 'Email', visible: true },
     { key: 'role', label: 'Role', visible: false } // hidden by default
   ],
-  rows: [...]
+  entries: [...]
 }"
 
 &lt;!-- Column toggle --&gt;
@@ -590,7 +590,7 @@
 
 &lt;!-- Dynamic cells --&gt;
 &lt;template x-for="col in columns.filter(c =&gt; c.visible)"&gt;
-  &lt;td x-text="row[col.key]"&gt;&lt;/td&gt;
+  &lt;td x-text="entry[col.key]"&gt;&lt;/td&gt;
 &lt;/template&gt;</code></pre>
       </div>
     </div>
@@ -806,9 +806,9 @@
 
 // CSV export function example
 function exportToCSV() {
-  const rows = document.querySelectorAll('table tr');
-  const csv = Array.from(rows).map(row =&gt;
-    Array.from(row.cells).map(cell =&gt; cell.textContent).join(',')
+  const records = document.querySelectorAll('table tr');
+  const csv = Array.from(records).map(record =&gt;
+    Array.from(record.cells).map(cell =&gt; cell.textContent).join(',')
   ).join('\\n');
   // Download logic...
 }</code></pre>

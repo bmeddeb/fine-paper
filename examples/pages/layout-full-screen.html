@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fine Paper | Full-Screen Layout</title>
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/app.css">
+  <link rel="stylesheet" href="../../assets/nucleo.css">
+  <script defer src="../../assets/app.js"></script>
+  <script defer src="../../assets/alpine.js"></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!window.Alpine) {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js';
+      document.head.appendChild(script);
+    }
+  });
+</script>
+</head>
+<body data-page="layout-full-screen" class="text-[var(--paper-text)] antialiased">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
+  <div class="min-h-screen bg-[var(--paper-bg)]">
+    <header class="border-b border-[var(--paper-border)] bg-white/80 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <a href="../dashboard.html" class="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em]">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow">
+            <img src="../../assets/img/finepaper.png" alt="Fine Paper" class="h-6 w-6">
+          </span>
+          Fine Paper
+        </a>
+        <div class="flex flex-wrap items-center gap-3">
+          <nav class="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--paper-muted)]">
+            <a href="#chapters" class="hover:text-[var(--paper-text)]">Chapters</a>
+            <a href="#story" class="hover:text-[var(--paper-text)]">Story</a>
+            <a href="#impact" class="hover:text-[var(--paper-text)]">Impact</a>
+          </nav>
+          <a href="../dashboard.html" class="paper-btn paper-btn-outline">Back to dashboard</a>
+        </div>
+      </div>
+    </header>
+    <main id="main-content" class="mx-auto w-full max-w-7xl px-6 pb-12">
+
+<section class="pt-6 paper-editorial">
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <h1 class="text-2xl font-semibold">Full-Screen Layout</h1>
+      <p class="text-sm text-[var(--paper-muted)]">Best for immersive storytelling, campaigns, and narrative products.</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span class="paper-pill text-[var(--editorial-neutral)]">Use case: Storytelling</span>
+      <span class="paper-pill text-[var(--editorial-neutral)]">Pattern: Full-screen</span>
+    </div>
+  </div>
+
+  <div class="mt-6 space-y-6" id="story">
+    <section class="paper-card overflow-hidden paper-layout-card relative min-h-[520px]">
+      <div class="absolute inset-0">
+        <img src="../../assets/img/bg/forest-bg.jpg" alt="Sunlit forest" class="h-full w-full object-cover" width="1400" height="900" loading="eager">
+        <div class="absolute inset-0 bg-gradient-to-tr from-[rgba(22,22,22,0.78)] via-[rgba(22,22,22,0.4)] to-transparent"></div>
+      </div>
+      <div class="relative z-10 flex h-full flex-col justify-between p-8 text-white">
+        <div class="max-w-2xl">
+          <span class="paper-badge paper-badge-danger">Chapter 01</span>
+          <h2 class="mt-4 text-3xl font-semibold">The full-screen canvas invites a focused narrative.</h2>
+          <p class="mt-3 text-sm text-white/80">Full-screen sections reduce distractions and keep users anchored to one story beat at a time. This is ideal for product launches, immersive reports, and portfolio case studies where progression matters more than comparison.</p>
+          <p class="mt-4 text-sm text-white/80">Keep the headline within the first screen to avoid the illusion of completeness. Use a bold hero, a short intro, and a clear path to the next section.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-white/60"></span>
+            <span>57% of viewing time above the fold</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-white/60"></span>
+            <span>Two screens capture 74% of attention</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="paper-card overflow-hidden paper-layout-card relative min-h-[520px]">
+      <div class="absolute inset-0">
+        <img src="../../assets/img/bg/the-how-photographer.jpg" alt="Camera on desk" class="h-full w-full object-cover" width="1400" height="900" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-tr from-[rgba(22,22,22,0.78)] via-[rgba(22,22,22,0.4)] to-transparent"></div>
+      </div>
+      <div class="relative z-10 flex h-full flex-col justify-between p-8 text-white">
+        <div class="max-w-2xl">
+          <span class="paper-badge paper-badge-danger">Chapter 02</span>
+          <h2 class="mt-4 text-3xl font-semibold">Screen-by-screen sequencing builds momentum.</h2>
+          <p class="mt-3 text-sm text-white/80">Each panel introduces a single concept: a benefit, a story, or a proof point. Long-form content becomes a guided path rather than a loose list. Use short paragraphs, bold subheads, and a consistent grid to keep the rhythm.</p>
+          <p class="mt-4 text-sm text-white/80">This is where scroll-driven animations can enhance narrative, but keep motion subtle and opt-out friendly.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+          <span class="rounded-full border border-white/30 px-3 py-1">Scroll-driven cues</span>
+          <span class="rounded-full border border-white/30 px-3 py-1">Full-bleed imagery</span>
+          <span class="rounded-full border border-white/30 px-3 py-1">Minimal navigation</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="paper-card overflow-hidden paper-layout-card relative min-h-[520px]">
+      <div class="absolute inset-0">
+        <img src="../../assets/img/bg/anders-jilden.jpg" alt="Architecture interior" class="h-full w-full object-cover" width="1400" height="900" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-tr from-[rgba(22,22,22,0.78)] via-[rgba(22,22,22,0.4)] to-transparent"></div>
+      </div>
+      <div class="relative z-10 flex h-full flex-col justify-between p-8 text-white">
+        <div class="max-w-2xl">
+          <span class="paper-badge paper-badge-danger">Chapter 03</span>
+          <h2 class="mt-4 text-3xl font-semibold">Proof points land when the layout holds still.</h2>
+          <p class="mt-3 text-sm text-white/80">Full-screen layouts should be stable and predictable. Reserve space for media, avoid layout shifts, and keep CTAs anchored in the same visual zone so users don’t hunt for the next action.</p>
+          <p class="mt-4 text-sm text-white/80">This structure works for immersive product tours, investor decks, or narrative reports where each screen is a chapter.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-4 text-xs text-white/70">
+          <span class="rounded-full border border-white/30 px-3 py-1">CLS target ≤ 0.1</span>
+          <span class="rounded-full border border-white/30 px-3 py-1">Aspect-ratio media</span>
+          <span class="rounded-full border border-white/30 px-3 py-1">Focus-ready CTAs</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="chapters" class="mt-6 grid gap-6 lg:grid-cols-3 paper-layout-section">
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Chapter map</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Full-screen layouts are easier to digest when each section has a clear role: intro, proof, and action. Avoid stacking multiple calls to action in one frame.</p>
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Chapter 1: Value proposition and promise.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Chapter 2: How it works and supporting narrative.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Chapter 3: Proof, conversion, and next action.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Performance guardrails</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Full-bleed media is heavy, so prioritize performance containment. Use `content-visibility` for off-screen sections and preload critical hero imagery to prevent FOUT and CLS.</p>
+      <pre class="mt-4 rounded-2xl bg-[var(--paper-bg)] p-4 text-xs text-[var(--paper-text)]">.chapter {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+.hero img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}</pre>
+      <p class="mt-3 text-xs text-[var(--paper-muted)]">Reserve space for every hero frame to keep CLS ≤ 0.1.</p>
+    </div>
+
+    <div id="impact" class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Business impact</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Case studies show streamlined layouts outperform complex ones. A simplified buying flow lifted conversion from 38% to 50%, and a product page redesign raised revenue per visitor by 17.1%.</p>
+      <div class="mt-4 space-y-3">
+        <div>
+          <div class="flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+            <span>Conversion lift</span>
+            <span>+12%</span>
+          </div>
+          <div class="mt-1 h-2 w-full rounded-full bg-[var(--paper-border)]">
+            <span class="block h-2 w-[60%] rounded-full bg-[var(--editorial-accent)]"></span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+            <span>Revenue per visitor</span>
+            <span>+17.1%</span>
+          </div>
+          <div class="mt-1 h-2 w-full rounded-full bg-[var(--paper-border)]">
+            <span class="block h-2 w-[70%] rounded-full bg-[var(--editorial-accent)]"></span>
+          </div>
+        </div>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-3">
+          <p class="text-xs text-[var(--editorial-neutral)]">Key insight</p>
+          <p class="mt-1 font-semibold">Simplified layouts keep users focused on the story.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    </main>
+    <footer class="px-6 py-6 text-xs text-[var(--paper-muted)]">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <p>Fine Paper build. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-[var(--paper-text)]">About</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Documentation</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Support</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fine Paper | Grid/Box Layout</title>
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/app.css">
+  <link rel="stylesheet" href="../../assets/nucleo.css">
+  <script defer src="../../assets/app.js"></script>
+  <script defer src="../../assets/alpine.js"></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!window.Alpine) {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js';
+      document.head.appendChild(script);
+    }
+  });
+</script>
+</head>
+<body data-page="layout-grid-box" class="text-[var(--paper-text)] antialiased">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
+  <div class="min-h-screen bg-[var(--paper-bg)]">
+    <header class="border-b border-[var(--paper-border)] bg-white/80 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <a href="../dashboard.html" class="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em]">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow">
+            <img src="../../assets/img/finepaper.png" alt="Fine Paper" class="h-6 w-6">
+          </span>
+          Fine Paper
+        </a>
+        <div class="flex flex-wrap items-center gap-3">
+          <nav class="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--paper-muted)]">
+            <a href="#overview" class="hover:text-[var(--paper-text)]">Overview</a>
+            <a href="#work" class="hover:text-[var(--paper-text)]">Work</a>
+            <a href="#system" class="hover:text-[var(--paper-text)]">System</a>
+          </nav>
+          <a href="../dashboard.html" class="paper-btn paper-btn-outline">Back to dashboard</a>
+        </div>
+      </div>
+    </header>
+    <main id="main-content" class="mx-auto w-full max-w-7xl px-6 pb-12">
+
+<section class="pt-6 paper-editorial">
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <h1 class="text-2xl font-semibold">Grid/Box Layout</h1>
+      <p class="text-sm text-[var(--paper-muted)]">Best for portfolios and equal-weight content libraries.</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span class="paper-pill text-[var(--editorial-neutral)]">Use case: Portfolio</span>
+      <span class="paper-pill text-[var(--editorial-neutral)]">Pattern: Grid/Box</span>
+    </div>
+  </div>
+
+  <div id="overview" class="mt-6 grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Layout intent</p>
+      <h2 class="mt-3 text-2xl font-semibold">Every project gets equal weight in a predictable grid.</h2>
+      <p class="mt-3 max-w-[720px] text-sm text-[var(--paper-muted)]">Grid/box layouts keep portfolios scannable, with each tile carrying the same visual priority. They are ideal when the goal is to compare work quickly rather than tell a single story. The grid uses the RAM pattern (repeat, auto-fit, minmax) so tiles expand or wrap without breaking alignment.</p>
+      <div class="mt-5 flex flex-wrap gap-3 text-xs text-[var(--editorial-neutral)]">
+        <div class="rounded-full border border-[var(--paper-border)] px-3 py-1">Equal-weight tiles</div>
+        <div class="rounded-full border border-[var(--paper-border)] px-3 py-1">Auto-fit grid</div>
+        <div class="rounded-full border border-[var(--paper-border)] px-3 py-1">CLS-safe media</div>
+      </div>
+    </div>
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Grid diagram</p>
+      <div class="mt-4 rounded-2xl border border-[var(--paper-border)] bg-white p-4">
+        <svg viewBox="0 0 300 200" class="h-40 w-full" role="img" aria-label="Grid layout diagram">
+          <rect x="10" y="10" width="80" height="60" rx="10" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="110" y="10" width="80" height="60" rx="10" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="210" y="10" width="80" height="60" rx="10" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="10" y="90" width="80" height="60" rx="10" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="110" y="90" width="80" height="60" rx="10" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="210" y="90" width="80" height="60" rx="10" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="10" y="170" width="80" height="20" rx="10" fill="#ef8157" opacity="0.2" />
+          <rect x="110" y="170" width="80" height="20" rx="10" fill="#ef8157" opacity="0.2" />
+          <rect x="210" y="170" width="80" height="20" rx="10" fill="#ef8157" opacity="0.2" />
+        </svg>
+      </div>
+      <p class="mt-3 text-xs text-[var(--paper-muted)]">Equal tiles keep scanning consistent across a portfolio or gallery.</p>
+    </div>
+  </div>
+
+  <div id="work" class="mt-6">
+    <div class="flex items-center justify-between">
+      <p class="paper-label text-[var(--editorial-neutral)]">Selected work</p>
+      <span class="text-xs text-[var(--paper-muted)]">12 projects</span>
+    </div>
+    <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="paper-card overflow-hidden paper-layout-card">
+        <div class="paper-media-frame aspect-[4/3]">
+          <img src="../../assets/img/bg/angelo-pantazis.jpg" alt="Studio workspace" width="720" height="540" loading="lazy">
+        </div>
+        <div class="paper-card-body">
+          <h3 class="text-lg font-semibold">Signal Toolkit</h3>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">Modular design system for analytics teams with a calm, low-contrast UI.</p>
+          <p class="mt-3 text-xs text-[var(--editorial-neutral)]">Design system · 2025</p>
+        </div>
+      </article>
+
+      <article class="paper-card overflow-hidden paper-layout-card">
+        <div class="paper-media-frame aspect-[4/3]">
+          <img src="../../assets/img/bg/stephanie-krist.jpg" alt="Editorial layout" width="720" height="540" loading="lazy">
+        </div>
+        <div class="paper-card-body">
+          <h3 class="text-lg font-semibold">Northwind Launch</h3>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">SaaS marketing site with a Z-pattern hero and focused CTA blocks.</p>
+          <p class="mt-3 text-xs text-[var(--editorial-neutral)]">Landing page · 2024</p>
+        </div>
+      </article>
+
+      <article class="paper-card overflow-hidden paper-layout-card">
+        <div class="paper-media-frame aspect-[4/3]">
+          <img src="../../assets/img/bg/rodrigo-ardilha.jpg" alt="Team collaborating" width="720" height="540" loading="lazy">
+        </div>
+        <div class="paper-card-body">
+          <h3 class="text-lg font-semibold">Atlas Research</h3>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">Research sprint hub with attention-weighted summaries and dashboards.</p>
+          <p class="mt-3 text-xs text-[var(--editorial-neutral)]">Research portal · 2024</p>
+        </div>
+      </article>
+
+      <article class="paper-card overflow-hidden paper-layout-card">
+        <div class="paper-media-frame aspect-[4/3]">
+          <img src="../../assets/img/bg/jeff-sheldon.jpg" alt="Desk and speaker" width="720" height="540" loading="lazy">
+        </div>
+        <div class="paper-card-body">
+          <h3 class="text-lg font-semibold">Quiet Metrics</h3>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">Dashboard template with container-query cards for reusable modules.</p>
+          <p class="mt-3 text-xs text-[var(--editorial-neutral)]">Product UI · 2025</p>
+        </div>
+      </article>
+
+      <article class="paper-card overflow-hidden paper-layout-card">
+        <div class="paper-media-frame aspect-[4/3]">
+          <img src="../../assets/img/bg/val-vesa.jpg" alt="Sketches" width="720" height="540" loading="lazy">
+        </div>
+        <div class="paper-card-body">
+          <h3 class="text-lg font-semibold">Storyboards</h3>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">Workshop series for aligning cross-functional journeys.</p>
+          <p class="mt-3 text-xs text-[var(--editorial-neutral)]">Workshop kit · 2023</p>
+        </div>
+      </article>
+
+      <article class="paper-card overflow-hidden paper-layout-card">
+        <div class="paper-media-frame aspect-[4/3]">
+          <img src="../../assets/img/bg/gerrit-vermeulen.jpg" alt="City lights" width="720" height="540" loading="lazy">
+        </div>
+        <div class="paper-card-body">
+          <h3 class="text-lg font-semibold">Night Transit</h3>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">Identity and motion system for a mobility brand.</p>
+          <p class="mt-3 text-xs text-[var(--editorial-neutral)]">Brand system · 2023</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div id="system" class="mt-6 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] paper-layout-section">
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">RAM pattern</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Repeat, auto-fit, minmax keeps the grid flexible while preserving tile widths. Use auto-fit when you want tiles to expand into empty space, and auto-fill when you need consistent column count.</p>
+      <pre class="paper-code-block text-xs mt-4">.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}</pre>
+    </div>
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Why it works</p>
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-3">
+          <p class="text-xs text-[var(--editorial-neutral)]">Comparison ready</p>
+          <p class="mt-1 font-semibold">Equal tile weight makes differences easy to spot.</p>
+        </div>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-3">
+          <p class="text-xs text-[var(--editorial-neutral)]">Reusable modules</p>
+          <p class="mt-1 font-semibold">Cards can be lifted into other layouts with container queries.</p>
+        </div>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-3">
+          <p class="text-xs text-[var(--editorial-neutral)]">Stable load</p>
+          <p class="mt-1 font-semibold">Aspect ratios prevent layout shift and keep CLS ≤ 0.1.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    </main>
+    <footer class="px-6 py-6 text-xs text-[var(--paper-muted)]">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <p>Fine Paper build. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-[var(--paper-text)]">About</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Documentation</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Support</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

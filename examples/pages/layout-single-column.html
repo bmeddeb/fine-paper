@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fine Paper | Single Column Layout</title>
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/app.css">
+  <link rel="stylesheet" href="../../assets/nucleo.css">
+  <script defer src="../../assets/app.js"></script>
+  <script defer src="../../assets/alpine.js"></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!window.Alpine) {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js';
+      document.head.appendChild(script);
+    }
+  });
+</script>
+</head>
+<body data-page="layout-single-column" class="text-[var(--paper-text)] antialiased">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
+  <div class="min-h-screen bg-[var(--paper-bg)]">
+    <header class="border-b border-[var(--paper-border)] bg-white/80 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <a href="../dashboard.html" class="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em]">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow">
+            <img src="../../assets/img/finepaper.png" alt="Fine Paper" class="h-6 w-6">
+          </span>
+          Fine Paper
+        </a>
+        <div class="flex flex-wrap items-center gap-3">
+          <nav class="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--paper-muted)]">
+            <a href="#cover" class="hover:text-[var(--paper-text)]">Cover</a>
+            <a href="#feed" class="hover:text-[var(--paper-text)]">Feed</a>
+            <a href="#playbook" class="hover:text-[var(--paper-text)]">Playbook</a>
+          </nav>
+          <a href="../dashboard.html" class="paper-btn paper-btn-outline">Back to dashboard</a>
+        </div>
+      </div>
+    </header>
+    <main id="main-content" class="mx-auto w-full max-w-7xl px-6 pb-12">
+
+<section class="pt-6 paper-editorial">
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <h1 class="text-2xl font-semibold">Single Column Layout</h1>
+      <p class="text-sm text-[var(--paper-muted)]">Best for blogs, feeds, and mobile-first reading.</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span class="paper-pill text-[var(--editorial-neutral)]">Use case: Editorial feed</span>
+      <span class="paper-pill text-[var(--editorial-neutral)]">Pattern: Single column</span>
+    </div>
+  </div>
+
+  <div class="mt-6 mx-auto w-full max-w-3xl space-y-6">
+    <article id="cover" class="paper-card overflow-hidden paper-layout-card">
+      <div class="paper-media-frame aspect-[16/9]">
+        <img src="../../assets/img/bg/john-towner.jpg" alt="Desk with notes" width="1200" height="675" loading="eager">
+      </div>
+      <div class="paper-card-body">
+        <span class="paper-badge paper-badge-danger self-start">Cover</span>
+        <h2 class="mt-3 text-2xl font-semibold">Why single-column still wins on mobile.</h2>
+        <p class="mt-3 text-sm text-[var(--paper-muted)]">Single-column layouts reduce cognitive load. With 57% of viewing time above the fold and 74% in the first two screens, the goal is to make the first paragraphs feel complete while inviting the scroll. This edition keeps the key message in the opening lines, then layers supporting context below.</p>
+        <div class="mt-4 flex items-center gap-3 text-xs text-[var(--editorial-neutral)]">
+          <img src="../../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Ayo Ogunseinde" class="h-7 w-7 rounded-full object-cover">
+          <span>Ayo Ogunseinde</span>
+          <span class="h-1 w-1 rounded-full bg-[var(--editorial-neutral)]/60"></span>
+          <span>9 min read</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Single-column map</p>
+      <div class="mt-4 rounded-2xl border border-[var(--paper-border)] bg-white p-4">
+        <svg viewBox="0 0 300 200" class="h-40 w-full" role="img" aria-label="Single column layout map">
+          <rect x="40" y="10" width="220" height="30" rx="8" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="40" y="50" width="220" height="30" rx="8" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="40" y="90" width="220" height="30" rx="8" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="40" y="130" width="220" height="30" rx="8" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="40" y="170" width="220" height="20" rx="8" fill="#ef8157" opacity="0.25" />
+        </svg>
+      </div>
+      <p class="mt-3 text-xs text-[var(--paper-muted)]">A single vertical rhythm guides the eye and keeps the reading path predictable.</p>
+    </div>
+
+    <div id="feed" class="space-y-4 paper-layout-section">
+      <article class="paper-card overflow-hidden paper-layout-card">
+        <div class="paper-media-frame aspect-[3/2]">
+          <img src="../../assets/img/bg/ilya-yakover.jpg" alt="Forest road" width="1200" height="800" loading="lazy">
+        </div>
+        <div class="paper-card-body">
+          <span class="paper-badge paper-badge-danger self-start">Research</span>
+          <h3 class="mt-3 text-xl font-semibold">Reflow at 320px is non-negotiable.</h3>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">WCAG 1.4.10 requires single-column content to function at 320 CSS pixels. This feed collapses side rails, widens line-height, and keeps tap targets above 24x24px so the layout remains usable at high zoom.</p>
+          <p class="mt-3 text-sm text-[var(--paper-muted)]">Use CSS Grid for the overall column and Flexbox inside each card to keep metadata aligned without resorting to visual reordering.</p>
+        </div>
+      </article>
+
+      <article class="paper-card overflow-hidden paper-layout-card">
+        <div class="paper-media-frame aspect-[3/2]">
+          <img src="../../assets/img/bg/galen-crout.jpg" alt="Notebook and pen" width="1200" height="800" loading="lazy">
+        </div>
+        <div class="paper-card-body">
+          <span class="paper-badge paper-badge-danger self-start">Practice</span>
+          <h3 class="mt-3 text-xl font-semibold">Line length is a layout decision.</h3>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">The paper recommends 50-75 characters per line (about 600-700px wide) for comfortable reading. Single-column layouts make this easy: set a max-width, keep text left aligned, and avoid justified paragraphs that create rivers.</p>
+          <p class="mt-3 text-sm text-[var(--paper-muted)]">The feed stays centered so the reading column feels consistent from hero to footer.</p>
+        </div>
+      </article>
+
+      <article class="paper-card overflow-hidden paper-layout-card">
+        <div class="paper-media-frame aspect-[3/2]">
+          <img src="../../assets/img/bg/sebastien-gabrieles.jpg" alt="Laptop on desk" width="1200" height="800" loading="lazy">
+        </div>
+        <div class="paper-card-body">
+          <span class="paper-badge paper-badge-danger self-start">Performance</span>
+          <h3 class="mt-3 text-xl font-semibold">Reserve space to protect CLS.</h3>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">Always specify media dimensions or aspect ratios before images load. The target CLS score is 0.1 or lower. When content is long, use content-visibility to skip off-screen rendering without breaking search and focus.</p>
+          <p class="mt-3 text-sm text-[var(--paper-muted)]">The card system here keeps image frames stable and metadata consistent, even when text wraps.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Reading comfort</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Lines should average 80 characters or less. We cap the content column to maintain readability and keep headings short enough to fit above the fold.</p>
+      <div class="mt-4 space-y-3">
+        <div>
+          <div class="flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+            <span>Ideal line length</span>
+            <span>50-75 characters</span>
+          </div>
+          <div class="mt-1 h-2 w-full rounded-full bg-[var(--paper-border)]">
+            <span class="block h-2 w-[70%] rounded-full bg-[var(--editorial-accent)]"></span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+            <span>Above the fold attention</span>
+            <span>57%</span>
+          </div>
+          <div class="mt-1 h-2 w-full rounded-full bg-[var(--paper-border)]">
+            <span class="block h-2 w-[57%] rounded-full bg-[var(--editorial-accent)]"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="playbook" class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Accessibility and reflow</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Single-column layouts are the easiest way to meet reflow requirements. Keep DOM order aligned to visual order, maintain landmarks, and ensure touch targets meet the 24x24px minimum.</p>
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Reflow at 320 CSS pixels without horizontal scrolling.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Keep focus order aligned to the reading order.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Provide a skip link and landmark regions for fast navigation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Performance notes</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Containment and content-visibility shrink the rendering cost of long feeds while keeping text searchable. Combine these with aspect ratios to keep the layout stable.</p>
+      <pre class="mt-4 rounded-2xl bg-[var(--paper-bg)] p-4 text-xs text-[var(--paper-text)]">.section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+.media {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}</pre>
+      <p class="mt-3 text-xs text-[var(--paper-muted)]">Target CLS <= 0.1 by reserving space before images load.</p>
+    </div>
+
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Load more</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">NNGroup and Baymard both note that explicit load controls outperform endless scrolling for long reading lists. This keeps orientation and avoids the illusion of completeness.</p>
+      <button class="paper-btn paper-btn-outline mt-4">Load more stories</button>
+    </div>
+  </div>
+</section>
+
+
+
+    </main>
+    <footer class="px-6 py-6 text-xs text-[var(--paper-muted)]">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <p>Fine Paper build. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-[var(--paper-text)]">About</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Documentation</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Support</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

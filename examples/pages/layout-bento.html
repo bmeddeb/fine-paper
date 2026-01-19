@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fine Paper | Modular Bento Layout</title>
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/app.css">
+  <link rel="stylesheet" href="../../assets/nucleo.css">
+  <script defer src="../../assets/app.js"></script>
+  <script defer src="../../assets/alpine.js"></script>
+</head>
+<body data-page="layout-bento" class="text-[var(--paper-text)] antialiased">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
+  <div class="min-h-screen bg-[var(--paper-bg)]">
+    <header class="border-b border-[var(--paper-border)] bg-white/80 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <a href="../dashboard.html" class="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em]">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow">
+            <img src="../../assets/img/finepaper.png" alt="Fine Paper" class="h-6 w-6">
+          </span>
+          Fine Paper
+        </a>
+        <div class="flex flex-wrap items-center gap-3">
+          <nav class="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--paper-muted)]">
+            <a href="#overview" class="hover:text-[var(--paper-text)]">Overview</a>
+            <a href="#shop" class="hover:text-[var(--paper-text)]">Shop</a>
+            <a href="#resources" class="hover:text-[var(--paper-text)]">Resources</a>
+          </nav>
+          <a href="../dashboard.html" class="paper-btn paper-btn-outline">Back to dashboard</a>
+        </div>
+      </div>
+    </header>
+    <main id="main-content" class="mx-auto w-full max-w-7xl px-6 pb-12">
+
+<section class="pt-6 paper-editorial">
+  <!-- Page Header -->
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <h1 class="text-2xl font-semibold">Modular / Bento Layout</h1>
+      <p class="text-sm text-[var(--paper-muted)]">Best for e-commerce, product pages, and modular discovery.</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span class="paper-pill text-[var(--editorial-neutral)]">Pattern: Bento Grid</span>
+      <span class="paper-pill text-[var(--editorial-neutral)]">Use case: Product Discovery</span>
+    </div>
+  </div>
+
+  <!-- Overview Section -->
+  <div id="overview" class="mt-6 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Layout intent</p>
+      <h2 class="mt-3 text-2xl font-semibold">Bento grids let shoppers scan and compare without scrolling endlessly.</h2>
+      <p class="mt-3 max-w-[720px] text-sm text-[var(--paper-muted)]">The bento pattern arranges content in modular compartments of varying sizes. Featured items claim more real estate while supporting products remain visible. This creates natural visual hierarchy without hiding inventory behind tabs or carousels.</p>
+      <p class="mt-3 max-w-[720px] text-sm text-[var(--paper-muted)]">Research shows shoppers compare 2.4x more products when using grid layouts versus single-column feeds. The pattern works especially well for curated collections and seasonal drops.</p>
+      <div class="mt-5 grid gap-3 sm:grid-cols-2">
+        <div class="rounded-xl border border-[var(--paper-border)] bg-white/80 p-3">
+          <p class="text-xs uppercase tracking-[0.2em] text-[var(--editorial-neutral)]">Ideal for</p>
+          <p class="mt-2 text-sm font-semibold">Product catalogs, seasonal collections, and curated bundles.</p>
+        </div>
+        <div class="rounded-xl border border-[var(--paper-border)] bg-white/80 p-3">
+          <p class="text-xs uppercase tracking-[0.2em] text-[var(--editorial-neutral)]">Key benefit</p>
+          <p class="mt-2 text-sm font-semibold">Reduces decision fatigue while maintaining discovery.</p>
+        </div>
+      </div>
+    </div>
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Bento grid map</p>
+      <div class="mt-4 rounded-2xl border border-[var(--paper-border)] bg-white p-4">
+        <svg viewBox="0 0 320 200" class="h-40 w-full" role="img" aria-label="Bento layout diagram">
+          <rect x="10" y="10" width="150" height="120" rx="12" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="170" y="10" width="70" height="55" rx="12" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="250" y="10" width="60" height="55" rx="12" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="170" y="75" width="140" height="55" rx="12" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="10" y="140" width="90" height="50" rx="12" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="110" y="140" width="200" height="50" rx="12" fill="#f4f3ef" stroke="#e3e3e3" />
+          <rect x="170" y="135" width="60" height="10" rx="5" fill="#ef8157" opacity="0.3" />
+        </svg>
+      </div>
+      <p class="mt-3 text-sm text-[var(--paper-muted)]">Mixed spans let a featured item lead while supporting products stay visible.</p>
+      <div class="mt-4 grid grid-cols-3 gap-2 text-center text-[10px] font-medium uppercase tracking-wider text-[var(--editorial-neutral)]">
+        <div class="rounded-lg bg-[var(--paper-bg)] py-2">
+          <span class="block text-base font-semibold text-[var(--paper-text)]">12</span>
+          columns
+        </div>
+        <div class="rounded-lg bg-[var(--paper-bg)] py-2">
+          <span class="block text-base font-semibold text-[var(--paper-text)]">6</span>
+          cards
+        </div>
+        <div class="rounded-lg bg-[var(--paper-bg)] py-2">
+          <span class="block text-base font-semibold text-[var(--paper-text)]">3</span>
+          sizes
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Bento Grid -->
+  <div id="shop" class="mt-8">
+    <div class="flex items-center justify-between">
+      <h2 class="text-lg font-semibold">Spring Collection 2026</h2>
+      <a href="#" class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--editorial-accent)] hover:underline">View all</a>
+    </div>
+
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
+
+      <!-- Hero Product - Full Width -->
+      <article class="group relative col-span-full overflow-hidden rounded-2xl">
+        <div class="aspect-[21/9] w-full">
+          <img src="../../assets/img/bg/rawpixel-com.jpg" alt="Spring workspace collection" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+        <div class="absolute inset-0 flex items-center p-8 lg:p-12">
+          <div class="max-w-lg text-white">
+            <span class="rounded-full bg-white/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] backdrop-blur">New arrival</span>
+            <h3 class="mt-4 text-3xl font-semibold lg:text-4xl">The Workspace Edit</h3>
+            <p class="mt-3 text-sm text-white/80 lg:text-base">Curated essentials for focused work. Notebooks, organizers, and desk accessories designed to minimize distraction.</p>
+            <div class="mt-6 flex flex-wrap items-center gap-4">
+              <button class="paper-btn bg-white text-[var(--paper-text)] font-semibold hover:bg-white/90">Shop collection</button>
+              <span class="text-sm text-white/70">Starting at $24</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product Card 1 -->
+      <article class="paper-card overflow-hidden col-span-full sm:col-span-1 lg:col-span-4">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="../../assets/img/bg/jeff-sheldon.jpg" alt="Minimal desk setup" class="h-full w-full object-cover transition-transform duration-300 hover:scale-105">
+        </div>
+        <div class="p-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--editorial-neutral)]">Desk Organization</p>
+              <h3 class="mt-1 font-semibold">Minimal Desk Set</h3>
+            </div>
+            <span class="rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-semibold text-green-700">In stock</span>
+          </div>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">Five-piece organizer system with cable management tray, pen holder, and document stand.</p>
+          <div class="mt-3 flex items-center gap-1 text-amber-500">
+            <i class="fa fa-star text-xs"></i>
+            <i class="fa fa-star text-xs"></i>
+            <i class="fa fa-star text-xs"></i>
+            <i class="fa fa-star text-xs"></i>
+            <i class="fa fa-star-half-o text-xs"></i>
+            <span class="ml-1 text-xs text-[var(--paper-muted)]">4.7 (203)</span>
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-lg font-semibold">$89</span>
+            <button class="paper-btn paper-btn-outline text-xs">Add to cart</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product Card 2 -->
+      <article class="paper-card overflow-hidden col-span-full sm:col-span-1 lg:col-span-4">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="../../assets/img/bg/patrick-tomasso.jpg" alt="Leather notebook" class="h-full w-full object-cover transition-transform duration-300 hover:scale-105">
+        </div>
+        <div class="p-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--editorial-neutral)]">Notebooks</p>
+              <h3 class="mt-1 font-semibold">Archive Journal</h3>
+            </div>
+            <span class="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">Low stock</span>
+          </div>
+          <p class="mt-2 text-sm text-[var(--paper-muted)]">Thread-bound journal with 180gsm paper. Lays flat for comfortable writing. Available in three sizes.</p>
+          <div class="mt-3 flex items-center gap-1 text-amber-500">
+            <i class="fa fa-star text-xs"></i>
+            <i class="fa fa-star text-xs"></i>
+            <i class="fa fa-star text-xs"></i>
+            <i class="fa fa-star text-xs"></i>
+            <i class="fa fa-star text-xs"></i>
+            <span class="ml-1 text-xs text-[var(--paper-muted)]">5.0 (89)</span>
+          </div>
+          <div class="mt-4 flex items-center justify-between">
+            <span class="text-lg font-semibold">$42</span>
+            <button class="paper-btn paper-btn-outline text-xs">Add to cart</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Promo Card -->
+      <article class="paper-card col-span-full flex flex-col justify-between p-5 sm:col-span-1 lg:col-span-4" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+        <div>
+          <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60">Limited time</p>
+          <h3 class="mt-2 text-xl font-semibold text-white">Free shipping on orders over $75</h3>
+          <p class="mt-2 text-sm text-white/70">Plus free returns within 30 days. No questions asked.</p>
+        </div>
+        <div class="mt-6">
+          <div class="flex items-center gap-4 text-xs text-white/60">
+            <span class="flex items-center gap-1"><i class="fa fa-truck"></i> 2-day delivery</span>
+            <span class="flex items-center gap-1"><i class="fa fa-refresh"></i> Easy returns</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Category Cards Row -->
+      <article class="paper-card overflow-hidden col-span-full sm:col-span-1 lg:col-span-3">
+        <a href="#" class="group block">
+          <div class="aspect-square overflow-hidden">
+            <img src="../../assets/img/bg/clark-street-mercantile.jpg" alt="Bags and totes" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="font-semibold">Bags & Totes</h3>
+            <p class="mt-1 text-xs text-[var(--paper-muted)]">18 products</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="paper-card overflow-hidden col-span-full sm:col-span-1 lg:col-span-3">
+        <a href="#" class="group block">
+          <div class="aspect-square overflow-hidden">
+            <img src="../../assets/img/bg/jeremy-yap.jpg" alt="Writing tools" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="font-semibold">Writing Tools</h3>
+            <p class="mt-1 text-xs text-[var(--paper-muted)]">42 products</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="paper-card overflow-hidden col-span-full sm:col-span-1 lg:col-span-3">
+        <a href="#" class="group block">
+          <div class="aspect-square overflow-hidden">
+            <img src="../../assets/img/bg/luke-chesser.jpg" alt="Tech accessories" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="font-semibold">Tech Accessories</h3>
+            <p class="mt-1 text-xs text-[var(--paper-muted)]">28 products</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="paper-card overflow-hidden col-span-full sm:col-span-1 lg:col-span-3">
+        <a href="#" class="group block">
+          <div class="aspect-square overflow-hidden">
+            <img src="../../assets/img/bg/galen-crout.jpg" alt="Home office" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="font-semibold">Home Office</h3>
+            <p class="mt-1 text-xs text-[var(--paper-muted)]">35 products</p>
+          </div>
+        </a>
+      </article>
+
+      <!-- Trust Banner -->
+      <article class="paper-card col-span-full p-6 lg:col-span-8">
+        <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div class="flex items-center gap-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--paper-bg)]">
+              <i class="fa fa-shield text-xl text-[var(--editorial-accent)]"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold">Quality Guarantee</h3>
+              <p class="text-sm text-[var(--paper-muted)]">Every product tested and approved by our team.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--paper-bg)]">
+              <i class="fa fa-leaf text-xl text-green-600"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold">Sustainable Materials</h3>
+              <p class="text-sm text-[var(--paper-muted)]">Responsibly sourced, minimal packaging.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--paper-bg)]">
+              <i class="fa fa-heart text-xl text-red-500"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold">Small Batch</h3>
+              <p class="text-sm text-[var(--paper-muted)]">Made by independent makers.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Newsletter Card -->
+      <article class="paper-card col-span-full p-5 lg:col-span-4" style="background: linear-gradient(135deg, #252422 0%, #3d3a36 100%);">
+        <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/60">Stay updated</p>
+        <h3 class="mt-2 text-lg font-semibold text-white">New drops every month.</h3>
+        <p class="mt-2 text-sm text-white/70">Get early access to limited editions and member-only pricing.</p>
+        <div class="mt-4 flex gap-2">
+          <input type="email" placeholder="you@email.com" class="flex-1 rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/40 focus:border-white/40 focus:outline-none">
+          <button class="paper-btn bg-white text-[#252422] font-semibold hover:bg-white/90">Join</button>
+        </div>
+        <p class="mt-3 text-[10px] text-white/50">Join 8,000+ members. Unsubscribe anytime.</p>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- Resources Section -->
+  <div id="resources" class="mt-8 grid gap-6 lg:grid-cols-3">
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Grid structure</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Use a 12-column grid with gap-4 for tight layouts or gap-6 for breathing room. Mix column spans to create visual hierarchy.</p>
+      <pre class="mt-4 overflow-x-auto rounded-xl bg-[var(--paper-bg)] p-3 text-xs"><code>.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(12, 1fr);
+  gap: 1rem;
+}</code></pre>
+    </div>
+
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Card patterns</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Every product card should show: image, category, title, price, and rating. Stock indicators build urgency. Keep CTAs consistent.</p>
+      <div class="mt-4 space-y-2 text-sm">
+        <div class="flex items-center gap-2">
+          <span class="h-2 w-2 rounded-full bg-green-500"></span>
+          <span>In stock — neutral, reassuring</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+          <span>Low stock — creates urgency</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="h-2 w-2 rounded-full bg-red-500"></span>
+          <span>Last items — high urgency</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Performance tips</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Use aspect-ratio to reserve space and prevent layout shift. Lazy load images below the fold. Keep hero images under 200KB.</p>
+      <div class="mt-4 space-y-3">
+        <div>
+          <div class="flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+            <span>Target CLS</span>
+            <span>&lt; 0.1</span>
+          </div>
+          <div class="mt-1 h-2 w-full rounded-full bg-[var(--paper-border)]">
+            <div class="h-2 w-[10%] rounded-full bg-green-500"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+            <span>Target LCP</span>
+            <span>&lt; 2.5s</span>
+          </div>
+          <div class="mt-1 h-2 w-full rounded-full bg-[var(--paper-border)]">
+            <div class="h-2 w-[25%] rounded-full bg-green-500"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+    </main>
+    <footer class="border-t border-[var(--paper-border)] bg-white px-6 py-6 text-xs text-[var(--paper-muted)]">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <p>&copy; 2026 Fine Paper. All rights reserved.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="hover:text-[var(--paper-text)]">About</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Shipping</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Returns</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

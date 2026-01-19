@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fine Paper | Asymmetrical Layout</title>
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/app.css">
+  <link rel="stylesheet" href="../../assets/nucleo.css">
+  <script defer src="../../assets/app.js"></script>
+  <script defer src="../../assets/alpine.js"></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!window.Alpine) {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js';
+      document.head.appendChild(script);
+    }
+  });
+</script>
+</head>
+<body data-page="layout-asymmetrical" class="text-[var(--paper-text)] antialiased">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
+  <div class="min-h-screen bg-[var(--paper-bg)]">
+    <header class="border-b border-[var(--paper-border)] bg-white/80 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <a href="../dashboard.html" class="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em]">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow">
+            <img src="../../assets/img/finepaper.png" alt="Fine Paper" class="h-6 w-6">
+          </span>
+          Fine Paper
+        </a>
+        <div class="flex flex-wrap items-center gap-3">
+          <nav class="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--paper-muted)]">
+            <a href="#grid" class="hover:text-[var(--paper-text)]">Grid</a>
+            <a href="#insights" class="hover:text-[var(--paper-text)]">Insights</a>
+            <a href="#playbook" class="hover:text-[var(--paper-text)]">Playbook</a>
+          </nav>
+          <a href="../dashboard.html" class="paper-btn paper-btn-outline">Back to dashboard</a>
+        </div>
+      </div>
+    </header>
+    <main id="main-content" class="mx-auto w-full max-w-7xl px-6 pb-12">
+
+<section class="pt-6 paper-editorial">
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <h1 class="text-2xl font-semibold">Asymmetrical Layout</h1>
+      <p class="text-sm text-[var(--paper-muted)]">Best for innovative brands, portfolios, and dynamic storytelling.</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span class="paper-pill text-[var(--editorial-neutral)]">Use case: Creative studio</span>
+      <span class="paper-pill text-[var(--editorial-neutral)]">Pattern: Asymmetrical</span>
+    </div>
+  </div>
+
+  <div id="grid" class="mt-6 grid gap-6 lg:grid-cols-12">
+    <article class="paper-card overflow-hidden paper-layout-card col-span-12 lg:col-span-7 lg:row-span-2">
+      <div class="paper-media-frame aspect-[16/9]">
+        <img src="../../assets/img/bg/markus-spiske-187777.jpg" alt="Studio tools" width="1200" height="675" loading="eager">
+      </div>
+      <div class="paper-card-body">
+        <span class="paper-badge paper-badge-danger self-start">Hero project</span>
+        <h2 class="mt-3 text-2xl font-semibold">Ordered chaos, anchored by one dominant story.</h2>
+        <p class="mt-3 text-sm text-[var(--paper-muted)]">Asymmetrical layouts break the grid on purpose to create energy. The key is to anchor the visual weight with a single dominant module, then let supporting blocks orbit around it. Use CSS Grid for placement and preserve DOM order so keyboard focus stays logical.</p>
+        <p class="mt-3 text-sm text-[var(--paper-muted)]">The asymmetry signals innovation while the underlying rhythm keeps it usable. Reserve image space with aspect ratios to avoid CLS and keep the narrative stable as assets load.</p>
+      </div>
+    </article>
+
+    <article class="paper-card p-6 paper-layout-card col-span-12 lg:col-span-5">
+      <p class="paper-label text-[var(--editorial-neutral)]">Why it works</p>
+      <h3 class="mt-2 text-xl font-semibold">Dynamic focal points guide attention.</h3>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Asymmetry builds tension and directs the eye toward the primary story. Use it when you want to differentiate a brand or highlight a single flagship project.</p>
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Anchor with one large module to avoid visual drift.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Use smaller tiles for supporting stories or context.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Keep spacing consistent so chaos feels intentional.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="paper-card overflow-hidden paper-layout-card col-span-12 sm:col-span-6 lg:col-span-4">
+      <div class="paper-media-frame aspect-[4/3]">
+        <img src="../../assets/img/bg/jeff-sheldon.jpg" alt="Desk speaker" width="720" height="540" loading="lazy">
+      </div>
+      <div class="paper-card-body">
+        <h3 class="text-lg font-semibold">Concept Lab</h3>
+        <p class="mt-2 text-sm text-[var(--paper-muted)]">A fast experimentation zone for teams that want a visible pipeline of ideas.</p>
+        <p class="mt-3 text-xs text-[var(--editorial-neutral)]">Prototype stack · 6 active explorations</p>
+      </div>
+    </article>
+
+    <article class="paper-card overflow-hidden paper-layout-card col-span-12 sm:col-span-6 lg:col-span-4 lg:row-span-2">
+      <div class="paper-media-frame aspect-[3/4]">
+        <img src="../../assets/img/bg/stephanie-krist.jpg" alt="Editorial layout" width="720" height="960" loading="lazy">
+      </div>
+      <div class="paper-card-body">
+        <h3 class="text-lg font-semibold">Signal Almanac</h3>
+        <p class="mt-2 text-sm text-[var(--paper-muted)]">A long-form series that pairs narrative storytelling with data snapshots.</p>
+        <p class="mt-3 text-xs text-[var(--editorial-neutral)]">Published weekly · 18 chapters</p>
+      </div>
+    </article>
+
+    <article class="paper-card p-6 paper-layout-card col-span-12 lg:col-span-4">
+      <p class="paper-label text-[var(--editorial-neutral)]">Metrics</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Asymmetry is a choice—keep performance stable by reserving space and using content-visibility for off-screen tiles.</p>
+      <div class="mt-4 space-y-3">
+        <div>
+          <div class="flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+            <span>CLS target</span>
+            <span>≤ 0.1</span>
+          </div>
+          <div class="mt-1 h-2 w-full rounded-full bg-[var(--paper-border)]">
+            <span class="block h-2 w-[45%] rounded-full bg-[var(--editorial-accent)]"></span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+            <span>Above-fold attention</span>
+            <span>57%</span>
+          </div>
+          <div class="mt-1 h-2 w-full rounded-full bg-[var(--paper-border)]">
+            <span class="block h-2 w-[57%] rounded-full bg-[var(--editorial-accent)]"></span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div id="insights" class="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Creative brief</p>
+      <h3 class="mt-3 text-xl font-semibold">Asymmetry still needs structure.</h3>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Use a grid to set the rhythm, then break it with one or two oversized modules. The rest of the layout should align to a baseline so the experience feels deliberate, not chaotic.</p>
+      <p class="mt-3 text-sm text-[var(--paper-muted)]">When using asymmetry, avoid the illusion of completeness by keeping the scroll cue visible. The first screen should feel full, but not final.</p>
+      <div class="mt-4 rounded-xl bg-[var(--paper-bg)] p-3 text-xs text-[var(--editorial-neutral)]">Tip: keep text blocks shorter on small tiles to preserve hierarchy.</div>
+    </div>
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Case study impact</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Distinctive layouts can boost brand recall when paired with a consistent rhythm. Keep navigation minimal and emphasize the flagship story.</p>
+      <div class="mt-4 space-y-3">
+        <div>
+          <div class="flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+            <span>Recall lift</span>
+            <span>+28%</span>
+          </div>
+          <div class="mt-1 h-2 w-full rounded-full bg-[var(--paper-border)]">
+            <span class="block h-2 w-[64%] rounded-full bg-[var(--editorial-accent)]"></span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between text-xs text-[var(--editorial-neutral)]">
+            <span>Engagement</span>
+            <span>+19%</span>
+          </div>
+          <div class="mt-1 h-2 w-full rounded-full bg-[var(--paper-border)]">
+            <span class="block h-2 w-[59%] rounded-full bg-[var(--editorial-accent)]"></span>
+          </div>
+        </div>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-3">
+          <p class="text-xs text-[var(--editorial-neutral)]">Key insight</p>
+          <p class="mt-1 font-semibold">Bold layout choices signal innovation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="playbook" class="mt-6 grid gap-6 lg:grid-cols-3 paper-layout-section">
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Grid mechanics</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Use a 12-column grid so asymmetrical blocks still align. Keep gutters consistent and let only 1–2 tiles break the rhythm.</p>
+      <div class="mt-4 rounded-2xl bg-[var(--paper-bg)] p-4 text-xs text-[var(--paper-text)]">
+        <pre>.asym-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.hero { grid-column: span 7; }
+.side { grid-column: span 5; }</pre>
+      </div>
+    </div>
+
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Mobile fallback</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Stack all modules in DOM order and keep headings short. The asymmetry becomes a standard feed, but the story order stays intact.</p>
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="rounded-xl bg-[var(--paper-bg)] p-3">
+          <p class="text-xs text-[var(--editorial-neutral)]">Reflow</p>
+          <p class="mt-1 font-semibold">Single-column stack at 320px.</p>
+        </div>
+        <div class="rounded-xl bg-[var(--paper-bg)] p-3">
+          <p class="text-xs text-[var(--editorial-neutral)]">Focus order</p>
+          <p class="mt-1 font-semibold">DOM order matches visual order.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Accessibility note</p>
+      <p class="mt-2 text-sm text-[var(--paper-muted)]">Asymmetry should never rely on visual placement alone. Reinforce hierarchy with headings, labels, and meaningful alt text.</p>
+      <div class="mt-4 space-y-3 text-sm">
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Keep headings sequential (H2, H3, H4).</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Use landmarks for navigation and screen readers.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="h-2 w-2 rounded-full bg-[var(--editorial-accent)]"></span>
+          <p>Reserve space for media to prevent layout shift.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    </main>
+    <footer class="px-6 py-6 text-xs text-[var(--paper-muted)]">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <p>Fine Paper build. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-[var(--paper-text)]">About</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Documentation</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Support</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fine Paper | Content-Focused Layout</title>
+  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/app.css">
+  <link rel="stylesheet" href="../../assets/nucleo.css">
+  <script defer src="../../assets/app.js"></script>
+  <script defer src="../../assets/alpine.js"></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!window.Alpine) {
+      const script = document.createElement('script');
+      script.defer = true;
+      script.src = 'https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js';
+      document.head.appendChild(script);
+    }
+  });
+</script>
+</head>
+<body data-page="layout-content-focused" class="text-[var(--paper-text)] antialiased">
+  <a href="#main-content" class="paper-skip-link">Skip to content</a>
+  <div class="min-h-screen bg-[var(--paper-bg)]">
+    <header class="border-b border-[var(--paper-border)] bg-white/80 backdrop-blur">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-4 px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <a href="../dashboard.html" class="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em]">
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow">
+            <img src="../../assets/img/finepaper.png" alt="Fine Paper" class="h-6 w-6">
+          </span>
+          Fine Paper
+        </a>
+        <div class="flex flex-wrap items-center gap-3">
+          <nav class="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--paper-muted)]">
+            <a href="#article" class="hover:text-[var(--paper-text)]">Article</a>
+            <a href="#toc" class="hover:text-[var(--paper-text)]">TOC</a>
+            <a href="#resources" class="hover:text-[var(--paper-text)]">Resources</a>
+          </nav>
+          <a href="../dashboard.html" class="paper-btn paper-btn-outline">Back to dashboard</a>
+        </div>
+      </div>
+    </header>
+    <main id="main-content" class="mx-auto w-full max-w-7xl px-6 pb-12">
+
+<section class="pt-6 paper-editorial">
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <h1 class="text-2xl font-semibold">Content-Focused Layout</h1>
+      <p class="text-sm text-[var(--paper-muted)]">Best for documentation, long-form articles, and research summaries.</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span class="paper-pill text-[var(--editorial-neutral)]">Use case: Documentation</span>
+      <span class="paper-pill text-[var(--editorial-neutral)]">Pattern: Content-focused</span>
+    </div>
+  </div>
+
+  <div class="mt-6 grid gap-6 lg:grid-cols-[2fr_1fr]">
+    <article id="article" class="paper-card p-6 paper-layout-card">
+      <p class="paper-label text-[var(--editorial-neutral)]">Technical guide</p>
+      <h2 class="mt-3 text-2xl font-semibold">Layout decisions as information architecture.</h2>
+      <p class="mt-3 text-sm text-[var(--paper-muted)]">Content-focused layouts prioritize a primary reading column with supporting sidebars. This model works for documentation because readers need depth, not distraction. Keep the main column between 600–700px for readability, and use subheads, callouts, and diagrams to reset the scan.</p>
+      <p class="mt-3 text-sm text-[var(--paper-muted)]">Eye-tracking studies show readers spend 80% of their time on the left half of the page. The opening paragraphs should deliver the summary, while the sidebar provides quick reference items like a table of contents, glossary, or download links.</p>
+
+      <div class="mt-5 paper-media-frame aspect-[16/9]">
+        <img src="../../assets/img/bg/luke-chesser.jpg" alt="Documentation desk" width="1200" height="675" loading="lazy">
+      </div>
+
+      <h3 class="mt-6 text-xl font-semibold">Container-first layout strategy</h3>
+      <p class="mt-3 text-sm text-[var(--paper-muted)]">Container queries let documentation modules adapt based on their available space instead of the viewport. This is critical when the same callout appears in a full article or inside a sidebar. Define a container on the module wrapper, then scale typography and layout inside.</p>
+
+      <div class="mt-4 rounded-2xl bg-[var(--paper-bg)] p-4 text-xs text-[var(--paper-text)]">
+        <pre>@container (min-width: 400px) {
+  .callout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+  }
+}</pre>
+      </div>
+
+      <h3 class="mt-6 text-xl font-semibold">Reflow, focus order, and scan rhythm</h3>
+      <p class="mt-3 text-sm text-[var(--paper-muted)]">WCAG reflow requires content to work at 320px wide. Content-focused pages should collapse sidebars beneath the main column and avoid visual reordering that breaks keyboard focus. Keep headings short, use consistent spacing between paragraphs, and avoid justified text to prevent rivers.</p>
+      <p class="mt-3 text-sm text-[var(--paper-muted)]">For long pages, use content-visibility to skip off-screen rendering while preserving search and focus behavior. Reserve space with aspect ratios so images do not shift the layout as they load.</p>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-xl border border-[var(--paper-border)] bg-white p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-[var(--editorial-neutral)]">Reading width</p>
+          <p class="mt-2 text-sm font-semibold">50–75 characters per line for comfort.</p>
+        </div>
+        <div class="rounded-xl border border-[var(--paper-border)] bg-white p-4">
+          <p class="text-xs uppercase tracking-[0.2em] text-[var(--editorial-neutral)]">CLS target</p>
+          <p class="mt-2 text-sm font-semibold">Reserve media space to stay at ≤ 0.1.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="space-y-6">
+      <div id="toc" class="paper-card p-5 paper-layout-card">
+        <p class="paper-label text-[var(--editorial-neutral)]">Table of contents</p>
+        <div class="mt-4 space-y-3 text-sm">
+          <a href="#article" class="block text-[var(--paper-text)]">Layout decisions as information architecture</a>
+          <a href="#article" class="block text-[var(--paper-muted)]">Container-first layout strategy</a>
+          <a href="#article" class="block text-[var(--paper-muted)]">Reflow, focus order, and scan rhythm</a>
+          <a href="#resources" class="block text-[var(--paper-muted)]">Further resources</a>
+        </div>
+      </div>
+
+      <div class="paper-card p-5 paper-layout-card">
+        <p class="paper-label text-[var(--editorial-neutral)]">Quick stats</p>
+        <div class="mt-4 space-y-3 text-sm">
+          <div class="rounded-xl bg-[var(--paper-bg)] p-3">
+            <p class="text-xs text-[var(--editorial-neutral)]">Above the fold</p>
+            <p class="mt-1 font-semibold">57% of viewing time happens in the first screen.</p>
+          </div>
+          <div class="rounded-xl bg-[var(--paper-bg)] p-3">
+            <p class="text-xs text-[var(--editorial-neutral)]">Two screens</p>
+            <p class="mt-1 font-semibold">74% of attention stays in the first two screens.</p>
+          </div>
+          <div class="rounded-xl bg-[var(--paper-bg)] p-3">
+            <p class="text-xs text-[var(--editorial-neutral)]">Left focus</p>
+            <p class="mt-1 font-semibold">80% of viewing time stays left of center.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="resources" class="paper-card p-5 paper-layout-card">
+        <p class="paper-label text-[var(--editorial-neutral)]">Resource kit</p>
+        <p class="mt-2 text-sm text-[var(--paper-muted)]">Download the layout checklist, container query cheat sheet, and CLS audit template used in this guide.</p>
+        <div class="mt-4 space-y-3">
+          <button class="paper-btn paper-btn-primary w-full">Download kit</button>
+          <button class="paper-btn paper-btn-outline w-full">View glossary</button>
+        </div>
+      </div>
+
+      <div class="paper-card p-5 paper-layout-card">
+        <p class="paper-label text-[var(--editorial-neutral)]">Sidebar reminder</p>
+        <p class="mt-2 text-sm text-[var(--paper-muted)]">Keep sidebars slim and subordinate. They should support the main narrative, not compete with it.</p>
+        <div class="mt-4 flex items-center gap-3 text-xs text-[var(--editorial-neutral)]">
+          <img src="../../assets/img/faces/clem-onojeghuo-2.jpg" alt="Clem Onojeghuo" class="h-6 w-6 rounded-full object-cover">
+          <span>Editorial team</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+
+
+    </main>
+    <footer class="px-6 py-6 text-xs text-[var(--paper-muted)]">
+      <div class="mx-auto flex w-full max-w-7xl flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <p>Fine Paper build. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-[var(--paper-text)]">About</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Documentation</a>
+          <a href="#" class="hover:text-[var(--paper-text)]">Support</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
